@@ -10,7 +10,7 @@
             <div>Municípios</div>
           </div>
           <div class="ph-right">
-            <div class='alert alert-warning p-2 m-0' role='alert'>
+            <div class='alert alert-success p-2 m-0' role='alert'>
               <i class='fas fa-exclamation-circle'></i> Cadastro padrão IBGE. Disponível somente para consulta
             </div>        
           </div>          
@@ -18,9 +18,29 @@
         
         <div class="card mb-4">
           <div class="card-body">
-            Cadastro de Municípios
+
+            <%= form_with(url: cities_search_path, class:'row', method: 'get', local: false) do |form| %>
+              <div class="col-12 col-md-8 mb-1">
+                <label for="name_id" class="form-label">Nome</label>
+                <input type="text" name="search_name" id="name_id" class="form-control" maxlength="50" autofocus autocomplete="off">
+              </div>
+              
+              <div class="col-12 col-md-2 mb-1">
+                <label for="ibge_code_id" class="form-label">Código IBGE</label>
+                <input type="number" name="search_ibge_code"id="ibge_code_id" class="form-control" maxlength="7" autofocus autocomplete="off">
+              </div>
+
+              <div class="col-btn-search col-12 col-md-2 align-self-end mb-1">
+                <%= button_tag class:"btn btn-outline-success btn-action", data: { disable_with: 'Aguarde..' } do %>
+                  <i class="fa-solid fa-magnifying-glass me-1"></i>Consultar
+                <% end %>
+              </div>
+            <% end %>
+
           </div>
         </div>
+
+        <div class='data' id='data-id'></div>          
         
       </div>                    
     </main>

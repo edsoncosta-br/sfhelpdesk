@@ -122,7 +122,7 @@ namespace :dev do
       if (ibgecode != 0) || (cityname != 0) || (state != 0)
         City.create!(
           ibge_code: ibgecode, 
-          name: cityname.upcase, 
+          name: cityname, 
           state: state)
       end  
     end

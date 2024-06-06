@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2024_05_31_183614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "admins", force: :cascade do |t|
     t.string "email", limit: 60, default: "", null: false

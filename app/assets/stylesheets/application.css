@@ -432,3 +432,7 @@ body {
 .alert {
   font-size: 0.9rem;
 }
+
+.table-result {
+  background-color: #fff;
+}

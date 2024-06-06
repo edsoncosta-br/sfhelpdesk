@@ -1,0 +1,26 @@
+document.getElementById('city_id').innerHTML = '';
+
+<% if !@cities.empty? %>
+  
+  <% @cities.each_with_index do |city_state, index| %>
+    
+    <% if index == 0 %>
+      var node = document.createElement("option");
+      node.setAttribute("value", "");
+
+      var item = document.createTextNode("SELECIONE..");
+      node.appendChild(item);
+      document.getElementById("city_id").appendChild(node);
+    <%end%> 
+    
+    var node = document.createElement("option");
+    node.setAttribute("value", <%= city_state.id %>);
+
+    var item = document.createTextNode("<%=city_state.name%>");
+    node.appendChild(item);
+    document.getElementById("city_id").appendChild(node);
+
+  <% end %>
+
+<% end %>
+

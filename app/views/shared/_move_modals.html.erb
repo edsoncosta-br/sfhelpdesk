@@ -1,0 +1,8 @@
+<%# move os modais para fora da tag table-responsive para contornar erro iphone que nao exibe o modal corretamente %>
+var elements = document.querySelectorAll('.modal');
+var classCount = elements.length;
+if (classCount > 0){
+    for(var i = 0; i < elements.length; i++) {
+        document.getElementById('modal-place').appendChild(elements[i])
+    }
+};
