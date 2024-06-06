@@ -1,0 +1,218 @@
+pt-BR:
+  activerecord:
+    models:
+      user: Usuário
+      admin: Administrador
+      customer: Cliente
+    errors:
+      messages:
+        record_invalid: 'A validação falhou: %{errors}'
+        restrict_with_exception:
+          has_one: Não é possível excluir o registro pois existe um %{record} dependente
+          has_many: Não é possível excluir o registro pois existem %{record} dependentes      
+    attributes:
+      user:
+        id: Código
+        email: E-mail
+        password_confirmation: Confirmação
+        name: Nome
+        social_name: Nome Social
+        position: Cargo/Função
+        active: Cadastro Ativo
+        password: Senha
+        password_confirmation: Confirmação
+        customer_id: Cliente
+      admin:
+        id: Código
+        name: Nome
+        email: E-mail
+        social_name: Nome Social
+        position: Cargo/Função
+        active: Cadastro Ativo
+        registration_menu: Acesso Cadastros
+        panel_menu: Acesso Painel
+        password: Senha
+        password_confirmation: Confirmação
+      supervisor:
+        id: Código
+        name: Nome
+        email: E-mail
+        position: Cargo/Função
+        active: Cadastro Ativo
+        password: Senha
+        password_confirmation: Confirmação
+      customer:
+        code: Código
+        name: Nome
+        address: Endereço
+        number: Número
+        complement: Complemento
+        district: Bairro
+        city_id: Município
+        city: Município
+        cnpj_number: CNPJ/CPF
+        zip_code: CEP
+        phone_number: Telefone Móvel
+        phone_number_2: Telefone Fixo
+        email: E-mail
+        active: Cadastro Ativo
+        type_person: Pessoa
+      batch_type:
+        description: Descrição Tipo de Lote
+        destination: Área Destino
+        active: Cadastro Ativo
+      batch_file:
+        description: Descrição Tipo de Arquivo
+        batch_type_id: Tipo de Lote
+        active: Cadastro Ativo
+      batch_stage:
+        description: Descrição Tipo de Lote
+        stage_01_active: Etapa 1
+        stage_01_description: Descrição
+        stage_02_active: Etapa 2
+        stage_02_description: Descrição
+        stage_03_active: Etapa 3
+        stage_03_description: Descrição
+        stage_04_active: Etapa 4
+        stage_04_description: Descrição
+        stage_05_active: Etapa 5
+        stage_05_description: Descrição
+        stage_06_active: Etapa 6
+        stage_06_description: Descrição
+        stage_07_active: Etapa 7
+        stage_07_description: Descrição
+        stage_08_active: Etapa 8
+        stage_08_description: Descrição
+        stage_09_active: Etapa 9
+        stage_09_description: Descrição
+        stage_10_active: Etapa 10
+        stage_10_description: Descrição
+        batch_type_id: Tipo de Lote
+      company:
+        name: Nome da Empresa
+        email_admin: E-mail Usuário Administrador
+        name_admin: Nome Usuário Administrador
+      process_batch:
+        number: Número do Lote
+        send_date: Data de Envio
+        user_id: Usuário
+        admin_id: Usuário        
+        status: Status
+        note_send: Complemento do Lote
+        customer_id: Cliente
+        batch_type_id: Selecione o Tipo do Lote
+        batch_file_id: Selecione o Tipo dos arquivos do Lote
+        files: Arquivo(s)
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      blank: é um campo obrigatório
+      required: é um campo obrigatório
+      content_type_invalid: 'inválido(s). Extensões permitidas: jpeg, png, tiff, zip, rar, ofx, ret, pdf, xml e txt'
+      file_size_out_of_range: 'tem %{file_size} mas o limite é 10 MB'      
+      too_short:
+        one: 'é muito curta (mínimo: 1 caracter)'
+        other: 'é muito curta (mínimo: %{count} caracteres)'
+  views:
+    pagination:
+      previous: "&lt"
+      next: "&gt"
+  date:
+    abbr_day_names:
+    - dom
+    - seg
+    - ter
+    - qua
+    - qui
+    - sex
+    - sáb
+    abbr_month_names:
+    -
+    - jan
+    - fev
+    - mar
+    - abr
+    - mai
+    - jun
+    - jul
+    - ago
+    - set
+    - out
+    - nov
+    - dez
+    day_names:
+    - domingo
+    - segunda-feira
+    - terça-feira
+    - quarta-feira
+    - quinta-feira
+    - sexta-feira
+    - sábado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%a, %d de %B de %Y"
+      short: "%d de %B"
+    month_names:
+    -
+    - janeiro
+    - fevereiro
+    - março
+    - abril
+    - maio
+    - junho
+    - julho
+    - agosto
+    - setembro
+    - outubro
+    - novembro
+    - dezembro
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: aproximadamente %{count} hora
+        other: aproximadamente %{count} horas
+      about_x_months:
+        one: aproximadamente %{count} mês
+        other: aproximadamente %{count} meses
+      about_x_years:
+        one: aproximadamente %{count} ano
+        other: aproximadamente %{count} anos
+      almost_x_years:
+        one: quase %{count} ano
+        other: quase %{count} anos
+      half_a_minute: meio minuto
+      less_than_x_seconds:
+        one: menos de %{count} segundo
+        other: menos de %{count} segundos
+      less_than_x_minutes:
+        one: menos de um minuto
+        other: menos de %{count} minutos
+      over_x_years:
+        one: mais de %{count} ano
+        other: mais de %{count} anos
+      x_seconds:
+        one: "%{count} segundo"
+        other: "%{count} segundos"
+      x_minutes:
+        one: "%{count} minuto"
+        other: "%{count} minutos"
+      x_days:
+        one: "%{count} dia"
+        other: "%{count} dias"
+      x_months:
+        one: "%{count} mês"
+        other: "%{count} meses"
+      x_years:
+        one: "%{count} ano"
+        other: "%{count} anos"
+    prompts:
+      second: Segundo
+      minute: Minuto
+      hour: Hora
+      day: Dia
+      month: Mês
+      year: Ano      

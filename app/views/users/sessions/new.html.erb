@@ -1,0 +1,36 @@
+<div class="container container-login">
+
+  <div class="img-login">
+    <%= image_tag "logo.png", class:"pb-3", alt: "logo" %>
+  </div>
+
+  <div class="text-center pb-4 title-login">Acesse sua conta</div>
+  
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-group position-relative has-icon-left mb-4">
+      <%= f.email_field :email, class:"form-control", placeholder:"E-mail", autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="form-group position-relative has-icon-left mb-4">
+      <%= f.password_field :password, class:"form-control", id:"text-password", placeholder:"Senha", autocomplete: "current-password" %>
+      <%# <div id="icon-group" class="icon-group-password">
+        <i id="icon-eye" class="fa-solid fa-eye"></i>
+      </div> %>
+    </div>
+
+    <div class="form-check">
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me, class:"form-check-input me-1", id:"rememberable_id"%>
+          <%= f.label "Permanecer conectado", for:"rememberable_id" %>
+        </div>
+      <% end %>            
+      <%= link_to "Esqueci minha senha", new_password_path(resource_name) %>
+    </div>      
+    
+    <div class="d-grid gap-2">
+      <%= button_tag 'Acessar', type: 'submit', class:"btn btn-success mt-4" %>
+    </div>
+  <% end %>
+
+</div>  

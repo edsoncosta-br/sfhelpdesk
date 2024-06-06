@@ -1,0 +1,29 @@
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+  <div class="navbar-brand-align">
+    <%= image_tag "logo.png", class:"img-logo", alt: "Logo" %>
+  </div>
+  <button class="btn btn-link btn-sm me-2" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+  <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+  </div>
+  <ul class="navbar-nav ms-auto ms-md-0 me-2">
+    <li class="data-user">
+      <p class="m-0 text-end user-name">Olá, <%=current_user.name_display%></p>
+      <p class="m-0 text-muted user-date"><%=I18n.l(Date.today, format: :long).capitalize()%></p>
+    </li>   
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle d-flex align-items-center" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="avatar">
+          <%= image_tag "emptyuser.png", alt: "empty user" %>
+        </div>							
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="#!">Meu perfil</a></li>
+        <li><hr class="dropdown-divider" /></li>
+        <%= link_to(destroy_user_session_path,  method: :delete , class: 'dropdown-item') do %>
+          <i class="fa-solid fa-right-from-bracket"></i> Sair
+        <%end%>                              
+      </ul>
+    </li>
+  </ul>
+</nav>

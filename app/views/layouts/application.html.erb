@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>SFHelpdesk</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+
+    <% if File.exist?( (Rails.root + 'app/assets/stylesheets/' + params[:controller]).to_s.singularize + '.css' ) %>
+      <%= stylesheet_link_tag params[:controller].singularize %>
+    <% end %>
+    
+    <% if File.exist?( (Rails.root + 'app/assets/javascripts/' + params[:controller]).to_s.singularize + '.js' ) %>
+      <%= javascript_include_tag params[:controller].singularize %>
+    <% end %>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <%= favicon_link_tag asset_path("favicon.png") %>    
+  </head>
+
+  <body class="sb-nav-fixed" data-flash-messages="<%= JSON.dump(flash.to_a) %>">
+    <%= yield %>
+  </body>
+</html>

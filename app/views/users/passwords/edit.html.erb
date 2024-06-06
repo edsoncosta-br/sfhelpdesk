@@ -1,0 +1,25 @@
+<div class="container container-login">
+  <div class="img-login">
+    <%= image_tag "logo.png", class:"pb-3", alt: "logo" %>
+  </div>
+
+  <div class="text-center pb-4 title-login">Alteração de senha</div>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "shared/error_messages", resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <div class="form-group position-relative has-icon-left mb-4">
+      <%= f.password_field :password, autofocus: true, class:"form-control", id:"text-password", placeholder:"Informe sua nova senha", autocomplete: "new-password" %>
+    </div>
+
+    <div class="form-group position-relative has-icon-left mb-1"> 
+      <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password", placeholder:"Confirme sua nova senha"%>
+    </div>
+
+    <div class="d-grid gap-2">
+      <%= button_tag 'Confirmar alteração', type: 'submit', class:"btn btn-success mt-4" %>
+    </div>
+  <% end %>
+
+</div>

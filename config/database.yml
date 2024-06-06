@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password: password  
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: sfhelpdesk_development
+
+test:
+  <<: *default
+  database: sfhelpdesk_test
+
+production:
+  <<: *default
+  database: sfhelpdesk_production
+  username: sfhelpdesk
+  password: <%= ENV['SFHELPDESK_DATABASE_PASSWORD'] %>
