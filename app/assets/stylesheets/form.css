@@ -3,11 +3,11 @@
 }
 
 .form-control:focus {
-  box-shadow: 0 0 0 0.03rem #1baf19;
+  box-shadow: 0 0 0 0.03rem #86b7fe;
 }
 
 .form-select:focus {
-  box-shadow: 0 0 0 0.03rem #22d81f;
+  box-shadow: 0 0 0 0.03rem #86b7fe;
 }
 
 .form-control.is-invalid:focus {
