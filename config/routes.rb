@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   get 'cities/index'
   get 'cities/search'
   get 'cities/filter'  
+
+  get 'positions/index'
+  get 'positions/search'  
 end

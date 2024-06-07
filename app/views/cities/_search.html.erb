@@ -1,7 +1,7 @@
 <% if !@cities.empty? %>
 
   <div class="records text-muted text-end">
-    Registros encontrados: <%#=@cities.total_count%>
+    Registros encontrados: <%=@cities_size%>
   </div>
 
   <div id="modal-place"></div>
@@ -12,28 +12,24 @@
         <tr>
           <th scope='col'>Nome</th>
           <th scope='col'>UF</th>
-          <th scope='col'>Cód.IBGE</th>
+          <th scope='col'>Código IBGE</th>
         </tr>
       </thead>
 
       <tbody>
-
         <% @cities.each do |city| %>
-          
           <tr>
             <td class='align-middle'> <%= city.name %> </td>
             <td class='align-middle'> <%= city.state %> </td>
             <td class='align-middle'> <%= city.ibge_code %> </td>
           </tr>        
-        
         <% end %>
-
       </tbody>
     </table>
   </div>    
 
   <div class="pt-3">
-    <%#= paginate @cities, window: Constants::PAGINATE_WINDOW, remote: true %>
+    <%= paginate @cities, window: Constants::PAGINATE_WINDOW, remote: true %>
   </div>   
 
 <% else %>

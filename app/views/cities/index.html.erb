@@ -16,14 +16,48 @@
           </div>          
         </div>
         
-        <div class="card mb-4">
+        <div class="card">
           <div class="card-body">
 
             <%= form_with(url: cities_search_path, class:'row', method: 'get', local: false) do |form| %>
-              <div class="col-12 col-md-8 mb-1">
+              <div class="col-12 col-md-6 mb-1">
                 <label for="name_id" class="form-label">Nome</label>
                 <input type="text" name="search_name" id="name_id" class="form-control" maxlength="50" autofocus autocomplete="off">
               </div>
+              
+              <div class="col-12 col-md-2 mb-1">
+                <label for="ibge_code_id" class="form-label">UF</label>
+                <select class="form-select" name="search_uf" id="uf_id">
+                    <option value="">Todas</option>
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MS">MS</option>
+                    <option value="MT">MT</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+                </select>
+              </div>              
               
               <div class="col-12 col-md-2 mb-1">
                 <label for="ibge_code_id" class="form-label">Código IBGE</label>
@@ -31,7 +65,7 @@
               </div>
 
               <div class="col-btn-search col-12 col-md-2 align-self-end mb-1">
-                <%= button_tag class:"btn btn-outline-success btn-action", data: { disable_with: 'Aguarde..' } do %>
+                <%= button_tag class:"btn btn-outline-success", data: { disable_with: 'Aguarde..' } do %>
                   <i class="fa-solid fa-magnifying-glass me-1"></i>Consultar
                 <% end %>
               </div>
@@ -40,7 +74,7 @@
           </div>
         </div>
 
-        <div class='data' id='data-id'></div>          
+        <div class='data' id='data-id'></div>
         
       </div>                    
     </main>

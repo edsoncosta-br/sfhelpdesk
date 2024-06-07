@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2024_05_31_183614) do
     t.string "description", limit: 30, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["description"], name: "index_positions_on_description", unique: true
   end
 
   create_table "users", force: :cascade do |t|

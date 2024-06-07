@@ -10,14 +10,32 @@
             <div>Cargos/Funções - Usuários</div>
           </div>
           <div class="ph-right">
+            <%= link_to(positions_index_path,  class: "btn btn-action btn-success") do %>
+              <i class="fa-solid fa-arrow-right-to-bracket me-2"></i></i> Incluir
+            <%end%>             
           </div>          
         </div>
         
-        <div class="card mb-4">
+        <div class="card">
           <div class="card-body">
-            Cadastro de Cargos/Funções
+ 
+             <%= form_with(url: positions_search_path, class:'row', method: 'get', local: false) do |form| %>
+              <div class="col-12 col-md-10 mb-1">
+                <label for="position_id" class="form-label">Descrição</label>
+                <input type="text" name="search_description" id="description_id" class="form-control" maxlength="50" autofocus autocomplete="off">
+              </div>
+
+              <div class="col-btn-search col-12 col-md-2 align-self-end mb-1">
+                <%= button_tag class:"btn btn-outline-success", data: { disable_with: 'Aguarde..' } do %>
+                  <i class="fa-solid fa-magnifying-glass me-1"></i>Consultar
+                <% end %>
+              </div>
+            <% end %>
+ 
           </div>
         </div>
+
+        <div class='data' id='data-id'></div>
         
       </div>                    
     </main>

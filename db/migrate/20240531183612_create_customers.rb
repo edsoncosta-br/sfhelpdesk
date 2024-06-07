@@ -21,6 +21,6 @@ class CreateCustomers < ActiveRecord::Migration[6.1]
     end
 
     add_foreign_key :customers, :cities, index: true
-    add_foreign_key :customers, :companies, index: true, on_delete: :cascade
+    add_foreign_key :customers, :companies, index: true
   end
 end

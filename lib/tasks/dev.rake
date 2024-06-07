@@ -48,7 +48,7 @@ namespace :dev do
   desc 'Add default position'
   task add_position: :environment do
     Position.create!(
-      description: 'DESENVOLVEDOR')
+      description: 'Analista de Sistemas')
   end
 
   desc 'Adding cities...'

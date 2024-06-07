@@ -5,5 +5,7 @@ class CreatePositions < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_index :positions, :description, unique: true
   end
 end

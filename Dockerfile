@@ -28,4 +28,5 @@ COPY . /sfhelpdesk/
 
 ENV BUNDLE_PATH /gems
 
+RUN bundle config set force_ruby_platform true
 RUN bundle install
