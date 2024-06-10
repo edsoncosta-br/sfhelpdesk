@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2024_05_31_183614) do
   end
 
   add_foreign_key "customers", "cities"
-  add_foreign_key "customers", "companies", on_delete: :cascade
-  add_foreign_key "users", "companies", on_delete: :cascade
+  add_foreign_key "customers", "companies"
+  add_foreign_key "users", "companies"
   add_foreign_key "users", "positions"
 end

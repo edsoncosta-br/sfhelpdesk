@@ -118,7 +118,7 @@ body {
 }
 .sb-nav-fixed .sb-topnav {
   z-index: 1039;
-  box-shadow: 0 0px 9px 0 rgba(0,0,0,0.19),0 6px 20px 0 rgba(0,0,0,0.19);    
+  box-shadow: 0 0px 9px 0 rgba(0,0,0,0.19),0 3px 20px 0 rgba(187,187,187,0.19);    
 }
 .sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
   width: 225px;
@@ -311,7 +311,6 @@ body {
 
 .max-container {
   max-width: 1600px;
-  padding-top: 1rem;
 }
 
 @media screen and (max-width: 1850px) {
@@ -415,12 +414,12 @@ body {
   justify-content: space-between;
   align-items: center;
   font-weight: 500;
-  height: 5.2rem;
+  padding-top: 1.9rem;
+  padding-bottom: 1.5rem;
 }
 
 .page-heading .ph-left {
   padding: 4px 0;
-  font-size: 1.1rem;
 }
 
 .icon-heading {
@@ -515,15 +514,15 @@ body {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.col-actions {
-  width: 80px;
+.col-actions-two {
+  width: 60px;
 }
 
 .card-style {
   background-color: #fbfcff;
   border-radius: 0.375rem;
   padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
+  padding-bottom: 0.8rem;
 }
 
 @media screen and (max-width: 767px) {
@@ -531,4 +530,10 @@ body {
     margin-top: 8px;
     text-align: end;
   }
+}
+
+.td-actions {
+  font-size: 1.2rem;
+  color: #5a725f !important;
+  text-decoration: none;
 }

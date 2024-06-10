@@ -49,6 +49,10 @@ namespace :dev do
   task add_position: :environment do
     Position.create!(
       description: 'Analista de Sistemas')
+    Position.create!(
+      description: 'Desenvolvedor')      
+    Position.create!(
+      description: 'Suporte Técnico')
   end
 
   desc 'Adding cities...'

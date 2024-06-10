@@ -7,11 +7,11 @@
   <div id="modal-place"></div>
 
   <div class="table-responsive">
-    <table class='table table-striped table-hover table-result'>
+    <table class='table table-bordered table-striped table-hover table-result'>
       <thead>
         <tr>
           <th scope='col'>Descrição</th>
-          <th scope='col' class='col-actions'>Ações</th>
+          <th scope='col' class='text-center col-actions-two'>Ações</th>
         </tr>
       </thead>
 
@@ -19,7 +19,15 @@
         <% @positions.each do |position| %>
           <tr>
             <td class='align-middle'> <%= position.description %> </td>
-            <td class='align-middle'> A B C </td>
+            <td class='align-middle text-center '>
+              <%= link_to root_path, class: 'td-actions', title: "Alterar" do %>
+                <i class="fa-regular fa-pen-to-square pe-1"></i>
+              <% end %>
+
+              <%= link_to root_path, class: 'td-actions', title: "Excluir" do %>
+                <i class="fa-regular fa-trash-can pe-1"></i>
+              <% end %>              
+            </td>
           </tr>        
         <% end %>
       </tbody>

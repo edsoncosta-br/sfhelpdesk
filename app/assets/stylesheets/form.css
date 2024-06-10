@@ -5,10 +5,12 @@
 
 .form-control-auth {
   font-size: 14px;
+  height: auto;
 }
 
 .form-control:focus {
-  box-shadow: 0 0 0 0.03rem #86b7fe;
+  box-shadow: 0 0 0 0.05rem #b0efac;
+  border-color: #54bf8a;
 }
 
 .form-select {
@@ -17,7 +19,9 @@
 }
 
 .form-select:focus {
-  box-shadow: 0 0 0 0.03rem #86b7fe;
+  /* box-shadow: 0 0 0 0.03rem #86b7fe; */
+  box-shadow: 0 0 0 0.05rem #b0efac;
+  border-color: #54bf8a;  
 }
 
 .form-control.is-invalid:focus {
@@ -73,4 +77,8 @@
   .btn-process {
     min-width: 0;
   }
+}
+
+.table {
+  --bs-table-striped-bg: rgba(0, 0, 0, 0.02);
 }
