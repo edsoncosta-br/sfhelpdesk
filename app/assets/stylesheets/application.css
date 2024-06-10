@@ -372,7 +372,7 @@ body {
   .container-login {
     padding: 5rem 1rem 0 1rem;
   }
-  .user-name {
+  .data-user {
     display: none;
   }  
 }
@@ -517,4 +517,18 @@ body {
 
 .col-actions {
   width: 80px;
+}
+
+.card-style {
+  background-color: #fbfcff;
+  border-radius: 0.375rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+@media screen and (max-width: 767px) {
+  .col-btn-search {
+    margin-top: 8px;
+    text-align: end;
+  }
 }

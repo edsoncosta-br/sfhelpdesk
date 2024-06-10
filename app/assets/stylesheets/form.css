@@ -1,5 +1,6 @@
 .form-control {
   font-size: 13px;
+  height: 27px;
 }
 
 .form-control-auth {
@@ -8,6 +9,11 @@
 
 .form-control:focus {
   box-shadow: 0 0 0 0.03rem #86b7fe;
+}
+
+.form-select {
+  height: 27px;
+  padding-top: 3px;
 }
 
 .form-select:focus {
@@ -21,6 +27,7 @@
 .form-label {
   font-weight: 500;
   font-size: 11px;
+  margin-bottom: 0.2rem;
 }
 
 .input-btn {
@@ -55,6 +62,11 @@
 
 .modal-header-icon {
   color: #d3ab34;
+}
+
+.btn-form {
+  height: 27px;
+  padding-top: 3px;
 }
 
 @media screen and (max-width: 576px) {
