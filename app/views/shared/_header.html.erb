@@ -2,7 +2,83 @@
   <div class="navbar-brand-align">
     <%= image_tag "logo.png", class:"img-logo", alt: "Logo" %>
   </div>
-  <button class="btn btn-link btn-sm me-2" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+
+  <div class="menubar-top ps-4">
+    <a data-bs-toggle="offcanvas" href="#offcanvasExample" aria-controls="offcanvasExample"> <i class="bars fa-solid fa-bars fa-2x"></i> </a>
+    <ul class="main-menu">
+      
+      <li class="menu-item has-sub">
+        <%= link_to(root_path,  class: "menu-link") do %>Painel<%end%>
+      </li>
+
+      <li class="menu-item has-sub">
+        <a href="#" class="menu-link">
+          <span class="pe-2">Cadastros</span><i class="fa-solid fa-chevron-down"></i>
+        </a>
+        <div class="submenu">
+          <div class="submenu-group-wrapper">
+            <ul class="submenu-group">
+
+              <li class="submenu-item">
+                <%= link_to(customers_index_path,  class: "subsubmenu-link") do %>Clientes<%end%>
+              </li>
+
+              <li class="submenu-item has-sub">
+                <a href="#" class="submenu-link">Equipe</a><i class="fa-solid fa-chevron-right"></i>
+
+                <ul class="subsubmenu">
+                  <li class="subsubmenu-item">
+                    <%= link_to(positions_index_path,  class: "subsubmenu-link") do %>Cargos/Funções<%end%>
+                  </li>
+
+                  <li class="subsubmenu-item">
+                    <%= link_to(root_path,  class: "subsubmenu-link") do %>Usuários<%end%>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="submenu-item has-sub">
+                <a href="#" class="submenu-link">Projetos</a><i class="fa-solid fa-chevron-right"></i>
+
+                <ul class="subsubmenu">
+                  <li class="subsubmenu-item">
+                    <%= link_to(root_path,  class: "subsubmenu-link") do %>Sistemas<%end%>
+                  </li>
+
+                  <li class="subsubmenu-item">
+                    <%= link_to(root_path,  class: "subsubmenu-link") do %>Tags<%end%>
+                  </li>
+
+                  <li class="subsubmenu-item">
+                    <%= link_to(root_path,  class: "subsubmenu-link") do %>Participantes<%end%>
+                  </li>
+
+                  <li class="subsubmenu-item">
+                    <%= link_to(root_path,  class: "subsubmenu-link") do %>Versões<%end%>
+                  </li>                                        
+                </ul>
+              </li>
+
+              <li class="submenu-item">
+                <%= link_to(cities_index_path,  class: "subsubmenu-link") do %>Municípios<%end%>
+              </li>    
+
+            </ul>
+          </div>
+        </div>
+      </li>
+      
+      <li class="menu-item has-sub">
+        <%= link_to(root_path,  class: "menu-link") do %>Requisições<%end%>
+      </li>
+
+      <li class="menu-item has-sub">
+        <%= link_to(root_path,  class: "menu-link") do %>FAQ Interno<%end%>
+      </li>
+
+    </ul>
+  </div>
+
   <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
   </div>
   <ul class="navbar-nav ms-auto ms-md-0 me-2">
@@ -10,20 +86,36 @@
       <p class="m-0 text-end user-name">Olá, <%=current_user.name_display%></p>
       <p class="m-0 text-muted user-date"><%=I18n.l(Date.today, format: :long).capitalize()%></p>
     </li>   
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle d-flex align-items-center" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <div class="avatar">
-          <%= image_tag "emptyuser.png", alt: "empty user" %>
-        </div>							
-      </a>
 
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-        <li><a class="dropdown-item" href="#!">Meu perfil</a></li>
-        <li><hr class="dropdown-divider" /></li>
-        <%= link_to(destroy_user_session_path,  method: :delete , class: 'dropdown-item') do %>
-          <i class="fa-solid fa-right-from-bracket"></i> Sair
-        <%end%>                              
+    <div class="menubar-top menubar-top-user ps-2">
+      <ul>
+        <li class="menu-item has-sub menu-link">
+          <div class="user-dropdown d-flex align-items-center dropdown-toggle" >
+            <div class="avatar">
+              <%= image_tag "emptyuser.png", alt: "empty user" %>
+            </div>
+          </div>
+        
+          <div class="submenu submenu-user">
+            <div class="submenu-group-wrapper">
+              <ul class="submenu-group submenu-group-user">
+                <li class="submenu-item">
+                  <%= link_to(root_path, class: "submenu-link pe-1") do %>
+                    Meus dados
+                  <%end%>                      
+                </li>
+
+                <li class="submenu-item">
+                  <%= link_to(destroy_user_session_path,  method: :delete , class: 'dropdown-item') do %>
+                    <i class="fa-solid fa-right-from-bracket"></i> Sair
+                  <%end%>                      
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>  
       </ul>
-    </li>
+    </div>
+
   </ul>
 </nav>

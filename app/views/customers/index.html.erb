@@ -1,46 +1,41 @@
 <%= render "shared/header" %>
-<div id="layoutSidenav">
-  <%= render "shared/sidenav" %>
-  <div id="layoutSidenav_content">
-    <main>
-      <div class="container-fluid max-container">
-        <div class="page-heading"> 
-          <div class="ph-left d-flex pe-3">
-            <i class="fa-solid fa-shop icon-heading"></i>
-            <div>Clientes</div>
+<main>
+  <div class="container-fluid max-container">
+    <div class="page-heading"> 
+      <div class="ph-left d-flex pe-3">
+        <i class="fa-solid fa-shop icon-heading"></i>
+        <div>Clientes</div>
+      </div>
+      <div class="ph-right">
+        <%= link_to(customers_index_path,  class: "btn btn-action btn-success") do %>
+          <i class="fa-solid fa-plus"></i></i> Incluir
+        <%end%>   
+      </div> 
+    </div>
+    
+    <div class="card">
+      <div class="card-body card-style">
+
+        <form class="row" action="/backoffice/customers/search" accept-charset="UTF-8" data-remote="true" method="get">
+          <div class="col-12 col-md-8 mb-1">
+            <label for="name_id" class="form-label">Nome</label>
+            <input type="text" name="search_name" id="name_id" class="form-control" maxlength="60" autofocus autocomplete="off">
           </div>
-          <div class="ph-right">
-            <%= link_to(customers_index_path,  class: "btn btn-action btn-success") do %>
-              <i class="fa-solid fa-arrow-right-to-bracket me-2"></i></i> Incluir
-            <%end%>   
-          </div> 
-        </div>
-        
-        <div class="card">
-          <div class="card-body card-style">
-
-            <form class="row" action="/backoffice/customers/search" accept-charset="UTF-8" data-remote="true" method="get">
-              <div class="col-12 col-md-8 mb-1">
-                <label for="name_id" class="form-label">Nome</label>
-                <input type="text" name="search_name" id="name_id" class="form-control" maxlength="60" autofocus autocomplete="off">
-              </div>
-              
-              <div class="col-12 col-md-2 mb-1">
-                <label for="code_id" class="form-label">Código</label>
-                <input type="text" name="search_code"id="code_id" class="form-control" maxlength="5" autofocus autocomplete="off">
-              </div>
-
-              <div class="col-btn-search col-12 col-md-2 align-self-end mb-1">
-                <%= button_tag class:"btn btn-outline-success btn-form", data: { disable_with: 'Aguarde..' } do %>
-                  <i class="fa-solid fa-magnifying-glass me-1"></i>Consultar
-                <% end %>
-              </div>
-            </form>          
-
+          
+          <div class="col-12 col-md-2 mb-1">
+            <label for="code_id" class="form-label">Código</label>
+            <input type="text" name="search_code"id="code_id" class="form-control" maxlength="5" autofocus autocomplete="off">
           </div>
-        </div>
-        
-      </div>                    
-    </main>
-  </div>
-</div>
+
+          <div class="col-btn-search col-12 col-md-2 align-self-end mb-1">
+            <%= button_tag class:"btn btn-outline-success btn-form", data: { disable_with: 'Aguarde..' } do %>
+              <i class="fa-solid fa-magnifying-glass me-1"></i>Consultar
+            <% end %>
+          </div>
+        </form>          
+
+      </div>
+    </div>
+    
+  </div>                    
+</main>

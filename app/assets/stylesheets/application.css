@@ -2,6 +2,7 @@
 *= require bootstrap/dist/css/bootstrap
 *= require toastify-js/src/toastify.css
 *= require form.css
+*= require menubar.css
 */
 
 html,
@@ -27,7 +28,7 @@ body {
 
 .bg-dark {
   --bs-bg-opacity: 1;
-  background-color: #fff !important;
+  background-color: #c6d7c3 !important;
 }
 
 .navbar-expand .navbar-nav .dropdown-menu {
@@ -63,68 +64,11 @@ body {
 #layoutSidenav {
   display: flex;
 }
-#layoutSidenav #layoutSidenav_nav {
-  flex-basis: 225px;
-  flex-shrink: 0;
-  transition: transform 0.15s ease-in-out;
-  z-index: 1038;
-  transform: translateX(-225px);
-}
-#layoutSidenav #layoutSidenav_content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-width: 0;
-  flex-grow: 1;
-  min-height: calc(100vh - 56px);
-  margin-left: -225px;
-}
-
-.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
-  transform: translateX(0);
-}
-.sb-sidenav-toggled #layoutSidenav #layoutSidenav_content:before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  z-index: 1037;
-  opacity: 0.5;
-  transition: opacity 0.3s ease-in-out;
-}
-
-@media (min-width: 1380px) {
-  #layoutSidenav #layoutSidenav_nav {
-    transform: translateX(0);
-  }
-  #layoutSidenav #layoutSidenav_content {
-    margin-left: 0;
-    transition: margin 0.15s ease-in-out;
-  }
-  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
-    transform: translateX(-225px);
-  }
-  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content {
-    margin-left: -225px;
-  }
-  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content:before {
-    display: none;
-  }
-}
 .sb-nav-fixed .sb-topnav {
   z-index: 1039;
-  box-shadow: 0 0px 9px 0 rgba(0,0,0,0.19),0 3px 20px 0 rgba(187,187,187,0.19);    
+  box-shadow: 0 0px 9px 0 rgba(0,0,0,0.11),0 0px 10px 0 rgba(0,0,0,0.30);
 }
-.sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
-  width: 225px;
-  height: 100vh;
-  z-index: 1038;
-}
+
 .sb-nav-fixed #layoutSidenav #layoutSidenav_nav .sb-sidenav {
   padding-top: 76px;
 }
@@ -175,9 +119,9 @@ body {
   color: #212529;
 }
 .navbar-brand-align {
-  width: 225px;
+  width: 200px;
   height: 60px;
-  background-color: #dbdbdb;
+  background-color: #f1f1f1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -290,18 +234,16 @@ body {
   flex-direction: column;
   align-self: center;
   padding-top: 4px;
+  font-size: 12px;
 }
 
 .data-user .user-name {
   font-weight: 500;
-}
-
-.data-user .user-date {
-  font-size: 12px;
+  color: #434842;
 }
 
 .img-logo {
-  width: 150px;
+  width: 70%;
 }
 
 .title-page {
@@ -310,7 +252,7 @@ body {
 }
 
 .max-container {
-  max-width: 1600px;
+  max-width: 1500px;
 }
 
 @media screen and (max-width: 1850px) {
@@ -414,12 +356,12 @@ body {
   justify-content: space-between;
   align-items: center;
   font-weight: 500;
-  padding-top: 1.9rem;
-  padding-bottom: 1.5rem;
+  padding-top: 6.8rem;
+  padding-bottom: 1.8rem;
 }
 
 .page-heading .ph-left {
-  padding: 4px 0;
+  padding: 6px 0;
 }
 
 .icon-heading {

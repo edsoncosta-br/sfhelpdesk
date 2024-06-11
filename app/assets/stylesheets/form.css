@@ -1,5 +1,4 @@
 .form-control {
-  font-size: 13px;
   height: 27px;
 }
 
@@ -19,7 +18,6 @@
 }
 
 .form-select:focus {
-  /* box-shadow: 0 0 0 0.03rem #86b7fe; */
   box-shadow: 0 0 0 0.05rem #b0efac;
   border-color: #54bf8a;  
 }
