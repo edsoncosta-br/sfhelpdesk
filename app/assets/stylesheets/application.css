@@ -240,8 +240,7 @@ body {
 }
 
 .data-user .user-name {
-  font-weight: 500;
-  color: #434842;
+  color: #000201;
 }
 
 .img-logo {
@@ -272,9 +271,8 @@ body {
 }
 
 .avatar img {
-  font-size: .8rem;
-  height: 42px;
-  width: 42px;
+  height: 48px;
+  width: 48px;
   border-radius: 50%;
   margin-right: 0.2rem;
 }  
@@ -311,7 +309,7 @@ body {
   }
 }
 
-@media screen and (max-width: 575px)  {
+@media screen and (max-width: 768px)  {
   .container-login {
     padding: 5rem 1rem 0 1rem;
   }
@@ -371,7 +369,7 @@ body {
   font-size: 1.5em;
 }  
 
-.alert {
+.alert-smaller {
   font-size: 11px
 }
 
@@ -463,10 +461,11 @@ body {
 }
 
 .card-style {
-  /* background-color: #fbfcff; */
+  background-color: #fbfcff;
   border-radius: 0.375rem;
-  padding-top: 0.6rem;
-  padding-bottom: 0.8rem;
+  border-left: 0.4rem solid #a8d7be !important;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 @media screen and (max-width: 767px) {
@@ -480,4 +479,9 @@ body {
   font-size: 1.2rem;
   color: #5a725f !important;
   text-decoration: none;
+}
+
+.alert-error-message {
+  padding: 0.6rem 1rem;
+  font-size: 12px;
 }

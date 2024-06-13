@@ -42,7 +42,7 @@ namespace :dev do
   desc 'Add default company'
   task add_company: :environment do
     Company.create!(
-      name: 'SÓFOLHA SOLUÇÕES CORPORATIVAS')
+      name: 'Sófolha Soluções Corporativas')
   end
 
   desc 'Add default position'
@@ -136,8 +136,8 @@ namespace :dev do
   task add_default_user: :environment do
     User.create!(
       email: 'edson@sofolha.com.br',
-      name: 'EDSON BENEDITO DA COSTA',
-      nick_name: 'EDSON COSTA',
+      name: 'Edson Benedito da Costa',
+      nick_name: 'Edson Costa',
       password: DEFAULT_PASSWORD,
       password_confirmation: DEFAULT_PASSWORD,
       position_id: 1,
@@ -147,11 +147,11 @@ namespace :dev do
 
     User.create!(
       email: 'mara@sofolha.com.br',
-      name: 'MARA SILVIA THOMAZINI',
-      # nick_name: 'EDSON COSTA',
+      name: 'Mara Sílvia Lopes Thomazini da Costa',
+      nick_name: 'Mara Sílvia',
       password: DEFAULT_PASSWORD,
       password_confirmation: DEFAULT_PASSWORD,
-      position_id: 1,
+      position_id: 3,
       company_id: 1,
       admin: true
     )    

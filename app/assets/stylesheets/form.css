@@ -23,17 +23,16 @@
 }
 
 .form-control.is-invalid:focus {
-  box-shadow: 0 0 0 0.03rem #dc3545;
+  box-shadow: 0 0 0 0.02rem #e4a1a7;
+}
+
+.form-control.is-invalid {
+  background-image: none;
 }
 
 .form-label {
   font-weight: 500;
   font-size: 11px;
-  margin-bottom: 0.2rem;
-}
-
-.input-btn {
-  text-transform: none;
 }
 
 .input-email {
@@ -48,8 +47,13 @@
   min-width: 8.5rem
 }
 
+.actions .btn {
+  min-width: 7.5rem
+}
+
 .modal-title {
   font-weight: 500;
+  font-size: 13px;
 }
 
 .modal-footer {
@@ -66,7 +70,7 @@
   color: #d3ab34;
 }
 
-.btn-form {
+.btn-search {
   height: 27px;
   padding-top: 3px;
 }
@@ -79,4 +83,15 @@
 
 .table {
   --bs-table-striped-bg: rgba(0, 0, 0, 0.02);
+}
+
+.card-size {
+  background-color: inherit;
+  max-width: 750px;
+}
+
+.card-bd-size {
+  border-left: 0.4rem solid #a8d7be !important;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }

@@ -1,11 +1,39 @@
 <% if resource.errors.any? %>
-  <div class="alert alert-danger" role="alert">
-    <div id="error_explanation" data-turbo-cache="false">
-      <ul class="m-0">
-        <% resource.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <div class="alert alert-danger alert-error-message" role="alert">
+
+    <%# mostra somente mensagens personalizadas %>
+    <% if resource.errors.to_a.to_s.include? "_isempty_" %>
+      <li>Campo(s) de preenchimento obrigatório</li>
+    <% end %>
+
+    <% if resource.errors.to_a.to_s.include? "_cnpj_isinvalid_" %>
+      <li>CNPJ/CPF inválido</li>
+    <% end %>
+
+    <% if resource.errors.to_a.to_s.include? "_email_admin_uniqueness_" %>
+      <li>Email em uso no cadastro de usuários da área administrativa da empresa: 
+          <%=resource.errors.to_a[0].sub("_email_admin_uniqueness_", '') %> </li>
+    <% end %>        
+
+    <% if resource.errors.to_a.to_s.include? "Arquivo(s) é um campo obrigatório" %>
+      <li>Arquivos do Lote não informados</li>
+    <% end %>
+
+    <%# Mensagem adicional para o email nos forms de sign_in %>
+    <% if (resource.errors.to_a.to_s.include? "E-mail é um campo obrigatório") and 
+          (!resource.errors.to_a.to_s.include? "_isempty_") %>
+      <li>E-mail é um campo obrigatório</li>
+    <% end %>
+
+    <%# mostra demais mensagens %>
+    <% resource.errors.full_messages.each do |message| %>
+      <% if (!message.include? "obrigatório") and
+            (!message.include? "_isempty_") and
+            (!message.include? "_isinvalid_") and
+            (!message.include? "_admin_uniqueness_")  %>
+        <li><%= message %></li>
+      <% end %>        
+    <% end %>     
+
   </div>    
 <% end %>

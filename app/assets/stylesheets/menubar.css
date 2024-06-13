@@ -1,14 +1,13 @@
 .menubar-top {
   display: flex;
   align-items: center;
-  font-size: 12px;
 }
   
 .menubar-top ul {
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 1.5rem;
+  gap: 1.3rem;
   margin-bottom: 0;
 }
 
@@ -26,8 +25,7 @@
 }
 
 .menubar-top ul>.menu-item .menu-link {
-  color: #434842;
-  font-weight: 500;
+  color: #000201;
 }
 
 .menubar-top ul>.menu-item .menu-link-light {
@@ -64,9 +62,9 @@
 }
 
 .menubar-top .submenu-user {
-  margin-left: -78px;
+  margin-left: -72px;
   width: 135px;
-  margin-top: 0.8rem;
+  margin-top: 0.5rem;
 }
 
 .menubar-top .submenu-supervisor {
@@ -151,11 +149,16 @@
   min-width: 180px
 }
 
+.menubar-top ul .avatar-link {
+  padding: 0.6rem 0;
+  display: block;
+}
+
 .bars {
   display: none;
 }
 
-@media screen and (max-width: 991px)  {
+@media screen and (max-width: 767px)  {
   .main-menu {
     display: none !important;
   }

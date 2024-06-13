@@ -9,13 +9,17 @@ Rails.application.routes.draw do
     # mount Sidekiq::Web => '/sidekiq'
   end  
 
-  get 'positions/index'
   get 'customers/index'  
 
   get 'cities/index'
   get 'cities/search'
   get 'cities/filter'  
 
+  resources :positions, except: [:show]  
   get 'positions/index'
   get 'positions/search'  
+
+  resources :users, except: [:show]
+  get 'users/index'  
+  get 'users/search'  
 end

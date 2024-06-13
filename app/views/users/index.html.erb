@@ -4,10 +4,10 @@
     <div class="page-heading"> 
       <div class="ph-left d-flex pe-3">
         <i class="fa-solid fa-user-group icon-heading"></i>
-        <div>Cargos/Funções</div>
+        <div>Colaboradores</div>
       </div>
       <div class="ph-right">
-        <%= link_to(new_position_path,  class: "btn btn-action btn-success") do %>
+        <%= link_to(new_user_path,  class: "btn btn-action btn-success") do %>
           <i class="fa-solid fa-plus"></i></i> Incluir
         <%end%>             
       </div>          
@@ -15,10 +15,10 @@
     
     <div class="card">
       <div class="card-body card-style">
-        <%= form_with(url: positions_search_path, class:'row', method: 'get', local: false) do |form| %>
+        <%= form_with(url: users_search_path, class:'row', method: 'get', local: false) do |form| %>
           <div class="col-12 col-md-6 mb-1">
-            <label for="position_id" class="form-label">Descrição</label>
-            <input type="text" name="search_description" id="description_id" class="form-control" maxlength="50" autofocus autocomplete="off">
+            <label for="position_id" class="form-label">Nome</label>
+            <input type="text" name="search_name" id="name" class="form-control" maxlength="50" autofocus autocomplete="off">
           </div>
 
           <div class="col-btn-search col-12 col-md-6 align-self-end mb-1">

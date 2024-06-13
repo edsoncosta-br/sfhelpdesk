@@ -11,4 +11,7 @@ class User < ApplicationRecord
       Methods.name_capitalize(self.nick_name, false)
     end
   end
+
+  belongs_to :position
+  belongs_to :company
 end

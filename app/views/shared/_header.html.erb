@@ -32,7 +32,7 @@
                   </li>
 
                   <li class="subsubmenu-item">
-                    <%= link_to(root_path,  class: "subsubmenu-link") do %>Colaboradores<%end%>
+                    <%= link_to(users_index_path,  class: "subsubmenu-link") do %>Colaboradores<%end%>
                   </li>
                 </ul>
               </li>
@@ -89,7 +89,7 @@
 
     <div class="menubar-top menubar-top-user ps-2">
       <ul>
-        <li class="menu-item has-sub menu-link">
+        <li class="menu-item has-sub avatar-link">
           <div class="user-dropdown d-flex align-items-center dropdown-toggle" >
             <div class="avatar">
               <%= image_tag "emptyuser.png", alt: "empty user" %>
