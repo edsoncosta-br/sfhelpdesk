@@ -11,8 +11,10 @@
       <thead>
         <tr>
           <th scope='col'>Nome</th>
-          <th scope='col'>Cargo/Função</th>
+          <th scope='col'>Apelido</th>
+          <th scope='col'>Cargo/Função</th>          
           <th scope='col'>Email</th>
+          <th scope='col'>Status</th>
           <th scope='col' class='text-center col-actions-two'>Ações</th>
         </tr>
       </thead>
@@ -21,10 +23,18 @@
         <% @users.each do |user| %>
           <tr>
             <td class='align-middle'> <%= user.name %> </td>
+            <td class='align-middle'> <%= user.nick_name %> </td>
             <td class='align-middle'> <%= user.position_description %> </td>
             <td class='align-middle'> <%= user.email %> </td>
+
+            <% if user.active %> 
+              <td class='align-middle'><span class="badge text-bg-success badge-table">Ativo</span></td>
+            <% elsif %>
+              <td class='align-middle'><span class="badge text-bg-danger badge-table">Inativo</span></td>
+            <% end %>
+
             <td class='align-middle text-center '>
-              <%= link_to edit_user_path(user), class: 'td-actions', title: "Alterar" do %>
+              <%= link_to edit_employee_user_path(user), class: 'td-actions', title: "Alterar" do %>
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
               <% end %>
 
@@ -45,12 +55,12 @@
                 </div>
                 
                 <div class="modal-body">
-                  Confirma a exclusão do Cargo/Função: <br> <%= user.name %> ?
+                  Confirma a exclusão do Colaborador: <br> <%= user.name %> ?
                 </div>
                 <div class="modal-footer actions">
-                  <%= link_to 'Excluir', user_path(user), 
-                      class:"btn btn-sm btn-success", method: :delete %>
-                  <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <%= link_to 'Excluir', employee_user_path(user), 
+                      class:"btn btn-danger", method: :delete %>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
               </div>
             </div>

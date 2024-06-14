@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Employee::UsersController < ApplicationController
   before_action :set_user, only: %i[ edit update destroy ]
 
   def index
@@ -17,15 +17,45 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_path, notice: "Colaborador cadastrado com sucesso." }
+        format.html { redirect_to employee_users_path, notice: "Colaborador cadastrado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to employee_users_path, notice: "Colaborador atualizado com sucesso."
+    else
+      render :edit
+    end      
+  end
+
+  def destroy
+    begin
+      if @user.destroy
+        redirect_to employee_users_path, notice: "Colaborador excluído com sucesso."
+      else
+        render :index
+      end
+    rescue StandardError => e
+
+      if e.message.downcase.to_s.include? "foreignkeyviolation"
+        flash[:error] = "Este registro já está sendo usado e não pode ser excluído!"
+      else  
+        flash[:error] = e.message[0...80] + "..."
+      end
+
+      redirect_to employee_users_path
+    end
   end  
 
   def search
-    users = User.select(:id, :email, :name, :active, 'positions.description position_description')
+    users = User.select(:id, :email, :nick_name, :name, :active, 'positions.description position_description')
                 .joins(:position)
                 .where("company_id = ?", current_user.company.id)
                 .order(Arel.sql('unaccent(users.name)'))
@@ -45,7 +75,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @position = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def user_params

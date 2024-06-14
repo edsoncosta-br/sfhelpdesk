@@ -1,7 +1,3 @@
-.form-control {
-  height: 27px;
-}
-
 .form-control-auth {
   font-size: 14px;
   height: auto;
@@ -10,11 +6,6 @@
 .form-control:focus {
   box-shadow: 0 0 0 0.05rem #b0efac;
   border-color: #54bf8a;
-}
-
-.form-select {
-  height: 27px;
-  padding-top: 3px;
 }
 
 .form-select:focus {
@@ -37,10 +28,6 @@
 
 .input-email {
   text-transform: lowercase;
-}
-
-.btn-search {
-  height: 2rem;
 }
 
 .btn-action {
@@ -68,11 +55,6 @@
 
 .modal-header-icon {
   color: #d3ab34;
-}
-
-.btn-search {
-  height: 27px;
-  padding-top: 3px;
 }
 
 @media screen and (max-width: 576px) {

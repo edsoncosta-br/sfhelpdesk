@@ -13,7 +13,7 @@
     <div class="card card-size">
       <div class="card-body card-bd-size">
 
-        <%= form_with(model: @user ) do |form| %>
+        <%= form_with(model: [ :employee, @user ]) do |form| %>
           <%= render "shared/error_messages", resource: @user %>
 
           <div class="row">
@@ -48,15 +48,22 @@
                                                                   :id, :description, @user.position_id),
                               include_blank: "Selecione...", 
                               class:"form-select form-control #{is_invalid(@user, '_position_isempty_')}",
-                              name:"user[position_id]", autofocus: true, disabled: is_disabled(params[:action]) %>
+                              name:"user[position_id]" %>
             </div>            
-            <div class="col-5 mb-3"></div>                              
+            <div class="col-5 mb-3"></div>
+
+            <% if (params[:action] == "edit") or (params[:action] == "update") %>
+              <div class="col-12 mb-3">
+                <%= form.check_box :active, class:"form-check-input fs-6", id:"active_id"%>
+                <label class="align-checkbox" for="active_id">Cadastro ativo</label>
+              </div>                
+            <% end %>
 
           </div>
 
           <div class="actions pt-2 text-end">
-            <%= form.submit "Salvar", class:"btn btn-sm btn-success me-1"%>
-            <%= link_to 'Cancelar', users_path, class: 'btn btn-sm btn-secondary' %>
+            <%= form.submit "Salvar", class:"btn btn-success me-1"%>
+            <%= link_to 'Cancelar', employee_users_path, class: 'btn btn-secondary' %>
           </div>
 
         <% end %>

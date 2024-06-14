@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root to: "panels#index"
 
-  devise_for :admins
-  devise_for :users
+  devise_for :admins, controllers: { registrations: 'admins/registrations' }
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   Sfhelpdesk::Application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/email" if Rails.env.development?
@@ -19,7 +19,11 @@ Rails.application.routes.draw do
   get 'positions/index'
   get 'positions/search'  
 
-  resources :users, except: [:show]
-  get 'users/index'  
-  get 'users/search'  
+  # resources :users, except: [:show]
+
+  namespace :employee do
+    resources :users, except: [:show]
+    get 'users/search'
+  end
+
 end

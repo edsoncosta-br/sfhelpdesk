@@ -485,3 +485,8 @@ body {
   padding: 0.6rem 1rem;
   font-size: 12px;
 }
+
+.badge-table {
+  font-weight: 400;
+  font-size: 12px;
+}
