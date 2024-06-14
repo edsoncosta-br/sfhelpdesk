@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_05_31_183614) do
+ActiveRecord::Schema.define(version: 2024_06_14_185145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2024_05_31_183614) do
   create_table "customers", force: :cascade do |t|
     t.integer "code", null: false
     t.string "name", limit: 100, default: "", null: false
+    t.string "type_person", limit: 8
     t.string "cpfcnpj_number", limit: 18, null: false
     t.boolean "active", default: true
     t.string "address", limit: 50
@@ -75,6 +76,14 @@ ActiveRecord::Schema.define(version: 2024_05_31_183614) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["description"], name: "index_positions_on_description", unique: true
+  end
+
+  create_table "systems", force: :cascade do |t|
+    t.string "description", limit: 60, null: false
+    t.boolean "active", default: true
+    t.bigint "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -102,6 +111,7 @@ ActiveRecord::Schema.define(version: 2024_05_31_183614) do
 
   add_foreign_key "customers", "cities"
   add_foreign_key "customers", "companies"
+  add_foreign_key "systems", "companies"
   add_foreign_key "users", "companies"
   add_foreign_key "users", "positions"
 end

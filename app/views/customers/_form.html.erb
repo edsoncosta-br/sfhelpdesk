@@ -1,0 +1,136 @@
+<%= render "shared/header" %>
+<main>
+  <div class="container-fluid max-container">
+    <div class="page-heading"> 
+      <div class="ph-left d-flex pe-3">
+        <i class="fa-solid fa-user-group icon-heading"></i>
+        <div>Clientes - <%= action_message %> </div>
+      </div>
+      <div class="ph-right">
+      </div>          
+    </div>
+
+    <div class="card card-size">
+      <div class="card-body card-body-style">
+
+        <%= form_with(model: @customer ) do |form| %>
+          <%= render "shared/error_messages", resource: @customer %>
+
+            <div class="row">
+              <div class="col-3 mb-3">
+                <%= form.label :code, class:"form-label", for:"id_code"%>
+
+                <% if (params[:action] == "edit") or (params[:action] == "update") %>
+                  <input class="form-control " value="<%=@customer.code_f%>" disabled>
+                <%elsif%>
+                  <%= form.text_field :code, id:"id_code", 
+                      class:"form-control #{is_invalid(@customer, '_code_isempty_')}", 
+                      autocomplete: :off %>
+                <%end%>
+              </div>
+              <div class="col-9 mb-3"></div>
+
+              <div class="col-12 mb-3">
+                <%= form.label :name, class:"form-label" %>
+                <%= form.text_field :name, 
+                    class:"form-control #{is_invalid(@customer, '_name_isempty_')}", 
+                    autofocus: true, autocomplete: :off, maxlength:"70" %>
+              </div>
+              
+              <div class="col-12 col-md-4 mb-3">
+                <%= form.label :type_person, class:"form-label" %>
+                <%= form.select(:type_person, [Constants::TYPE_PERSON_JURIDICA, Constants::TYPE_PERSON_FISICA], 
+                                              {},
+                                              class:'form-select form-control', 
+                                              id:'idtypeperson') %>
+              </div>                
+
+              <div class="col-12 col-md-8 mb-3">
+                <%= form.label :cpfcnpj_number, class:"form-label", for:"id_cpfcnpj_number" %>
+                <%= form.text_field :cpfcnpj_number, id:"id_cpfcnpj_number", 
+                class:"form-control #{is_invalid(@customer, '_cpfcnpj_isinvalid_')} #{is_invalid(@customer, '_cpfcnpj_number_isempty_')}", 
+                autocomplete: :off %>
+              </div>
+
+              <div class="col-12 mb-3">
+                <%= form.label :address, class:"form-label" %>
+                <%= form.text_field :address, class:"form-control", autocomplete: :off, maxlength:"50"%>
+              </div>
+
+              <div class="col-12 col-md-4 mb-3">
+                <%= form.label :number, class:"form-label" %>
+                <%= form.text_field :number, class:"form-control", autocomplete: :off, maxlength:"6"%>
+              </div>
+
+              <div class="col-12 col-md-8 mb-3">
+                <%= form.label :complement, class:"form-label" %>
+                <%= form.text_field :complement, class:"form-control", autocomplete: :off, maxlength:"20"%>
+              </div>                
+              
+              <div class="col-12 col-md-8 mb-3">
+                <%= form.label :district, class:"form-label" %>
+                <%= form.text_field :district, class:"form-control", autocomplete: :off, maxlength:"30"%>
+              </div>
+              
+              <div class="col-12 col-md-4 mb-3">
+                <%= form.label :zip_code, class:"form-label", for:"id_zip_code" %>
+                <%= form.text_field :zip_code, id:"id_zip_code", class:"form-control", autocomplete: :off %>
+              </div>                
+
+              <div class="col-12 col-md-3 col-xl-2 mb-3">
+                <label class="form-label" for="customer_state">UF</label> 
+                <%= form.select('state', 
+                                Constants::UF_ARRAY, 
+                                {include_blank: 'Selecione..' },
+                                class:"form-select form-control #{is_invalid(@customer, '_state_isempty_')}", 
+                                data: {remote: true, url: url_for(controller: "cities", action: "filter")}) %>
+              </div>
+
+              <div class="col-12 col-md-9 col-xl-10 mb-3">
+                <label class="form-label" for="city_id">Município</label> 
+                <%= select_tag :city_id, 
+                                options_from_collection_for_select(City.select(:id, :name)
+                                                                    .where("state = ?", @customer.state )
+                                                                    .order("unaccent(name)"), :id, :name, @customer.city_id ),
+                                include_blank: "Selecione..", 
+                                class:"form-select form-control #{is_invalid(@customer, '_city_isempty_')}",
+                                name:"customer[city_id]" %>
+              </div>  
+
+              <div class="col-12 col-md-3 mb-3">
+                <%= form.label :phone, class:"form-label", for:"phone" %>
+                <%= form.text_field :phone, id:"id_phone", class:"form-control", autocomplete: :off %>
+              </div>                
+
+              <div class="col-12 col-md-3 mb-3">
+                <%= form.label :cellphone, class:"form-label", for:"id_cellphone" %>
+                <%= form.text_field :cellphone, id:"id_cellphone", class:"form-control", autocomplete: :off %>
+              </div>                
+
+              <div class="col-12 col-md-6 mb-3">
+                <%= form.label :email, class:"form-label" %>
+                <%= form.email_field :email, class:"form-control input-email", autocomplete: :off, maxlength:"60"%>
+              </div>                
+
+              <% if (params[:action] == "edit") or (params[:action] == "update") %>
+                <div class="col-12 mb-3">
+                  <%= form.check_box :active, class:"form-check-input fs-6", id:"flexCheckDefault"%>
+                  <label class="align-checkbox" for="flexCheckDefault">Cadastro Ativo</label>
+                </div>                
+              <% end %>
+
+              <%= hidden_field_tag :code_generated, @customer.code_generated %>
+
+            </div>
+
+          <div class="actions pt-2 text-end">
+            <%= form.submit "Salvar", class:"btn btn-success me-1"%>
+            <%= link_to 'Cancelar', customers_path, class: 'btn btn-secondary' %>
+          </div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</main>

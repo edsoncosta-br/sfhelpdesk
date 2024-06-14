@@ -3,6 +3,7 @@ class CreateCustomers < ActiveRecord::Migration[6.1]
     create_table :customers do |t|
       t.integer :code, null: false
       t.string :name, limit: 100, default: "", null: false
+      t.string :type_person, limit: 8
       t.string :cpfcnpj_number, limit: 18, null: false
       t.boolean :active, default: true
       t.string :address, limit: 50

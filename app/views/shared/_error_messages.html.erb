@@ -6,7 +6,7 @@
       <li>Campo(s) de preenchimento obrigatório</li>
     <% end %>
 
-    <% if resource.errors.to_a.to_s.include? "_cnpj_isinvalid_" %>
+    <% if resource.errors.to_a.to_s.include? "_cpfcnpj_isinvalid_" %>
       <li>CNPJ/CPF inválido</li>
     <% end %>
 

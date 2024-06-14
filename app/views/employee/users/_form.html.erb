@@ -11,7 +11,7 @@
     </div>
 
     <div class="card card-size">
-      <div class="card-body card-bd-size">
+      <div class="card-body card-body-style">
 
         <%= form_with(model: [ :employee, @user ]) do |form| %>
           <%= render "shared/error_messages", resource: @user %>
@@ -24,33 +24,30 @@
                   autofocus: true, autocomplete: :off, maxlength:"60" %>
             </div>
 
-            <div class="col-7 mb-3">
+            <div class="col-12 mb-3">
               <%= form.label :nick_name, class:"form-label" %>
               <%= form.text_field :nick_name, 
                   class:"form-control #{is_invalid(@user, '_nick_name_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"20" %>
             </div>
-            <div class="col-3 mb-3"></div>
 
-            <div class="col-7 mb-3">
+            <div class="col-12 mb-3">
               <%= form.label :email, class:"form-label" %>
               <%= form.text_field :email, 
                   class:"form-control #{is_invalid(@user, '_email_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"60" %>
             </div>            
-            <div class="col-5 mb-3"></div>
 
-            <div class="col-7 mb-3">
+            <div class="col-12 mb-3">
               <%= form.label :position_id, class:"form-label"%>
               <%= select_tag :position_id, 
                               options_from_collection_for_select( Position.select(:id, :description)
                                                                   .order("unaccent(description)"), 
                                                                   :id, :description, @user.position_id),
                               include_blank: "Selecione...", 
-                              class:"form-select form-control #{is_invalid(@user, '_position_isempty_')}",
+                              class:"form-select #{is_invalid(@user, '_position_isempty_')}",
                               name:"user[position_id]" %>
             </div>            
-            <div class="col-5 mb-3"></div>
 
             <% if (params[:action] == "edit") or (params[:action] == "update") %>
               <div class="col-12 mb-3">

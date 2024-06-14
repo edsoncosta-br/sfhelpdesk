@@ -24,6 +24,10 @@ class User < ApplicationRecord
   belongs_to :position
   belongs_to :company
 
+  def active_for_authentication?
+    super && active
+  end  
+
   private
 
   def email_isempty
