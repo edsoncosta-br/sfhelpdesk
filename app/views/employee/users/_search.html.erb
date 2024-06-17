@@ -11,7 +11,7 @@
       <thead>
         <tr>
           <th scope='col'>Nome</th>
-          <th scope='col'>Apelido</th>
+          <th scope='col'>Apelido</th>          
           <th scope='col'>Cargo/Função</th>          
           <th scope='col'>Email</th>
           <th scope='col'>Status</th>
@@ -22,7 +22,13 @@
       <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td class='align-middle'> <%= user.name %> </td>
+            <td class='align-middle'> 
+              <%= user.name %> 
+              <% if user.admin %> 
+                <span class="badge text-bg-warning badge-table">Admin</span>
+              <% end %>              
+            </td>
+
             <td class='align-middle'> <%= user.nick_name %> </td>
             <td class='align-middle'> <%= user.position_description %> </td>
             <td class='align-middle'> <%= user.email %> </td>
@@ -55,7 +61,7 @@
                 </div>
                 
                 <div class="modal-body">
-                  Confirma a exclusão do Colaborador: <br> <%= user.name %> ?
+                  Confirma a exclusão do Usuário: <br> <%= user.name %> ?
                 </div>
                 <div class="modal-footer actions">
                   <%= link_to 'Excluir', employee_user_path(user), 

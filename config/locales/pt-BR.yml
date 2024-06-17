@@ -52,6 +52,8 @@ pt-BR:
         active: Cadastro Ativo
       position:
         description: Descrição
+      system:
+        description: Descrição        
   errors:
     format: "%{attribute} %{message}"
     messages:

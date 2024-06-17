@@ -8,10 +8,9 @@
 html,
 body {
   height: 100%;
-  /* background-color: #f2f7ff; */
   background-color: #f8fbff;
   margin: 0;
-  font-family: "Fira Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 13px;
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
@@ -236,7 +235,6 @@ body {
   flex-direction: column;
   align-self: center;
   padding-top: 4px;
-  font-size: 12px;
 }
 
 .data-user .user-name {
@@ -361,7 +359,11 @@ body {
 }
 
 .page-heading .ph-left {
-  padding: 6px 0;
+  font-size: 18px;
+  font-weight: 400;
+  height: 31.25px;
+  display: flex;
+  align-items: center;
 }
 
 .icon-heading {
@@ -486,7 +488,7 @@ body {
 
 .badge-table {
   font-weight: 400;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .table tbody tr td {

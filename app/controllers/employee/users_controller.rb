@@ -17,7 +17,7 @@ class Employee::UsersController < ApplicationController
     
     respond_to do |format|
       if @user.save
-        format.html { redirect_to employee_users_path, notice: "Colaborador cadastrado com sucesso." }
+        format.html { redirect_to employee_users_path, notice: "Usuário cadastrado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -29,7 +29,7 @@ class Employee::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to employee_users_path, notice: "Colaborador atualizado com sucesso."
+      redirect_to employee_users_path, notice: "Usuário atualizado com sucesso."
     else
       render :edit
     end      
@@ -38,7 +38,7 @@ class Employee::UsersController < ApplicationController
   def destroy
     begin
       if @user.destroy
-        redirect_to employee_users_path, notice: "Colaborador excluído com sucesso."
+        redirect_to employee_users_path, notice: "Usuário excluído com sucesso."
       else
         render :index
       end
@@ -55,7 +55,7 @@ class Employee::UsersController < ApplicationController
   end  
 
   def search
-    users = User.select(:id, :email, :nick_name, :name, :active, 'positions.description position_description')
+    users = User.select(:id, :email, :nick_name, :name, :active, :admin, 'positions.description position_description')
                 .joins(:position)
                 .where("company_id = ?", current_user.company.id)
                 .order(Arel.sql('unaccent(users.name)'))
