@@ -41,12 +41,12 @@
                 </ul>
               </li>
 
-              <li class="submenu-item has-sub">
-                <a href="#" class="submenu-link">Usuários</a><i class="fa-solid fa-chevron-right"></i>
+              <% if current_user.admin? %>
+                <li class="submenu-item has-sub">
+                  <a href="#" class="submenu-link">Usuários</a><i class="fa-solid fa-chevron-right"></i>
 
-                <ul class="subsubmenu">
-                  
-                  <% if current_user.admin? %>
+                  <ul class="subsubmenu">
+
                     <li class="subsubmenu-item">
                       <%= link_to(positions_path,  class: "subsubmenu-link") do %>Cargos/Funções<%end%>
                     </li>
@@ -54,13 +54,13 @@
                     <li class="subsubmenu-item">
                       <%= link_to(employee_users_path,  class: "subsubmenu-link") do %>Cadastramento<%end%>
                     </li>
-                  <%end%>
 
-                  <li class="subsubmenu-item">
-                    <%= link_to(employee_users_path,  class: "subsubmenu-link") do %>Alocação<%end%>
-                  </li>                  
-                </ul>
-              </li>              
+                    <li class="subsubmenu-item">
+                      <%= link_to(employee_users_path,  class: "subsubmenu-link") do %>Alocação<%end%>
+                    </li>                  
+                  </ul>
+                </li>              
+              <%end%>
 
               <li class="submenu-item">
                 <%= link_to(cities_index_path,  class: "subsubmenu-link") do %>Municípios<%end%>
