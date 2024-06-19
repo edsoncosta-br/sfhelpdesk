@@ -27,4 +27,10 @@ Rails.application.routes.draw do
   resources :systems, except: [:show]
   get 'systems/search'
 
+  resources :topics, except: [:show]  
+  get 'topics/search'    
+
+  resources :sub_topics, except: [:show, :new]
+  get 'sub_topics/new/:topic_id', to: 'sub_topics#new', as: 'new_sub_topic'
+
 end

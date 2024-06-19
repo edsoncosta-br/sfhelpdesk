@@ -1,0 +1,48 @@
+<%= render "shared/header" %>
+<main>
+  <div class="container-fluid max-container">
+    <div class="page-heading"> 
+      <div class="ph-left pe-3">
+        <div>Tópicos/SubTópicos</div>
+      </div>
+      <div class="ph-right">
+        <%= link_to(new_topic_path,  class: "btn btn-action btn-success") do %>
+          <i class="fa-solid fa-plus"></i></i> Incluir Tópico
+        <%end%>             
+      </div>          
+    </div>
+    
+    <div class="card">
+      <div class="card-body card-body-style">
+        <%= form_with(url: topics_search_path, class:'row', method: 'get', local: false) do |form| %>
+          <div class="col-12 col-md-4 mb-1">
+            <label for="system_id" class="form-label">Sistema</label>
+            <%= select_tag :system_id, 
+                            options_from_collection_for_select( System.select(:id, :description)
+                                                                      .joins(:company)
+                                                                      .where("company_id = ?", current_user.company.id)
+                                                                .order("unaccent(description)"),
+                                                                :id, :description),
+                            include_blank: "Todos", 
+                            class:"form-select",
+                            name:"search_system",
+                            autofocus: true %>
+          </div>            
+          
+          <div class="col-12 col-md-4 mb-1">
+            <label for="topic_id" class="form-label">Descrição do Tópico</label>
+            <input type="text" name="search_description" id="description_id" class="form-control" maxlength="50" autofocus autocomplete="off">
+          </div>
+
+          <div class="col-btn-search col-12 col-md-4 align-self-end mb-1">
+            <%= button_tag class:"btn btn-outline-success btn-search", data: { disable_with: 'Aguarde..' } do %>
+              <i class="fa-solid fa-magnifying-glass me-1"></i>Consultar
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class='data pb-4' id='data-id'></div>
+  </div>                    
+</main>

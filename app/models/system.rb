@@ -3,6 +3,7 @@ class System < ApplicationRecord
   validate :description_isempty
 
   belongs_to :company
+  has_many :topics
   
   private
 

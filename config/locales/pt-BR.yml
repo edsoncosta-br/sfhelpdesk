@@ -53,7 +53,14 @@ pt-BR:
       position:
         description: Descrição
       system:
-        description: Descrição        
+        description: Descrição
+      topic:
+        description: Descrição
+        color: Cor de Exibição
+        system_id: Sistema
+      sub_topic:
+        description: Descrição do SubTópico
+        topic_id: Tópico
   errors:
     format: "%{attribute} %{message}"
     messages:
