@@ -17,12 +17,12 @@
         <%= form_with(url: customers_search_path, class:'row', method: 'get', local: false) do |form| %>
           <div class="col-12 col-md-8 mb-1">
             <label for="name_id" class="form-label">Nome</label>
-            <input type="text" name="search_name" id="name_id" class="form-control" maxlength="60" autofocus autocomplete="off">
+            <input type="text" name="search_name" id="name_id" class="form-control" maxlength="60" autofocus autocomplete="off" value=<%=@search_name%>>
           </div>
           
           <div class="col-12 col-md-2 mb-1">
             <label for="code_id" class="form-label">Código</label>
-            <input type="text" name="search_code"id="code_id" class="form-control" maxlength="5" autofocus autocomplete="off">
+            <input type="text" name="search_code"id="code_id" class="form-control" maxlength="5" autofocus autocomplete="off" value=<%=@search_code%> >
           </div>
 
           <div class="col-btn-search col-12 col-md-2 align-self-end mb-1">

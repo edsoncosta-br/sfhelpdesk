@@ -61,7 +61,7 @@ class Employee::UsersController < ApplicationController
                 .order(Arel.sql('unaccent(users.name)'))
 
     if !params[:search_name].empty?
-      users = users.where('unaccent(users.name) ilike unaccent(?)', "%#{params[:search_name].upcase}%")
+      users = users.where('unaccent(users.name) ilike unaccent(?)', "%#{params[:search_name]}%")
     end
 
     @users = users.all.page(params[:page]).per(Constants::PAGINAS)

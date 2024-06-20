@@ -119,12 +119,15 @@
               <% end %>
 
               <%= hidden_field_tag :code_generated, @customer.code_generated %>
+              
+              <%= hidden_field_tag :search_name, @search_name %>
+              <%= hidden_field_tag :search_code, @search_code %>
 
             </div>
 
           <div class="actions pt-2 text-end">
             <%= form.submit "Salvar", class:"btn btn-success me-1"%>
-            <%= link_to 'Cancelar', customers_path, class: 'btn btn-secondary' %>
+            <%= link_to 'Cancelar', customers_path(search_name:@search_name, search_code: @search_code), class: 'btn btn-secondary' %>
           </div>
 
         <% end %>
