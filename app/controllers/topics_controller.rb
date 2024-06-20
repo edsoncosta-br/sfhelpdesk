@@ -67,14 +67,6 @@ class TopicsController < ApplicationController
     @topics = topics.all.page(params[:page]).per(Constants::PAGINAS)
     @topics_size = topics.size
 
-
-    sub_topics = SubTopic.select(:id, :description, :topic_id)
-                          .joins(topic: [{ system: :company }])
-                          .where("company_id = ?", current_user.company.id)    
-                          .order(Arel.sql('unaccent(sub_topics.description)'))
-
-    @sub_topics = sub_topics.all
-
     respond_to do |format|
       format.js
     end  

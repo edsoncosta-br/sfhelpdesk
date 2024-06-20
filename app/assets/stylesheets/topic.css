@@ -6,3 +6,26 @@
   height: 22px;
   padding-top: 2px;
 }
+
+.table-subtopic tr th {
+  font-size: 11px !important;
+}
+
+.td-border {
+  border-left-style: hidden;  
+  border-right-style: hidden;
+}
+
+.table-subtopic {
+  margin-left: 40px;
+  width: 80%;
+  margin-top: 8px;  
+}
+
+@media screen and (min-width: 992px) {
+  .table-subtopic {
+    margin-left: 50px;
+    width: 50%;
+    margin-top: 8px;  
+  }
+}

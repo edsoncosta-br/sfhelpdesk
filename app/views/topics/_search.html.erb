@@ -7,11 +7,11 @@
   <div id="modal-place"></div>
 
   <div class="table-responsive">
-    <table class='table table-borderless table-striped'>
+    <table class='table table-bordered table-striped'>
       <thead>
         <tr>
+          <th scope='col'>Tópico</th>
           <th scope='col'>Sistema</th>
-          <th scope='col'>Descrição do Tópico</th>
           <th scope='col' class='text-center col-actions-two'>Ações</th>
         </tr>
       </thead>
@@ -19,12 +19,11 @@
       <tbody>
         <% @topics.each do |topic| %>
           <tr>
-            <td class='align-middle'> <%= topic.system_description %> </td>          
-            <td class='align-middle'> <%= topic.description %> </td>
+            <td class='align-middle'> <%=topic.description%> </td>
+            <td class='align-middle'> <%=topic.system_description%> </td>
             <td class='align-middle text-center d-flex align-items-center'>
-
               <%= link_to(new_sub_topic_path(topic.id), class: "btn btn-sm btn-outline-success btn-table me-2", title:"Incluir SubTópico") do %>
-                <i class="fa-solid fa-plus"></i></i> ST
+                <i class="fa-solid fa-plus"></i></i> SubTópico
               <%end%>  
 
               <%= link_to edit_topic_path(topic), class: 'td-actions', title: "Alterar Tópico" do %>
@@ -38,30 +37,29 @@
 
           <!--SubTópico-->
           <tr>
-            <td colspan="4" class="p-0">  
-              <table class='table table-borderless table-striped table-hover table-result'>
+            <td colspan="4" class="td-border p-0">  
+              <table class='table table-bordered table-hover table-result table-subtopic'>
                 <thead>
                   <tr>
-                    <th class="table-th-empty"></th>
-                    <th scope='col'>Descrição SubTópico</th>
-                    <th scope='col' class='text-center col-actions-two'>Ações</th>
+                    <th scope='col'>SubTópicos</th>
+                    <th scope='col' class='text-center col-actions-two'></th>
                   </tr>
                 </thead>
 
-                <% if !@sub_topics.empty? %>
-                  <tbody>
-                    <% @sub_topics.each do |sub_topic| %>
+                <tbody>
+                  <% sub_topics = Methods.get_sub_topics(topic.id, current_user.company.id)%>
+                  <% if !sub_topics.empty? %>
+                    <% sub_topics.each do |sub_topic| %>
                       <% if sub_topic.topic_id == topic.id %>
                         <tr>
-                          <td class='align-middle table-th-empty'></td>
                           <td class='align-middle'> <%= sub_topic.description %> </td>          
 
-                          <td class='align-middle text-center d-flex align-items-center'>
-                            <%= link_to edit_topic_path(sub_topic), class: 'td-actions', title: "Alterar Tópico" do %>
+                          <td class='align-middle text-center'>
+                            <%= link_to edit_sub_topic_path(sub_topic), class: 'td-actions', title: "Alterar SubTópico" do %>
                               <i class="fa-regular fa-pen-to-square pe-1"></i>
                             <% end %>
 
-                            <a class="td-actions" href="#" title="Excluir Tópico" data-bs-toggle="modal" 
+                            <a class="td-actions" href="#" title="Excluir SubTópico" data-bs-toggle="modal" 
                               data-bs-target="#delete<%=sub_topic.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
                           </td>
                         </tr>
@@ -78,20 +76,28 @@
                               </div>
                               
                               <div class="modal-body">
-                                Confirma a exclusão do Tópico: <br> <%= topic.description %> ?
+                                Confirma a exclusão do SubTópico: <br> <%= sub_topic.description %> ?
                               </div>
                               <div class="modal-footer actions">
-                                <%= link_to 'Excluir', topic_path(sub_topic), 
+                                <%= link_to 'Excluir', sub_topic_path(sub_topic), 
                                     class:"btn btn-danger", method: :delete %>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                               </div>
                             </div>
                           </div>
                         </div>
-                      <% end %>                  
+                      <% end %>
                     <% end %>
-                  </tbody>
-                <% end %>                
+                  <% else %>
+                    <tr>
+                      <td class='align-middle'> Nenhum SubTópico Cadastrado </td>
+                      <td class='align-middle text-center'>
+                      </td>
+                    </tr>
+                  <% end %>
+
+                </tbody>
+
               </table>
             </td>            
           </tr>
