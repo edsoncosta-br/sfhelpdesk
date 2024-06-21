@@ -2,6 +2,14 @@ class SystemsController < ApplicationController
   before_action :set_system, only: %i[ edit update destroy ]
 
   def index
+    systems = System.order(Arel.sql('unaccent(description)'))
+
+    if !params[:q_desc].blank?
+      systems = systems.where('unaccent(description) ilike unaccent(?)', "%#{params[:q_desc]}%")
+    end    
+
+    @systems = systems.all.page(params[:page]).per(Constants::PAGINAS)
+    @systems_size = systems.size    
   end
 
   def new
@@ -14,7 +22,7 @@ class SystemsController < ApplicationController
     
     respond_to do |format|
       if @system.save
-        format.html { redirect_to systems_path, notice: "Sistema cadastrado com sucesso." }
+        format.html { redirect_to systems_path(q_desc: params[:q_desc]), notice: "Sistema cadastrado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -26,7 +34,7 @@ class SystemsController < ApplicationController
 
   def update
     if @system.update(system_params)
-      redirect_to systems_path, notice: "Sistema atualizado com sucesso."
+      redirect_to systems_path(q_desc: params[:q_desc]), notice: "Sistema atualizado com sucesso."
     else
       render :edit
     end      
@@ -35,9 +43,9 @@ class SystemsController < ApplicationController
   def destroy
     begin
       if @system.destroy
-        redirect_to systems_path, notice: "Sistema excluído com sucesso."
+        redirect_to systems_path(q_desc: params[:q_desc]), notice: "Sistema excluído com sucesso."
       else
-        redirect_to systems_path
+        redirect_to systems_path(q_desc: params[:q_desc])
       end
     rescue StandardError => e
 
@@ -47,24 +55,9 @@ class SystemsController < ApplicationController
         flash[:error] = e.message[0...80] + "..."
       end
 
-      redirect_to systems_path
+      redirect_to systems_path(q_desc: params[:q_desc])
     end
   end    
-
-  def search
-    systems = System.order(Arel.sql('unaccent(description)'))
-
-    if !params[:search_description].empty?
-      systems = systems.where('unaccent(description) ilike unaccent(?)', "%#{params[:search_description]}%")
-    end    
-
-    @systems = systems.all.page(params[:page]).per(Constants::PAGINAS)
-    @systems_size = systems.size
-
-    respond_to do |format|
-      format.js
-    end  
-  end
 
   private
 

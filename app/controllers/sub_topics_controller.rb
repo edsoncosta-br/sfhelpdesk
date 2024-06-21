@@ -12,7 +12,8 @@ class SubTopicsController < ApplicationController
 
     respond_to do |format|
       if @sub_topic.save
-        format.html { redirect_to topics_path, notice: "SubTópico cadastrado com sucesso." }
+        format.html { redirect_to topics_path(q_sys: params[:q_sys],
+                                              q_desc: params[:q_desc]), notice: "SubTópico cadastrado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -25,7 +26,8 @@ class SubTopicsController < ApplicationController
 
   def update
     if @sub_topic.update(sub_topic_params)
-      redirect_to topics_path, notice: "SubTópico atualizado com sucesso."
+      redirect_to topics_path(q_sys: params[:q_sys],
+                              q_desc: params[:q_desc]), notice: "SubTópico atualizado com sucesso."
     else
       render :edit
     end      
@@ -34,9 +36,11 @@ class SubTopicsController < ApplicationController
   def destroy
     begin
       if @sub_topic.destroy
-        redirect_to topics_path, notice: "SubTópico excluído com sucesso."
+        redirect_to topics_path(q_sys: params[:q_sys],
+                                q_desc: params[:q_desc]), notice: "SubTópico excluído com sucesso."
       else
-        redirect_to topics_path
+        redirect_to topics_path(q_sys: params[:q_sys],
+                                q_desc: params[:q_desc])
       end
     rescue StandardError => e
 
@@ -46,7 +50,8 @@ class SubTopicsController < ApplicationController
         flash[:error] = e.message[0...80] + "..."
       end
 
-      redirect_to topics_path
+      redirect_to topics_path(q_sys: params[:q_sys],
+                              q_desc: params[:q_desc])
     end
   end    
 

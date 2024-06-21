@@ -22,11 +22,13 @@
                   class:"form-control #{is_invalid(@system, '_description_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"60" %>
             </div>
+
+            <%= hidden_field_tag :q_desc, params[:q_desc] %>
           </div>
 
           <div class="actions pt-2 text-end">
             <%= form.submit "Salvar", class:"btn btn-success me-1"%>
-            <%= link_to 'Cancelar', systems_path, class: 'btn btn-secondary' %>
+            <%= link_to 'Cancelar', systems_path(q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
           </div>
 
         <% end %>

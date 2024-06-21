@@ -20,7 +20,7 @@
           <tr>
             <td class='align-middle'> <%= position.description %> </td>
             <td class='align-middle text-center '>
-              <%= link_to edit_position_path(position, search_description: params[:search_description]), class: 'td-actions', title: "Alterar" do %>
+              <%= link_to edit_position_path(position, q_desc: params[:q_desc]), class: 'td-actions', title: "Alterar" do %>
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
               <% end %>
 
@@ -44,7 +44,7 @@
                   Confirma a exclusão do Cargo/Função: <br> <%= position.description %> ?
                 </div>
                 <div class="modal-footer actions">
-                  <%= link_to 'Excluir', position_path(position, search_description: params[:search_description]), 
+                  <%= link_to 'Excluir', position_path(position, q_desc: params[:q_desc]), 
                       class:"btn btn-danger", method: :delete %>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
@@ -63,4 +63,4 @@
 
 <% else %>
   <%= render "shared/record_not_found" %>
-<% end %>      
+<% end %>

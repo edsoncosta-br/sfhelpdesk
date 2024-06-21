@@ -37,7 +37,9 @@
             <% end %>            
 
             <td class='align-middle text-center '>
-              <%= link_to edit_customer_path(customer, search_name:@search_name, search_code:@search_code), class: 'td-actions', title: "Alterar" do %>
+              <%= link_to edit_customer_path(customer,  q_name: params[:q_name],
+                                                        q_code: params[:q_code]), 
+                  class: 'td-actions', title: "Alterar" do %>
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
               <% end %>
 
@@ -60,7 +62,8 @@
                   Confirma a exclusão do Cliente: <br> <%= customer.name %> ?
                 </div>
                 <div class="modal-footer actions">
-                  <%= link_to 'Excluir', customer_path(customer, search_name:@search_name, search_code:@search_code), 
+                  <%= link_to 'Excluir', customer_path(customer,  q_name: params[:q_name],
+                                                                  q_code: params[:q_code]), 
                       class:"btn btn-danger", method: :delete %>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>

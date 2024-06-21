@@ -7,10 +7,3 @@
 //= require ./flashMessages.js
 //= require ./fontawesome/all.js
 //= require ./scripts.js
-
-document.addEventListener("DOMContentLoaded", function () {
-  const btn_consultar_id = document.getElementById("btn_consultar_id");
-  if (btn_consultar_id !== null) {  
-    btn_consultar_id.click();
-  }
-});

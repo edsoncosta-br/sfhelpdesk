@@ -6,7 +6,7 @@
         <div>Usuários</div>
       </div>
       <div class="ph-right">
-        <%= link_to(new_employee_user_path,  class: "btn btn-action btn-success") do %>
+        <%= link_to(new_employee_user_path(q_name: params[:q_name]),  class: "btn btn-action btn-success") do %>
           <i class="fa-solid fa-plus"></i> Incluir
         <%end%>
       </div>          
@@ -14,10 +14,10 @@
     
     <div class="card">
       <div class="card-body card-body-style">
-        <%= form_with(url: employee_users_search_path, class:'row', method: 'get', local: false) do |form| %>
+        <%= form_with(url: employee_users_path, class:'row', method: 'get', local: true) do |form| %>
           <div class="col-12 col-md-6 mb-1">
             <label for="position_id" class="form-label">Nome</label>
-            <input type="text" name="search_name" id="name" class="form-control" maxlength="50" autofocus autocomplete="off">
+            <input type="text" name="q_name" id="name" class="form-control" maxlength="50" autofocus autocomplete="off" value=<%=params[:q_name]%>>
           </div>
 
           <div class="col-btn-search col-12 col-md-6 align-self-end mb-1">
@@ -29,6 +29,6 @@
       </div>
     </div>
 
-    <div class='data pb-4' id='data-id'></div>
+    <%= render partial: 'search' %>
   </div>                    
 </main>

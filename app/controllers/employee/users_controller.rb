@@ -2,6 +2,17 @@ class Employee::UsersController < ApplicationController
   before_action :set_user, only: %i[ edit update destroy ]
 
   def index
+    users = User.select(:id, :email, :nick_name, :name, :active, :admin, 'positions.description position_description')
+                .joins(:position)
+                .where("company_id = ?", current_user.company.id)
+                .order(Arel.sql('unaccent(users.name)'))
+
+    if !params[:q_name].blank?
+      users = users.where('unaccent(users.name) ilike unaccent(?)', "%#{params[:q_name]}%")
+    end
+
+    @users = users.all.page(params[:page]).per(Constants::PAGINAS)
+    @users_size = users.size    
   end
 
   def new
@@ -17,7 +28,7 @@ class Employee::UsersController < ApplicationController
     
     respond_to do |format|
       if @user.save
-        format.html { redirect_to employee_users_path, notice: "Usuário cadastrado com sucesso." }
+        format.html { redirect_to employee_users_path(q_name: params[:q_name]), notice: "Usuário cadastrado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -29,7 +40,7 @@ class Employee::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to employee_users_path, notice: "Usuário atualizado com sucesso."
+      redirect_to employee_users_path(q_name: params[:q_name]), notice: "Usuário atualizado com sucesso."
     else
       render :edit
     end      
@@ -38,7 +49,7 @@ class Employee::UsersController < ApplicationController
   def destroy
     begin
       if @user.destroy
-        redirect_to employee_users_path, notice: "Usuário excluído com sucesso."
+        redirect_to employee_users_path(q_name: params[:q_name]), notice: "Usuário excluído com sucesso."
       else
         render :index
       end
@@ -50,27 +61,9 @@ class Employee::UsersController < ApplicationController
         flash[:error] = e.message[0...80] + "..."
       end
 
-      redirect_to employee_users_path
+      redirect_to employee_users_path(q_name: params[:q_name])
     end
   end  
-
-  def search
-    users = User.select(:id, :email, :nick_name, :name, :active, :admin, 'positions.description position_description')
-                .joins(:position)
-                .where("company_id = ?", current_user.company.id)
-                .order(Arel.sql('unaccent(users.name)'))
-
-    if !params[:search_name].empty?
-      users = users.where('unaccent(users.name) ilike unaccent(?)', "%#{params[:search_name]}%")
-    end
-
-    @users = users.all.page(params[:page]).per(Constants::PAGINAS)
-    @users_size = users.size
-
-    respond_to do |format|
-      format.js
-    end  
-  end
 
   private
 

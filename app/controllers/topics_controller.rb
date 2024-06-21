@@ -2,6 +2,21 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: %i[ edit update destroy ]
 
   def index
+    topics = Topic.select(:id, :description, 'systems.description system_description')
+                  .joins(system: :company)
+                  .where("company_id = ?", current_user.company.id)
+            .order(Arel.sql('unaccent(systems.description), unaccent(topics.description)'))
+
+    if !params[:q_sys].blank?
+      topics = topics.where('systems.id = ?', "#{params[:q_sys]}")
+    end
+
+    if !params[:q_desc].blank?
+      topics = topics.where('unaccent(topics.description) ilike unaccent(?)', "%#{params[:q_desc]}%")
+    end
+
+    @topics = topics.all.page(params[:page]).per(Constants::PAGINAS)
+    @topics_size = topics.size    
   end
 
   def new
@@ -13,7 +28,8 @@ class TopicsController < ApplicationController
     
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to topics_path, notice: "Tópico cadastrado com sucesso." }
+        format.html { redirect_to topics_path(q_sys: params[:q_sys],
+                                              q_desc: params[:q_desc]), notice: "Tópico cadastrado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -25,7 +41,8 @@ class TopicsController < ApplicationController
 
   def update
     if @topic.update(topic_params)
-      redirect_to topics_path, notice: "Tópico atualizado com sucesso."
+      redirect_to topics_path(q_sys: params[:q_sys],
+                              q_desc: params[:q_desc]), notice: "Tópico atualizado com sucesso."
     else
       render :edit
     end      
@@ -34,9 +51,11 @@ class TopicsController < ApplicationController
   def destroy
     begin
       if @topic.destroy
-        redirect_to topics_path, notice: "Tópico excluído com sucesso."
+        redirect_to topics_path(q_sys: params[:q_sys],
+                                q_desc: params[:q_desc]), notice: "Tópico excluído com sucesso."
       else
-        redirect_to topics_path
+        redirect_to topics_path(q_sys: params[:q_sys],
+                                q_desc: params[:q_desc])
       end
     rescue StandardError => e
 
@@ -46,31 +65,10 @@ class TopicsController < ApplicationController
         flash[:error] = e.message[0...80] + "..."
       end
 
-      redirect_to topics_path
+      redirect_to topics_path(q_sys: params[:q_sys],
+                              q_desc: params[:q_desc])
     end
   end    
-
-  def search
-    topics = Topic.select(:id, :description, 'systems.description system_description')
-                  .joins(system: :company)
-                  .where("company_id = ?", current_user.company.id)
-            .order(Arel.sql('unaccent(systems.description), unaccent(topics.description)'))
-
-    if !params[:search_system].empty?
-      topics = topics.where('systems.id = ?', "#{params[:search_system]}")
-    end
-
-    if !params[:search_description].empty?
-      topics = topics.where('unaccent(topics.description) ilike unaccent(?)', "%#{params[:search_description]}%")
-    end
-
-    @topics = topics.all.page(params[:page]).per(Constants::PAGINAS)
-    @topics_size = topics.size
-
-    respond_to do |format|
-      format.js
-    end  
-  end  
 
   private
 

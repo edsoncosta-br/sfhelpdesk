@@ -22,11 +22,13 @@
             <td class='align-middle'> <%=topic.description%> </td>
             <td class='align-middle'> <%=topic.system_description%> </td>
             <td class='align-middle text-center d-flex align-items-center'>
-              <%= link_to(new_sub_topic_path(topic.id), class: "btn btn-sm btn-outline-success btn-table me-2", title:"Incluir SubTópico") do %>
+              <%= link_to(new_sub_topic_path(topic.id,q_sys: params[:q_sys],
+                                                      q_desc: params[:q_desc]), class: "btn btn-sm btn-outline-success btn-table me-2", title:"Incluir SubTópico") do %>
                 <i class="fa-solid fa-plus"></i></i> SubTópico
               <%end%>  
 
-              <%= link_to edit_topic_path(topic), class: 'td-actions', title: "Alterar Tópico" do %>
+              <%= link_to edit_topic_path(topic,q_sys: params[:q_sys],
+                                                q_desc: params[:q_desc]), class: 'td-actions', title: "Alterar Tópico" do %>
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
               <% end %>
 
@@ -55,7 +57,8 @@
                           <td class='align-middle'> <%= sub_topic.description %> </td>          
 
                           <td class='align-middle text-center'>
-                            <%= link_to edit_sub_topic_path(sub_topic), class: 'td-actions', title: "Alterar SubTópico" do %>
+                            <%= link_to edit_sub_topic_path(sub_topic,q_sys: params[:q_sys],
+                                                                      q_desc: params[:q_desc]), class: 'td-actions', title: "Alterar SubTópico" do %>
                               <i class="fa-regular fa-pen-to-square pe-1"></i>
                             <% end %>
 
@@ -79,7 +82,8 @@
                                 Confirma a exclusão do SubTópico: <br> <%= sub_topic.description %> ?
                               </div>
                               <div class="modal-footer actions">
-                                <%= link_to 'Excluir', sub_topic_path(sub_topic), 
+                                <%= link_to 'Excluir', sub_topic_path(sub_topic,q_sys: params[:q_sys],
+                                                                                q_desc: params[:q_desc]), 
                                     class:"btn btn-danger", method: :delete %>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                               </div>
@@ -116,7 +120,8 @@
                   Confirma a exclusão do Tópico: <br> <%= topic.description %> ?
                 </div>
                 <div class="modal-footer actions">
-                  <%= link_to 'Excluir', topic_path(topic), 
+                  <%= link_to 'Excluir', topic_path(topic,q_sys: params[:q_sys],
+                                                          q_desc: params[:q_desc]), 
                       class:"btn btn-danger", method: :delete %>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>

@@ -40,7 +40,7 @@
             <% end %>
 
             <td class='align-middle text-center '>
-              <%= link_to edit_employee_user_path(user), class: 'td-actions', title: "Alterar" do %>
+              <%= link_to edit_employee_user_path(user, q_name: params[:q_name]), class: 'td-actions', title: "Alterar" do %>
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
               <% end %>
 
@@ -64,7 +64,7 @@
                   Confirma a exclusão do Usuário: <br> <%= user.name %> ?
                 </div>
                 <div class="modal-footer actions">
-                  <%= link_to 'Excluir', employee_user_path(user), 
+                  <%= link_to 'Excluir', employee_user_path(user, q_name: params[:q_name]), 
                       class:"btn btn-danger", method: :delete %>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>

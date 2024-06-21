@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   var typeperson = document.getElementById("idtypeperson");
-  typeperson.addEventListener("change", (event) => {
-    setMaskPerson(true);
-  });
+  if (typeperson != null) {
+    typeperson.addEventListener("change", (event) => {
+      setMaskPerson(true);
+    });
+  }
 
   function setMaskPerson(clearcpfcnpj){
     if (typeperson != null) {

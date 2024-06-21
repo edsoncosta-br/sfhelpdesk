@@ -15,15 +15,15 @@
     <div class="card">
       <div class="card-body card-body-style">
 
-        <%= form_with(url: cities_search_path, class:'row', method: 'get', local: false) do |form| %>
+        <%= form_with(url: cities_index_path, class:'row', method: 'get', local: true) do |form| %>
           <div class="col-12 col-md-6 mb-1">
             <label for="name_id" class="form-label">Nome</label>
-            <input type="text" name="search_name" id="name_id" class="form-control" maxlength="50" autofocus autocomplete="off">
+            <input type="text" name="q_name" id="name_id" class="form-control" maxlength="50" autofocus autocomplete="off" value=<%=params[:q_name]%>>
           </div>
           
           <div class="col-12 col-md-2 mb-1">
             <label for="ibge_code_id" class="form-label">UF</label>
-            <select class="form-select" name="search_uf" id="uf_id">
+            <select class="form-select" name="q_uf" id="uf_id" value=<%=params[:q_uf]%>>
                 <option value="">Todas</option>
                 <option value="AC">AC</option>
                 <option value="AL">AL</option>
@@ -57,7 +57,7 @@
           
           <div class="col-12 col-md-2 mb-1">
             <label for="ibge_code_id" class="form-label">Código IBGE</label>
-            <input type="number" name="search_ibge_code"id="ibge_code_id" class="form-control" maxlength="7" autofocus autocomplete="off">
+            <input type="number" name="q_ibge_code" id="ibge_code_id" class="form-control" maxlength="7" autofocus autocomplete="off" value=<%=params[:q_ibge_code]%>>
           </div>
 
           <div class="col-btn-search col-12 col-md-2 align-self-end mb-1">
@@ -70,7 +70,7 @@
       </div>
     </div>
 
-    <div class='data pb-4' id='data-id'></div>
+    <%= render partial: 'search' %>
     
   </div>                    
 </main>

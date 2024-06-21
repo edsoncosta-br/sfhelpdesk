@@ -49,11 +49,15 @@
                   autocomplete: :off, autofocus: true,  maxlength:"30" %>
             </div>
 
+            <%= hidden_field_tag :q_sys, params[:q_sys] %>
+            <%= hidden_field_tag :q_desc, params[:q_desc] %>            
+
           </div>
 
           <div class="actions pt-2 text-end">
             <%= form.submit "Salvar", class:"btn btn-success me-1"%>
-            <%= link_to 'Cancelar', topics_path, class: 'btn btn-secondary' %>
+            <%= link_to 'Cancelar', topics_path(q_sys: params[:q_sys],
+                                                q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
           </div>
 
         <% end %>

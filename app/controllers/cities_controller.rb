@@ -1,28 +1,21 @@
 class CitiesController < ApplicationController
   def index
-  end
-
-  def search
     cities = City.order(Arel.sql('unaccent(name)'))
-
-    if !params[:search_name].empty?
-      cities = cities.where('unaccent(name) ilike unaccent(?)', "%#{params[:search_name]}%")
+    
+    if !params[:q_name].blank?
+      cities = cities.where('unaccent(name) ilike unaccent(?)', "%#{params[:q_name]}%")
     end    
 
-    if !params[:search_uf].empty?
-      cities = cities.where('state = ?', params[:search_uf])
+    if !params[:q_uf].blank?
+      cities = cities.where('state = ?', params[:q_uf])
     end        
 
-    if !params[:search_ibge_code].empty?
-      cities = cities.where(' cast(ibge_code as varchar(7)) like ?', "#{params[:search_ibge_code]}%")
+    if !params[:q_ibge_code].blank?
+      cities = cities.where(' cast(ibge_code as varchar(7)) like ?', "#{params[:q_ibge_code]}%")
     end
 
     @cities = cities.all.page(params[:page]).per(Constants::PAGINAS)
-    @cities_size = cities.size
-
-    respond_to do |format|
-      format.js
-    end  
+    @cities_size = cities.size    
   end
 
   def filter

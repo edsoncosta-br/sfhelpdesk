@@ -34,7 +34,7 @@
               <%= form.label :email, class:"form-label" %>
               <%= form.text_field :email, 
                   class:"form-control #{is_invalid(@user, '_email_isempty_')}", 
-                  autofocus: true, autocomplete: :off, maxlength:"60" %>
+                  autofocus: true, autocomplete: :off, maxlength:"60", disabled: is_disabled(params[:action]) %>
             </div>            
 
             <div class="col-12 mb-3">
@@ -55,11 +55,13 @@
               </div>                
             <% end %>
 
+            <%= hidden_field_tag :q_name, params[:q_name] %>
+
           </div>
 
           <div class="actions pt-2 text-end">
             <%= form.submit "Salvar", class:"btn btn-success me-1"%>
-            <%= link_to 'Cancelar', employee_users_path, class: 'btn btn-secondary' %>
+            <%= link_to 'Cancelar', employee_users_path(q_name: params[:q_name]), class: 'btn btn-secondary' %>
           </div>
 
         <% end %>

@@ -6,7 +6,8 @@
         <div>Clientes</div>
       </div>
       <div class="ph-right">
-        <%= link_to(new_customer_path,  class: "btn btn-action btn-success") do %>
+        <%= link_to(new_customer_path(q_name: params[:q_name],
+                                      q_code: params[:q_code]),  class: "btn btn-action btn-success") do %>
           <i class="fa-solid fa-plus"></i></i> Incluir
         <%end%>   
       </div> 
@@ -14,15 +15,15 @@
     
     <div class="card">
       <div class="card-body card-body-style">
-        <%= form_with(url: customers_search_path, class:'row', method: 'get', local: false) do |form| %>
+        <%= form_with(url: customers_path, class:'row', method: 'get', local: true) do |form| %>
           <div class="col-12 col-md-8 mb-1">
             <label for="name_id" class="form-label">Nome</label>
-            <input type="text" name="search_name" id="name_id" class="form-control" maxlength="60" autofocus autocomplete="off" value=<%=@search_name%>>
+            <input type="text" name="q_name" id="name_id" class="form-control" maxlength="60" autofocus autocomplete="off" value=<%=params[:q_name]%>>
           </div>
-          
+         
           <div class="col-12 col-md-2 mb-1">
             <label for="code_id" class="form-label">Código</label>
-            <input type="text" name="search_code"id="code_id" class="form-control" maxlength="5" autofocus autocomplete="off" value=<%=@search_code%> >
+            <input type="text" name="q_code" id="code_id" class="form-control" maxlength="5" autofocus autocomplete="off" value=<%=params[:q_code]%> >
           </div>
 
           <div class="col-btn-search col-12 col-md-2 align-self-end mb-1">
@@ -34,7 +35,7 @@
       </div>
     </div>
 
-    <div class='data pb-4' id='data-id'></div>
+    <%= render partial: 'search' %>
     
   </div>                    
 </main>

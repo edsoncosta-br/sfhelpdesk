@@ -6,7 +6,8 @@
         <div>Tópicos/SubTópicos</div>
       </div>
       <div class="ph-right">
-        <%= link_to(new_topic_path,  class: "btn btn-action btn-success") do %>
+        <%= link_to(new_topic_path( q_sys: params[:q_sys],
+                                    q_desc: params[:q_desc]),  class: "btn btn-action btn-success") do %>
           <i class="fa-solid fa-plus"></i></i> Incluir Tópico
         <%end%>             
       </div>          
@@ -14,7 +15,7 @@
     
     <div class="card">
       <div class="card-body card-body-style">
-        <%= form_with(url: topics_search_path, class:'row', method: 'get', local: false) do |form| %>
+        <%= form_with(url: topics_path, class:'row', method: 'get', local: true) do |form| %>
           <div class="col-12 col-md-4 mb-1">
             <label for="system_id" class="form-label">Sistema</label>
             <%= select_tag :system_id, 
@@ -22,15 +23,15 @@
                                                                       .joins(:company)
                                                                       .where("company_id = ?", current_user.company.id)
                                                                 .order("unaccent(description)"),
-                                                                :id, :description),
+                                                                :id, :description, params[:q_sys]),
                             class:"form-select",
-                            name:"search_system",
+                            name:"q_sys",
                             autofocus: true %>
           </div>            
           
           <div class="col-12 col-md-4 mb-1">
             <label for="topic_id" class="form-label">Descrição do Tópico</label>
-            <input type="text" name="search_description" id="description_id" class="form-control" maxlength="50" autofocus autocomplete="off">
+            <input type="text" name="q_desc" id="description_id" class="form-control" maxlength="50" autofocus autocomplete="off" value=<%=params[:q_desc]%>>
           </div>
 
           <div class="col-btn-search col-12 col-md-4 align-self-end mb-1">
@@ -42,6 +43,6 @@
       </div>
     </div>
 
-    <div class='data pb-4' id='data-id'></div>
+    <%= render partial: 'search' %>
   </div>                    
 </main>
