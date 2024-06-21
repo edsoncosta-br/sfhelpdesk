@@ -2,6 +2,14 @@ class PositionsController < ApplicationController
   before_action :set_position, only: %i[ edit update destroy ]
 
   def index
+    positions = Position.order(Arel.sql('unaccent(description)'))
+
+    if params[:search_description]
+      positions = positions.where('unaccent(description) ilike unaccent(?)', "%#{params[:search_description]}%")
+    end    
+
+    @positions = positions.all.page(params[:page]).per(Constants::PAGINAS)
+    @positions_size = positions.size    
   end
 
   def new
@@ -13,7 +21,7 @@ class PositionsController < ApplicationController
     
     respond_to do |format|
       if @position.save
-        format.html { redirect_to positions_path, notice: "Cargo/Função cadastrado com sucesso." }
+        format.html { redirect_to positions_path(search_description: params[:search_description]), notice: "Cargo/Função cadastrado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -25,7 +33,7 @@ class PositionsController < ApplicationController
 
   def update
     if @position.update(position_params)
-      redirect_to positions_path, notice: "Cargo/Função atualizado com sucesso."
+      redirect_to positions_path(search_description: params[:search_description]), notice: "Cargo/Função atualizado com sucesso."
     else
       render :edit
     end      
@@ -34,9 +42,9 @@ class PositionsController < ApplicationController
   def destroy
     begin
       if @position.destroy
-        redirect_to positions_path, notice: "Cargo/Função excluído com sucesso."
+        redirect_to positions_path(search_description: params[:search_description]), notice: "Cargo/Função excluído com sucesso."
       else
-        redirect_to positions_path
+        redirect_to positions_path(search_description: params[:search_description])
       end
     rescue StandardError => e
 
@@ -46,23 +54,8 @@ class PositionsController < ApplicationController
         flash[:error] = e.message[0...80] + "..."
       end
 
-      redirect_to positions_path
+      redirect_to positions_path(search_description: params[:search_description])
     end
-  end  
-
-  def search
-    positions = Position.order(Arel.sql('unaccent(description)'))
-
-    if !params[:search_description].empty?
-      positions = positions.where('unaccent(description) ilike unaccent(?)', "%#{params[:search_description]}%")
-    end    
-
-    @positions = positions.all.page(params[:page]).per(Constants::PAGINAS)
-    @positions_size = positions.size
-
-    respond_to do |format|
-      format.js
-    end  
   end
 
   private

@@ -21,8 +21,7 @@ Rails.application.routes.draw do
   get 'cities/search'
   get 'cities/filter'  
 
-  resources :positions, except: [:show]  
-  get 'positions/search'  
+  resources :positions, except: [:show]
 
   resources :systems, except: [:show]
   get 'systems/search'

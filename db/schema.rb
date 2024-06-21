@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 2024_06_19_173202) do
   add_foreign_key "customers", "companies"
   add_foreign_key "sub_topics", "topics", on_delete: :cascade
   add_foreign_key "systems", "companies"
-  add_foreign_key "topics", "systems"
+  add_foreign_key "topics", "systems", on_delete: :cascade
   add_foreign_key "users", "companies"
   add_foreign_key "users", "positions"
 end
