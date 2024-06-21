@@ -61,6 +61,11 @@ pt-BR:
       sub_topic:
         description: Descrição do SubTópico
         topic_id: Tópico
+      version:
+        description: Descrição
+        due_date: Data de Vencimento
+        release_date: Data de Liberação
+        system_id: Sistema
   errors:
     format: "%{attribute} %{message}"
     messages:

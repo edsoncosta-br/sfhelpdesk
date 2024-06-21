@@ -9,20 +9,20 @@ Rails.application.routes.draw do
     # mount Sidekiq::Web => '/sidekiq'
   end  
 
+  get 'cities/index'
+  get 'cities/filter'  
+
   namespace :employee do
     resources :users, except: [:show]
   end  
 
-  resources :customers, except: [:show]
-
-  get 'cities/index'
-  get 'cities/filter'  
-
+  resources :customers, except: [:show]  
   resources :positions, except: [:show]
   resources :systems, except: [:show]
   resources :topics, except: [:show]  
-
   resources :sub_topics, except: [:show, :new]
   get 'sub_topics/new/:topic_id', to: 'sub_topics#new', as: 'new_sub_topic'
+  resources :versions, except: [:show]
+  resources :allocations, except: [:show]
 
 end

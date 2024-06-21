@@ -8,7 +8,7 @@ class CreateTopics < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_foreign_key :topics, :systems, index: true, on_delete: :cascade, null: false  
+    add_foreign_key :topics, :systems, index: true
     add_index :topics, [:system_id, :description] , unique: true
   end
 end

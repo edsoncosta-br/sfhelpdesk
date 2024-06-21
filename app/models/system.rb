@@ -4,6 +4,8 @@ class System < ApplicationRecord
 
   belongs_to :company
   has_many :topics
+  has_many :versions
+  has_many :allocations
   
   private
 

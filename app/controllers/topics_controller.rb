@@ -7,6 +7,13 @@ class TopicsController < ApplicationController
                   .where("company_id = ?", current_user.company.id)
             .order(Arel.sql('unaccent(systems.description), unaccent(topics.description)'))
 
+    if params[:q_sys].blank?
+      params[:q_sys] = System.joins(:company)
+                              .where("company_id = ?", current_user.company.id)
+                              .order("unaccent(description)")
+                              .pick('systems.id')      
+    end
+
     if !params[:q_sys].blank?
       topics = topics.where('systems.id = ?', "#{params[:q_sys]}")
     end

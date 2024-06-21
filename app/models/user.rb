@@ -24,6 +24,8 @@ class User < ApplicationRecord
   belongs_to :position
   belongs_to :company
 
+  has_many :allocations
+
   def active_for_authentication?
     super && active
   end  

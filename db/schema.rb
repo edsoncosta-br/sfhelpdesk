@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_19_173202) do
+ActiveRecord::Schema.define(version: 2024_06_21_185630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 2024_06_19_173202) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "allocations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "system_id", null: false
+    t.boolean "main", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["system_id", "user_id"], name: "index_allocations_on_system_id_and_user_id", unique: true
   end
 
   create_table "cities", force: :cascade do |t|
@@ -126,11 +135,24 @@ ActiveRecord::Schema.define(version: 2024_06_19_173202) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "versions", force: :cascade do |t|
+    t.string "description", limit: 30, null: false
+    t.datetime "due_date"
+    t.datetime "release_date"
+    t.bigint "system_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["system_id", "description"], name: "index_versions_on_system_id_and_description", unique: true
+  end
+
+  add_foreign_key "allocations", "systems", on_delete: :cascade
+  add_foreign_key "allocations", "users", on_delete: :cascade
   add_foreign_key "customers", "cities"
   add_foreign_key "customers", "companies"
   add_foreign_key "sub_topics", "topics", on_delete: :cascade
   add_foreign_key "systems", "companies"
-  add_foreign_key "topics", "systems", on_delete: :cascade
+  add_foreign_key "topics", "systems"
   add_foreign_key "users", "companies"
   add_foreign_key "users", "positions"
+  add_foreign_key "versions", "systems"
 end

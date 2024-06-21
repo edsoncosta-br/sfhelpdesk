@@ -10,4 +10,20 @@ module ApplicationHelper
     (action == "edit") or (action == "update") ? true : false
   end
 
+  def format_date(datetime)
+    if datetime.present?
+      datetime.strftime("%d/%m/%Y")
+    else
+      "..." 
+    end
+  end  
+
+  def format_datetime(datetime)
+    if datetime.present?
+      datetime.strftime("%d/%m/%Y %H:%M")
+    else
+      "..." 
+    end
+  end    
+
 end
