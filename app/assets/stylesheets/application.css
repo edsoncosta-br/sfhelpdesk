@@ -507,3 +507,8 @@ body {
   background-color: #f8fbff !important;
   width: 20%;
 }
+
+.alert-divider {
+  padding: 8px;
+  border-radius: 0;
+}

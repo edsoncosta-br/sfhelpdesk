@@ -17,9 +17,13 @@ class Employee::UsersController < ApplicationController
 
   def new
     @user = User.new
+    get_systems
   end
 
   def create
+
+    puts params.to_s
+
     @user = User.new(user_params)
 
     @user.password = Constants::DEFAULT_PASSWORD
@@ -31,11 +35,13 @@ class Employee::UsersController < ApplicationController
         format.html { redirect_to employee_users_path(q_name: params[:q_name]), notice: "Usuário cadastrado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
+        get_systems
       end
     end
   end
 
   def edit
+    get_systems
   end
 
   def update
@@ -69,6 +75,10 @@ class Employee::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def get_systems
+    @systems = System.order(Arel.sql('unaccent(description)'))
   end
 
   def user_params

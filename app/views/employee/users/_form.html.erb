@@ -16,14 +16,14 @@
           <%= render "shared/error_messages", resource: @user %>
 
           <div class="row">
-            <div class="col-12 mb-3">
+            <div class="col-12 col-md-8 mb-3">
               <%= form.label :name, class:"form-label" %>
               <%= form.text_field :name, 
                   class:"form-control #{is_invalid(@user, '_name_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"60" %>
             </div>
 
-            <div class="col-12 mb-3">
+            <div class="col-12 col-md-4 mb-3">
               <%= form.label :nick_name, class:"form-label" %>
               <%= form.text_field :nick_name, 
                   class:"form-control #{is_invalid(@user, '_nick_name_isempty_')}", 
@@ -54,6 +54,21 @@
                 <label class="align-checkbox" for="active_id">Cadastro ativo</label>
               </div>                
             <% end %>
+
+            <div class="col-12 mt-3 mb-2">
+              <div class="alert alert-success alert-divider" role="alert">
+                <i class="fa-solid fa-user-shield pe-2"></i>Selecione os sistemas que este usuário terá acesso:
+              </div>
+            </div>            
+            
+            <%if @systems%>
+              <% @systems.each do |system| %>
+                <div class="col-12 mb-3">
+                  <%= form.check_box :"#{system.id}", class:"form-check-input fs-6", id:"active_id_#{system.id}" %> 
+                  <label class="align-checkbox" for=<%="active_id_#{system.id}"%>  ><%=system.description%></label>
+                </div>                              
+              <% end %>
+            <% end %>              
 
             <%= hidden_field_tag :q_name, params[:q_name] %>
 
