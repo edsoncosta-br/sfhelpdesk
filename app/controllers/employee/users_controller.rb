@@ -21,7 +21,6 @@ class Employee::UsersController < ApplicationController
   end
 
   def create
-
     puts params.to_s
 
     @user = User.new(user_params)
