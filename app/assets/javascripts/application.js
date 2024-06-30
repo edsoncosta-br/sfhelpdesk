@@ -7,3 +7,14 @@
 //= require ./flashMessages.js
 //= require ./fontawesome/all.js
 //= require ./scripts.js
+
+// function check(obj){
+
+//   if (obj.checked) {
+//     console.log("checou")
+//     obj.setAttribute("checked", "");
+//   } else {
+//     obj.removeAttribute("checked");
+//     obj.log("deschecou")
+//   }
+// }

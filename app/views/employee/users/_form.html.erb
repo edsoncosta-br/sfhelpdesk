@@ -31,7 +31,8 @@
             </div>
 
             <div class="col-12 mb-3">
-              <%= form.label :email, class:"form-label" %>
+              <%#= form.label :email, class:"form-label" %>
+              <label class="form-label" for="user_email">E-mail (será utilizado para acesso ao sistema)</label>              
               <%= form.text_field :email, 
                   class:"form-control #{is_invalid(@user, '_email_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"60", disabled: is_disabled(params[:action]) %>
@@ -64,8 +65,12 @@
             <%if @systems%>
               <% @systems.each do |system| %>
                 <div class="col-12 mb-3">
-                  <%= form.check_box :"#{system.id}", class:"form-check-input fs-6", id:"active_id_#{system.id}" %> 
-                  <label class="align-checkbox" for=<%="active_id_#{system.id}"%>  ><%=system.description%></label>
+                  <input class="form-check-input fs-6"  id=<%="active_id_#{system.id}"%> 
+                                                        type="checkbox" 
+                                                        value="1"
+                                                        name=<%="systemcheck[#{system.id}]"%>
+                                                        <%=system_checked(@user.id, system.id)%>>
+                  <label class="align-checkbox" for=<%="active_id_#{system.id}"%>><%=system.description%></label>
                 </div>                              
               <% end %>
             <% end %>              

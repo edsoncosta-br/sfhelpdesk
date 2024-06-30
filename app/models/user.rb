@@ -14,14 +14,12 @@ class User < ApplicationRecord
 
   validates :email, presence: true, length: {maximum: 60}
   validates :name, presence: true, length: {maximum: 60}
-  validates :position_id, presence: true
   validates :company_id, presence: true
 
   validate :email_isempty
   validate :name_isempty  
-  validate :position_isempty
 
-  belongs_to :position
+  belongs_to :position, required: false
   belongs_to :company
 
   has_many :allocations

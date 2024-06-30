@@ -3,7 +3,7 @@ class Employee::UsersController < ApplicationController
 
   def index
     users = User.select(:id, :email, :nick_name, :name, :active, :admin, 'positions.description position_description')
-                .joins(:position)
+                .left_outer_joins(:position)
                 .where("company_id = ?", current_user.company.id)
                 .order(Arel.sql('unaccent(users.name)'))
 
@@ -21,7 +21,7 @@ class Employee::UsersController < ApplicationController
   end
 
   def create
-    puts params.to_s
+    puts params['systemcheck']
 
     @user = User.new(user_params)
 
@@ -31,10 +31,11 @@ class Employee::UsersController < ApplicationController
     
     respond_to do |format|
       if @user.save
+        save_usersystems
         format.html { redirect_to employee_users_path(q_name: params[:q_name]), notice: "Usuário cadastrado com sucesso." }
       else
-        format.html { render :new, status: :unprocessable_entity }
         get_systems
+        format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
@@ -45,8 +46,10 @@ class Employee::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      save_usersystems
       redirect_to employee_users_path(q_name: params[:q_name]), notice: "Usuário atualizado com sucesso."
     else
+      get_systems
       render :edit
     end      
   end
@@ -77,11 +80,32 @@ class Employee::UsersController < ApplicationController
   end
 
   def get_systems
-    @systems = System.order(Arel.sql('unaccent(description)'))
+    @systems = System.select(:id, :description).
+                      where('company_id = ?', current_user.company_id) 
+                      .order(Arel.sql('unaccent(description)'))
   end
 
   def user_params
     params.require(:user).permit(:email, :name, :nick_name, :company_id, :position_id, :active)
-  end    
+  end
+
+  def save_usersystems
+    Allocation.where('user_id = ?', @user.id).destroy_all
+
+    if params['systemcheck']
+      params['systemcheck'].each do |system_id, checked|
+        puts system_id
+        puts checked
+      end
+    end    
+
+    if params['systemcheck']
+      params['systemcheck'].each do |system_id, checked|
+        if checked == '1' #true
+          Allocation.create!(user_id: @user.id, system_id: system_id)
+        end
+      end
+    end
+  end
 
 end
