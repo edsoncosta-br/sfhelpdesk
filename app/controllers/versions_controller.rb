@@ -28,6 +28,7 @@ class VersionsController < ApplicationController
 
   def new
     @version = Version.new
+    @version.system_id = params[:q_sys]    
   end
 
   def create

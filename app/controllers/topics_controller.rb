@@ -28,6 +28,7 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
+    @topic.system_id = params[:q_sys]    
   end
 
   def create

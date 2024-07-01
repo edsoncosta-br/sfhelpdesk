@@ -19,10 +19,9 @@ Rails.application.routes.draw do
   resources :customers, except: [:show]  
   resources :positions, except: [:show]
   resources :systems, except: [:show]
-  resources :topics, except: [:show]  
+  resources :topics, except: [:show]
   resources :sub_topics, except: [:show, :new]
   get 'sub_topics/new/:topic_id', to: 'sub_topics#new', as: 'new_sub_topic'
   resources :versions, except: [:show]
-  resources :allocations, except: [:show]
 
 end

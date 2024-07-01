@@ -18,9 +18,14 @@
           <div class="row">
             
             <div class="col-12 mb-3">
-              <label class="form-label" for="sub_topic_topic_id">Sistema/Tópico</label>
-              <input class="form-control" value="<%=@sub_topic.description_system%> / <%=@sub_topic.description_topic%>" disabled>
+              <label class="form-label" for="sub_topic_topic_id">Sistema</label>
+              <input class="form-control" value="<%=@sub_topic.description_system%>" disabled>
             </div>
+
+            <div class="col-12 mb-3">
+              <label class="form-label" for="sub_topic_topic_id">Tópico</label>
+              <input class="form-control" value="<%=@sub_topic.description_topic%>" disabled>
+            </div>            
 
             <div class="col-12 mb-3">
               <%= form.label :description, class:"form-label" %>

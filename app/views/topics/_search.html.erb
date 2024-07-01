@@ -22,8 +22,9 @@
             <td class='align-middle'> <%=topic.description%> </td>
             <td class='align-middle'> <%=topic.system_description%> </td>
             <td class='align-middle text-center d-flex align-items-center'>
-              <%= link_to(new_sub_topic_path(topic.id,q_sys: params[:q_sys],
-                                                      q_desc: params[:q_desc]), class: "btn btn-sm btn-outline-success btn-table me-2", title:"Incluir SubTópico") do %>
+              <%= link_to(new_sub_topic_path(topic.id,  q_sys: params[:q_sys], q_desc: params[:q_desc]), 
+                                                        class: "btn btn-sm btn-outline-success btn-table me-2", 
+                                                        title:"Incluir SubTópico") do %>
                 <i class="fa-solid fa-plus"></i></i> SubTópico
               <%end%>  
 

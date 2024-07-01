@@ -12,7 +12,8 @@
     <div class="card card-size">
       <div class="card-body card-body-style">
 
-        <%= form_with(model: [ :employee, @user ]) do |form| %>
+        <%#= form_with(model: [ :employee, @user ], html: { class: "needs-validation", novalidate: true }) do |form| %>
+        <%= form_with(model: [ :employee, @user ], html: { class: "needs-validation", novalidate: true }) do |form| %>
           <%= render "shared/error_messages", resource: @user %>
 
           <div class="row">
@@ -20,7 +21,7 @@
               <%= form.label :name, class:"form-label" %>
               <%= form.text_field :name, 
                   class:"form-control #{is_invalid(@user, '_name_isempty_')}", 
-                  autofocus: true, autocomplete: :off, maxlength:"60" %>
+                  autofocus: true, autocomplete: :off, maxlength:"60", required: :true %>
             </div>
 
             <div class="col-12 col-md-4 mb-3">
@@ -35,7 +36,7 @@
               <label class="form-label" for="user_email">E-mail (será utilizado para acesso ao sistema)</label>              
               <%= form.text_field :email, 
                   class:"form-control #{is_invalid(@user, '_email_isempty_')}", 
-                  autofocus: true, autocomplete: :off, maxlength:"60", disabled: is_disabled(params[:action]) %>
+                  autofocus: true, autocomplete: :off, maxlength:"60", required: :true, disabled: is_disabled(params[:action]) %>
             </div>            
 
             <div class="col-12 mb-3">
