@@ -3,7 +3,7 @@
   <div class="container-fluid max-container">
     <div class="page-heading"> 
       <div class="ph-left pe-3">
-        <div>Sistemas - <%= action_message %> </div>
+        <div>Projetos - <%= action_message %> </div>
       </div>
       <div class="ph-right">
       </div>          
@@ -12,14 +12,14 @@
     <div class="card card-size">
       <div class="card-body card-body-style">
 
-        <%= form_with(model: @system ) do |form| %>
-          <%= render "shared/error_messages", resource: @system %>
+        <%= form_with(model: @project ) do |form| %>
+          <%= render "shared/error_messages", resource: @project %>
 
           <div class="row">
             <div class="col-12 mb-3">
               <%= form.label :description, class:"form-label" %>
               <%= form.text_field :description, 
-                  class:"form-control #{is_invalid(@system, '_description_isempty_')}", 
+                  class:"form-control #{is_invalid(@project, '_description_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"60" %>
             </div>
 
@@ -28,7 +28,7 @@
 
           <div class="actions pt-2 text-end">
             <%= form.submit "Salvar", class:"btn btn-success me-1"%>
-            <%= link_to 'Cancelar', systems_path(q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
+            <%= link_to 'Cancelar', projects_path(q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
           </div>
 
         <% end %>

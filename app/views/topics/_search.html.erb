@@ -11,7 +11,7 @@
       <thead>
         <tr>
           <th scope='col'>Tópico</th>
-          <th scope='col'>Sistema</th>
+          <th scope='col'>Projeto</th>
           <th scope='col' class='text-center col-actions-two'>Ações</th>
         </tr>
       </thead>
@@ -20,7 +20,7 @@
         <% @topics.each do |topic| %>
           <tr>
             <td class='align-middle'> <%=topic.description%> </td>
-            <td class='align-middle'> <%=topic.system_description%> </td>
+            <td class='align-middle'> <%=topic.project_description%> </td>
             <td class='align-middle text-center d-flex align-items-center'>
               <%= link_to(new_sub_topic_path(topic.id,  q_sys: params[:q_sys], q_desc: params[:q_desc]), 
                                                         class: "btn btn-sm btn-outline-success btn-table me-2", 

@@ -3,10 +3,10 @@
   <div class="container-fluid max-container">
     <div class="page-heading"> 
       <div class="ph-left pe-3">
-        <div>Versões</div>
+        <div>Metas</div>
       </div>
       <div class="ph-right">
-        <%= link_to(new_version_path( q_sys: params[:q_sys],
+        <%= link_to(new_mark_path( q_sys: params[:q_sys],
                                     q_desc: params[:q_desc]),  class: "btn btn-action btn-success") do %>
           <i class="fa-solid fa-plus"></i></i> Incluir
         <%end%>             
@@ -15,22 +15,18 @@
     
     <div class="card">
       <div class="card-body card-body-style">
-        <%= form_with(url: versions_path, class:'row', method: 'get', local: true) do |form| %>
+        <%= form_with(url: marks_path, class:'row', method: 'get', local: true) do |form| %>
           <div class="col-12 col-md-4 mb-1">
-            <label for="system_id" class="form-label">Sistema</label>
-            <%= select_tag :system_id, 
-                            options_from_collection_for_select( System.select(:id, :description)
-                                                                      .joins(:company)
-                                                                      .where("company_id = ?", current_user.company.id)
-                                                                .order("unaccent(description)"),
-                                                                :id, :description, params[:q_sys]),
+            <label for="project_id" class="form-label">Projeto</label>
+            <%= select_tag :project_id, 
+                            form_select_project_allocations,
                             class:"form-select",
                             name:"q_sys",
                             autofocus: true %>
           </div>            
           
           <div class="col-12 col-md-4 mb-1">
-            <label for="topic_id" class="form-label">Descrição da Versão</label>
+            <label for="topic_id" class="form-label">Descrição da Meta</label>
             <input type="text" name="q_desc" id="description_id" class="form-control" maxlength="50" autofocus autocomplete="off" value=<%=params[:q_desc]%>>
           </div>
 

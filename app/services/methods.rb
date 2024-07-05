@@ -32,7 +32,7 @@ class Methods
 
   def self.get_sub_topics(topic_id, company_id )
     SubTopic.select(:id, :description, :topic_id)
-              .joins(topic: [{ system: :company }])
+              .joins(topic: [{ project: :company }])
               .where("company_id = ? and topic_id = ?", company_id, topic_id)
               .order(Arel.sql('unaccent(sub_topics.description)'))
   end

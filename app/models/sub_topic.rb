@@ -6,7 +6,7 @@ class SubTopic < ApplicationRecord
 
   belongs_to :topic
 
-  attr_accessor :description_system
+  attr_accessor :description_project
   attr_accessor :description_topic
   
   private

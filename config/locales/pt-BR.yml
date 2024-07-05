@@ -52,20 +52,20 @@ pt-BR:
         active: Cadastro Ativo
       position:
         description: Descrição
-      system:
+      project:
         description: Descrição
       topic:
         description: Descrição
         color: Cor de Exibição
-        system_id: Sistema
+        project_id: Projeto
       sub_topic:
         description: Descrição do SubTópico
         topic_id: Tópico
-      version:
+      mark:
         description: Descrição
         due_date: Data de Vencimento
-        release_date: Data de Liberação
-        system_id: Sistema
+        release_date: Data de Conclusãos
+        project_id: Projeto
   errors:
     format: "%{attribute} %{message}"
     messages:

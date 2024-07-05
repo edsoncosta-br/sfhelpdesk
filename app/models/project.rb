@@ -1,10 +1,10 @@
-class System < ApplicationRecord
+class Project < ApplicationRecord
   validates :description, presence: true, length: {maximum: 60}
   validate :description_isempty
 
   belongs_to :company
   has_many :topics
-  has_many :versions
+  has_many :marks
   has_many :allocations
   
   private

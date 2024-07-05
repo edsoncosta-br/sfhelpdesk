@@ -1,6 +1,6 @@
 module UsersHelper
-  def system_checked(user_id, system_id)
-    if Allocation.select(:id).where('user_id = ? and system_id = ?', user_id, system_id).empty?
+  def project_checked(user_id, project_id)
+    if Allocation.select(:id).where('user_id = ? and project_id = ?', user_id, project_id).empty?
       ''
     else
       ', checked' 

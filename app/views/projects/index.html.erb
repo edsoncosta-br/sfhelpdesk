@@ -3,10 +3,10 @@
   <div class="container-fluid max-container">
     <div class="page-heading"> 
       <div class="ph-left e-3">
-        <div>Sistemas</div>
+        <div>Projetos</div>
       </div>
       <div class="ph-right">
-        <%= link_to(new_system_path(q_desc: params[:q_desc]),  class: "btn btn-action btn-success") do %>
+        <%= link_to(new_project_path(q_desc: params[:q_desc]),  class: "btn btn-action btn-success") do %>
           <i class="fa-solid fa-plus"></i></i> Incluir
         <%end%>             
       </div>          
@@ -14,9 +14,9 @@
     
     <div class="card">
       <div class="card-body card-body-style">
-        <%= form_with(url: systems_path, class:'row', method: 'get', local: true) do |form| %>
+        <%= form_with(url: projects_path, class:'row', method: 'get', local: true) do |form| %>
           <div class="col-12 col-md-6 mb-1">
-            <label for="system_id" class="form-label">Descrição</label>
+            <label for="project_id" class="form-label">Descrição</label>
             <input type="text" name="q_desc" id="description_id" class="form-control" maxlength="50" autofocus autocomplete="off" value=<%=params[:q_desc]%>>
           </div>
 

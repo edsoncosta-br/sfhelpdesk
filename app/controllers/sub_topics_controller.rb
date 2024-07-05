@@ -4,7 +4,7 @@ class SubTopicsController < ApplicationController
   def new
     @sub_topic = SubTopic.new
     @sub_topic.topic_id = params[:topic_id]
-    show_system_topic(params[:topic_id]);
+    show_project_topic(params[:topic_id]);
   end    
 
   def create
@@ -21,7 +21,7 @@ class SubTopicsController < ApplicationController
   end
 
   def edit
-    show_system_topic(@sub_topic.topic_id)
+    show_project_topic(@sub_topic.topic_id)
   end
 
   def update
@@ -62,16 +62,16 @@ class SubTopicsController < ApplicationController
   end
 
   def sub_topic_params
-    params.require(:sub_topic).permit(:description, :topic_id, :description_system, :description_topic)
+    params.require(:sub_topic).permit(:description, :topic_id, :description_project, :description_topic)
   end
 
-  def show_system_topic(id) 
-    description_system_topic = Topic.joins(system: :company)
+  def show_project_topic(id) 
+    description_project_topic = Topic.joins(project: :company)
                                       .where("company_id = ? and topics.id = ?", current_user.company.id, id)
-                                      .pick('systems.description', 'topics.description')
+                                      .pick('projects.description', 'topics.description')
 
-    @sub_topic.description_system = description_system_topic[0]
-    @sub_topic.description_topic = description_system_topic[1]    
+    @sub_topic.description_project = description_project_topic[0]
+    @sub_topic.description_topic = description_project_topic[1]    
   end
 
 end

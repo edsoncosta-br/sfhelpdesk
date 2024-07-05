@@ -1,9 +1,9 @@
 class Allocation < ApplicationRecord
   validate :user_isempty
-  validate :system_isempty  
-  validates :user_id, uniqueness: { scope: :system_id, message: "já está alocado no sistema selecionado." }
+  validate :project_isempty  
+  validates :user_id, uniqueness: { scope: :project_id, message: "já está alocado no Projeto selecionado." }
 
-  belongs_to :system
+  belongs_to :project
   belongs_to :user
 
   private
@@ -14,9 +14,9 @@ class Allocation < ApplicationRecord
     end
   end    
 
-  def system_isempty
-    if self.system_id.blank?
-      errors.add(:_, '_system_isempty_')
+  def project_isempty
+    if self.project_id.blank?
+      errors.add(:_, '_project_isempty_')
     end
   end  
 end

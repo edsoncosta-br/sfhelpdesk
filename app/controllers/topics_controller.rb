@@ -2,20 +2,20 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: %i[ edit update destroy ]
 
   def index
-    topics = Topic.select(:id, :description, 'systems.description system_description')
-                  .joins(system: :company)
+    topics = Topic.select(:id, :description, 'projects.description project_description')
+                  .joins(project: :company)
                   .where("company_id = ?", current_user.company.id)
-            .order(Arel.sql('unaccent(systems.description), unaccent(topics.description)'))
+            .order(Arel.sql('unaccent(projects.description), unaccent(topics.description)'))
 
     if params[:q_sys].blank?
-      params[:q_sys] = System.joins(:company)
+      params[:q_sys] = Project.joins(:company)
                               .where("company_id = ?", current_user.company.id)
                               .order("unaccent(description)")
-                              .pick('systems.id')      
+                              .pick('projects.id')      
     end
 
     if !params[:q_sys].blank?
-      topics = topics.where('systems.id = ?', "#{params[:q_sys]}")
+      topics = topics.where('projects.id = ?', "#{params[:q_sys]}")
     end
 
     if !params[:q_desc].blank?
@@ -28,7 +28,7 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
-    @topic.system_id = params[:q_sys]    
+    @topic.project_id = params[:q_sys]    
   end
 
   def create
@@ -85,7 +85,7 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:description, :color,  :system_id)
+    params.require(:topic).permit(:description, :color,  :project_id)
   end  
 
 end

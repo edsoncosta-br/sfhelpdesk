@@ -18,8 +18,8 @@
           <div class="row">
             
             <div class="col-12 mb-3">
-              <label class="form-label" for="sub_topic_topic_id">Sistema</label>
-              <input class="form-control" value="<%=@sub_topic.description_system%>" disabled>
+              <label class="form-label" for="sub_topic_topic_id">Projeto</label>
+              <input class="form-control" value="<%=@sub_topic.description_project%>" disabled>
             </div>
 
             <div class="col-12 mb-3">
@@ -35,7 +35,7 @@
             </div>
 
             <%= form.hidden_field :topic_id %>
-            <%= form.hidden_field :description_system %>
+            <%= form.hidden_field :description_project %>
             <%= form.hidden_field :description_topic %>
 
             <%= hidden_field_tag :q_sys, params[:q_sys] %>

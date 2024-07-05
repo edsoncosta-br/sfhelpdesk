@@ -42,9 +42,7 @@
             <div class="col-12 mb-3">
               <%= form.label :position_id, class:"form-label"%>
               <%= select_tag :position_id, 
-                              options_from_collection_for_select( Position.select(:id, :description)
-                                                                  .order("unaccent(description)"), 
-                                                                  :id, :description, @user.position_id),
+                              form_select_position,
                               include_blank: "Selecione...", 
                               class:"form-select #{is_invalid(@user, '_position_isempty_')}",
                               name:"user[position_id]" %>
@@ -59,19 +57,19 @@
 
             <div class="col-12 mt-3 mb-2">
               <div class="alert alert-success alert-divider" role="alert">
-                <i class="fa-solid fa-user-shield pe-2"></i>Selecione os sistemas que este usuário terá acesso:
+                <i class="fa-solid fa-user-shield pe-2"></i>Selecione os projetos que este usuário terá acesso:
               </div>
             </div>            
             
-            <%if @systems%>
-              <% @systems.each do |system| %>
+            <%if @projects%>
+              <% @projects.each do |project| %>
                 <div class="col-12 mb-3">
-                  <input class="form-check-input fs-6"  id=<%="active_id_#{system.id}"%> 
+                  <input class="form-check-input fs-6"  id=<%="active_id_#{project.id}"%> 
                                                         type="checkbox" 
                                                         value="1"
-                                                        name=<%="systemcheck[#{system.id}]"%>
-                                                        <%=system_checked(@user.id, system.id)%>>
-                  <label class="align-checkbox" for=<%="active_id_#{system.id}"%>><%=system.description%></label>
+                                                        name=<%="projectcheck[#{project.id}]"%>
+                                                        <%=project_checked(@user.id, project.id)%>>
+                  <label class="align-checkbox" for=<%="active_id_#{project.id}"%>><%=project.description%></label>
                 </div>                              
               <% end %>
             <% end %>              

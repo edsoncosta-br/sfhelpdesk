@@ -17,11 +17,11 @@ class Employee::UsersController < ApplicationController
 
   def new
     @user = User.new
-    get_systems
+    get_projects
   end
 
   def create
-    puts params['systemcheck']
+    puts params['projectcheck']
 
     @user = User.new(user_params)
 
@@ -31,25 +31,25 @@ class Employee::UsersController < ApplicationController
     
     respond_to do |format|
       if @user.save
-        save_usersystems
+        save_userprojects
         format.html { redirect_to employee_users_path(q_name: params[:q_name]), notice: "Usuário cadastrado com sucesso." }
       else
-        get_systems
+        get_projects
         format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
 
   def edit
-    get_systems
+    get_projects
   end
 
   def update
     if @user.update(user_params)
-      save_usersystems
+      save_userprojects
       redirect_to employee_users_path(q_name: params[:q_name]), notice: "Usuário atualizado com sucesso."
     else
-      get_systems
+      get_projects
       render :edit
     end      
   end
@@ -79,30 +79,30 @@ class Employee::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def get_systems
-    @systems = System.select(:id, :description).
-                      where('company_id = ?', current_user.company_id) 
-                      .order(Arel.sql('unaccent(description)'))
+  def get_projects
+    @projects = Project.select(:id, :description)
+                        .where('company_id = ?', current_user.company_id) 
+                        .order(Arel.sql('unaccent(description)'))
   end
 
   def user_params
     params.require(:user).permit(:email, :name, :nick_name, :company_id, :position_id, :active)
   end
 
-  def save_usersystems
+  def save_userprojects
     Allocation.where('user_id = ?', @user.id).destroy_all
 
-    if params['systemcheck']
-      params['systemcheck'].each do |system_id, checked|
-        puts system_id
+    if params['projectcheck']
+      params['projectcheck'].each do |project_id, checked|
+        puts project_id
         puts checked
       end
     end    
 
-    if params['systemcheck']
-      params['systemcheck'].each do |system_id, checked|
+    if params['projectcheck']
+      params['projectcheck'].each do |project_id, checked|
         if checked == '1' #true
-          Allocation.create!(user_id: @user.id, system_id: system_id)
+          Allocation.create!(user_id: @user.id, project_id: project_id)
         end
       end
     end

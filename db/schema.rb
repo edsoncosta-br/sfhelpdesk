@@ -37,11 +37,11 @@ ActiveRecord::Schema.define(version: 2024_06_21_185630) do
 
   create_table "allocations", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "system_id", null: false
+    t.bigint "project_id", null: false
     t.boolean "main", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["system_id", "user_id"], name: "index_allocations_on_system_id_and_user_id", unique: true
+    t.index ["project_id", "user_id"], name: "index_allocations_on_project_id_and_user_id", unique: true
   end
 
   create_table "cities", force: :cascade do |t|
@@ -80,11 +80,29 @@ ActiveRecord::Schema.define(version: 2024_06_21_185630) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "marks", force: :cascade do |t|
+    t.string "description", limit: 30, null: false
+    t.datetime "due_date"
+    t.datetime "release_date"
+    t.bigint "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id", "description"], name: "index_marks_on_project_id_and_description", unique: true
+  end
+
   create_table "positions", force: :cascade do |t|
     t.string "description", limit: 30, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["description"], name: "index_positions_on_description", unique: true
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "description", limit: 60, null: false
+    t.boolean "active", default: true
+    t.bigint "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sub_topics", force: :cascade do |t|
@@ -95,21 +113,13 @@ ActiveRecord::Schema.define(version: 2024_06_21_185630) do
     t.index ["topic_id", "description"], name: "index_sub_topics_on_topic_id_and_description", unique: true
   end
 
-  create_table "systems", force: :cascade do |t|
-    t.string "description", limit: 60, null: false
-    t.boolean "active", default: true
-    t.bigint "company_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "topics", force: :cascade do |t|
     t.string "description", limit: 30, null: false
     t.string "color", limit: 7
-    t.bigint "system_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["system_id", "description"], name: "index_topics_on_system_id_and_description", unique: true
+    t.index ["project_id", "description"], name: "index_topics_on_project_id_and_description", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -135,24 +145,14 @@ ActiveRecord::Schema.define(version: 2024_06_21_185630) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "versions", force: :cascade do |t|
-    t.string "description", limit: 30, null: false
-    t.datetime "due_date"
-    t.datetime "release_date"
-    t.bigint "system_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["system_id", "description"], name: "index_versions_on_system_id_and_description", unique: true
-  end
-
-  add_foreign_key "allocations", "systems", on_delete: :cascade
+  add_foreign_key "allocations", "projects", on_delete: :cascade
   add_foreign_key "allocations", "users", on_delete: :cascade
   add_foreign_key "customers", "cities"
   add_foreign_key "customers", "companies"
+  add_foreign_key "marks", "projects"
+  add_foreign_key "projects", "companies"
   add_foreign_key "sub_topics", "topics", on_delete: :cascade
-  add_foreign_key "systems", "companies"
-  add_foreign_key "topics", "systems"
+  add_foreign_key "topics", "projects"
   add_foreign_key "users", "companies"
   add_foreign_key "users", "positions"
-  add_foreign_key "versions", "systems"
 end

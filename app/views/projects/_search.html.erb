@@ -1,7 +1,7 @@
-<% if !@versions.empty? %>
+<% if !@projects.empty? %>
 
   <div class="records text-muted text-end">
-    Registros encontrados: <%=@versions_size%>
+    Registros encontrados: <%=@projects_size%>
   </div>
 
   <div id="modal-place"></div>
@@ -11,32 +11,26 @@
       <thead>
         <tr>
           <th scope='col'>Descrição</th>
-          <th scope='col'>Sistema</th>
-          <th scope='col'>Data de Vencimento</th>
-          <th scope='col'>Data de Liberação</th>
           <th scope='col' class='text-center col-actions-two'>Ações</th>
         </tr>
       </thead>
 
       <tbody>
-        <% @versions.each do |version| %>
+        <% @projects.each do |project| %>
           <tr>
-            <td class='align-middle'> <%=version.description%> </td>
-            <td class='align-middle'> <%=version.system_description%> </td>
-            <td class='align-middle'> <%=format_date(version.due_date)%> </td>
-            <td class='align-middle'> <%=format_date(version.release_date)%> </td>
-            <td class='align-middle text-center'>
-              <%= link_to edit_version_path(version,q_sys: params[:q_sys],
-                                                    q_desc: params[:q_desc]), class: 'td-actions', title: "Alterar" do %>
+            <td class='align-middle'> <%= project.description %> </td>
+            <td class='align-middle text-center '>
+              <%= link_to project_path(project, q_desc: params[:q_desc]), class: 'td-actions', title: "Alterar" do %>
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
               <% end %>
 
               <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
-                data-bs-target="#delete<%=version.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
+                data-bs-target="#delete<%=project.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
+
             </td>
           </tr>
 
-          <div class="modal modal-delete fade" id="delete<%=version.id.to_s%>" tabindex="-1" 
+          <div class="modal modal-delete fade" id="delete<%=project.id.to_s%>" tabindex="-1" 
                 aria-labelledby="deleteLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -47,11 +41,10 @@
                 </div>
                 
                 <div class="modal-body">
-                  Confirma a exclusão da Versão: <br> <%= version.description %> ?
+                  Confirma a exclusão do Projeto: <br> <%= project.description %> ?
                 </div>
                 <div class="modal-footer actions">
-                  <%= link_to 'Excluir', version_path(version,q_sys: params[:q_sys],
-                                                          q_desc: params[:q_desc]), 
+                  <%= link_to 'Excluir', project_path(project, q_desc: params[:q_desc]), 
                       class:"btn btn-danger", method: :delete %>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
@@ -65,7 +58,7 @@
   </div>    
 
   <div class="pt-3">
-    <%= paginate @versions, window: Constants::PAGINATE_WINDOW, remote: true %>
+    <%= paginate @projects, window: Constants::PAGINATE_WINDOW, remote: true %>
   </div>   
 
 <% else %>

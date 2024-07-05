@@ -17,13 +17,9 @@
       <div class="card-body card-body-style">
         <%= form_with(url: topics_path, class:'row', method: 'get', local: true) do |form| %>
           <div class="col-12 col-md-4 mb-1">
-            <label for="system_id" class="form-label">Sistema</label>
-            <%= select_tag :system_id, 
-                            options_from_collection_for_select( System.select(:id, :description)
-                                                                      .joins(:company)
-                                                                      .where("company_id = ?", current_user.company.id)
-                                                                .order("unaccent(description)"),
-                                                                :id, :description, params[:q_sys]),
+            <label for="project_id" class="form-label">Projeto</label>
+            <%= select_tag :project_id, 
+                            form_select_project_allocations,
                             class:"form-select",
                             name:"q_sys",
                             autofocus: true %>

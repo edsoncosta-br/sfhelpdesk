@@ -88,9 +88,7 @@
               <div class="col-12 col-md-9 col-xl-10 mb-3">
                 <label class="form-label" for="city_id">Município</label> 
                 <%= select_tag :city_id, 
-                                options_from_collection_for_select(City.select(:id, :name)
-                                                                    .where("state = ?", @customer.state )
-                                                                    .order("unaccent(name)"), :id, :name, @customer.city_id ),
+                                form_select_city,
                                 include_blank: "Selecione..", 
                                 class:"form-select form-control #{is_invalid(@customer, '_city_isempty_')}",
                                 name:"customer[city_id]" %>

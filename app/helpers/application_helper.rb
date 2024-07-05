@@ -26,4 +26,34 @@ module ApplicationHelper
     end
   end
 
+  def form_select_project_allocations
+    # options_from_collection_for_select(Project.select(:id, :description)
+    #                                           .joins(:company)
+    #                                           .where("company_id = ?", current_user.company.id)
+    #                                           .order("unaccent(description)"),
+    #                                           :id, :description, params[:q_sys])
+
+    options_from_collection_for_select(Allocation.select(:id, :description)
+                                              .joins(:project)
+                                              .joins(project: :company)
+                                              .where("company_id = ? and allocations.user_id= ?", current_user.company.id, current_user.id)
+                                              .order("unaccent(description)"),
+                                              :id, :description, params[:q_sys])                                              
+
+
+  end
+
+  def form_select_position
+    options_from_collection_for_select( Position.select(:id, :description)
+                                                .order("unaccent(description)"), 
+                                                :id, :description, @user.position_id)
+  end
+
+  def form_select_city
+    options_from_collection_for_select( City.select(:id, :name)
+                                            .where("state = ?", @customer.state )
+                                            .order("unaccent(name)"), 
+                                            :id, :name, @customer.city_id )
+  end  
+
 end
