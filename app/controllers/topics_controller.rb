@@ -8,10 +8,12 @@ class TopicsController < ApplicationController
             .order(Arel.sql('unaccent(projects.description), unaccent(topics.description)'))
 
     if params[:q_sys].blank?
+      #--------- INSERIR REGRA DO HELPER
       params[:q_sys] = Project.joins(:company)
                               .where("company_id = ?", current_user.company.id)
                               .order("unaccent(description)")
                               .pick('projects.id')      
+
     end
 
     if !params[:q_sys].blank?

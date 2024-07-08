@@ -33,14 +33,12 @@ module ApplicationHelper
     #                                           .order("unaccent(description)"),
     #                                           :id, :description, params[:q_sys])
 
-    options_from_collection_for_select(Allocation.select(:id, :description)
-                                              .joins(:project)
-                                              .joins(project: :company)
-                                              .where("company_id = ? and allocations.user_id= ?", current_user.company.id, current_user.id)
-                                              .order("unaccent(description)"),
-                                              :id, :description, params[:q_sys])                                              
-
-
+    options_from_collection_for_select( Allocation.select('projects.id', :description)
+                                                  .joins(:project)
+                                                  .joins(project: :company)
+                                                  .where("company_id = ? and allocations.user_id = ?", current_user.company.id, current_user.id)
+                                                  .order("unaccent(description)"),
+                                                  :id, :description, params[:q_sys])
   end
 
   def form_select_position
