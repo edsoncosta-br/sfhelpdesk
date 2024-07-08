@@ -1,15 +1,20 @@
 class Employee::UsersController < ApplicationController
   before_action :set_user, only: %i[ edit update destroy ]
+  before_action :set_permission_admin_menu
 
   def index
     users = User.select(:id, :email, :nick_name, :name, :active, :admin, 'positions.description position_description')
                 .left_outer_joins(:position)
-                .where("company_id = ?", current_user.company.id)
+                .where("users.company_id = ?", current_user.company.id)
                 .order(Arel.sql('unaccent(users.name)'))
 
     if !params[:q_name].blank?
       users = users.where('unaccent(users.name) ilike unaccent(?)', "%#{params[:q_name]}%")
     end
+
+    if !params[:q_position].blank?
+      users = users.where('users.position_id = ?', "#{params[:q_position]}")
+    end    
 
     @users = users.all.page(params[:page]).per(Constants::PAGINAS)
     @users_size = users.size    
@@ -21,8 +26,6 @@ class Employee::UsersController < ApplicationController
   end
 
   def create
-    puts params['projectcheck']
-
     @user = User.new(user_params)
 
     @user.password = Constants::DEFAULT_PASSWORD
@@ -32,7 +35,9 @@ class Employee::UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         save_userprojects
-        format.html { redirect_to employee_users_path(q_name: params[:q_name]), notice: "Usuário cadastrado com sucesso." }
+        format.html { redirect_to employee_users_path(q_name: params[:q_name], 
+                                                      q_position: params[:q_position]), 
+                                                      notice: "Usuário cadastrado com sucesso." }
       else
         get_projects
         format.html { render :new, status: :unprocessable_entity }
@@ -45,9 +50,17 @@ class Employee::UsersController < ApplicationController
   end
 
   def update
+
+    if @user.admin
+      params[:permission_admin_menu] = true
+      params[:active] = true
+    end
+
     if @user.update(user_params)
       save_userprojects
-      redirect_to employee_users_path(q_name: params[:q_name]), notice: "Usuário atualizado com sucesso."
+      redirect_to employee_users_path(q_name: params[:q_name], 
+                                      q_position: params[:q_position]), 
+                                      notice: "Usuário atualizado com sucesso."
     else
       get_projects
       render :edit
@@ -57,7 +70,9 @@ class Employee::UsersController < ApplicationController
   def destroy
     begin
       if @user.destroy
-        redirect_to employee_users_path(q_name: params[:q_name]), notice: "Usuário excluído com sucesso."
+        redirect_to employee_users_path(q_name: params[:q_name], 
+                                        q_position: params[:q_position]), 
+                                        notice: "Usuário excluído com sucesso."
       else
         render :index
       end
@@ -69,7 +84,8 @@ class Employee::UsersController < ApplicationController
         flash[:error] = e.message[0...80] + "..."
       end
 
-      redirect_to employee_users_path(q_name: params[:q_name])
+      redirect_to employee_users_path(q_name: params[:q_name], 
+                                      q_position: params[:q_position])
     end
   end  
 
@@ -86,18 +102,11 @@ class Employee::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :name, :nick_name, :company_id, :position_id, :active)
+    params.require(:user).permit(:email, :name, :nick_name, :company_id, :position_id, :active, :admin, :permission_admin_menu)
   end
 
   def save_userprojects
     Allocation.where('user_id = ?', @user.id).destroy_all
-
-    if params['projectcheck']
-      params['projectcheck'].each do |project_id, checked|
-        puts project_id
-        puts checked
-      end
-    end    
 
     if params['projectcheck']
       params['projectcheck'].each do |project_id, checked|
@@ -107,5 +116,9 @@ class Employee::UsersController < ApplicationController
       end
     end
   end
+
+  def set_permission_admin_menu
+    permission_admin_menu    
+  end  
 
 end

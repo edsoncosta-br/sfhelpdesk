@@ -6,7 +6,9 @@
         <div>Usuários</div>
       </div>
       <div class="ph-right">
-        <%= link_to(new_employee_user_path(q_name: params[:q_name]),  class: "btn btn-action btn-success") do %>
+        <%= link_to(new_employee_user_path( q_name: params[:q_name],
+                                            q_position: params[:q_position]),
+                                            class: "btn btn-action btn-success") do %>
           <i class="fa-solid fa-plus"></i> Incluir
         <%end%>
       </div>          
@@ -15,12 +17,22 @@
     <div class="card">
       <div class="card-body card-body-style">
         <%= form_with(url: employee_users_path, class:'row', method: 'get', local: true) do |form| %>
-          <div class="col-12 col-md-6 mb-1">
-            <label for="position_id" class="form-label">Nome</label>
+          <div class="col-12 col-md-4 mb-1">
+            <label for="name" class="form-label">Nome</label>
             <input type="text" name="q_name" id="name" class="form-control" maxlength="50" autofocus autocomplete="off" value=<%=params[:q_name]%>>
           </div>
 
-          <div class="col-btn-search col-12 col-md-6 align-self-end mb-1">
+          <div class="col-12 col-md-4 mb-1">
+            <label for="position_id" class="form-label">Cargo/Função</label>
+            <%= select_tag :position_id, 
+                            form_select_position(params[:q_position]),
+                            include_blank: "Todos", 
+                            class:"form-select",
+                            name:"q_position",
+                            autofocus: true %>
+          </div>          
+
+          <div class="col-btn-search col-12 col-md-4 align-self-end mb-1">
             <%= button_tag class:"btn btn-outline-success btn-search", id:'btn_consultar_id', data: { disable_with: 'Aguarde..' } do %>
               <i class="fa-solid fa-magnifying-glass me-1"></i>Consultar
             <% end %>

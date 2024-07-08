@@ -23,7 +23,7 @@
                 <%= link_to(customers_path,  class: "subsubmenu-link") do %>Clientes<%end%>
               </li>
 
-              <% if current_user.admin? %>
+              <% if current_user.permission_admin_menu? %>
                 <li class="submenu-item has-sub">
                   <a href="#" class="submenu-link">Administrativo</a><i class="fa-solid fa-chevron-right"></i>
 

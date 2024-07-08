@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2024_06_21_185630) do
 
   create_table "positions", force: :cascade do |t|
     t.string "description", limit: 30, null: false
+    t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["description"], name: "index_positions_on_description", unique: true
@@ -128,6 +129,7 @@ ActiveRecord::Schema.define(version: 2024_06_21_185630) do
     t.string "nick_name", limit: 20, default: ""
     t.boolean "active", default: true
     t.boolean "admin", default: false
+    t.boolean "permission_admin_menu", default: false
     t.bigint "position_id"
     t.bigint "company_id", null: false
     t.string "encrypted_password", default: "", null: false
@@ -150,6 +152,7 @@ ActiveRecord::Schema.define(version: 2024_06_21_185630) do
   add_foreign_key "customers", "cities"
   add_foreign_key "customers", "companies"
   add_foreign_key "marks", "projects"
+  add_foreign_key "positions", "companies"
   add_foreign_key "projects", "companies"
   add_foreign_key "sub_topics", "topics", on_delete: :cascade
   add_foreign_key "topics", "projects"

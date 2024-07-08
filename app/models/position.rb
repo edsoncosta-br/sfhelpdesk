@@ -4,6 +4,7 @@ class Position < ApplicationRecord
   validate :description_isempty
 
   has_many :users
+  belongs_to :company
 
   private
 

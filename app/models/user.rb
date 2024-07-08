@@ -12,6 +12,10 @@ class User < ApplicationRecord
     end
   end
 
+  def amount_projects
+    Allocation.where("user_id = ?", self.id).size
+  end
+
   validates :email, presence: true, length: {maximum: 60}
   validates :name, presence: true, length: {maximum: 60}
   validates :company_id, presence: true

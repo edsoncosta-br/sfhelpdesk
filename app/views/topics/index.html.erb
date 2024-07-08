@@ -19,7 +19,7 @@
           <div class="col-12 col-md-4 mb-1">
             <label for="project_id" class="form-label">Projeto</label>
             <%= select_tag :project_id, 
-                            form_select_project_allocations,
+                            form_select_project_allocations(params[:q_sys]),
                             class:"form-select",
                             name:"q_sys",
                             autofocus: true %>

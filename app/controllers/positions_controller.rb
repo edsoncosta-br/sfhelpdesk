@@ -1,8 +1,10 @@
 class PositionsController < ApplicationController
   before_action :set_position, only: %i[ edit update destroy ]
+  before_action :set_permission_admin_menu
 
   def index
-    positions = Position.order(Arel.sql('unaccent(description)'))
+    positions = Position.where("company_id = ?", current_user.company.id)
+                        .order(Arel.sql('unaccent(description)'))
 
     if !params[:q_desc].blank?
       positions = positions.where('unaccent(description) ilike unaccent(?)', "%#{params[:q_desc]}%")
@@ -18,6 +20,7 @@ class PositionsController < ApplicationController
 
   def create
     @position = Position.new(position_params)
+    @position.company_id = current_user.company.id
     
     respond_to do |format|
       if @position.save
@@ -65,7 +68,11 @@ class PositionsController < ApplicationController
   end
 
   def position_params
-    params.require(:position).permit(:description)
-  end  
+    params.require(:position).permit(:description, :company_id)
+  end
+
+  def set_permission_admin_menu
+    permission_admin_menu    
+  end
 
 end

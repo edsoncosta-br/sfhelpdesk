@@ -6,9 +6,13 @@ module ApplicationHelper
     end  
   end
 
-  def is_disabled(action)
+  def enable_by_action(action)
     (action == "edit") or (action == "update") ? true : false
-  end
+  end  
+
+  def enable_by_permission(enable)
+    enable == true ? true : false
+  end  
 
   def format_date(datetime)
     if datetime.present?
@@ -26,32 +30,27 @@ module ApplicationHelper
     end
   end
 
-  def form_select_project_allocations
-    # options_from_collection_for_select(Project.select(:id, :description)
-    #                                           .joins(:company)
-    #                                           .where("company_id = ?", current_user.company.id)
-    #                                           .order("unaccent(description)"),
-    #                                           :id, :description, params[:q_sys])
-
+  def form_select_project_allocations(selected)
     options_from_collection_for_select( Allocation.select('projects.id', :description)
                                                   .joins(:project)
                                                   .joins(project: :company)
                                                   .where("company_id = ? and allocations.user_id = ?", current_user.company.id, current_user.id)
                                                   .order("unaccent(description)"),
-                                                  :id, :description, params[:q_sys])
+                                                  :id, :description, selected)
   end
 
-  def form_select_position
-    options_from_collection_for_select( Position.select(:id, :description)
-                                                .order("unaccent(description)"), 
-                                                :id, :description, @user.position_id)
-  end
-
-  def form_select_city
+  def form_select_city(state, selected)
     options_from_collection_for_select( City.select(:id, :name)
-                                            .where("state = ?", @customer.state )
+                                            .where("state = ?", state)
                                             .order("unaccent(name)"), 
-                                            :id, :name, @customer.city_id )
-  end  
+                                            :id, :name, selected )
+  end
+
+  def form_select_position(selected)
+    options_from_collection_for_select( Position.select(:id, :description)
+                                                .where("company_id = ?", current_user.company.id)
+                                                .order("unaccent(description)"), 
+                                                :id, :description, selected)
+  end
 
 end

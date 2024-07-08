@@ -1,5 +1,4 @@
 class MarksController < ApplicationController
-
   before_action :set_mark, only: %i[ edit update destroy ]
 
   def index
@@ -9,15 +8,18 @@ class MarksController < ApplicationController
                 .order(Arel.sql('unaccent(projects.description), unaccent(marks.description)'))
 
     if params[:q_sys].blank?
-      params[:q_sys] = Project.joins(:company)
-                              .where("company_id = ?", current_user.company.id)
-                              .order("unaccent(description)")
-                              .pick('projects.id')      
+      params[:q_sys] = Allocation.joins(:project)
+                                  .joins(project: :company)
+                                  .where("company_id = ? and allocations.user_id = ?", current_user.company.id, current_user.id)
+                                  .order("unaccent(description)")
+                                  .pick('projects.id')
+
+      if params[:q_sys].blank?
+        params[:q_sys] = 0
+      end                                  
     end
 
-    if !params[:q_sys].blank?
-      marks = marks.where('projects.id = ?', "#{params[:q_sys]}")
-    end
+    marks = marks.where('projects.id = ?', "#{params[:q_sys]}")
 
     if !params[:q_desc].blank?
       marks = marks.where('unaccent(marks.description) ilike unaccent(?)', "%#{params[:q_desc]}%")

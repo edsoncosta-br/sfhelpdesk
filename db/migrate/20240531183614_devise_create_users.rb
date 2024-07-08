@@ -9,6 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :nick_name, limit: 20, default: ""
       t.boolean :active, default: true
       t.boolean :admin, default: false
+      t.boolean :permission_admin_menu, default: false
       t.bigint :position_id
       t.bigint :company_id, null: false
       t.string :encrypted_password, null: false, default: ""

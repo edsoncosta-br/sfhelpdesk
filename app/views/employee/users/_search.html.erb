@@ -15,6 +15,7 @@
           <th scope='col'>Cargo/Função</th>          
           <th scope='col'>Email</th>
           <th scope='col'>Status</th>
+          <th scope='col'>Projetos</th>
           <th scope='col' class='text-center col-actions-two'>Ações</th>
         </tr>
       </thead>
@@ -39,8 +40,12 @@
               <td class='align-middle'><span class="badge text-bg-danger badge-table">Inativo</span></td>
             <% end %>
 
+            <td class='align-middle'> <%= user.amount_projects %> </td>
+
             <td class='align-middle text-center '>
-              <%= link_to edit_employee_user_path(user, q_name: params[:q_name]), class: 'td-actions', title: "Alterar" do %>
+              <%= link_to edit_employee_user_path(user, q_name: params[:q_name], 
+                                                        q_position: params[:q_position]), 
+                                                        class: 'td-actions', title: "Alterar" do %>
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
               <% end %>
 
@@ -64,7 +69,7 @@
                   Confirma a exclusão do Usuário: <br> <%= user.name %> ?
                 </div>
                 <div class="modal-footer actions">
-                  <%= link_to 'Excluir', employee_user_path(user, q_name: params[:q_name]), 
+                  <%= link_to 'Excluir', employee_user_path(user, q_name: params[:q_name], q_position: params[:q_position]),
                       class:"btn btn-danger", method: :delete %>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>

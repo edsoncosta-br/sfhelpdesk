@@ -20,7 +20,7 @@
           <tr>
             <td class='align-middle'> <%= project.description %> </td>
             <td class='align-middle text-center '>
-              <%= link_to project_path(project, q_desc: params[:q_desc]), class: 'td-actions', title: "Alterar" do %>
+              <%= link_to edit_project_path(project, q_desc: params[:q_desc]), class: 'td-actions', title: "Alterar" do %>
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
               <% end %>
 

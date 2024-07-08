@@ -48,11 +48,11 @@ namespace :dev do
   desc 'Add default position'
   task add_position: :environment do
     Position.create!(
-      description: 'Analista de Sistemas')
+      description: 'Desenvolvimento', company_id: 1)
     Position.create!(
-      description: 'Desenvolvedor')      
+      description: 'Suporte Técnico', company_id: 1)
     Position.create!(
-      description: 'Suporte Técnico')
+      description: 'Comercial', company_id: 1)
   end
 
   desc 'Adding cities...'
@@ -142,7 +142,8 @@ namespace :dev do
       password_confirmation: DEFAULT_PASSWORD,
       position_id: 1,
       company_id: 1,
-      admin: true
+      admin: true,
+      permission_admin_menu: true
     )
 
     User.create!(
@@ -152,8 +153,7 @@ namespace :dev do
       password: DEFAULT_PASSWORD,
       password_confirmation: DEFAULT_PASSWORD,
       position_id: 3,
-      company_id: 1,
-      admin: true
+      company_id: 1
     )    
   end    
   

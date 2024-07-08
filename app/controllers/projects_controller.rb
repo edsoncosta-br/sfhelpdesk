@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ edit update destroy ]
+  before_action :set_permission_admin_menu
 
   def index
     projects = Project.order(Arel.sql('unaccent(description)'))
@@ -68,4 +69,8 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:description)
   end    
+
+  def set_permission_admin_menu
+    permission_admin_menu    
+  end  
 end

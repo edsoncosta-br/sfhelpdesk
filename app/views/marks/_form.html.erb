@@ -22,11 +22,11 @@
               
               <% if (params[:action] == "edit") or (params[:action] == "update") %>              
                 <%= select_tag :project_id, 
-                                form_select_project_allocations,
+                                form_select_project_allocations(params[:q_sys]),
                                 class:"form-control", disabled:"true" %>
               <%elsif%>
                 <%= select_tag :project_id, 
-                                form_select_project_allocations,
+                                form_select_project_allocations(params[:q_sys]),
                                 class:"form-select #{is_invalid(@mark, '_project_isempty_')}",
                                 name:"mark[project_id]",
                                 autofocus: true %>

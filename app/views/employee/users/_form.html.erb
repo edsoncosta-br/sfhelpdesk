@@ -36,13 +36,13 @@
               <label class="form-label" for="user_email">E-mail (será utilizado para acesso ao sistema)</label>              
               <%= form.text_field :email, 
                   class:"form-control #{is_invalid(@user, '_email_isempty_')}", 
-                  autofocus: true, autocomplete: :off, maxlength:"60", required: :true, disabled: is_disabled(params[:action]) %>
+                  autofocus: true, autocomplete: :off, maxlength:"60", required: :true, disabled: enable_by_action(params[:action]) %>
             </div>            
 
             <div class="col-12 mb-3">
               <%= form.label :position_id, class:"form-label"%>
               <%= select_tag :position_id, 
-                              form_select_position,
+                              form_select_position(@user.position_id),
                               include_blank: "Selecione...", 
                               class:"form-select #{is_invalid(@user, '_position_isempty_')}",
                               name:"user[position_id]" %>
@@ -50,9 +50,26 @@
 
             <% if (params[:action] == "edit") or (params[:action] == "update") %>
               <div class="col-12 mb-3">
-                <%= form.check_box :active, class:"form-check-input fs-6", id:"active_id"%>
+                <%= form.check_box :active, class:"form-check-input", id:"active_id",
+                                    disabled: enable_by_permission(@user.admin), 
+                                    readonly: enable_by_permission(@user.admin)%>
                 <label class="align-checkbox" for="active_id">Cadastro ativo</label>
-              </div>                
+                
+                <% if @user.admin %> 
+                  <span class="badge text-bg-warning badge-table">Usuário Administrador</span>
+                <% end %>                                            
+              </div>
+            <% end %>
+
+            <% if @user.admin? %>
+              <% if (params[:action] == "edit") or (params[:action] == "update") %>
+                <div class="col-12 mb-3">
+                  <%= form.check_box :permission_admin_menu, class:"form-check-input", id:"permission_admin_menu_id",
+                                      disabled: enable_by_permission(@user.permission_admin_menu), 
+                                      readonly: enable_by_permission(@user.permission_admin_menu)%>
+                  <label class="align-checkbox" for="permission_admin_menu_id">Permitir acesso ao menu Administrativo</label>
+                </div>
+              <% end %>
             <% end %>
 
             <div class="col-12 mt-3 mb-2">
@@ -61,26 +78,32 @@
               </div>
             </div>            
             
-            <%if @projects%>
+            <%if !@projects.empty?%>
               <% @projects.each do |project| %>
                 <div class="col-12 mb-3">
-                  <input class="form-check-input fs-6"  id=<%="active_id_#{project.id}"%> 
-                                                        type="checkbox" 
-                                                        value="1"
-                                                        name=<%="projectcheck[#{project.id}]"%>
-                                                        <%=project_checked(@user.id, project.id)%>>
+                  <input class="form-check-input" id=<%="active_id_#{project.id}"%> 
+                                                  type="checkbox" 
+                                                  value="1"
+                                                  name=<%="projectcheck[#{project.id}]"%>
+                                                  <%=project_checked(@user.id, project.id)%>>
                   <label class="align-checkbox" for=<%="active_id_#{project.id}"%>><%=project.description%></label>
                 </div>                              
               <% end %>
-            <% end %>              
+            <% else %>
+              <div class="col-12 mb-3">
+                Nenhum projeto cadastrado
+              </div>
+            <% end %>
 
             <%= hidden_field_tag :q_name, params[:q_name] %>
+            <%= hidden_field_tag :q_position, params[:q_position] %>
 
           </div>
 
           <div class="actions pt-2 text-end">
             <%= form.submit "Salvar", class:"btn btn-success me-1"%>
-            <%= link_to 'Cancelar', employee_users_path(q_name: params[:q_name]), class: 'btn btn-secondary' %>
+            <%= link_to 'Cancelar', employee_users_path(q_name: params[:q_name], 
+                                                        q_position: params[:q_position]), class: 'btn btn-secondary' %>
           </div>
 
         <% end %>
