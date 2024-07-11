@@ -32,7 +32,6 @@
             </div>
 
             <div class="col-12 mb-3">
-              <%#= form.label :email, class:"form-label" %>
               <label class="form-label" for="user_email">E-mail (será utilizado para acesso ao sistema)</label>              
               <%= form.text_field :email, 
                   class:"form-control #{is_invalid(@user, '_email_isempty_')}", 
@@ -48,29 +47,23 @@
                               name:"user[position_id]" %>
             </div>            
 
-            <% if (params[:action] == "edit") or (params[:action] == "update") %>
-              <div class="col-12 mb-3">
-                <%= form.check_box :active, class:"form-check-input", id:"active_id",
-                                    disabled: enable_by_permission(@user.admin), 
-                                    readonly: enable_by_permission(@user.admin)%>
-                <label class="align-checkbox" for="active_id">Cadastro ativo</label>
-                
-                <% if @user.admin %> 
-                  <span class="badge text-bg-warning badge-table">Usuário Administrador</span>
-                <% end %>                                            
-              </div>
-            <% end %>
+            <div class="col-12 mb-3">
+              <%= form.check_box :active, class:"form-check-input", id:"active_id",
+                                  disabled: enable_by_permission(@user.admin), 
+                                  readonly: enable_by_permission(@user.admin)%>
+              <label class="align-checkbox" for="active_id">Cadastro ativo</label>
+              
+              <% if @user.admin %> 
+                <span class="badge text-bg-warning badge-table">Usuário Dono</span>
+              <% end %>                                            
+            </div>
 
-            <% if @user.admin? %>
-              <% if (params[:action] == "edit") or (params[:action] == "update") %>
-                <div class="col-12 mb-3">
-                  <%= form.check_box :permission_admin_menu, class:"form-check-input", id:"permission_admin_menu_id",
-                                      disabled: enable_by_permission(@user.permission_admin_menu), 
-                                      readonly: enable_by_permission(@user.permission_admin_menu)%>
-                  <label class="align-checkbox" for="permission_admin_menu_id">Permitir acesso ao menu Administrativo</label>
-                </div>
-              <% end %>
-            <% end %>
+            <div class="col-12 mb-3">
+              <%= form.check_box :permission_admin_menu, class:"form-check-input", id:"permission_admin_menu_id",
+                                  disabled: enable_by_permission(@user.admin), 
+                                  readonly: enable_by_permission(@user.admin)%>
+              <label class="align-checkbox" for="permission_admin_menu_id">Permitir acesso administrativo</label>
+            </div>
 
             <div class="col-12 mt-3 mb-2">
               <div class="alert alert-success alert-divider" role="alert">

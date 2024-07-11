@@ -1,0 +1,20 @@
+<%= render "shared/header" %>
+<main>
+  <div class="container-fluid max-container">
+    <div class="page-heading"> 
+      <div class="ph-left pe-3">
+        <div>Requisições - <%= action_message %> </div>
+      </div>
+      <div class="ph-right">
+      </div>          
+    </div>
+
+    <div class="card card-size">
+      <div class="card-body card-body-style">
+
+        <%= link_to 'Cancelar', requests_path(q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
+
+      </div>
+    </div>
+  </div>
+</main>

@@ -5,6 +5,7 @@ class Mark < ApplicationRecord
   validates :description, uniqueness: { scope: :project_id, message: "já está em uso para o projeto selecionado." }
 
   belongs_to :project
+  has_many :requests
 
   private
 

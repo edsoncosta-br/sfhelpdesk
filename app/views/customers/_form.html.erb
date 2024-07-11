@@ -109,15 +109,12 @@
                 <%= form.email_field :email, class:"form-control input-email", autocomplete: :off, maxlength:"60"%>
               </div>                
 
-              <% if (params[:action] == "edit") or (params[:action] == "update") %>
-                <div class="col-12 mb-3">
-                  <%= form.check_box :active, class:"form-check-input fs-6", id:"flexCheckDefault"%>
-                  <label class="align-checkbox" for="flexCheckDefault">Cadastro Ativo</label>
-                </div>                
-              <% end %>
+              <div class="col-12 mb-3">
+                <%= form.check_box :active, class:"form-check-input fs-6", id:"flexCheckDefault"%>
+                <label class="align-checkbox" for="flexCheckDefault">Cadastro Ativo</label>
+              </div>                
 
               <%= hidden_field_tag :code_generated, @customer.code_generated %>
-              
               <%= hidden_field_tag :q_name, params[:q_name] %>
               <%= hidden_field_tag :q_code, params[:q_code] %>
 

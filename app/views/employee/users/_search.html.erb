@@ -14,8 +14,8 @@
           <th scope='col'>Apelido</th>          
           <th scope='col'>Cargo/Função</th>          
           <th scope='col'>Email</th>
-          <th scope='col'>Status</th>
           <th scope='col'>Projetos</th>
+          <th scope='col'>Status</th>
           <th scope='col' class='text-center col-actions-two'>Ações</th>
         </tr>
       </thead>
@@ -26,21 +26,23 @@
             <td class='align-middle'> 
               <%= user.name %> 
               <% if user.admin %> 
-                <span class="badge text-bg-warning badge-table">Admin</span>
+                <span class="badge rounded-pill text-bg-warning badge-table">dono</span>
+              <% end %>
+              <% if user.permission_admin_menu %> 
+                <span class="badge rounded-pill text-bg-secondary badge-table">acesso administrativo</span>
               <% end %>              
             </td>
-
+            
             <td class='align-middle'> <%= user.nick_name %> </td>
             <td class='align-middle'> <%= user.position_description %> </td>
             <td class='align-middle'> <%= user.email %> </td>
+            <td class='align-middle'> <%= user.amount_projects %> </td>                        
 
             <% if user.active %> 
-              <td class='align-middle'><span class="badge text-bg-success badge-table">Ativo</span></td>
+              <td class='align-middle'><span class="badge rounded-pill text-bg-success badge-table">Ativo</span></td>
             <% elsif %>
-              <td class='align-middle'><span class="badge text-bg-danger badge-table">Inativo</span></td>
+              <td class='align-middle'><span class="badge rounded-pill text-bg-danger badge-table">Inativo</span></td>
             <% end %>
-
-            <td class='align-middle'> <%= user.amount_projects %> </td>
 
             <td class='align-middle text-center '>
               <%= link_to edit_employee_user_path(user, q_name: params[:q_name], 
@@ -49,8 +51,15 @@
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
               <% end %>
 
-              <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
-                data-bs-target="#delete<%=user.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
+              <%if !user.admin %>
+                <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
+                  data-bs-target="#delete<%=user.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i>
+                </a>
+              <% else %>
+                <span title="Dono não pode ser excluído">
+                  <i class="fa-regular fa-trash-can pe-1 unavailable-icon"></i>
+                </span>
+              <% end %>
 
             </td>
           </tr>

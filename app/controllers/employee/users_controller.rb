@@ -3,7 +3,8 @@ class Employee::UsersController < ApplicationController
   before_action :set_permission_admin_menu
 
   def index
-    users = User.select(:id, :email, :nick_name, :name, :active, :admin, 'positions.description position_description')
+    users = User.select(:id, :email, :nick_name, :name, :active, 
+                        :admin, :permission_admin_menu, 'positions.description position_description')
                 .left_outer_joins(:position)
                 .where("users.company_id = ?", current_user.company.id)
                 .order(Arel.sql('unaccent(users.name)'))
@@ -50,13 +51,14 @@ class Employee::UsersController < ApplicationController
   end
 
   def update
-
+    # Using a temporary variable allows us to save the parameters into a variable that we can then modify
+    updated_params = user_params
     if @user.admin
-      params[:permission_admin_menu] = true
-      params[:active] = true
+      updated_params[:permission_admin_menu] = true
+      updated_params[:active] = true
     end
 
-    if @user.update(user_params)
+    if @user.update(updated_params)
       save_userprojects
       redirect_to employee_users_path(q_name: params[:q_name], 
                                       q_position: params[:q_position]), 

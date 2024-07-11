@@ -20,6 +20,8 @@ class Customer < ApplicationRecord
   validate :cpfcnpj_isempty
   validate :cpfcnpj_isvalid
 
+  has_many :requests
+
   belongs_to :city
   belongs_to :company  
 

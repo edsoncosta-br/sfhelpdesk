@@ -5,6 +5,7 @@ class SubTopic < ApplicationRecord
   validates :description, uniqueness: { scope: :topic_id, message: "já está em uso para o tópico selecionado." }
 
   belongs_to :topic
+  has_many :requests
 
   attr_accessor :description_project
   attr_accessor :description_topic

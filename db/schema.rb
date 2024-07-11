@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_21_185630) do
+ActiveRecord::Schema.define(version: 2024_07_11_193840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,24 @@ ActiveRecord::Schema.define(version: 2024_06_21_185630) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.string "title", limit: 100, null: false
+    t.datetime "created_date", null: false
+    t.integer "step", null: false
+    t.integer "priority", null: false
+    t.integer "status"
+    t.string "requester_name", limit: 30
+    t.integer "customer_id"
+    t.integer "project_id", null: false
+    t.integer "user_created_id", null: false
+    t.integer "user_status_id"
+    t.integer "mark_id"
+    t.integer "topic_id", null: false
+    t.integer "sub_topic_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "sub_topics", force: :cascade do |t|
     t.string "description", limit: 30, null: false
     t.bigint "topic_id", null: false
@@ -154,6 +172,13 @@ ActiveRecord::Schema.define(version: 2024_06_21_185630) do
   add_foreign_key "marks", "projects"
   add_foreign_key "positions", "companies"
   add_foreign_key "projects", "companies"
+  add_foreign_key "requests", "customers"
+  add_foreign_key "requests", "marks"
+  add_foreign_key "requests", "projects"
+  add_foreign_key "requests", "sub_topics"
+  add_foreign_key "requests", "topics"
+  add_foreign_key "requests", "users", column: "user_created_id"
+  add_foreign_key "requests", "users", column: "user_status_id"
   add_foreign_key "sub_topics", "topics", on_delete: :cascade
   add_foreign_key "topics", "projects"
   add_foreign_key "users", "companies"

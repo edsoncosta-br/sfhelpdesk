@@ -6,6 +6,7 @@ class Project < ApplicationRecord
   has_many :topics
   has_many :marks
   has_many :allocations
+  has_many :requests
   
   private
 

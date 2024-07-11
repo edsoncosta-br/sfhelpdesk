@@ -6,6 +6,7 @@ class Topic < ApplicationRecord
 
   belongs_to :project
   has_many :sub_topics
+  has_many :requests
   
   private
 
