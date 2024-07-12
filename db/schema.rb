@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 2024_07_11_193840) do
     t.integer "customer_id"
     t.integer "project_id", null: false
     t.integer "user_created_id", null: false
-    t.integer "user_status_id"
+    t.integer "user_responsible_id"
     t.integer "mark_id"
     t.integer "topic_id", null: false
     t.integer "sub_topic_id"
@@ -178,7 +178,7 @@ ActiveRecord::Schema.define(version: 2024_07_11_193840) do
   add_foreign_key "requests", "sub_topics"
   add_foreign_key "requests", "topics"
   add_foreign_key "requests", "users", column: "user_created_id"
-  add_foreign_key "requests", "users", column: "user_status_id"
+  add_foreign_key "requests", "users", column: "user_responsible_id"
   add_foreign_key "sub_topics", "topics", on_delete: :cascade
   add_foreign_key "topics", "projects"
   add_foreign_key "users", "companies"

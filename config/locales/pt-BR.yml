@@ -66,6 +66,20 @@ pt-BR:
         due_date: Data de Vencimento
         release_date: Data de Conclusãos
         project_id: Projeto
+      request:
+        title: Título da Requisição
+        created_date: Data da Criação
+        step: Fase Atual
+        priority: Prioridade
+        status: Status
+        requester_name: Nome do Solicitante
+        customer_id: Cliente
+        project_id: Projeto
+        user_created_id: Criado Por
+        user_responsible_id: Responsável
+        mark_id: Meta
+        topic_id: Tópico
+        sub_topic_id: SubTópico
   errors:
     format: "%{attribute} %{message}"
     messages:

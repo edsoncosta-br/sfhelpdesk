@@ -8,6 +8,19 @@ module Constants
   TYPE_PERSON_FISICA = 'Física'
   TYPE_PERSON_JURIDICA = 'Jurídica'
 
+  STEP_FILA = ['Fila de execução',1]
+  STEP_ABERTO = ['Aberta', 2]
+  STEP_FINALIZADO = ['Finalizada', 3]
+  STEP_ARQUIVADO = ['Arquivada', 4]
+
+  PRIORITY_ALTA = ['Alta',1]
+  PRIORITY_MEDIA = ['Média', 2]
+  PRIORITY_BAIXA = ['Baixa', 3]
+
+  STATUS_EXECUTANDO = ['Executando',1]
+  STATUS_AGUARDANDO = ['Aguardando', 2]
+  STATUS_PAUSADO = ['Pausado', 3]
+
   PAGINAS = 40
   PAGINATE_WINDOW = 1
 

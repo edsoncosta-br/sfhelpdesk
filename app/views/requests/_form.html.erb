@@ -12,7 +12,105 @@
     <div class="card card-size">
       <div class="card-body card-body-style">
 
-        <%= link_to 'Cancelar', requests_path(q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
+        <%= form_with(model: @request ) do |form| %>
+          <%= render "shared/error_messages", resource: @request %>
+
+          <div class="row">
+            <div class="col-12 mb-3">
+              <%= form.label :title, class:"form-label" %>
+              <%= form.text_field :title, 
+                  class:"form-control #{is_invalid(@request, '_title_isempty_')}", 
+                  autofocus: true, autocomplete: :off, maxlength:"100" %>
+            </div>
+
+            <div class="col-12 col-md-4 mb-3">
+              <%= form.label :project_id, class:"form-label" %>
+              <%= select_tag :project_id, 
+                              form_select_project_allocations(@request.project_id),
+                              class:"form-select form-control #{is_invalid(@request, '_project_isempty_')}",
+                              data: {remote: true, url: url_for(controller: "topics", action: "filter")},
+                              name:"request[project_id]" %>
+            </div>
+
+            <div class="col-12 col-md-4 mb-3">
+              <%= form.label :topic_id, class:"form-label" %>
+              <%= select_tag :topic_id, 
+                              form_select_topic(@request.project_id, @request.topic_id),
+                              class:"form-select form-control #{is_invalid(@request, '_topic_isempty_')}",
+                              name:"request[topic_id]" %>
+            </div>            
+
+            <div class="col-12 col-md-4 mb-3">
+              <%= form.label :sub_topic_id, class:"form-label" %>
+              <%= select_tag :sub_topic_id, 
+                              form_select_project_allocations(@request.sub_topic_id),
+                              class:"form-select form-control #{is_invalid(@request, '_sub_topic_isempty_')}",
+                              name:"request[sub_topic_id]" %>
+            </div>
+
+            <div class="col-12 col-md-8 mb-3">
+              <%= form.label :customer_id, class:"form-label" %>
+              <%= select_tag :customer_id, 
+                              form_select_customer(@request.customer_id),
+                              include_blank: "Selecione..", 
+                              class:"form-select form-control",
+                              name:"request[customer_id]" %>
+            </div>  
+
+            <div class="col-12 col-md-4 mb-3">
+              <%= form.label :requester_name, class:"form-label" %>
+              <%= form.text_field :requester_name, 
+                  class:"form-control", 
+                  autofocus: true, autocomplete: :off, maxlength:"30" %>
+            </div>
+
+            <div class="col-12 col-md-4 mb-3">
+              <%= form.label :step, class:"form-label" %>
+              <%= form.select(:step, [Constants::STEP_FILA,
+                                      Constants::STEP_ABERTO,
+                                      Constants::STEP_FINALIZADO,
+                                      Constants::STEP_ARQUIVADO], 
+                                      {},
+                                      class:'form-select form-control', 
+                                      id:'idstep') %>
+            </div>                
+
+            <div class="col-12 col-md-4 mb-3">
+              <%= form.label :status, class:"form-label" %>
+              <%= form.select(:status, [Constants::STATUS_EXECUTANDO,
+                                          Constants::STATUS_AGUARDANDO,
+                                          Constants::STATUS_PAUSADO], 
+                                      {},
+                                      class:'form-select form-control', 
+                                      id:'idstatus') %>
+            </div>            
+
+            <div class="col-12 col-md-4 mb-3">
+              <%= form.label :priority, class:"form-label" %>
+              <%= form.select(:priority, [Constants::PRIORITY_ALTA,
+                                          Constants::PRIORITY_MEDIA,
+                                          Constants::PRIORITY_BAIXA], 
+                                      {},
+                                      class:'form-select form-control', 
+                                      id:'idpriority') %>
+            </div>                
+
+      <%# t.integer :user_responsible_id
+      t.integer :mark_id
+      
+      t.integer :user_created_id, null: false
+      t.datetime :created_date, null: false        %>
+
+
+            <%= hidden_field_tag :q_title, params[:q_title] %>
+          </div>
+
+          <div class="actions pt-2 text-end">
+            <%= form.submit "Salvar", class:"btn btn-success me-1"%>
+            <%= link_to 'Cancelar', requests_path(q_title: params[:q_title]), class: 'btn btn-secondary' %>
+          </div>
+
+        <% end %>
 
       </div>
     </div>

@@ -53,4 +53,27 @@ module ApplicationHelper
                                                 :id, :description, selected)
   end
 
+  def form_select_customer(selected)
+    options_from_collection_for_select( Customer.select(:id, :name)
+                                                .where("company_id = ?", current_user.company.id)
+                                                .order("unaccent(name)"), 
+                                                :id, :name, selected)
+  end  
+
+  def form_select_topic(project_id, selected)
+
+    # if project_id.blank?
+    #   project_id = Allocation.select('projects.id')
+    #                           .joins(:project)
+    #                           .joins(project: :company)
+    #                           .where("company_id = ? and allocations.user_id = ?", current_user.company.id, current_user.id)
+    #                           .order("unaccent(description)")      
+    # end
+
+    options_from_collection_for_select( Topic.select(:id, :description)
+                                              .where("project_id = ?", project_id)
+                                              .order("unaccent(description)"), 
+                                              :id, :description, selected)
+  end    
+
 end

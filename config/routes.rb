@@ -20,9 +20,10 @@ Rails.application.routes.draw do
   resources :positions, except: [:show]
   resources :projects, except: [:show]
   resources :topics, except: [:show]
+  get 'topics/filter'
   resources :sub_topics, except: [:show, :new]
   get 'sub_topics/new/:topic_id', to: 'sub_topics#new', as: 'new_sub_topic'
   resources :marks, except: [:show]
-  resources :requests, except: [:show]
+  resources :requests, except: [:show]  
 
 end

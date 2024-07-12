@@ -1,0 +1,30 @@
+document.getElementById('topic_id').innerHTML = '';
+
+var node = document.createElement("option");
+node.setAttribute("value", "");
+
+<% if !@topics.empty? %>
+  
+  <% @topics.each_with_index do |topic, index| %>
+    
+    <% if index == 0 %>
+      var item = document.createTextNode("Selecione..");
+      node.appendChild(item);
+      document.getElementById("topic_id").appendChild(node);
+    <%end%> 
+    
+    var node = document.createElement("option");
+    node.setAttribute("value", <%= topic.id %>);
+
+    var item = document.createTextNode("<%=topic.description%>");
+    node.appendChild(item);
+    document.getElementById("topic_id").appendChild(node);
+
+  <% end %>
+
+<% else %>
+  var item = document.createTextNode("Selecione..");
+  node.appendChild(item);
+  document.getElementById("topic_id").appendChild(node);
+<% end %>
+

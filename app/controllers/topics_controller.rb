@@ -79,7 +79,16 @@ class TopicsController < ApplicationController
       redirect_to topics_path(q_sys: params[:q_sys],
                               q_desc: params[:q_desc])
     end
-  end    
+  end
+
+  def filter
+    if !params[:request][:project_id].empty?
+      @topics = Topic.select(:id, :description).order('unaccent(description)').
+                      where('project_id = ?', params[:request][:project_id]);
+    else
+      @topics = ''
+    end
+  end  
 
   private
 

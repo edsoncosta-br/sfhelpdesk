@@ -10,7 +10,7 @@ class CreateRequests < ActiveRecord::Migration[6.1]
       t.integer :customer_id
       t.integer :project_id, null: false
       t.integer :user_created_id, null: false
-      t.integer :user_status_id
+      t.integer :user_responsible_id
       t.integer :mark_id
       t.integer :topic_id, null: false
       t.integer :sub_topic_id
@@ -21,7 +21,7 @@ class CreateRequests < ActiveRecord::Migration[6.1]
     add_foreign_key :requests, :customers, index: true
     add_foreign_key :requests, :projects, index: true
     add_foreign_key :requests, :users, index: true, column: :user_created_id
-    add_foreign_key :requests, :users, index: true, column: :user_status_id    
+    add_foreign_key :requests, :users, index: true, column: :user_responsible_id
     add_foreign_key :requests, :marks, index: true
     add_foreign_key :requests, :topics, index: true
     add_foreign_key :requests, :sub_topics, index: true
