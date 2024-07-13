@@ -63,13 +63,13 @@ pt-BR:
         topic_id: Tópico
       mark:
         description: Descrição
-        due_date: Data de Vencimento
-        release_date: Data de Conclusãos
+        due_date: Previsão de Entrega
+        release_date: Data de Conclusão
         project_id: Projeto
       request:
         title: Título da Requisição
         created_date: Data da Criação
-        step: Fase Atual
+        step: Condição
         priority: Prioridade
         status: Status
         requester_name: Nome do Solicitante

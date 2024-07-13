@@ -16,11 +16,25 @@
           <%= render "shared/error_messages", resource: @request %>
 
           <div class="row">
-            <div class="col-12 mb-3">
+            <div class="col-8 mb-3">
               <%= form.label :title, class:"form-label" %>
               <%= form.text_field :title, 
                   class:"form-control #{is_invalid(@request, '_title_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"100" %>
+            </div>
+
+            <div class="col-4 mb-3">
+              <%= form.label :priority, class:"form-label" %>
+              <div class="custom-control custom-switch custom-switch-lg">
+                <%= form.check_box :priority, class:"custom-control-input", id:"customSwitch6" %>
+                <label class="custom-control-label" for="customSwitch6"></label>
+              </div>
+
+              <%# <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+              </div> %>
+
             </div>
 
             <div class="col-12 col-md-4 mb-3">
@@ -64,36 +78,26 @@
                   autofocus: true, autocomplete: :off, maxlength:"30" %>
             </div>
 
-            <div class="col-12 col-md-4 mb-3">
+            <div class="col-12 col-md-6 mb-3">
               <%= form.label :step, class:"form-label" %>
-              <%= form.select(:step, [Constants::STEP_FILA,
-                                      Constants::STEP_ABERTO,
-                                      Constants::STEP_FINALIZADO,
-                                      Constants::STEP_ARQUIVADO], 
+              <%= form.select(:step, [Constants::STEP_ABERTA,
+                                      Constants::STEP_FINALIZADA,
+                                      Constants::STEP_ARQUIVADA], 
                                       {},
                                       class:'form-select form-control', 
                                       id:'idstep') %>
             </div>                
 
-            <div class="col-12 col-md-4 mb-3">
+            <div class="col-12 col-md-6 mb-3">
               <%= form.label :status, class:"form-label" %>
               <%= form.select(:status, [Constants::STATUS_EXECUTANDO,
                                           Constants::STATUS_AGUARDANDO,
-                                          Constants::STATUS_PAUSADO], 
+                                          Constants::STATUS_PAUSADO,
+                                          Constants::STATUS_CONCLUIDO], 
                                       {},
                                       class:'form-select form-control', 
                                       id:'idstatus') %>
             </div>            
-
-            <div class="col-12 col-md-4 mb-3">
-              <%= form.label :priority, class:"form-label" %>
-              <%= form.select(:priority, [Constants::PRIORITY_ALTA,
-                                          Constants::PRIORITY_MEDIA,
-                                          Constants::PRIORITY_BAIXA], 
-                                      {},
-                                      class:'form-select form-control', 
-                                      id:'idpriority') %>
-            </div>                
 
       <%# t.integer :user_responsible_id
       t.integer :mark_id
