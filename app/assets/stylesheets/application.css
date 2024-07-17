@@ -469,6 +469,7 @@ body {
   border-left: 0.4rem solid #a8d7be !important;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  padding-top: 1.5rem;
 }
 
 @media screen and (max-width: 767px) {

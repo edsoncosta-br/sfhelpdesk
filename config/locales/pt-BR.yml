@@ -67,16 +67,16 @@ pt-BR:
         release_date: Data de Conclusão
         project_id: Projeto
       request:
-        title: Título da Requisição
-        created_date: Data da Criação
-        step: Condição
+        title: Título da requisição
+        created_date: Data da criação
+        status: Status da requisição
+        step: Status da execução
         priority: Prioridade
-        status: Status
-        requester_name: Nome do Solicitante
+        requester_name: Nome do solicitante
         customer_id: Cliente
         project_id: Projeto
-        user_created_id: Criado Por
-        user_responsible_id: Responsável
+        user_created_id: Criado por
+        user_responsible_id: Responsável pela execução
         mark_id: Meta
         topic_id: Tópico
         sub_topic_id: SubTópico

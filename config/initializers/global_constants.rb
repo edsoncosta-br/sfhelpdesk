@@ -18,8 +18,8 @@ module Constants
 
   STATUS_EXECUTANDO = ['Executando',1]
   STATUS_AGUARDANDO = ['Aguardando', 2]
-  STATUS_CONCLUIDO = ['Concluído', 3]
-  STATUS_PAUSADO = ['Pausado', 4]
+  STATUS_CONCLUIDA = ['Concluída', 3]
+  STATUS_PAUSADA = ['Pausada', 4]
 
   PAGINAS = 40
   PAGINATE_WINDOW = 1

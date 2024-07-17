@@ -16,25 +16,18 @@
           <%= render "shared/error_messages", resource: @request %>
 
           <div class="row">
-            <div class="col-8 mb-3">
+            <div class="col-11 mb-3">
               <%= form.label :title, class:"form-label" %>
               <%= form.text_field :title, 
-                  class:"form-control #{is_invalid(@request, '_title_isempty_')}", 
+                  class:"form-control title-style #{is_invalid(@request, '_title_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"100" %>
             </div>
 
-            <div class="col-4 mb-3">
-              <%= form.label :priority, class:"form-label" %>
-              <div class="custom-control custom-switch custom-switch-lg">
-                <%= form.check_box :priority, class:"custom-control-input", id:"customSwitch6" %>
-                <label class="custom-control-label" for="customSwitch6"></label>
+            <div class="col-1 mb-3">
+              <%= form.label :priority, class:"form-label" %>              
+              <div class="form-check form-switch">
+                <%= form.check_box :priority, class:"form-check-input", id:"flexSwitchCheckChecked" %>
               </div>
-
-              <%# <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
-              </div> %>
-
             </div>
 
             <div class="col-12 col-md-4 mb-3">
@@ -52,7 +45,7 @@
                               form_select_topic(@request.project_id, @request.topic_id),
                               class:"form-select form-control #{is_invalid(@request, '_topic_isempty_')}",
                               name:"request[topic_id]" %>
-            </div>            
+            </div> 
 
             <div class="col-12 col-md-4 mb-3">
               <%= form.label :sub_topic_id, class:"form-label" %>
@@ -78,26 +71,41 @@
                   autofocus: true, autocomplete: :off, maxlength:"30" %>
             </div>
 
-            <div class="col-12 col-md-6 mb-3">
-              <%= form.label :step, class:"form-label" %>
-              <%= form.select(:step, [Constants::STEP_ABERTA,
-                                      Constants::STEP_FINALIZADA,
-                                      Constants::STEP_ARQUIVADA], 
+            <div class="col-12 col-md-3 mb-3">
+              <%= form.label :status, class:"form-label" %>
+              <%= form.select(:status, [Constants::STEP_ABERTA,
+                                        Constants::STEP_FINALIZADA,
+                                        Constants::STEP_ARQUIVADA], 
                                       {},
                                       class:'form-select form-control', 
                                       id:'idstep') %>
             </div>                
 
-            <div class="col-12 col-md-6 mb-3">
-              <%= form.label :status, class:"form-label" %>
-              <%= form.select(:status, [Constants::STATUS_EXECUTANDO,
-                                          Constants::STATUS_AGUARDANDO,
-                                          Constants::STATUS_PAUSADO,
-                                          Constants::STATUS_CONCLUIDO], 
+            <div class="col-12 col-md-3 mb-3">
+              <%= form.label :step, class:"form-label" %>
+              <%= form.select(:step, [Constants::STATUS_EXECUTANDO,
+                                      Constants::STATUS_AGUARDANDO,
+                                      Constants::STATUS_PAUSADA,
+                                      Constants::STATUS_CONCLUIDA], 
                                       {},
                                       class:'form-select form-control', 
                                       id:'idstatus') %>
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+              <%= form.label :user_responsible_id, class:"form-label" %>
+              <%= form.text_field :user_responsible_id, 
+                  class:"form-control", 
+                  autofocus: true, autocomplete: :off, maxlength:"30" %>
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+              <%= form.label :mark_id, class:"form-label" %>
+              <%= form.text_field :mark_id, 
+                  class:"form-control", 
+                  autofocus: true, autocomplete: :off, maxlength:"30" %>
             </div>            
+
 
       <%# t.integer :user_responsible_id
       t.integer :mark_id

@@ -3,9 +3,9 @@ class CreateRequests < ActiveRecord::Migration[6.1]
     create_table :requests do |t|
       t.string :title, limit: 100, null: false
       t.datetime :created_date, null: false
-      t.integer :step, null: false
+      t.integer :status, null: false
+      t.integer :step
       t.boolean :priority, default: false  
-      t.integer :status
       t.string :requester_name, limit: 30
       t.integer :customer_id
       t.integer :project_id, null: false

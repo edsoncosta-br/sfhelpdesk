@@ -1,3 +1,33 @@
 .card-size {
   max-width: 1200px;
 }
+
+.title-style {
+  font-weight: 500;
+  background-color: #edf9eb;
+}
+
+.title-style:focus {
+  background-color: #edf9eb;
+}
+
+.form-check-input:checked {
+  background-color: #53cd6c;
+  border-color: #34cd7b;
+  font-size: 2rem;
+}
+
+.form-check-input {
+  font-size: 2rem;
+}
+
+.form-switch {
+  padding-left: 5rem;
+  margin-top: -4px;
+}
+
+.form-check-input:focus {
+  border-color: #88d397;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(18 177 39 / 23%);
+}
