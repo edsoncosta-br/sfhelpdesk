@@ -6,7 +6,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       ## Database authenticatable
       t.string :email, limit: 60, null: false, default: ""
       t.string :name, limit: 60, null: false, default: ""
-      t.string :nick_name, limit: 20, default: ""
+      t.string :nick_name, limit: 20, null: false, default: ""
       t.boolean :active, default: true
       t.boolean :admin, default: false
       t.boolean :permission_admin_menu, default: false

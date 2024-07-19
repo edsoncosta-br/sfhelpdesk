@@ -53,6 +53,15 @@ class SubTopicsController < ApplicationController
       redirect_to topics_path(q_sys: params[:q_sys],
                               q_desc: params[:q_desc])
     end
+  end
+
+  def filter
+    if !params[:request][:topic_id].empty?
+      @sub_topics = SubTopic.select(:id, :description).order('unaccent(description)')
+                            .where('topic_id = ?', params[:request][:topic_id]);
+    else
+      @sub_topics = ''
+    end
   end    
 
   private

@@ -6,6 +6,13 @@ class RequestsController < ApplicationController
 
   def new
     @request = Request.new
+    @request.status = Constants::STEP_ABERTA[1]
+    @request.step = Constants::STATUS_AGUARDANDO[1]
+
+    @request.project_id = Allocation.joins(project: :company)
+                                    .where("company_id = ? and allocations.user_id = ?", 
+                                            current_user.company.id, current_user.id)
+                                    .pick('projects.id')
   end
 
   def create

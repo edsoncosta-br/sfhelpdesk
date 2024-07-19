@@ -28,3 +28,12 @@ node.setAttribute("value", "");
   document.getElementById("topic_id").appendChild(node);
 <% end %>
 
+<%# limpa select dos subtopicos %>
+document.getElementById('sub_topic_id').innerHTML = '';
+
+var sub_topic = document.createElement("option");
+sub_topic.setAttribute("value", "");
+
+var item = document.createTextNode("Selecione..");
+sub_topic.appendChild(item);
+document.getElementById("sub_topic_id").appendChild(sub_topic);

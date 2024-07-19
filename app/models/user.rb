@@ -18,10 +18,12 @@ class User < ApplicationRecord
 
   validates :email, presence: true, length: {maximum: 60}
   validates :name, presence: true, length: {maximum: 60}
+  validates :nick_name, presence: true, length: {maximum: 20}
   validates :company_id, presence: true
 
   validate :email_isempty
   validate :name_isempty  
+  validate :nick_name_isempty  
 
   belongs_to :position, required: false
   belongs_to :company
@@ -48,6 +50,12 @@ class User < ApplicationRecord
       errors.add(:_, '_name_isempty_')
     end
   end
+
+  def nick_name_isempty
+    if self.nick_name.blank?
+      errors.add(:_, '_nick_name_isempty_')
+    end
+  end  
   
   def position_isempty
     if self.position_id.blank?
