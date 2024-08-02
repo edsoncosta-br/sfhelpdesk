@@ -23,5 +23,6 @@ class CreateCustomers < ActiveRecord::Migration[6.1]
 
     add_foreign_key :customers, :cities, index: true
     add_foreign_key :customers, :companies, index: true
+    add_index :customers, [:code, :company_id], unique: true
   end
 end

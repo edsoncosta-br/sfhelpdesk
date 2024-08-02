@@ -30,16 +30,16 @@
               </div>
             </div>
 
-            <div class="col-12 col-md-4 mb-3">
+            <div class="col-12 col-md-3 mb-3">
               <%= form.label :project_id, class:"form-label" %>
               <%= select_tag :project_id, 
                               form_select_project_allocations(@request.project_id),
                               class:"form-select form-control #{is_invalid(@request, '_project_isempty_')}",
-                              data: {remote: true, url: url_for(controller: "topics", action: "filter")},
+                              data: {remote: true, url: url_for(controller: "projects", action: "filter_topic_mark")},
                               name:"request[project_id]" %>
             </div>
 
-            <div class="col-12 col-md-4 mb-3">
+            <div class="col-12 col-md-3 mb-3">
               <%= form.label :topic_id, class:"form-label" %>
               <%= select_tag :topic_id, 
                               form_select_topic(@request.project_id, @request.topic_id),
@@ -49,7 +49,7 @@
                               name:"request[topic_id]" %>
             </div> 
 
-            <div class="col-12 col-md-4 mb-3">
+            <div class="col-12 col-md-3 mb-3">
               <%= form.label :sub_topic_id, class:"form-label" %>
               <%= select_tag :sub_topic_id, 
                               form_select_sub_topic(@request.topic_id, @request.sub_topic_id),
@@ -57,6 +57,15 @@
                               class:"form-select form-control #{is_invalid(@request, '_sub_topic_isempty_')}",
                               name:"request[sub_topic_id]" %>
             </div>
+
+            <div class="col-12 col-md-3 mb-3">
+              <%= form.label :mark_id, class:"form-label" %>
+              <%= select_tag :mark_id, 
+                              form_select_mark(@request.project_id, @request.mark_id),
+                              include_blank: "Selecione..", 
+                              class:"form-select form-control #{is_invalid(@request, '_mark_isempty_')}",
+                              name:"request[mark_id]" %>
+            </div>             
 
             <div class="col-12 col-md-8 mb-3">
               <%= form.label :customer_id, class:"form-label" %>
@@ -74,7 +83,7 @@
                   autofocus: true, autocomplete: :off, maxlength:"30" %>
             </div>
 
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-4 mb-3">
               <%= form.label :status, class:"form-label" %>
               <%= form.select(:status, [Constants::STEP_ABERTA,
                                         Constants::STEP_FINALIZADA,
@@ -84,7 +93,7 @@
                                       id:'idstep') %>
             </div>                
 
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-4 mb-3">
               <%= form.label :step, class:"form-label" %>
               <%= form.select(:step, [Constants::STATUS_EXECUTANDO,
                                       Constants::STATUS_AGUARDANDO,
@@ -95,8 +104,7 @@
                                       id:'idstatus') %>
             </div>
 
-
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-4 mb-3">
               <%= form.label :user_responsible_id, class:"form-label" %>
               <%= select_tag :user_responsible_id, 
                               form_select_user_allocation(@request.project_id, @request.user_responsible_id),
@@ -105,16 +113,7 @@
                               name:"request[user_responsible_id]" %>
             </div>
 
-            <div class="col-12 col-md-3 mb-3">
-              <%= form.label :mark_id, class:"form-label" %>
-              <%= form.text_field :mark_id, 
-                  class:"form-control", 
-                  autofocus: true, autocomplete: :off, maxlength:"30" %>
-            </div>            
-
-
-      <%# t.integer :user_responsible_id
-      t.integer :mark_id
+      <%# 
       
       t.integer :user_created_id, null: false
       t.datetime :created_date, null: false        %>

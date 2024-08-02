@@ -58,6 +58,22 @@ class ProjectsController < ApplicationController
 
       redirect_to projects_path(q_desc: params[:q_desc])
     end
+  end
+
+  def filter_topic_mark
+    if !params[:request][:project_id].empty?
+      @topics = Topic.select(:id, :description).order('unaccent(description)').
+                      where('project_id = ?', params[:request][:project_id]);
+    else
+      @topics = ''
+    end
+
+    if !params[:request][:project_id].empty?
+      @marks = Mark.select(:id, :description).order('unaccent(description)').
+                    where('project_id = ?', params[:request][:project_id]);
+    else
+      @marks = ''
+    end    
   end    
 
   private
@@ -72,5 +88,6 @@ class ProjectsController < ApplicationController
 
   def set_permission_admin_menu
     permission_admin_menu    
-  end  
+  end
+  
 end

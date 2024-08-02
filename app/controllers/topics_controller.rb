@@ -81,15 +81,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  def filter
-    if !params[:request][:project_id].empty?
-      @topics = Topic.select(:id, :description).order('unaccent(description)').
-                      where('project_id = ?', params[:request][:project_id]);
-    else
-      @topics = ''
-    end
-  end  
-
   private
 
   def set_topic

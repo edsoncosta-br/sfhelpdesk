@@ -372,7 +372,11 @@ body {
 .icon-heading {
   padding-right: 0.5rem;
   font-size: 1.5em;
-}  
+}
+
+.icon-style {
+  color: #525252;  
+}
 
 .alert-smaller {
   font-size: 11px

@@ -35,6 +35,11 @@ class RequestsController < ApplicationController
   end
 
   def request_params
-    params.require(:request).permit(:title)
+    params.require(:request).permit(:title, :created_date, :status,
+                                    :step, :priority, :requester_name,
+                                    :customer_id, :project_id, :user_created_id,
+                                    :user_responsible_id, :mark_id, :topic_id,
+                                    :sub_topic_id)
   end
+  
 end

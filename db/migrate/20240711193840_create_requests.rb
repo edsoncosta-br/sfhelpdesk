@@ -4,7 +4,7 @@ class CreateRequests < ActiveRecord::Migration[6.1]
       t.string :title, limit: 100, null: false
       t.datetime :created_date, null: false
       t.integer :status, null: false
-      t.integer :step
+      t.integer :step, null: false
       t.boolean :priority, default: false  
       t.string :requester_name, limit: 30
       t.integer :customer_id

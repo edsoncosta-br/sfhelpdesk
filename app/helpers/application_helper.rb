@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   def index_title(description)
-    ('<i class="fa-solid fa-angles-right pe-2"></i><div>' + description + '</div>').html_safe
+    ('<i class="icon-style fa-solid fa-angles-right pe-2"></i><div>' + description + '</div>').html_safe
   end
 
   def form_select_project_allocations(selected)
@@ -50,12 +50,6 @@ module ApplicationHelper
                                                   .where("company_id = ? and allocations.project_id = ?", current_user.company.id, project_id)
                                                   .order("unaccent(users.nick_name)"),
                                                   :id, :nick_name, selected)
-
-    # aaa = User.where(Allocation.joins(:user)
-    #                        .joins(user: :company)
-    #                        .where("company_id = ? and allocations.project_id = ?", current_user.company.id, project_id).select(1).arel.exists)
-
-                          #  Post.where(User.active.where("users.id = posts.user_id").select(1).arel.exists)                           
   end  
 
   def form_select_city(state, selected)
@@ -91,6 +85,13 @@ module ApplicationHelper
                                                 .where("topic_id = ?", topic_id)
                                                 .order("unaccent(description)"), 
                                                 :id, :description, selected)
-  end    
+  end
+
+  def form_select_mark(project_id, selected)
+    options_from_collection_for_select( Mark.select(:id, :description)
+                                            .where("project_id = ?", project_id)
+                                            .order("unaccent(description)"), 
+                                            :id, :description, selected)
+  end  
 
 end

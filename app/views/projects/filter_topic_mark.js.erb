@@ -1,3 +1,5 @@
+<%# select topicos %>
+
 document.getElementById('topic_id').innerHTML = '';
 
 var node = document.createElement("option");
@@ -37,3 +39,35 @@ sub_topic.setAttribute("value", "");
 var item = document.createTextNode("Selecione..");
 sub_topic.appendChild(item);
 document.getElementById("sub_topic_id").appendChild(sub_topic);
+
+<%# select metas %>
+
+document.getElementById('mark_id').innerHTML = '';
+
+var node = document.createElement("option");
+node.setAttribute("value", "");
+
+<% if !@marks.empty? %>
+  
+  <% @marks.each_with_index do |mark, index| %>
+    
+    <% if index == 0 %>
+      var item = document.createTextNode("Selecione..");
+      node.appendChild(item);
+      document.getElementById("mark_id").appendChild(node);
+    <%end%> 
+    
+    var node = document.createElement("option");
+    node.setAttribute("value", <%= mark.id %>);
+
+    var item = document.createTextNode("<%=mark.description%>");
+    node.appendChild(item);
+    document.getElementById("mark_id").appendChild(node);
+
+  <% end %>
+
+<% else %>
+  var item = document.createTextNode("Selecione..");
+  node.appendChild(item);
+  document.getElementById("mark_id").appendChild(node);
+<% end %>

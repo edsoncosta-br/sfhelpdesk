@@ -79,7 +79,7 @@ class MarksController < ApplicationController
       redirect_to marks_path(q_sys: params[:q_sys],
                               q_desc: params[:q_desc])
     end
-  end    
+  end
 
   private
 
