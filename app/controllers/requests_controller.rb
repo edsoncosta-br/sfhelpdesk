@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[ edit update destroy ]
+  before_action :set_upcase, only: %i[ create update ]    
 
   def index
   end
@@ -29,6 +30,10 @@ class RequestsController < ApplicationController
   end  
 
   private
+
+  def set_upcase
+    Methods.field_upcase(params[:request])
+  end    
 
   def set_request
     @request = Request.find(params[:id])

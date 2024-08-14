@@ -1,5 +1,6 @@
 class SubTopicsController < ApplicationController
   before_action :set_sub_topic, only: %i[ edit update destroy ]
+  before_action :set_upcase, only: %i[ create update ]    
 
   def new
     @sub_topic = SubTopic.new
@@ -65,6 +66,10 @@ class SubTopicsController < ApplicationController
   end    
 
   private
+
+  def set_upcase
+    Methods.field_upcase(params[:sub_topic])
+  end    
 
   def set_sub_topic
     @sub_topic = SubTopic.find(params[:id])

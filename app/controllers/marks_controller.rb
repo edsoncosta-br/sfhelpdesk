@@ -1,5 +1,6 @@
 class MarksController < ApplicationController
   before_action :set_mark, only: %i[ edit update destroy ]
+  before_action :set_upcase, only: %i[ create update ]    
 
   def index
     marks = Mark.select(:id, :description, :due_date, :release_date, 'projects.description project_description')
@@ -82,6 +83,10 @@ class MarksController < ApplicationController
   end
 
   private
+
+  def set_upcase
+    Methods.field_upcase(params[:mark])
+  end    
 
   def set_mark
     @mark = Mark.find(params[:id])

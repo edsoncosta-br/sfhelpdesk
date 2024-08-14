@@ -26,10 +26,6 @@
   font-size: 11px;
 }
 
-.input-email {
-  text-transform: lowercase;
-}
-
 .btn-action {
   min-width: 8.5rem
 }

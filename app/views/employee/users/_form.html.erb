@@ -34,7 +34,7 @@
             <div class="col-12 mb-3">
               <label class="form-label" for="user_email">E-mail (será utilizado para acesso ao sistema)</label>              
               <%= form.text_field :email, 
-                  class:"form-control #{is_invalid(@user, '_email_isempty_')}", 
+                  class:"form-control input-email #{is_invalid(@user, '_email_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"60", required: :true, disabled: enable_by_action(params[:action]) %>
             </div>            
 
@@ -94,7 +94,7 @@
           </div>
 
           <div class="actions pt-2 text-end">
-            <%= form.submit "Salvar", class:"btn btn-success me-1"%>
+            <%= form.submit "Salvar", class:"btn btn-success input-btn me-1"%>
             <%= link_to 'Cancelar', employee_users_path(q_name: params[:q_name], 
                                                         q_position: params[:q_position]), class: 'btn btn-secondary' %>
           </div>

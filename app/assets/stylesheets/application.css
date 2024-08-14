@@ -517,3 +517,19 @@ body {
   padding: 8px;
   border-radius: 0;
 }
+
+input {
+  text-transform: uppercase;
+}
+
+.input-btn {
+  text-transform: none;
+}
+
+.input-pass {
+  text-transform: none;
+}
+
+.input-email {
+  text-transform: lowercase;
+}

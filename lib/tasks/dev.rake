@@ -29,11 +29,11 @@ namespace :dev do
       puts 'Adding default user'
       puts %x(rails dev:add_default_user)      
     
-      #puts 'Adding default admin'
-      #puts %x(rails dev:add_default_admin)
+      # puts 'Adding default admin'
+      # puts %x(rails dev:add_default_admin)
 
-      # puts 'Add customer test user'
-      # puts %x(rails dev:add_default_customer)      
+      puts 'Add customer test user'
+      puts %x(rails dev:add_default_customer)      
     else
       puts 'You are not in development environment!'
     end
@@ -42,17 +42,17 @@ namespace :dev do
   desc 'Add default company'
   task add_company: :environment do
     Company.create!(
-      name: 'Sófolha Soluções Corporativas')
+      name: 'SÓFOLHA SOLUÇÕES CORPORATIVAS')
   end
 
   desc 'Add default position'
   task add_position: :environment do
     Position.create!(
-      description: 'Desenvolvimento', company_id: 1)
+      description: 'DESENVOLVIMENTO', company_id: 1)
     Position.create!(
-      description: 'Suporte Técnico', company_id: 1)
+      description: 'SUPORTE TÉCNICO', company_id: 1)
     Position.create!(
-      description: 'Comercial', company_id: 1)
+      description: 'COMERCIAL', company_id: 1)
   end
 
   desc 'Adding cities...'
@@ -126,7 +126,7 @@ namespace :dev do
       if (ibgecode != 0) || (cityname != 0) || (state != 0)
         City.create!(
           ibge_code: ibgecode, 
-          name: cityname, 
+          name: cityname.upcase, 
           state: state)
       end  
     end
@@ -136,8 +136,8 @@ namespace :dev do
   task add_default_user: :environment do
     User.create!(
       email: 'edson@sofolha.com.br',
-      name: 'Edson Benedito da Costa',
-      nick_name: 'Edson Costa',
+      name: 'EDSON BENEDITO DA COSTA',
+      nick_name: 'EDSON COSTA',
       password: DEFAULT_PASSWORD,
       password_confirmation: DEFAULT_PASSWORD,
       position_id: 1,
@@ -148,8 +148,8 @@ namespace :dev do
 
     User.create!(
       email: 'mara@sofolha.com.br',
-      name: 'Mara Sílvia Lopes Thomazini da Costa',
-      nick_name: 'Mara Sílvia',
+      name: 'MARA SÍLVIA LOPES THOMAZINI DA COSTA',
+      nick_name: 'MARA SÍLVIA',
       password: DEFAULT_PASSWORD,
       password_confirmation: DEFAULT_PASSWORD,
       position_id: 3,
@@ -177,7 +177,7 @@ namespace :dev do
       city_id: 1,
       state: 'SP',
       company_id: 1,
-      cnpj_number: '41.232.918/0001-43'
+      cpfcnpj_number: '41.232.918/0001-43'
     )
     Customer.create!(
       code: '00002',
@@ -185,7 +185,7 @@ namespace :dev do
       city_id: 10,
       state: 'SP',
       company_id: 1,
-      cnpj_number: '68.609.974/0001-00'
+      cpfcnpj_number: '68.609.974/0001-00'
     )
     Customer.create!(
       code: '00003',
@@ -193,7 +193,7 @@ namespace :dev do
       city_id: 100,
       state: 'SP',
       company_id: 1,
-      cnpj_number: '52.618.476/0001-94'
+      cpfcnpj_number: '52.618.476/0001-94'
     )
     Customer.create!(
       code: '00004',
@@ -201,7 +201,7 @@ namespace :dev do
       city_id: 2,
       state: 'SP',
       company_id: 1,
-      cnpj_number: '19.425.348/0001-59'
+      cpfcnpj_number: '19.425.348/0001-59'
     )
     Customer.create!(
       code: '00005',
@@ -209,7 +209,7 @@ namespace :dev do
       city_id: 20,
       state: 'SP',
       company_id: 1,
-      cnpj_number: '82.958.315/0001-00'
+      cpfcnpj_number: '82.958.315/0001-00'
     )
     Customer.create!(
       code: '00006',
@@ -217,7 +217,7 @@ namespace :dev do
       city_id: 200,
       state: 'SP',
       company_id: 1,
-      cnpj_number: '58.878.593/0001-73'
+      cpfcnpj_number: '58.878.593/0001-73'
     )
   end
 end

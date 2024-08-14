@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var cpfcnpj = document.getElementById("id_cpfcnpj_number");
       
       if (cpfcnpj != null) {
-        if (typeperson.value == 'Jurídica') {
+        if (typeperson.value == 'JURÍDICA') {
           Inputmask({ "mask": "99.999.999/9999-99", 
           "placeholder": " "}).mask(cpfcnpj);        
         } else {
