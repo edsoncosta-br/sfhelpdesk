@@ -42,7 +42,7 @@
               <%= form.label :position_id, class:"form-label"%>
               <%= select_tag :position_id, 
                               form_select_position(@user.position_id),
-                              include_blank: "Selecione...", 
+                              include_blank: "SELECIONE...", 
                               class:"form-select #{is_invalid(@user, '_position_isempty_')}",
                               name:"user[position_id]" %>
             </div>            

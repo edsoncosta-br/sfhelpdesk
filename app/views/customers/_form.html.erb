@@ -80,7 +80,7 @@
                 <label class="form-label" for="customer_state">UF</label> 
                 <%= form.select('state', 
                                 Constants::UF_ARRAY, 
-                                {include_blank: 'Selecione..' },
+                                {include_blank: 'SELECIONE..' },
                                 class:"form-select form-control #{is_invalid(@customer, '_state_isempty_')}", 
                                 data: {remote: true, url: url_for(controller: "cities", action: "filter")}) %>
               </div>
@@ -89,7 +89,7 @@
                 <label class="form-label" for="city_id">Município</label> 
                 <%= select_tag :city_id, 
                                 form_select_city(@customer.state, @customer.city_id),
-                                include_blank: "Selecione..", 
+                                include_blank: "SELECIONE..", 
                                 class:"form-select form-control #{is_invalid(@customer, '_city_isempty_')}",
                                 name:"customer[city_id]" %>
               </div>  
