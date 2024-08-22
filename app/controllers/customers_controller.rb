@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[ edit update destroy ]
+  before_action :set_upcase, only: %i[ create update ]    
 
   def index
     customers = Customer.select(:id, :code, :name, :cpfcnpj_number, :active, 'cities.name city_name, cities.state city_state')
@@ -76,6 +77,10 @@ class CustomersController < ApplicationController
   end    
 
   private
+
+  def set_upcase
+    Methods.field_upcase(params[:customer])
+  end    
 
   def set_customer
     @customer = Customer.find(params[:id])

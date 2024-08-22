@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: %i[ edit update destroy ]
+  before_action :set_upcase, only: %i[ create update ]    
 
   def index
     topics = Topic.select(:id, :description, 'projects.description project_description')
@@ -82,6 +83,10 @@ class TopicsController < ApplicationController
   end
 
   private
+
+  def set_upcase
+    Methods.field_upcase(params[:topic])
+  end    
 
   def set_topic
     @topic = Topic.find(params[:id])

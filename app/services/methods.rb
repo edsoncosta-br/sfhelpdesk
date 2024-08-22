@@ -37,4 +37,12 @@ class Methods
               .order(Arel.sql('unaccent(sub_topics.description)'))
   end
 
+  def self.field_upcase(params) 
+    params.each do |param|
+      params[param[0].to_sym] = params[param[0].to_sym].to_s.upcase if  (param[0] != "email") and 
+                                                                        (param[0] != "email_admin") and 
+                                                                        (param[0] != "files")
+    end
+  end  
+
 end

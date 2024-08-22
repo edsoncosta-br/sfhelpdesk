@@ -10,7 +10,7 @@ body {
   height: 100%;
   background-color: #f8fbff;
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
   font-size: 13px;
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
@@ -357,8 +357,8 @@ body {
   justify-content: space-between;
   align-items: center;
   font-weight: 500;
-  padding-top: 6.8rem;
-  padding-bottom: 1.8rem;
+  padding-top: 6.9rem;
+  padding-bottom: 1.9rem;
 }
 
 .page-heading .ph-left {
@@ -516,4 +516,20 @@ body {
 .alert-divider {
   padding: 8px;
   border-radius: 0;
+}
+
+input {
+  text-transform: uppercase;
+}
+
+.input-btn {
+  text-transform: none;
+}
+
+.input-pass {
+  text-transform: none;
+}
+
+.input-email {
+  text-transform: lowercase;
 }

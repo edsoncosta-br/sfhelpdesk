@@ -10,7 +10,7 @@ node.setAttribute("value", "");
   <% @topics.each_with_index do |topic, index| %>
     
     <% if index == 0 %>
-      var item = document.createTextNode("Selecione..");
+      var item = document.createTextNode("SELECIONE..");
       node.appendChild(item);
       document.getElementById("topic_id").appendChild(node);
     <%end%> 
@@ -25,7 +25,7 @@ node.setAttribute("value", "");
   <% end %>
 
 <% else %>
-  var item = document.createTextNode("Selecione..");
+  var item = document.createTextNode("SELECIONE..");
   node.appendChild(item);
   document.getElementById("topic_id").appendChild(node);
 <% end %>
@@ -36,7 +36,7 @@ document.getElementById('sub_topic_id').innerHTML = '';
 var sub_topic = document.createElement("option");
 sub_topic.setAttribute("value", "");
 
-var item = document.createTextNode("Selecione..");
+var item = document.createTextNode("SELECIONE..");
 sub_topic.appendChild(item);
 document.getElementById("sub_topic_id").appendChild(sub_topic);
 
@@ -52,7 +52,7 @@ node.setAttribute("value", "");
   <% @marks.each_with_index do |mark, index| %>
     
     <% if index == 0 %>
-      var item = document.createTextNode("Selecione..");
+      var item = document.createTextNode("SELECIONE..");
       node.appendChild(item);
       document.getElementById("mark_id").appendChild(node);
     <%end%> 
@@ -67,7 +67,7 @@ node.setAttribute("value", "");
   <% end %>
 
 <% else %>
-  var item = document.createTextNode("Selecione..");
+  var item = document.createTextNode("SELECIONE..");
   node.appendChild(item);
   document.getElementById("mark_id").appendChild(node);
 <% end %>
