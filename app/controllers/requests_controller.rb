@@ -20,7 +20,6 @@ class RequestsController < ApplicationController
 
   def create
     @request = Request.new(request_params)
-    @request.company_id = current_user.company.id
     
     respond_to do |format|
       if @request.save
