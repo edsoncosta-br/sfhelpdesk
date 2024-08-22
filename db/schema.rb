@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2024_07_11_193840) do
     t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["code", "company_id"], name: "index_customers_on_code_and_company_id", unique: true
   end
 
   create_table "marks", force: :cascade do |t|
@@ -110,7 +111,7 @@ ActiveRecord::Schema.define(version: 2024_07_11_193840) do
     t.string "title", limit: 100, null: false
     t.datetime "created_date", null: false
     t.integer "status", null: false
-    t.integer "step"
+    t.integer "step", null: false
     t.boolean "priority", default: false
     t.string "requester_name", limit: 30
     t.integer "customer_id"
@@ -144,7 +145,7 @@ ActiveRecord::Schema.define(version: 2024_07_11_193840) do
   create_table "users", force: :cascade do |t|
     t.string "email", limit: 60, default: "", null: false
     t.string "name", limit: 60, default: "", null: false
-    t.string "nick_name", limit: 20, default: ""
+    t.string "nick_name", limit: 20, default: "", null: false
     t.boolean "active", default: true
     t.boolean "admin", default: false
     t.boolean "permission_admin_menu", default: false
