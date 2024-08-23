@@ -4,18 +4,17 @@ class Request < ApplicationRecord
   validate :created_date_isempty
   validate :status_isempty
   validate :step_isempty
-  validate :priority_isempty
   validate :project_id_isempty
   validate :user_created_id_isempty
   validate :topic_id_isempty
 
-  belongs_to :customer
+  belongs_to :customer, required: false
   belongs_to :project
   belongs_to :user, class_name: 'User', :foreign_key => 'user_created_id'
   belongs_to :user, class_name: 'User', required: false, :foreign_key => 'user_responsible_id'
-  belongs_to :mark
+  belongs_to :mark, required: false
   belongs_to :topic
-  belongs_to :sub_topic
+  belongs_to :sub_topic, required: false
 
   private
 
@@ -40,12 +39,6 @@ class Request < ApplicationRecord
   def step_isempty
     if self.step.blank?
       errors.add(:_, '_step_isempty_')
-    end        
-  end
-
-  def priority_isempty
-    if self.priority.blank?
-      errors.add(:_, '_priority_isempty_')
     end        
   end
 

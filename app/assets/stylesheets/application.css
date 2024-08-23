@@ -10,7 +10,8 @@ body {
   height: 100%;
   background-color: #f8fbff;
   margin: 0;
-  font-family: "Fira Sans Condensed", sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
+  font-optical-sizing: auto;
   font-size: 13px;
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
