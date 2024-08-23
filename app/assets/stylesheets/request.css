@@ -4,11 +4,11 @@
 
 .title-style {
   font-weight: 500;
-  background-color: #edf9eb;
+  /* background-color: #edf9eb; */
 }
 
 .title-style:focus {
-  background-color: #edf9eb;
+  /* background-color: #edf9eb; */
 }
 
 .form-check-input:checked {
