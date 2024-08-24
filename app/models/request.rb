@@ -10,8 +10,10 @@ class Request < ApplicationRecord
 
   belongs_to :customer, required: false
   belongs_to :project
-  belongs_to :user, class_name: 'User', :foreign_key => 'user_created_id'
-  belongs_to :user, class_name: 'User', required: false, :foreign_key => 'user_responsible_id'
+
+  belongs_to :user_created, class_name: 'User', :foreign_key => 'user_created_id'
+  belongs_to :user_responsible, class_name: 'User', required: false, :foreign_key => 'user_responsible_id'
+
   belongs_to :mark, required: false
   belongs_to :topic
   belongs_to :sub_topic, required: false

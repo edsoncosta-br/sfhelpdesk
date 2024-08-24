@@ -9,7 +9,6 @@ class RequestsController < ApplicationController
     @request = Request.new
     @request.status = Constants::STEP_ABERTA[1]
     @request.step = Constants::STATUS_AGUARDANDO[1]
-    @request.user_created_id = current_user.id
     @request.created_date = DateTime.now()
 
     @request.project_id = Allocation.joins(project: :company)
@@ -20,6 +19,7 @@ class RequestsController < ApplicationController
 
   def create
     @request = Request.new(request_params)
+    @request.user_created_id = current_user.id
     
     respond_to do |format|
       if @request.save
