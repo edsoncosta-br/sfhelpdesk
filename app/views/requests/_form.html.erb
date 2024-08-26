@@ -43,7 +43,7 @@
               <%= form.label :topic_id, class:"form-label" %>
               <%= select_tag :topic_id, 
                               form_select_topic(@request.project_id, @request.topic_id),
-                              include_blank: "SELECIONE..", 
+                              include_blank: "Selecione..", 
                               class:"form-select form-control #{is_invalid(@request, '_topic_id_isempty_')}",
                               data: {remote: true, url: url_for(controller: "sub_topics", action: "filter")},
                               name:"request[topic_id]" %>
@@ -53,7 +53,7 @@
               <%= form.label :sub_topic_id, class:"form-label" %>
               <%= select_tag :sub_topic_id, 
                               form_select_sub_topic(@request.topic_id, @request.sub_topic_id),
-                              include_blank: "SELECIONE..", 
+                              include_blank: "Selecione..", 
                               class:"form-select form-control",
                               name:"request[sub_topic_id]" %>
             </div>
@@ -62,7 +62,7 @@
               <%= form.label :mark_id, class:"form-label" %>
               <%= select_tag :mark_id, 
                               form_select_mark(@request.project_id, @request.mark_id),
-                              include_blank: "SELECIONE..", 
+                              include_blank: "Selecione..", 
                               class:"form-select form-control",
                               name:"request[mark_id]" %>
             </div>             
@@ -71,7 +71,7 @@
               <%= form.label :customer_id, class:"form-label" %>
               <%= select_tag :customer_id, 
                               form_select_customer(@request.customer_id),
-                              include_blank: "SELECIONE..", 
+                              include_blank: "Selecione..", 
                               class:"form-select form-control",
                               name:"request[customer_id]" %>
             </div>  
@@ -108,7 +108,7 @@
               <%= form.label :user_responsible_id, class:"form-label" %>
               <%= select_tag :user_responsible_id, 
                               form_select_user_allocation(@request.project_id, @request.user_responsible_id),
-                              include_blank: "SELECIONE..", 
+                              include_blank: "Selecione..", 
                               class:"form-select form-control #{is_invalid(@request, '_user_responsible_isempty_')}",
                               name:"request[user_responsible_id]" %>
             </div>

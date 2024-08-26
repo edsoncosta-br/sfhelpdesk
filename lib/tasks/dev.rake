@@ -42,17 +42,17 @@ namespace :dev do
   desc 'Add default company'
   task add_company: :environment do
     Company.create!(
-      name: 'SÓFOLHA SOLUÇÕES CORPORATIVAS')
+      name: 'Sófolha Soluções Corporativas')
   end
 
   desc 'Add default position'
   task add_position: :environment do
     Position.create!(
-      description: 'DESENVOLVIMENTO', company_id: 1)
+      description: 'Desenvolvimento', company_id: 1)
     Position.create!(
-      description: 'SUPORTE TÉCNICO', company_id: 1)
+      description: 'Suporte Técnico', company_id: 1)
     Position.create!(
-      description: 'COMERCIAL', company_id: 1)
+      description: 'Comercial', company_id: 1)
   end
 
   desc 'Adding cities...'
@@ -126,7 +126,7 @@ namespace :dev do
       if (ibgecode != 0) || (cityname != 0) || (state != 0)
         City.create!(
           ibge_code: ibgecode, 
-          name: cityname.upcase, 
+          name: cityname, 
           state: state)
       end  
     end
@@ -136,8 +136,8 @@ namespace :dev do
   task add_default_user: :environment do
     User.create!(
       email: 'edson@sofolha.com.br',
-      name: 'EDSON BENEDITO DA COSTA',
-      nick_name: 'EDSON COSTA',
+      name: 'Edson Benedito da Costa',
+      nick_name: 'Edson Costa',
       password: DEFAULT_PASSWORD,
       password_confirmation: DEFAULT_PASSWORD,
       position_id: 1,
@@ -148,8 +148,8 @@ namespace :dev do
 
     User.create!(
       email: 'mara@sofolha.com.br',
-      name: 'MARA SÍLVIA LOPES THOMAZINI DA COSTA',
-      nick_name: 'MARA SÍLVIA',
+      name: 'Mara Sílvia Lopes Thomazini da Costa',
+      nick_name: 'Mara Sílvia',
       password: DEFAULT_PASSWORD,
       password_confirmation: DEFAULT_PASSWORD,
       position_id: 3,
@@ -173,7 +173,7 @@ namespace :dev do
   task add_default_customer: :environment do
     Customer.create!(
       code: '00001',
-      name: 'PREFEITURA MUNICIPAL DE MARÍLIA',
+      name: 'Prefeitura Municipal de Marília',
       city_id: 1,
       state: 'SP',
       company_id: 1,
@@ -181,7 +181,7 @@ namespace :dev do
     )
     Customer.create!(
       code: '00002',
-      name: 'PREFEITURA MUNICIPAL DE TUPÃ',
+      name: 'Prefeitura Municipal de Tupã',
       city_id: 10,
       state: 'SP',
       company_id: 1,
@@ -189,7 +189,7 @@ namespace :dev do
     )
     Customer.create!(
       code: '00003',
-      name: 'PREFEITURA MUNICIPAL DE NOVO HORIZONTE',
+      name: 'Prefeitura Municipal de Novo Horizonte',
       city_id: 100,
       state: 'SP',
       company_id: 1,
@@ -197,7 +197,7 @@ namespace :dev do
     )
     Customer.create!(
       code: '00004',
-      name: 'PREFEITURA MUNICIPAL DE ÁGUAS DA PRATA',
+      name: 'Prefeitura Municipal de Águas da Prata',
       city_id: 2,
       state: 'SP',
       company_id: 1,
@@ -205,7 +205,7 @@ namespace :dev do
     )
     Customer.create!(
       code: '00005',
-      name: 'PREFEITURA MUNICIPAL DE MONTE AZUL PAULISTA',
+      name: 'Prefeitura Municipal de Monte Azul Paulista',
       city_id: 20,
       state: 'SP',
       company_id: 1,
@@ -213,7 +213,7 @@ namespace :dev do
     )
     Customer.create!(
       code: '00006',
-      name: 'PREFEITURA MUNICIPAL DE SÃO JOÃO DA BOA VISTA',
+      name: 'Prefeitura Municipal de São João da Boa Vista',
       city_id: 200,
       state: 'SP',
       company_id: 1,

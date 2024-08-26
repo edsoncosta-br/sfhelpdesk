@@ -520,7 +520,7 @@ body {
 }
 
 input {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .input-btn {

@@ -3,6 +3,16 @@ class RequestsController < ApplicationController
   before_action :set_upcase, only: %i[ create update ]    
 
   def index
+    requests = Request.all
+    #  where("company_id = ?", current_user.company.id)
+    #                   .order(Arel.sql('unaccent(description)'))
+
+    if !params[:q_desc].blank?
+      requests = requests.where('unaccent(description) ilike unaccent(?)', "%#{params[:q_desc]}%")
+    end    
+
+    @requests = requests.all.page(params[:page]).per(Constants::PAGINAS)
+    @requests_size = requests.size       
   end
 
   def new

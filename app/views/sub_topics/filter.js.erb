@@ -8,7 +8,7 @@ node.setAttribute("value", "");
   <% @sub_topics.each_with_index do |sub_topic, index| %>
     
     <% if index == 0 %>
-      var item = document.createTextNode("SELECIONE..");
+      var item = document.createTextNode("Selecione..");
       node.appendChild(item);
       document.getElementById("sub_topic_id").appendChild(node);
     <%end%> 
@@ -23,7 +23,7 @@ node.setAttribute("value", "");
   <% end %>
 
 <% else %>
-  var item = document.createTextNode("SELECIONE..");
+  var item = document.createTextNode("Selecione..");
   node.appendChild(item);
   document.getElementById("sub_topic_id").appendChild(node);
 <% end %>
