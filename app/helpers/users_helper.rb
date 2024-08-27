@@ -6,4 +6,14 @@ module UsersHelper
       ', checked' 
     end  
   end
+
+  def project_main(user_id, project_id)
+    main = Allocation.select(:main).where('user_id = ? and project_id = ?', user_id, project_id).pick('main')
+
+    if main
+      ', checked' 
+    else
+      ''
+    end
+  end  
 end

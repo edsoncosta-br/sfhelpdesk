@@ -1,23 +1,41 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//   (() => {
-//     'use strict'
+function getValue(elementId) {
+  let checkboxes = document.getElementsByClassName('form-check-input');
+  let elementClicked = document.getElementById(elementId);
 
-//     // Fetch all the forms we want to apply custom Bootstrap validation styles to
-//     const forms = document.querySelectorAll('.needs-validation')
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].id.substring(0, 7) === 'main_id') {
+      if (elementClicked.checked) {
+        if (elementClicked.id !== checkboxes[i].id) {
+          checkboxes[i].checked = false
+        }
+      }
+    }
+  }
+}
 
-//     // Loop over them and prevent submission
-//     Array.from(forms).forEach(form => {
-//       console.log("01")
-//       form.addEventListener('submit', event => {
-//         console.log("02")
-//         if (!form.checkValidity()) {
-//           console.log("03")
-//           event.preventDefault()
-//           event.stopPropagation()
-//         }
+function setPrincipal(elementId) {
+  let elementClicked = document.getElementById(elementId);
+  
+  if (elementClicked !== null) {
+    if (!elementClicked.checked) {
+      principal = document.getElementById('main_id_' + elementClicked.id.substring(11, 13))
+      principal.checked = false;
+      principal.disabled = true;
+    } else {
+      principal.disabled = false;
+    }
+  }
 
-//         form.classList.add('was-validated')
-//       }, false)
-//     })
-//   })()
-// });
+}
+
+addEventListener("load", (event) => {
+  let checkboxes = document.getElementsByClassName('form-check-input');  
+
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].id.substring(0, 10) === 'project_id') {
+      if (!checkboxes[i].checked) {
+        setPrincipal(checkboxes[i].id);
+      }
+    }
+  }  
+});

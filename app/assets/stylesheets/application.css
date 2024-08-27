@@ -10,7 +10,7 @@ body {
   height: 100%;
   background-color: #f8fbff;
   margin: 0;
-  font-family: "Noto Sans Display", sans-serif;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-size: 13px;
   font-weight: var(--bs-body-font-weight);

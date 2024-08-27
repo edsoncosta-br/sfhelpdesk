@@ -65,28 +65,51 @@
               <label class="align-checkbox" for="permission_admin_menu_id">Permitir acesso administrativo</label>
             </div>
 
-            <div class="col-12 mt-3 mb-2">
+            <div class="col-12 mt-3">
               <div class="alert alert-success alert-divider" role="alert">
                 <i class="fa-solid fa-user-shield pe-2"></i>Selecione os projetos que este usuário terá acesso:
               </div>
-            </div>            
-            
-            <%if !@projects.empty?%>
-              <% @projects.each do |project| %>
+            </div>
+
+            <div class="col-12">
+              <%if !@projects.empty?%>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Projetos</th>
+                      <th scope="col" class="text-center">Principal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @projects.each_with_index do |project, index| %>
+                      <tr>
+                        <td>
+                          <input class="form-check-input" id=<%="project_id_#{project.id}"%> 
+                                                          type="checkbox" 
+                                                          value="1"
+                                                          onclick="setPrincipal(this.id)"
+                                                          name=<%="projectcheck[#{project.id}]"%>
+                                                          <%=project_checked(@user.id, project.id)%>>
+                          <label class="align-checkbox" for=<%="project_id_#{project.id}"%>><%=project.description%></label>                      
+                        </td>
+                        <td class="text-center">
+                          <input class="form-check-input" id=<%="main_id_#{project.id}"%> 
+                                                          type="checkbox" 
+                                                          value="1"
+                                                          onclick="getValue(this.id)"
+                                                          name=<%="projectmain[#{project.id}]"%>
+                                                          <%=project_main(@user.id, project.id)%>>
+                        </td>                        
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              <% else %>
                 <div class="col-12 mb-3">
-                  <input class="form-check-input" id=<%="active_id_#{project.id}"%> 
-                                                  type="checkbox" 
-                                                  value="1"
-                                                  name=<%="projectcheck[#{project.id}]"%>
-                                                  <%=project_checked(@user.id, project.id)%>>
-                  <label class="align-checkbox" for=<%="active_id_#{project.id}"%>><%=project.description%></label>
-                </div>                              
+                  Nenhum projeto cadastrado
+                </div>
               <% end %>
-            <% else %>
-              <div class="col-12 mb-3">
-                Nenhum projeto cadastrado
-              </div>
-            <% end %>
+            </div>              
 
             <%= hidden_field_tag :q_name, params[:q_name] %>
             <%= hidden_field_tag :q_position, params[:q_position] %>

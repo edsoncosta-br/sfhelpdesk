@@ -43,6 +43,14 @@ class Methods
     #                                                                     (param[0] != "email_admin") and 
     #                                                                     (param[0] != "files")
     # end
-  end  
+  end
+
+  def self.select_allocations(company_id, current_user_id)
+    Allocation.joins(:project)
+              .joins(project: :company)
+              .where("company_id = ? and allocations.user_id = ?", company_id, current_user_id)
+              .order("main desc, unaccent(description)")
+              .pick('projects.id')    
+  end
 
 end

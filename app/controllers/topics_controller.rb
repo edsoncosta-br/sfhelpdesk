@@ -9,11 +9,7 @@ class TopicsController < ApplicationController
             .order(Arel.sql('unaccent(projects.description), unaccent(topics.description)'))
 
     if params[:q_sys].blank?
-      params[:q_sys] = Allocation.joins(:project)
-                                  .joins(project: :company)
-                                  .where("company_id = ? and allocations.user_id = ?", current_user.company.id, current_user.id)
-                                  .order("unaccent(description)")
-                                  .pick('projects.id')
+      params[:q_sys] = Methods.select_allocations(current_user.company.id, current_user.id)
 
       if params[:q_sys].blank?
         params[:q_sys] = 0

@@ -55,14 +55,14 @@ pt-BR:
       project:
         description: Descrição
       topic:
-        description: Descrição
+        description: Descrição do Tópico
         color: Cor de Exibição
         project_id: Projeto
       sub_topic:
         description: Descrição do SubTópico
         topic_id: Tópico
       mark:
-        description: Descrição
+        description: Descrição da Meta
         due_date: Previsão de Entrega
         release_date: Data de Conclusão
         project_id: Projeto

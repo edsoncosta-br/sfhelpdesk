@@ -3,12 +3,7 @@
 }
 
 .title-style {
-  font-weight: 500;
-  /* background-color: #edf9eb; */
-}
-
-.title-style:focus {
-  /* background-color: #edf9eb; */
+  font-weight: 600;
 }
 
 .form-check-input:checked {

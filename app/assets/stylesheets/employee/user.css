@@ -6,3 +6,13 @@
   color: #ced4da;  
   font-size: 1.2rem;
 }
+
+.project-width {
+  min-width: 200px;
+}
+
+.table thead tr th {
+  background-color: inherit;
+  font-size: 11px;
+  font-weight: 500;
+}

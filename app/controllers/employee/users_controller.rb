@@ -112,8 +112,15 @@ class Employee::UsersController < ApplicationController
 
     if params['projectcheck']
       params['projectcheck'].each do |project_id, checked|
+
+        if params['projectmain']
+          projectmain = params['projectmain'][project_id] == '1'
+        else
+          projectmain = false
+        end
+
         if checked == '1' #true
-          Allocation.create!(user_id: @user.id, project_id: project_id)
+          Allocation.create!(user_id: @user.id, project_id: project_id, main: projectmain )
         end
       end
     end
