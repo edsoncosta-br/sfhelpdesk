@@ -6,7 +6,8 @@
         <%=index_title('Requisições')%>
       </div>
       <div class="ph-right">
-        <%= link_to(new_request_path(q_title: params[:q_title]),  class: "btn btn-action btn-success") do %>
+        <%= link_to(new_request_path( q_sys: params[:q_sys], 
+                                      q_content: params[:q_content]),  class: "btn btn-action btn-success") do %>
           <i class="fa-solid fa-plus"></i></i> Incluir
         <%end%>             
       </div>          
@@ -15,12 +16,21 @@
     <div class="card">
       <div class="card-body card-body-style">
         <%= form_with(url: requests_path, class:'row', method: 'get', local: true) do |form| %>
-          <div class="col-12 col-md-6 mb-1">
-            <label for="position_id" class="form-label">Título</label>  
-            <input type="text" name="q_title" id="title_id" class="form-control" maxlength="50" autofocus autocomplete="off" value=<%=params[:q_title]%> >
+          <div class="col-12 col-md-4 mb-1">
+            <label for="project_id" class="form-label">Projeto</label>
+            <%= select_tag :project_id, 
+                            form_select_project_allocations(params[:q_sys]),
+                            class:"form-select",
+                            name:"q_sys",
+                            autofocus: true %>
           </div>
 
-          <div class="col-btn-search col-12 col-md-6 align-self-end mb-1">
+          <div class="col-12 col-md-4 mb-1">
+            <label for="position_id" class="form-label">Consultar por</label>  
+            <input type="text" name="q_content" id="content_id" class="form-control" maxlength="50" autofocus autocomplete="off" placeholder="Digite o texto que deseja consultar"  value=<%=params[:q_content]%> >
+          </div>
+
+          <div class="col-btn-search col-12 col-md-4 align-self-end mb-1">
             <%= button_tag class:"btn btn-outline-success btn-search", id:'btn_consultar_id', data: { disable_with: 'Aguarde..' } do %>
               <i class="fa-solid fa-magnifying-glass me-1"></i>Consultar
             <% end %>

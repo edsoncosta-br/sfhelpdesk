@@ -71,3 +71,35 @@ node.setAttribute("value", "");
   node.appendChild(item);
   document.getElementById("mark_id").appendChild(node);
 <% end %>
+
+<%# select usuarios responsaveis %>
+
+document.getElementById('user_responsible_id').innerHTML = '';
+
+var node = document.createElement("option");
+node.setAttribute("value", "");
+
+<% if !@users_responsible.empty? %>
+  
+  <% @users_responsible.each_with_index do |user, index| %>
+    
+    <% if index == 0 %>
+      var item = document.createTextNode("Selecione..");
+      node.appendChild(item);
+      document.getElementById("user_responsible_id").appendChild(node);
+    <%end%> 
+    
+    var node = document.createElement("option");
+    node.setAttribute("value", <%= user.id %>);
+
+    var item = document.createTextNode("<%=user.nick_name%>");
+    node.appendChild(item);
+    document.getElementById("user_responsible_id").appendChild(node);
+
+  <% end %>
+
+<% else %>
+  var item = document.createTextNode("Selecione..");
+  node.appendChild(item);
+  document.getElementById("user_responsible_id").appendChild(node);
+<% end %>

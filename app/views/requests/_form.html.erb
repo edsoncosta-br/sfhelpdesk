@@ -90,7 +90,7 @@
                                         Constants::STEP_ARQUIVADA], 
                                       {},
                                       class:'form-select form-control', 
-                                      id:'idstep') %>
+                                      id:'idstatus') %>
             </div>                
 
             <div class="col-12 col-md-3 mb-3">
@@ -101,7 +101,7 @@
                                       Constants::STATUS_CONCLUIDA], 
                                       {},
                                       class:'form-select form-control', 
-                                      id:'idstatus') %>
+                                      id:'idstep') %>
             </div>
 
             <div class="col-12 col-md-3 mb-3">
@@ -118,18 +118,15 @@
               <%= form.date_field :created_date, class:"form-control", autocomplete: :off %>
             </div>                
 
-      <%# 
-      
-      t.integer :user_created_id, null: false
-      t.datetime :created_date, null: false        %>
 
-
-            <%= hidden_field_tag :q_title, params[:q_title] %>
+            <%= hidden_field_tag :q_sys, params[:q_sys] %>
+            <%= hidden_field_tag :q_content, params[:q_content] %>
           </div>
 
           <div class="actions pt-2 text-end">
             <%= form.submit "Salvar", class:"btn btn-success input-btn me-1"%>
-            <%= link_to 'Cancelar', requests_path(q_title: params[:q_title]), class: 'btn btn-secondary' %>
+            <%= link_to 'Cancelar', requests_path(q_sys: params[:q_sys],
+                                                  q_content: params[:q_content]), class: 'btn btn-secondary' %>
           </div>
 
         <% end %>

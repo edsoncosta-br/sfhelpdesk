@@ -7,30 +7,34 @@
   <div id="modal-place"></div>
 
   <div class="table-responsive">
-    <table class='table table-bordered table-striped table-hover table-result'>
+    <table class='table table-striped table-hover table-result'>
       <thead>
-        <tr>
-          <th scope='col'>Descrição</th>
-          <th scope='col' class='text-center col-actions-two'>Ações</th>
-        </tr>
+      <div class="border-bottom border-secondary-subtle"></div>
       </thead>
 
       <tbody>
-        <% @requests.each do |requests| %>
+        <% @requests.each do |request| %>
           <tr>
-            <td class='align-middle'> <%= requests.title %> </td>
-            <td class='align-middle text-center '>
-              <%#= link_to edit_position_path(requests, q_desc: params[:q_desc]), class: 'td-actions', title: "Alterar" do %>
+            <td class='align-middle'>
+              <span class="fw-semibold me-1"><%=request.title%></span>
+              <span class="badge rounded-pill text-bg-primary me-1"><%=request.topic_description%></span>
+              <span class="badge rounded-pill text-bg-primary"><%=request.subtopic_description%></span>
+            </td>
+
+            <td class='align-middle text-center col-actions-two'>
+              <%= link_to edit_request_path(request,q_sys: params[:q_sys], 
+                                                    q_content: params[:q_content]), 
+                                                    class: 'td-actions', title: "Alterar" do %>
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
-              <%# end %>
+              <% end %>
 
               <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
-                data-bs-target="#delete<%#=position.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
+                data-bs-target="#delete<%=request.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
 
             </td>
           </tr>
 
-          <div class="modal modal-delete fade" id="delete<%#=position.id.to_s%>" tabindex="-1" 
+          <div class="modal modal-delete fade" id="delete<%=request.id.to_s%>" tabindex="-1" 
                 aria-labelledby="deleteLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -41,10 +45,11 @@
                 </div>
                 
                 <div class="modal-body">
-                  Confirma a exclusão do Cargo/Função: <br> <%#= position.description %> ?
+                  Confirma a exclusão da Requisição: <br> <%= request.title %> ?
                 </div>
                 <div class="modal-footer actions">
-                  <%#= link_to 'Excluir', position_path(position, q_desc: params[:q_desc]), 
+                  <%= link_to 'Excluir', request_path(request,q_sys: params[:q_sys], 
+                                                              q_content: params[:q_content]), 
                       class:"btn btn-danger", method: :delete %>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
