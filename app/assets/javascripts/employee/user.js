@@ -17,12 +17,14 @@ function setPrincipal(elementId) {
   let elementClicked = document.getElementById(elementId);
   
   if (elementClicked !== null) {
+    
+    principalElement = document.getElementById('main_id_' + elementClicked.id.substring(11, 13));
+
     if (!elementClicked.checked) {
-      principal = document.getElementById('main_id_' + elementClicked.id.substring(11, 13))
-      principal.checked = false;
-      principal.disabled = true;
+      principalElement.checked = false;
+      principalElement.disabled = true;
     } else {
-      principal.disabled = false;
+      principalElement.disabled = false;
     }
   }
 
