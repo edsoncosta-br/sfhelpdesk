@@ -2,10 +2,6 @@
   max-width: 1200px;
 }
 
-.title-style {
-  font-weight: 600;
-}
-
 .form-check-input:checked {
   background-color: #53cd6c;
   border-color: #34cd7b;
@@ -29,5 +25,49 @@
 
 .badge {
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 700;
+}
+
+.semibold {
+  font-weight: 500;
+}
+
+.badge-color-topic {
+  color: #1d4d70 !important;
+  background-color: #c8e0f7 !important;  
+}
+
+.open-status {
+  color: #28c535;
+}
+
+.finish-status {
+  color: #2845c5;
+}
+
+.archived-status {
+  color: #c57428;
+}
+
+.open-status-line {
+  font-size: 1.2rem;  
+}
+
+.col-status {
+  width: 24px;
+}
+
+.status-line {
+  margin: 1rem 0 1rem 0;
+  color: #076a10;
+}
+
+.status-icon {
+  padding-left: 6px;
+  padding-top: 1px;
+}
+
+.status-text {
+  padding-left: 13px;
+  font-weight: 700;
 }

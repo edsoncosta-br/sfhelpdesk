@@ -19,7 +19,7 @@
             <div class="col-11 mb-3">
               <%= form.label :title, class:"form-label" %>
               <%= form.text_field :title, 
-                  class:"form-control title-style #{is_invalid(@request, '_title_isempty_')}", 
+                  class:"form-control semibold #{is_invalid(@request, '_title_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"100" %>
             </div>
 

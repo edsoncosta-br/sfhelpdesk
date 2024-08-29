@@ -12,6 +12,10 @@ module Constants
   STEP_FINALIZADA = ['Finalizada', 2]
   STEP_ARQUIVADA = ['Arquivada', 3]
 
+  STEP_ABERTA_PLUR = ['Abertas', 1]
+  STEP_FINALIZADA_PLUR = ['Finalizadas', 2]
+  STEP_ARQUIVADA_PLUR = ['Arquivadas', 3]  
+
   PRIORITY_ALTA = ['Alta',1]
   PRIORITY_MEDIA = ['Média', 2]
   PRIORITY_BAIXA = ['Baixa', 3]

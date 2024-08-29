@@ -4,11 +4,12 @@ class RequestsController < ApplicationController
 
   def index
     requests = Request.select(:id, :title, :status, :step, :priority, :customer_id,
-                              :user_created_id, :user_responsible_id, :mark_id, :topic_id,
-                              :sub_topic_id, "topics.description topic_description", "sub_topics.description subtopic_description")
+                              :user_created_id, :user_responsible_id, :mark_id, :topic_id, :sub_topic_id,
+                              "topics.description topic_description",
+                              "sub_topics.description subtopic_description")
                       .joins(project: :company)
                       .joins(:topic)
-                      .joins(:sub_topic)
+                      .left_joins(:sub_topic)
                       .where("company_id = ?", current_user.company.id)
                       .order(Arel.sql('status'))
 
@@ -20,11 +21,17 @@ class RequestsController < ApplicationController
       end                                  
     end
 
-    requests = requests.where('projects.id = ?', "#{params[:q_sys]}")    
+    requests = requests.where('projects.id = ?', "#{params[:q_sys]}")
+
+    if params[:q_status].blank?
+      params[:q_status] = Constants::STEP_ABERTA[1]
+    end    
+
+    requests = requests.where('status = ?', "#{params[:q_status]}")
 
     if !params[:q_content].blank?
       requests = requests.where('unaccent(title) ilike unaccent(?)', "%#{params[:q_content]}%")
-    end    
+    end
 
     @requests = requests.all.page(params[:page]).per(Constants::PAGINAS)
     @requests_size = requests.size       
