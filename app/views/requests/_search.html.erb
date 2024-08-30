@@ -1,12 +1,11 @@
 <% if !@requests.empty? %>
 
-  <div class="status-line">
-    <div class="d-flex">
-      <div class="status-icon" ><i class="fa-solid fa-angles-right open-status-line"></i></div>
+  <div class="status-line <%=color_status(params[:q_status].to_i)%>"> 
+    <div class="d-flex"> 
+      <div class="status-icon" ><i class="fa-solid fa-circle open-status-line <%=color_status(params[:q_status].to_i)%>"></i></div>
       <div class="status-text"> <%=status(params[:q_status].to_i)%> ( <%=@requests_size.to_s.rjust(2, "0") %> )</div>
-      
     </div>
-  </div>    
+  </div>
 
   <div id="modal-place"></div>
 
@@ -20,16 +19,45 @@
         <% @requests.each_with_index do |request, index| %>
           <tr>
             <td class="col-status">
-              <i class="fa-solid fa-circle align-middle <%=colorstatus(request.status)%> "></i>
+              <i class="fa-solid fa-circle <%=color_status(request.status)%> "></i>
             </td>
+
             <td class="align-middle">
-              <span class="semibold me-1"><%=request.title%></span>
-              <span class="badge rounded-pill badge-color-topic me-1"><%=request.topic_description%></span>
-              <span class="badge rounded-pill badge-color-topic"><%=request.subtopic_description%></span>
+              <div class="first-line mb-2">
+                <span class="fw-semibold me-1"><%=request.title%></span>
+
+                <% if request.priority %>
+                  <span title="Prioridade"><i class="fa-solid fa-star"></i></span>
+                <% end %>
+
+                <span title="Tópico" class="badge rounded-pill bg-topic me-1"><%=request.topic_description%></span>
+                <span title="SubTópico" class="badge rounded-pill bg-topic"><%=request.subtopic_description%></span>
+
+                <% if request.mark_description %>
+                  <span title="Meta" class="badge rounded-pill bg-mark"><i class="fa-solid fa-rocket me-2"></i><%=request.mark_description%></span>
+                <% end %>                
+              </div>
+              
+              <div class="d-flex justify-content-between second-line text-muted">
+                <span>
+                  <span class="me-3">Id: <%=request.id.to_s.rjust(4, "0")%></span>
+                  <span>Criada em <%=I18n.l(request.created_date.to_date(), format: :short).capitalize()%></span>
+                  <span class="me-4">por <strong><%=request.user_created_name%></strong></span>
+
+                  <% if request.user_responsible_name %>
+                    <span>Execução por <strong><%=request.user_responsible_name%></strong></span>
+                  <% end %>                  
+                </span>                
+              </div>
+            </td>
+
+            <td class="align-middle col-step">
+              <span title="Status da Execução" class="badge rounded-pill <%=bg_step(request.step)%>"><%=step(request.step) %></span>            
             </td>
 
             <td class='align-middle text-center col-actions-two'>
-              <%= link_to edit_request_path(request,q_sys: params[:q_sys], 
+              <%= link_to edit_request_path(request,q_sys: params[:q_sys],
+                                                    q_status: params[:q_status],
                                                     q_content: params[:q_content]), 
                                                     class: 'td-actions', title: "Alterar" do %>
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
@@ -55,7 +83,8 @@
                   Confirma a exclusão da Requisição: <br> <%= request.title %> ?
                 </div>
                 <div class="modal-footer actions">
-                  <%= link_to 'Excluir', request_path(request,q_sys: params[:q_sys], 
+                  <%= link_to 'Excluir', request_path(request,q_sys: params[:q_sys],
+                                                              q_status: params[:q_status],
                                                               q_content: params[:q_content]), 
                       class:"btn btn-danger", method: :delete %>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

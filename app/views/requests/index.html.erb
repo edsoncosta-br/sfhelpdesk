@@ -6,7 +6,8 @@
         <%=index_title('Requisições')%>
       </div>
       <div class="ph-right">
-        <%= link_to(new_request_path( q_sys: params[:q_sys], 
+        <%= link_to(new_request_path( q_sys: params[:q_sys],
+                                      q_status: params[:q_status],
                                       q_content: params[:q_content]),  class: "btn btn-action btn-success") do %>
           <i class="fa-solid fa-plus"></i></i> Incluir
         <%end%>             
@@ -25,7 +26,7 @@
                             autofocus: true %>
           </div>
 
-          <div class="col-12 col-md-3 mb-1">          
+          <div class="col-12 col-md-2 mb-1">          
             <label for="status" class="form-label">Status</label>
             <%= select_tag "status", 
                             options_for_select([Constants::STEP_ABERTA_PLUR,
@@ -40,7 +41,7 @@
             <input type="text" name="q_content" id="content_id" class="form-control" maxlength="50" autofocus autocomplete="off" placeholder="Digite o texto que deseja consultar"  value=<%=params[:q_content]%> >
           </div>
 
-          <div class="col-btn-search col-12 col-md-3 align-self-end mb-1">
+          <div class="col-btn-search col-12 col-md-4 align-self-end mb-1">
             <%= button_tag class:"btn btn-outline-success btn-search", id:'btn_consultar_id', data: { disable_with: 'Aguarde..' } do %>
               <i class="fa-solid fa-magnifying-glass me-1"></i>Consultar
             <% end %>

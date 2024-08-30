@@ -4,14 +4,21 @@ class RequestsController < ApplicationController
 
   def index
     requests = Request.select(:id, :title, :status, :step, :priority, :customer_id,
-                              :user_created_id, :user_responsible_id, :mark_id, :topic_id, :sub_topic_id,
+                              :user_created_id, :user_responsible_id, :mark_id, :topic_id, 
+                              :sub_topic_id, :created_date,
                               "topics.description topic_description",
-                              "sub_topics.description subtopic_description")
+                              "sub_topics.description subtopic_description",
+                              "users.nick_name user_created_name",
+                              "user_responsibles_requests.nick_name user_responsible_name",
+                              "marks.description mark_description")
                       .joins(project: :company)
                       .joins(:topic)
+                      .joins(:user_created)
+                      .left_joins(:user_responsible)
                       .left_joins(:sub_topic)
-                      .where("company_id = ?", current_user.company.id)
-                      .order(Arel.sql('status'))
+                      .left_joins(:mark)
+                      .where("users.company_id = ?", current_user.company.id)
+                      .order(Arel.sql('status, priority desc, created_date desc, requests.id desc'))
 
     if params[:q_sys].blank?
       params[:q_sys] = Methods.select_allocations(current_user.company.id, current_user.id)
@@ -52,6 +59,7 @@ class RequestsController < ApplicationController
     respond_to do |format|
       if @request.save
         format.html { redirect_to requests_path(q_sys: params[:q_sys],
+                                                q_status: params[:q_status],
                                                 q_content: params[:q_content]), notice: "Requisição cadastrada com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +73,7 @@ class RequestsController < ApplicationController
   def update
     if @request.update(request_params)
       redirect_to requests_path(q_sys: params[:q_sys],
+                                q_status: params[:q_status],
                                 q_content: params[:q_content]), notice: "Requisição atualizada com sucesso."
     else
       render :edit
@@ -75,9 +84,11 @@ class RequestsController < ApplicationController
     begin
       if @request.destroy
         redirect_to requests_path(q_sys: params[:q_sys],
+                                  q_status: params[:q_status],
                                   q_content: params[:q_content]), notice: "Tópico excluído com sucesso."
       else
         redirect_to requests_path(q_sys: params[:q_sys],
+                                  q_status: params[:q_status],
                                   q_content: params[:q_content])
       end
     rescue StandardError => e
@@ -89,6 +100,7 @@ class RequestsController < ApplicationController
       end
 
       redirect_to requests_path(q_sys: params[:q_sys],
+                                q_status: params[:q_status],
                                 q_content: params[:q_content])
     end
   end  
