@@ -3,20 +3,23 @@ class RequestsController < ApplicationController
   before_action :set_upcase, only: %i[ create update ]    
 
   def index
-    requests = Request.select(:id, :title, :status, :step, :priority, :customer_id,
+    requests = Request.select(:id, :title, :status, :step, :priority, 
+                              :customer_id, :code, :requester_name,
                               :user_created_id, :user_responsible_id, :mark_id, :topic_id, 
                               :sub_topic_id, :created_date,
                               "topics.description topic_description",
                               "sub_topics.description subtopic_description",
                               "users.nick_name user_created_name",
                               "user_responsibles_requests.nick_name user_responsible_name",
-                              "marks.description mark_description")
+                              "marks.description mark_description",
+                              "customers.name customers_name")
                       .joins(project: :company)
                       .joins(:topic)
                       .joins(:user_created)
                       .left_joins(:user_responsible)
                       .left_joins(:sub_topic)
                       .left_joins(:mark)
+                      .left_joins(:customer)
                       .where("users.company_id = ?", current_user.company.id)
                       .order(Arel.sql('status, priority desc, created_date desc, requests.id desc'))
 

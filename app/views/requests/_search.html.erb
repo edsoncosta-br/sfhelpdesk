@@ -18,34 +18,42 @@
       <tbody>
         <% @requests.each_with_index do |request, index| %>
           <tr>
-            <td class="col-status">
+            <td class="col-status align-middle">
               <i class="fa-solid fa-circle <%=color_status(request.status)%> "></i>
             </td>
 
             <td class="align-middle">
               <div class="first-line mb-2">
-                <span class="fw-semibold me-1"><%=request.title%></span>
+                <span class="fw-semibold"><%=request.title%></span>
 
                 <% if request.priority %>
-                  <span title="Prioridade"><i class="fa-solid fa-star"></i></span>
+                  <span title="Prioridade" class="badge rounded-pill bg-priority ms-1"><i class="fa-solid fa-star"></i></span>
                 <% end %>
 
-                <span title="Tópico" class="badge rounded-pill bg-topic me-1"><%=request.topic_description%></span>
-                <span title="SubTópico" class="badge rounded-pill bg-topic"><%=request.subtopic_description%></span>
+                <span title="Tópico" class="badge rounded-pill bg-topic ms-1"><%=request.topic_description%></span>
+                <span title="SubTópico" class="badge rounded-pill bg-topic ms-1"><%=request.subtopic_description%></span>
 
-                <% if request.mark_description %>
-                  <span title="Meta" class="badge rounded-pill bg-mark"><i class="fa-solid fa-rocket me-2"></i><%=request.mark_description%></span>
+                <% if request.mark_description.present? %>
+                  <span title="Meta" class="badge rounded-pill bg-mark ms-1"><i class="fa-solid fa-rocket me-2"></i><%=request.mark_description%></span>
                 <% end %>                
               </div>
               
-              <div class="d-flex justify-content-between second-line text-muted">
+              <div class="second-line text-muted">
                 <span>
                   <span class="me-3">Id: <%=request.id.to_s.rjust(4, "0")%></span>
                   <span>Criada em <%=I18n.l(request.created_date.to_date(), format: :short).capitalize()%></span>
-                  <span class="me-4">por <strong><%=request.user_created_name%></strong></span>
+                  <span class="me-3">por <strong><%=request.user_created_name%></strong></span>
 
-                  <% if request.user_responsible_name %>
-                    <span>Execução por <strong><%=request.user_responsible_name%></strong></span>
+                  <% if request.customers_name.present? && request.requester_name.present? %>
+                    <span class="me-3">Solicitante: <%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%>/<%=request.requester_name%></span>
+                  <% elsif request.customers_name.present? %>
+                    <span class="me-3">Solicitante: <%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%></span>                    
+                  <% elsif request.requester_name.present? %>
+                    <span class="me-3">Solicitante: <%=request.requester_name%></span>                                        
+                  <% end %>
+
+                  <% if request.user_responsible_name.present? %>
+                    <span class="me-3">Resp: <strong><%=request.user_responsible_name%></strong></span>
                   <% end %>                  
                 </span>                
               </div>

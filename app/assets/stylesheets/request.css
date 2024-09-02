@@ -42,6 +42,10 @@
   background-color: #f7c8c8 !important;
 }
 
+.bg-priority {
+  background-color: #eef7c8 !important;
+}
+
 .bg-step {
   min-width: 85px;
   height: 25px;
@@ -86,8 +90,8 @@
 
 .col-status {
   width: 24px;
-  font-size: 11px;
-  padding-top: 8px !important;
+  font-size: 12px;
+  /* padding-top: 8px !important; */
 }
 
 .col-step {
