@@ -19,8 +19,9 @@ class Request < ApplicationRecord
   belongs_to :sub_topic, required: false
 
   has_many :request_tags
+  # has_many :tags, through: :request_tags
 
-  attr_accessor :multiple_tag
+  attr_accessor :tag_ids
 
   private
 

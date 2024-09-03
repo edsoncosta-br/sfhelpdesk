@@ -6,6 +6,7 @@ class Tag < ApplicationRecord
 
   belongs_to :project
   has_many :request_tags
+  # has_many :requests, through: :request_tags
 
   private
 

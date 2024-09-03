@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  new SlimSelect({
-    select: '#multiple_tag',
+  var select = new SlimSelect({
+    select: '#tag_ids',
     settings: {
       placeholderText: '',
       searchPlaceholder: 'Buscar',
@@ -8,4 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
       maxSelected: 5
     }
   }) 
+  
+  if (document.getElementById('tag_ids_selected') != null) {
+    select.setSelected(document.getElementById('tag_ids_selected').value.split(' '))
+  }
+  // select.setSelected(['1', '3'])
 });

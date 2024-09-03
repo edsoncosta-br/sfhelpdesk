@@ -66,6 +66,7 @@ class RequestsController < ApplicationController
                                                 q_content: params[:q_content]), notice: "Requisição cadastrada com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
+        @request.tag_ids = params[:tag_ids];
       end
     end
   end
@@ -123,7 +124,7 @@ class RequestsController < ApplicationController
                                     :step, :priority, :requester_name,
                                     :customer_id, :project_id, :user_created_id,
                                     :user_responsible_id, :mark_id, :topic_id,
-                                    :sub_topic_id, :multiple_tag)
+                                    :sub_topic_id, tag_ids: [])
   end
   
 end

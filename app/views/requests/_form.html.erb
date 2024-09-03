@@ -40,15 +40,16 @@
             </div>
 
             <div class="col-12 col-md-9 mb-3">
-              <label class="form-label" for="request_tag_id">Selecione as Tags (max:5)</label>
-              <%= select_tag :multiple_tag,
+              <label class="form-label" for="tag_ids">Selecione as Tags (max:5)</label>
+              <%= select_tag :tag_ids,
                               form_select_project_tags(@request.project_id),
                               multiple: true,
                               class:"form-control",
-                              name:"request[multiple_tag]" %>
+                              name:"tag_ids[]"%> 
             </div>
-            
+           
             <%#= form.select :multiple_tag_2, Tag.all.pluck(:description, :id), {}, { multiple: true, data: { controller: 'slim', slim_target: 'field' } } %>
+            <%#= form.select :tag_ids, Tag.all.pluck(:description, :id), {}, multiple: true %>
 
             <div class="col-12 col-md-4 mb-3">
               <%= form.label :topic_id, class:"form-label" %>
@@ -132,6 +133,7 @@
             <%= hidden_field_tag :q_sys, params[:q_sys] %>
             <%= hidden_field_tag :q_status, params[:q_status] %>
             <%= hidden_field_tag :q_content, params[:q_content] %>
+            <%= hidden_field_tag :tag_ids_selected, @request.tag_ids.to_a %>
           </div>
 
           <div class="actions pt-2 text-end">

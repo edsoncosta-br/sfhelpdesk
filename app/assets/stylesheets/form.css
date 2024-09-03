@@ -21,6 +21,11 @@
   box-shadow: 0 0 0 0.02rem #e4a1a7;
 }
 
+.ss-search input:focus {
+  box-shadow: 0 0 0 0.05rem #b0efac !important;
+  border-color: #54bf8a;
+}
+
 .form-label {
   font-weight: 600;
   font-size: 11px;
