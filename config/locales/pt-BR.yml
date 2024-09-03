@@ -66,6 +66,9 @@ pt-BR:
         due_date: Previsão de Entrega
         release_date: Data de Conclusão
         project_id: Projeto
+      tag:
+        description: Descrição da Tag
+        project_id: Projeto        
       request:
         title: Título da requisição
         created_date: Data da criação

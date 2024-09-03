@@ -18,6 +18,10 @@ class Request < ApplicationRecord
   belongs_to :topic
   belongs_to :sub_topic, required: false
 
+  has_many :request_tags
+
+  attr_accessor :multiple_tag
+
   private
 
   def title_isempty

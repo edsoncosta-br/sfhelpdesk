@@ -4,17 +4,7 @@
 //= require bootstrap/dist/js/bootstrap
 //= require toastify-js/src/toastify.js
 //= require inputmask/dist/inputmask.js
+//= require slim-select/dist/slimselect.js
 //= require ./flashMessages.js
 //= require ./fontawesome/all.js
 //= require ./scripts.js
-
-// function check(obj){
-
-//   if (obj.checked) {
-//     console.log("checou")
-//     obj.setAttribute("checked", "");
-//   } else {
-//     obj.removeAttribute("checked");
-//     obj.log("deschecou")
-//   }
-// }

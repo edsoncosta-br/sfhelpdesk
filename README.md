@@ -13,3 +13,6 @@
   
 - Instalar Toastify
   docker compose run app yarn add toastify-js
+
+- Instalar Slim-select
+  docker compose run app yarn add slim-select

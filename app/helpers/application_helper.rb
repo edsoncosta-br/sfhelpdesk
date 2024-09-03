@@ -92,6 +92,13 @@ module ApplicationHelper
                                             .where("project_id = ?", project_id)
                                             .order("unaccent(description)"), 
                                             :id, :description, selected)
+  end
+
+  def form_select_project_tags(project_id)
+    options_from_collection_for_select( Tag.select(:id, :description)
+                                            .where("project_id = ?", project_id)
+                                            .order("unaccent(description)"), 
+                                            :id, :description)
   end  
 
 end

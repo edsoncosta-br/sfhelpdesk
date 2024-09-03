@@ -39,7 +39,18 @@
                               name:"request[project_id]" %>
             </div>
 
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-9 mb-3">
+              <label class="form-label" for="request_tag_id">Selecione as Tags (max:5)</label>
+              <%= select_tag :multiple_tag,
+                              form_select_project_tags(@request.project_id),
+                              multiple: true,
+                              class:"form-control",
+                              name:"request[multiple_tag]" %>
+            </div>
+            
+            <%#= form.select :multiple_tag_2, Tag.all.pluck(:description, :id), {}, { multiple: true, data: { controller: 'slim', slim_target: 'field' } } %>
+
+            <div class="col-12 col-md-4 mb-3">
               <%= form.label :topic_id, class:"form-label" %>
               <%= select_tag :topic_id, 
                               form_select_topic(@request.project_id, @request.topic_id),
@@ -49,7 +60,7 @@
                               name:"request[topic_id]" %>
             </div> 
 
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-4 mb-3">
               <%= form.label :sub_topic_id, class:"form-label" %>
               <%= select_tag :sub_topic_id, 
                               form_select_sub_topic(@request.topic_id, @request.sub_topic_id),
@@ -58,7 +69,7 @@
                               name:"request[sub_topic_id]" %>
             </div>
 
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-4 mb-3">
               <%= form.label :mark_id, class:"form-label" %>
               <%= select_tag :mark_id, 
                               form_select_mark(@request.project_id, @request.mark_id),
@@ -116,8 +127,7 @@
             <div class="col-12 col-md-3 mb-3">
               <%= form.label :created_date, class:"form-label" %>
               <%= form.date_field :created_date, class:"form-control", autocomplete: :off %>
-            </div>                
-
+            </div>
 
             <%= hidden_field_tag :q_sys, params[:q_sys] %>
             <%= hidden_field_tag :q_status, params[:q_status] %>

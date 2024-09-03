@@ -5,8 +5,8 @@ class RequestsController < ApplicationController
   def index
     requests = Request.select(:id, :title, :status, :step, :priority, 
                               :customer_id, :code, :requester_name,
-                              :user_created_id, :user_responsible_id, :mark_id, :topic_id, 
-                              :sub_topic_id, :created_date,
+                              :user_created_id, :user_responsible_id, :mark_id, 
+                              :topic_id, :sub_topic_id, :created_date,
                               "topics.description topic_description",
                               "sub_topics.description subtopic_description",
                               "users.nick_name user_created_name",
@@ -123,7 +123,7 @@ class RequestsController < ApplicationController
                                     :step, :priority, :requester_name,
                                     :customer_id, :project_id, :user_created_id,
                                     :user_responsible_id, :mark_id, :topic_id,
-                                    :sub_topic_id)
+                                    :sub_topic_id, :multiple_tag)
   end
   
 end

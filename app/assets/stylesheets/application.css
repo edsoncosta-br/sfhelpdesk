@@ -1,6 +1,7 @@
 /*
 *= require bootstrap/dist/css/bootstrap
 *= require toastify-js/src/toastify.css
+*= require slim-select/dist/slimselect.css
 *= require form.css
 *= require menubar.css
 */
@@ -533,4 +534,17 @@ input {
 
 .input-email {
   text-transform: lowercase;
+}
+
+.ss-main .ss-values .ss-value {
+  background-color: #c8e0f7;
+}
+
+.ss-main .ss-values .ss-value .ss-value-text {
+  color: #1d4d70;
+  font-weight: 500;
+}
+
+.ss-main .ss-values .ss-value .ss-value-delete svg path {
+  stroke: #1d4d70;
 }

@@ -4,6 +4,7 @@ class Project < ApplicationRecord
 
   belongs_to :company
   has_many :topics
+  has_many :tag
   has_many :marks
   has_many :allocations
   has_many :requests
