@@ -108,6 +108,13 @@
               <%= form.date_field :created_date, class:"form-control", autocomplete: :off %>
             </div>
 
+            <div class="col-12">
+              <div class="field">
+                <%= form.label :content, class:"form-label" %>
+                <%= form.rich_text_area :content %>
+              </div>            
+            </div>
+
             <%= hidden_field_tag :q_sys, params[:q_sys] %>
             <%= hidden_field_tag :q_status, params[:q_status] %>
             <%= hidden_field_tag :q_content, params[:q_content] %>

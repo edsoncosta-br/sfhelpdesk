@@ -139,7 +139,8 @@ class RequestsController < ApplicationController
     params.require(:request).permit(:title, :created_date, :status,
                                     :step, :priority, :requester_name,
                                     :customer_id, :project_id, :user_created_id,
-                                    :user_responsible_id, :mark_id, tag_ids: [])
+                                    :user_responsible_id, :mark_id, :content, 
+                                    tag_ids: [])
   end
   
 end

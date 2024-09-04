@@ -20,6 +20,8 @@ class Request < ApplicationRecord
 
   attr_accessor :tag_ids
 
+  has_rich_text :content
+
   private
 
   def title_isempty

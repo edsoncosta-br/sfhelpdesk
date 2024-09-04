@@ -2,6 +2,7 @@
 *= require bootstrap/dist/css/bootstrap
 *= require toastify-js/src/toastify.css
 *= require slim-select/dist/slimselect.css
+*= require actiontext.css
 *= require form.css
 *= require menubar.css
 */
