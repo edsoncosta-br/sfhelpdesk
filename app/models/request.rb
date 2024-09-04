@@ -6,7 +6,6 @@ class Request < ApplicationRecord
   validate :step_isempty
   validate :project_id_isempty
   validate :user_created_id_isempty
-  validate :topic_id_isempty
 
   belongs_to :customer, required: false
   belongs_to :project
@@ -15,8 +14,6 @@ class Request < ApplicationRecord
   belongs_to :user_responsible, class_name: 'User', required: false, :foreign_key => 'user_responsible_id'
 
   belongs_to :mark, required: false
-  belongs_to :topic
-  belongs_to :sub_topic, required: false
 
   has_many :request_tags
   # has_many :tags, through: :request_tags
@@ -58,12 +55,6 @@ class Request < ApplicationRecord
   def user_created_id_isempty
     if self.user_created_id.blank?
       errors.add(:_, '_user_created_id_isempty_')
-    end        
-  end
-
-  def topic_id_isempty  
-    if self.topic_id.blank?
-      errors.add(:_, '_topic_id_isempty_')
     end        
   end
 

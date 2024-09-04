@@ -54,13 +54,6 @@ pt-BR:
         description: Descrição
       project:
         description: Descrição
-      topic:
-        description: Descrição do Tópico
-        color: Cor de Exibição
-        project_id: Projeto
-      sub_topic:
-        description: Descrição do SubTópico
-        topic_id: Tópico
       mark:
         description: Descrição da Meta
         due_date: Previsão de Entrega
@@ -81,8 +74,6 @@ pt-BR:
         user_created_id: Criado por
         user_responsible_id: Responsável pela execução
         mark_id: Meta
-        topic_id: Tópico
-        sub_topic_id: SubTópico
   errors:
     format: "%{attribute} %{message}"
     messages:

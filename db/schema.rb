@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_02_232532) do
+ActiveRecord::Schema.define(version: 2024_07_11_193842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,18 +127,8 @@ ActiveRecord::Schema.define(version: 2024_09_02_232532) do
     t.integer "user_created_id", null: false
     t.integer "user_responsible_id"
     t.integer "mark_id"
-    t.integer "topic_id", null: false
-    t.integer "sub_topic_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "sub_topics", force: :cascade do |t|
-    t.string "description", limit: 30, null: false
-    t.bigint "topic_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["topic_id", "description"], name: "index_sub_topics_on_topic_id_and_description", unique: true
   end
 
   create_table "tags", force: :cascade do |t|
@@ -147,15 +137,6 @@ ActiveRecord::Schema.define(version: 2024_09_02_232532) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id", "description"], name: "index_tags_on_project_id_and_description", unique: true
-  end
-
-  create_table "topics", force: :cascade do |t|
-    t.string "description", limit: 30, null: false
-    t.string "color", limit: 7
-    t.bigint "project_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id", "description"], name: "index_topics_on_project_id_and_description", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -194,13 +175,9 @@ ActiveRecord::Schema.define(version: 2024_09_02_232532) do
   add_foreign_key "requests", "customers"
   add_foreign_key "requests", "marks"
   add_foreign_key "requests", "projects"
-  add_foreign_key "requests", "sub_topics"
-  add_foreign_key "requests", "topics"
   add_foreign_key "requests", "users", column: "user_created_id"
   add_foreign_key "requests", "users", column: "user_responsible_id"
-  add_foreign_key "sub_topics", "topics", on_delete: :cascade
   add_foreign_key "tags", "projects"
-  add_foreign_key "topics", "projects"
   add_foreign_key "users", "companies"
   add_foreign_key "users", "positions"
 end

@@ -35,7 +35,7 @@
               <%= select_tag :project_id, 
                               form_select_project_allocations(@request.project_id),
                               class:"form-select form-control #{is_invalid(@request, '_project_isempty_')}",
-                              data: {remote: true, url: url_for(controller: "projects", action: "filter_topic_mark")},
+                              data: {remote: true, url: url_for(controller: "projects", action: "filter_project_dependency")},
                               name:"request[project_id]" %>
             </div>
 
@@ -47,39 +47,8 @@
                               class:"form-control",
                               name:"tag_ids[]"%> 
             </div>
-           
-            <%#= form.select :multiple_tag_2, Tag.all.pluck(:description, :id), {}, { multiple: true, data: { controller: 'slim', slim_target: 'field' } } %>
-            <%#= form.select :tag_ids, Tag.all.pluck(:description, :id), {}, multiple: true %>
 
-            <div class="col-12 col-md-4 mb-3">
-              <%= form.label :topic_id, class:"form-label" %>
-              <%= select_tag :topic_id, 
-                              form_select_topic(@request.project_id, @request.topic_id),
-                              include_blank: "Selecione..", 
-                              class:"form-select form-control #{is_invalid(@request, '_topic_id_isempty_')}",
-                              data: {remote: true, url: url_for(controller: "sub_topics", action: "filter")},
-                              name:"request[topic_id]" %>
-            </div> 
-
-            <div class="col-12 col-md-4 mb-3">
-              <%= form.label :sub_topic_id, class:"form-label" %>
-              <%= select_tag :sub_topic_id, 
-                              form_select_sub_topic(@request.topic_id, @request.sub_topic_id),
-                              include_blank: "Selecione..", 
-                              class:"form-select form-control",
-                              name:"request[sub_topic_id]" %>
-            </div>
-
-            <div class="col-12 col-md-4 mb-3">
-              <%= form.label :mark_id, class:"form-label" %>
-              <%= select_tag :mark_id, 
-                              form_select_mark(@request.project_id, @request.mark_id),
-                              include_blank: "Selecione..", 
-                              class:"form-select form-control",
-                              name:"request[mark_id]" %>
-            </div>             
-
-            <div class="col-12 col-md-8 mb-3">
+            <div class="col-12 col-md-6 mb-3">
               <%= form.label :customer_id, class:"form-label" %>
               <%= select_tag :customer_id, 
                               form_select_customer(@request.customer_id),
@@ -88,12 +57,21 @@
                               name:"request[customer_id]" %>
             </div>  
 
-            <div class="col-12 col-md-4 mb-3">
+            <div class="col-12 col-md-3 mb-3">
               <%= form.label :requester_name, class:"form-label" %>
               <%= form.text_field :requester_name, 
                   class:"form-control", 
                   autofocus: true, autocomplete: :off, maxlength:"30" %>
             </div>
+
+            <div class="col-12 col-md-3 mb-3">
+              <%= form.label :mark_id, class:"form-label" %>
+              <%= select_tag :mark_id, 
+                              form_select_mark(@request.project_id, @request.mark_id),
+                              include_blank: "Selecione..", 
+                              class:"form-select form-control",
+                              name:"request[mark_id]" %>
+            </div>                         
 
             <div class="col-12 col-md-3 mb-3">
               <%= form.label :status, class:"form-label" %>

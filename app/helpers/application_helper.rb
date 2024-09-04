@@ -71,20 +71,6 @@ module ApplicationHelper
                                                 .where("company_id = ?", current_user.company.id)
                                                 .order("unaccent(name)"), 
                                                 :id, :name, selected)
-  end  
-
-  def form_select_topic(project_id, selected)
-    options_from_collection_for_select( Topic.select(:id, :description)
-                                              .where("project_id = ?", project_id)
-                                              .order("unaccent(description)"), 
-                                              :id, :description, selected)
-  end
-
-  def form_select_sub_topic(topic_id, selected)
-    options_from_collection_for_select( SubTopic.select(:id, :description)
-                                                .where("topic_id = ?", topic_id)
-                                                .order("unaccent(description)"), 
-                                                :id, :description, selected)
   end
 
   def form_select_mark(project_id, selected)

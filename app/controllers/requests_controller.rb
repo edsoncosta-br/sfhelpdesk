@@ -5,19 +5,14 @@ class RequestsController < ApplicationController
   def index
     requests = Request.select(:id, :title, :status, :step, :priority, 
                               :customer_id, :code, :requester_name,
-                              :user_created_id, :user_responsible_id, :mark_id, 
-                              :topic_id, :sub_topic_id, :created_date,
-                              "topics.description topic_description",
-                              "sub_topics.description subtopic_description",
+                              :user_created_id, :user_responsible_id, :mark_id, :created_date,
                               "users.nick_name user_created_name",
                               "user_responsibles_requests.nick_name user_responsible_name",
                               "marks.description mark_description",
                               "customers.name customers_name")
                       .joins(project: :company)
-                      .joins(:topic)
                       .joins(:user_created)
                       .left_joins(:user_responsible)
-                      .left_joins(:sub_topic)
                       .left_joins(:mark)
                       .left_joins(:customer)
                       .where("users.company_id = ?", current_user.company.id)
@@ -60,28 +55,36 @@ class RequestsController < ApplicationController
     @request.user_created_id = current_user.id
     
     respond_to do |format|
-      if @request.save
-        format.html { redirect_to requests_path(q_sys: params[:q_sys],
-                                                q_status: params[:q_status],
-                                                q_content: params[:q_content]), notice: "Requisição cadastrada com sucesso." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        @request.tag_ids = params[:tag_ids];
+      ActiveRecord::Base.transaction do
+        if @request.save
+          update_tag_ids(false)
+          format.html { redirect_to requests_path(q_sys: params[:q_sys],
+                                                  q_status: params[:q_status],
+                                                  q_content: params[:q_content]), notice: "Requisição cadastrada com sucesso." }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          @request.tag_ids = params[:tag_ids];
+        end
       end
     end
   end
 
   def edit
+    @request.tag_ids = RequestTag.where("request_id = ?", @request.id).pluck("tag_id")
   end
 
   def update
-    if @request.update(request_params)
-      redirect_to requests_path(q_sys: params[:q_sys],
-                                q_status: params[:q_status],
-                                q_content: params[:q_content]), notice: "Requisição atualizada com sucesso."
-    else
-      render :edit
-    end      
+    ActiveRecord::Base.transaction do
+      if @request.update(request_params)
+        update_tag_ids(true)
+        redirect_to requests_path(q_sys: params[:q_sys],
+                                  q_status: params[:q_status],
+                                  q_content: params[:q_content]), notice: "Requisição atualizada com sucesso."
+      else
+        @request.tag_ids = params[:tag_ids];
+        render :edit
+      end
+    end
   end
 
   def destroy
@@ -119,12 +122,24 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
   end
 
+  def update_tag_ids(updated)
+    if updated
+      request_tag = RequestTag.where("request_id = ?", @request.id)
+      request_tag.delete_all
+    end
+
+    if params[:tag_ids]
+      params[:tag_ids].each do |tag_id|
+        RequestTag.create!(request_id: @request.id, tag_id: tag_id)
+      end
+    end    
+  end
+
   def request_params
     params.require(:request).permit(:title, :created_date, :status,
                                     :step, :priority, :requester_name,
                                     :customer_id, :project_id, :user_created_id,
-                                    :user_responsible_id, :mark_id, :topic_id,
-                                    :sub_topic_id, tag_ids: [])
+                                    :user_responsible_id, :mark_id, tag_ids: [])
   end
   
 end

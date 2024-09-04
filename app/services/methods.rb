@@ -30,13 +30,6 @@ class Methods
     batch_number.to_s.rjust(5, '0')
   end
 
-  def self.get_sub_topics(topic_id, company_id )
-    SubTopic.select(:id, :description, :topic_id)
-              .joins(topic: [{ project: :company }])
-              .where("company_id = ? and topic_id = ?", company_id, topic_id)
-              .order(Arel.sql('unaccent(sub_topics.description)'))
-  end
-
   def self.field_upcase(params) 
     # params.each do |param|
     #   params[param[0].to_sym] = params[param[0].to_sym].to_s.upcase if  (param[0] != "email") and 
@@ -52,5 +45,12 @@ class Methods
               .order("main desc, unaccent(description)")
               .pick('projects.id')    
   end
+
+  def self.get_tags(request_id)
+    RequestTag.select(:description)
+              .joins(:tag)
+              .where("request_id = ?", request_id)
+              .order("request_tags.id")
+  end  
 
 end

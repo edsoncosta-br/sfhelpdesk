@@ -3,7 +3,6 @@ class Project < ApplicationRecord
   validate :description_isempty
 
   belongs_to :company
-  has_many :topics
   has_many :tag
   has_many :marks
   has_many :allocations

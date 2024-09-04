@@ -25,14 +25,14 @@
 
 .badge {
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .semibold {
   font-weight: 500;
 }
 
-.bg-topic {
+.bg-tag {
   color: #1d4d70 !important;
   background-color: #c8e0f7 !important;  
 }

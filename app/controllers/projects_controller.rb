@@ -61,14 +61,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def filter_topic_mark
-    if !params[:request][:project_id].empty?
-      @topics = Topic.select(:id, :description).order('unaccent(description)').
-                      where('project_id = ?', params[:request][:project_id]);
-    else
-      @topics = ''
-    end
-
+  def filter_project_dependency
     if !params[:request][:project_id].empty?
       @marks = Mark.select(:id, :description).order('unaccent(description)').
                     where('project_id = ?', params[:request][:project_id]);
