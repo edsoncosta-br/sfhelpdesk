@@ -4,13 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
     settings: {
       placeholderText: '',
       searchPlaceholder: 'Buscar',
-      keepOrder: true,
+      searchText: 'Não encontrado',
+      hideSelected: true,
       maxSelected: 5
     }
   }) 
   
   if (document.getElementById('tag_ids_selected') != null) {
-    select.setSelected(document.getElementById('tag_ids_selected').value.split(' '))
+    select.setSelected(document.getElementById('tag_ids_selected').value.split(' '), false)
   }
-  // select.setSelected(['1', '3'])
 });

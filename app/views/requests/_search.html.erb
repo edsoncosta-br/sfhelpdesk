@@ -27,15 +27,15 @@
                 <span class="fw-semibold"><%=request.title%></span>
 
                 <% if request.priority %>
-                  <span title="Prioridade" class="badge rounded-pill bg-priority ms-1"><i class="fa-solid fa-star"></i></span>
+                  <span title="Prioridade" class="badge rounded-pill bg-style bg-priority ms-1"><i class="fa-solid fa-bolt"></i></span>
                 <% end %>
 
                 <% Methods.get_tags(request.id).each do |tag| %>
-                  <span title="Tópico" class="badge rounded-pill bg-tag ms-1"><%=tag.description%></span>
+                  <span title="Tag" class="badge rounded-pill bg-style bg-tag ms-1"><%=tag.description%></span>
                 <% end %>
 
                 <% if request.mark_description.present? %>
-                  <span title="Meta" class="badge rounded-pill bg-mark ms-1"><i class="fa-solid fa-rocket me-2"></i><%=request.mark_description%></span>
+                  <span title="Meta" class="badge rounded-pill bg-style bg-mark ms-1"><i class="fa-solid fa-rocket me-2"></i><%=request.mark_description%></span>
                 <% end %>                
               </div>
               

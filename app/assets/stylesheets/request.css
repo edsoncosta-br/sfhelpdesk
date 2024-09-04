@@ -26,50 +26,63 @@
 .badge {
   font-size: 11px;
   font-weight: 600;
+  height: 20px;
 }
 
 .semibold {
   font-weight: 500;
 }
 
+.bg-style {
+  border: solid;
+  border-width: 0.1rem;
+}
+
 .bg-tag {
   color: #1d4d70 !important;
-  background-color: #c8e0f7 !important;  
+  background-color: #d7eafb !important;
+  border-color: #81b0dd;
 }
 
 .bg-mark {
   color: #701d1d !important;
   background-color: #f7c8c8 !important;
+  border-color: #dbaaaa !important;  
 }
 
 .bg-priority {
-  background-color: #eef7c8 !important;
+  background-color: #faffe5 !important;
+  border-color: #b0c74e !important;  
 }
 
 .bg-step {
   min-width: 85px;
   height: 25px;
-  padding-top: 7px;
+  padding-top: 6px;
 }
 
 .bg-step-execute {
   color: #1f7628 !important;
-  background-color: #96edb6 !important;
+  background-color: #9be9db !important;
+  border-color: #6ad391 !important;
 }
 
 .bg-step-wait {
   color: #5c5c5c !important;
-  background-color: #d6d7d9 !important;
+  background-color: #e5e5e5 !important;
+  border-color: #c2c2c3 !important;
 }
 
 .bg-step-pause {
   color: #64761f !important;
   background-color: #e8ed96 !important;
+  border-color: #b0c74e !important;
 }
 
 .bg-step-finish {
   color: #3d68b7 !important;
-  background-color: #a4e1f9 !important;
+  background-color: #d1ecf7 !important;
+  border-color: #74aadd !important;
 }
 
 .open-status {
@@ -91,7 +104,6 @@
 .col-status {
   width: 24px;
   font-size: 12px;
-  /* padding-top: 8px !important; */
 }
 
 .col-step {
@@ -117,6 +129,6 @@
   font-weight: 500;
 }
 
-.fa-star {
+.fa-bolt {
   color: #cba205;
 }
