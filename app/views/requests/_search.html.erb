@@ -25,6 +25,7 @@
             <td class="align-middle">
               <div class="first-line mb-2">
                 <span class="fw-semibold"><%=request.title%></span>
+                  <%#= request.content %>
 
                 <% if request.priority %>
                   <span title="Prioridade" class="badge rounded-pill bg-style bg-priority ms-1"><i class="fa-solid fa-bolt"></i></span>
@@ -65,6 +66,13 @@
             </td>
 
             <td class='align-middle text-center col-actions-two'>
+              <%= link_to request_path(request,q_sys: params[:q_sys],
+                                               q_status: params[:q_status],
+                                               q_content: params[:q_content]), 
+                                               class: 'td-actions', title: "Visualizar" do %>
+                <i class="fa-solid fa-envelope-open pe-1"></i>
+              <% end %>
+
               <%= link_to edit_request_path(request,q_sys: params[:q_sys],
                                                     q_status: params[:q_status],
                                                     q_content: params[:q_content]), 

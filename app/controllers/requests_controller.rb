@@ -5,7 +5,7 @@ class RequestsController < ApplicationController
   def index
     requests = Request.select(:id, :title, :status, :step, :priority, 
                               :customer_id, :code, :requester_name,
-                              :user_created_id, :user_responsible_id, :mark_id, :created_date,
+                              :user_created_id, :user_responsible_id, :mark_id, :created_date, 
                               "users.nick_name user_created_name",
                               "user_responsibles_requests.nick_name user_responsible_name",
                               "marks.description mark_description",
@@ -41,6 +41,23 @@ class RequestsController < ApplicationController
     @requests = requests.all.page(params[:page]).per(Constants::PAGINAS)
     @requests_size = requests.size       
   end
+
+  def show
+    @requests = Request.select(:id, :title, :status, :step, :priority, 
+                              :customer_id, :code, :requester_name,
+                              :user_created_id, :user_responsible_id, :mark_id, :created_date, 
+                              "projects.description projects_description",
+                              "users.nick_name user_created_name",
+                              "user_responsibles_requests.nick_name user_responsible_name",
+                              "marks.description mark_description",
+                              "customers.name customers_name")
+                      .joins(project: :company)
+                      .joins(:user_created)
+                      .left_joins(:user_responsible)
+                      .left_joins(:mark)
+                      .left_joins(:customer)
+                      .where("requests.id = ?", params[:id])
+  end  
 
   def new
     @request = Request.new

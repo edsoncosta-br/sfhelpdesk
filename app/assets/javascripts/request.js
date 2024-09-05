@@ -14,3 +14,15 @@ document.addEventListener("DOMContentLoaded", function () {
     select.setSelected(document.getElementById('tag_ids_selected').value.split(' '), false)
   }
 });
+
+const allowedImageTypes = ["image/png", "image/jpg", "image/jpeg"]
+
+document.addEventListener("trix-file-accept", e => {
+  if (allowedImageTypes.includes(e.file.type)) {
+    console.log("attach");
+  } else {
+    e.preventDefault();
+    alert("Permitidas somentes images nos formatos PNG e JPG");
+    // TODO: show useful notification
+  }
+})

@@ -1,0 +1,84 @@
+<%= render "shared/header" %>
+<main>
+  <div class="container-fluid max-container">
+    <div class="page-heading"> 
+      <div class="ph-left pe-3">
+        <%=index_title('Requisição - Visualização')%>
+      </div>
+      <div class="ph-right">
+      </div>          
+    </div>
+
+    <div class="card card-size">
+      <div class="card-body card-body-style">
+
+        <% @requests.each do |request| %>
+
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label class="form-label">Título da requisição</label>
+              <div class="form-control-show"><%=request.title%></div>
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+              <label class="form-label">Projeto</label>
+              <div class="form-control-show"><%=request.projects_description%></div>              
+            </div>
+
+            <div class="col-12 col-md-9 mb-3">
+              <label class="form-label">Tags</label>
+              <div class="form-control-show"><%=request.title%></div>
+            </div>
+
+            <div class="col-12 col-md-6 mb-3">
+              <label class="form-label">Cliente</label>
+              <div class="form-control-show"><%=request.customers_name%></div>              
+            </div>  
+
+            <div class="col-12 col-md-3 mb-3">
+              <label class="form-label">Solicitante</label>
+              <div class="form-control-show"><%=request.requester_name%></div>
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+              <label class="form-label">Meta</label>
+              <div class="form-control-show"><span title="Meta" class="badge rounded-pill bg-style bg-mark"><i class="fa-solid fa-rocket me-2"></i><%=request.mark_description%></span></div>
+            
+            </div>                         
+
+            <div class="col-12 col-md-3 mb-3">
+              <label class="form-label">Status da Requisição</label>
+              <div class="form-control-show"><%=request.requester_name%></div>
+            </div>                
+
+            <div class="col-12 col-md-3 mb-3">
+              <label class="form-label">Status da Execução</label>
+              <div class="form-control-show">  <div title="Status da Execução" class="badge rounded-pill <%=bg_step(request.step)%>"><%=step(request.step) %></div>  </div>
+              
+            </div>
+
+            <div class="col-12 col-md-6 mb-3">
+              <label class="form-label">Responsável pela execução</label>
+              <div class="form-control-show"><%=request.user_responsible_name.to_s%></div>
+            </div>
+
+            <div class="col-12 mt-4">
+              <div class="field">
+                <label class="form-label">Conteúdo da Requisição</label>
+                <div class="border-content"><%= request.content %></div>
+               </div>            
+            </div>
+
+            <%#= hidden_field_tag :tag_ids_selected, @request.tag_ids.to_a %>
+          </div>
+
+          <div class="actions pt-4 text-end">
+
+          </div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</main>

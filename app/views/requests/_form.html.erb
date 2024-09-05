@@ -108,7 +108,7 @@
               <%= form.date_field :created_date, class:"form-control", autocomplete: :off %>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 mt-4">
               <div class="field">
                 <%= form.label :content, class:"form-label" %>
                 <%= form.rich_text_area :content %>
@@ -121,7 +121,7 @@
             <%= hidden_field_tag :tag_ids_selected, @request.tag_ids.to_a %>
           </div>
 
-          <div class="actions pt-2 text-end">
+          <div class="actions pt-4 text-end">
             <%= form.submit "Salvar", class:"btn btn-success input-btn me-1"%>
             <%= link_to 'Cancelar', requests_path(q_sys: params[:q_sys],
                                                   q_status: params[:q_status],

@@ -22,6 +22,6 @@ Rails.application.routes.draw do
   get 'projects/filter_project_dependency'
   resources :tags, except: [:show]
   resources :marks, except: [:show]
-  resources :requests, except: [:show]  
+  resources :requests
 
 end
