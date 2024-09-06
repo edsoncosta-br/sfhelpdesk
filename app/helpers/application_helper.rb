@@ -67,7 +67,7 @@ module ApplicationHelper
   end
 
   def form_select_customer(selected)
-    options_from_collection_for_select( Customer.select(:id, :name)
+    options_from_collection_for_select( Customer.select(:id, :name, "LPAD(CAST(customers.code AS varchar), 4, '0' ) || '-' || customers.name name")
                                                 .where("company_id = ?", current_user.company.id)
                                                 .order("unaccent(name)"), 
                                                 :id, :name, selected)

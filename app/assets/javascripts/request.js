@@ -13,6 +13,20 @@ document.addEventListener("DOMContentLoaded", function () {
   if (document.getElementById('tag_ids_selected') != null) {
     select.setSelected(document.getElementById('tag_ids_selected').value.split(' '), false)
   }
+
+  new SlimSelect({
+    select: '#customer_id',
+    settings: {
+      placeholderText: 'Selecione..',
+      searchPlaceholder: 'Buscar',
+      searchText: 'Não encontrado',
+    }
+  }) 
+  
+  if (document.getElementById('tag_ids_selected') != null) {
+    select.setSelected(document.getElementById('tag_ids_selected').value.split(' '), false)
+  }
+
 });
 
 const allowedImageTypes = ["image/png", "image/jpg", "image/jpeg"]

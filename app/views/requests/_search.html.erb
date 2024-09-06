@@ -24,20 +24,27 @@
 
             <td class="align-middle">
               <div class="first-line mb-2">
-                <span class="fw-semibold"><%=request.title%></span>
-                  <%#= request.content %>
+                <span class="fw-semibold me-1"><%=request.title%></span>
 
                 <% if request.priority %>
-                  <span title="Prioridade" class="badge rounded-pill bg-style bg-priority ms-1"><i class="fa-solid fa-bolt"></i></span>
+                  <span title="Prioridade" class="badge rounded-pill bg-style bg-priority me-1"><i class="fa-solid fa-bolt"></i></span>
                 <% end %>
 
                 <% Methods.get_tags(request.id).each do |tag| %>
-                  <span title="Tag" class="badge rounded-pill bg-style bg-tag ms-1"><%=tag.description%></span>
+                  <span title="Tag" class="badge rounded-pill bg-style bg-tag me-1"><%=tag.description%></span>
                 <% end %>
 
                 <% if request.mark_description.present? %>
-                  <span title="Meta" class="badge rounded-pill bg-style bg-mark ms-1"><i class="fa-solid fa-rocket me-2"></i><%=request.mark_description%></span>
+                  <span title="Meta" class="badge rounded-pill bg-style bg-mark me-1">
+                    <i class="fa-solid fa-rocket me-1"></i>
+                    <%=request.mark_description%>
+                  </span>
                 <% end %>                
+
+                <span title="Status da Execução" class="badge rounded-pill <%=bg_step(request.step)%> me-1">
+                  <i class="fa-solid fa-gear me-1"></i>
+                  <%=step(request.step)%>
+                </span>
               </div>
               
               <div class="second-line text-muted">
@@ -55,14 +62,10 @@
                   <% end %>
 
                   <% if request.user_responsible_name.present? %>
-                    <span class="me-3">Resp: <strong><%=request.user_responsible_name%></strong></span>
+                    <span class="me-3">Responsável: <strong><%=request.user_responsible_name%></strong></span>
                   <% end %>                  
                 </span>                
               </div>
-            </td>
-
-            <td class="align-middle col-step">
-              <span title="Status da Execução" class="badge rounded-pill <%=bg_step(request.step)%>"><%=step(request.step) %></span>            
             </td>
 
             <td class='align-middle text-center col-actions-two'>
@@ -73,15 +76,28 @@
                 <i class="fa-solid fa-envelope-open pe-1"></i>
               <% end %>
 
-              <%= link_to edit_request_path(request,q_sys: params[:q_sys],
-                                                    q_status: params[:q_status],
-                                                    q_content: params[:q_content]), 
-                                                    class: 'td-actions', title: "Alterar" do %>
-                <i class="fa-regular fa-pen-to-square pe-1"></i>
-              <% end %>
+              <% if current_user.id == request.user_created_id %> 
 
-              <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
-                data-bs-target="#delete<%=request.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
+                <%= link_to edit_request_path(request,q_sys: params[:q_sys],
+                                                      q_status: params[:q_status],
+                                                      q_content: params[:q_content]), 
+                                                      class: 'td-actions', title: "Alterar" do %>
+                  <i class="fa-regular fa-pen-to-square pe-1"></i>
+                <% end %>
+
+                <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
+                  data-bs-target="#delete<%=request.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
+
+              <% else %>
+                <span title="Pertence a outro usuário. Não poder alterada.">
+                  <i class="fa-regular fa-pen-to-square pe-1 unavailable-icon"></i>
+                </span>
+
+                <span title="Pertence a outro usuário. Não poder excluída.">
+                  <i class="fa-regular fa-trash-can pe-1 unavailable-icon"></i>
+                </span>                
+              <% end %>
+              
 
             </td>
           </tr>

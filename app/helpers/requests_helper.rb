@@ -33,25 +33,13 @@ module RequestsHelper
 
   def bg_step(step)
     if step == Constants::STATUS_EXECUTANDO[1]
-      'bg-style bg-step bg-step-execute'
+      'bg-style bg-step-execute'
     elsif step == Constants::STATUS_AGUARDANDO[1]
-      'bg-style bg-step bg-step-wait'
+      'bg-style bg-step-wait'
     elsif step == Constants::STATUS_CONCLUIDA[1]
-      'bg-style bg-step bg-step-finish'
+      'bg-style bg-step-finish'
     elsif step == Constants::STATUS_PAUSADA[1]
-      'bg-style bg-step bg-step-pause'
-    end 
-  end
-
-  def bg_step_show(step)
-    if step == Constants::STATUS_EXECUTANDO[1]
-      'bg-style bg-step-show bg-step-execute'
-    elsif step == Constants::STATUS_AGUARDANDO[1]
-      'bg-style bg-step-show bg-step-wait'
-    elsif step == Constants::STATUS_CONCLUIDA[1]
-      'bg-style bg-step-show bg-step-finish'
-    elsif step == Constants::STATUS_PAUSADA[1]
-      'bg-style bg-step-show bg-step-pause'
+      'bg-style bg-step-pause'
     end 
   end
 

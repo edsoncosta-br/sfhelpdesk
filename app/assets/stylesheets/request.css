@@ -26,7 +26,6 @@
 .badge {
   font-size: 11px;
   font-weight: 600;
-  height: 20px;
 }
 
 .semibold {
@@ -36,17 +35,19 @@
 .bg-style {
   border: solid;
   border-width: 0.1rem;
+  padding-top: 0.24rem;
+  padding-bottom: 0.24rem;
 }
 
 .bg-tag {
   color: #1d4d70 !important;
-  background-color: #d7eafb !important;
+  background-color: #e3f0fb !important;
   border-color: #81b0dd;
 }
 
 .bg-mark {
   color: #701d1d !important;
-  background-color: #f7c8c8 !important;
+  background-color: #f7d7d7 !important;
   border-color: #dbaaaa !important;  
 }
 
@@ -59,40 +60,28 @@
   border-color: #b0c74e !important;  
 }
 
-.bg-step {
-  min-width: 85px;
-  height: 25px;
-  padding-top: 6px;
-}
-
-.bg-step-show {
-  width: 100%;
-  height: 21px;
-  padding-top: 4px;
-}
-
 .bg-step-execute {
-  color: #1f7628 !important;
-  background-color: #9be9db !important;
+  color: #11911f !important;
   border-color: #6ad391 !important;
+  background-color: #fff;
 }
 
 .bg-step-wait {
   color: #5c5c5c !important;
-  background-color: #e5e5e5 !important;
   border-color: #c2c2c3 !important;
+  background-color: #fff;
 }
 
 .bg-step-pause {
-  color: #64761f !important;
-  background-color: #e8ed96 !important;
+  color: #789308 !important;
   border-color: #b0c74e !important;
+  background-color: #fff;
 }
 
 .bg-step-finish {
   color: #3d68b7 !important;
-  background-color: #d1ecf7 !important;
   border-color: #74aadd !important;
+  background-color: #fff;
 }
 
 .open-status {
@@ -108,7 +97,7 @@
 }
 
 .open-status-line {
-  font-size: 11px;  
+  font-size: 12px;  
 }
 
 .col-status {
@@ -125,7 +114,7 @@
 }
 
 .status-icon {
-  padding-left: 6px;
+  padding-left: 7px;
 }
 
 .status-text {
@@ -160,7 +149,7 @@
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  background-color: #f5f5f5;
+  background-color: #f9f8f8;
   background-clip: padding-box;
   border: 1px solid #ede8e8;
   -webkit-appearance: none;
@@ -179,10 +168,9 @@
   outline: none;
 }
 
-.divider {
-  background-color: #7fb99a;
-  height: 0.5rem;
-  border-radius: 1rem;
-  margin-top: 1.2rem;
-  margin-bottom: 1.2rem;
+.col-title {
+  border-radius: 3px;
+  padding: 0.7em;
+  border: 1px solid #cbc9c9;
+  background-color: #fffcf4;
 }

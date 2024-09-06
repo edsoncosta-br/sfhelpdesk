@@ -550,3 +550,8 @@ input {
 .ss-main .ss-values .ss-value .ss-value-delete svg path {
   stroke: #1d4d70;
 }
+
+.unavailable-icon {
+  color: #ced4da;  
+  font-size: 1.2rem;
+}

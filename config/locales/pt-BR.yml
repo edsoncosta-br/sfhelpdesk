@@ -69,7 +69,7 @@ pt-BR:
         step: Status da execução
         priority: Prioridade
         requester_name: Nome do solicitante
-        customer_id: Cliente
+        customer_id: Cliente solicitante
         project_id: Projeto
         user_created_id: Criado por
         user_responsible_id: Responsável pela execução
