@@ -57,6 +57,8 @@ class RequestsController < ApplicationController
                       .left_joins(:mark)
                       .left_joins(:customer)
                       .where("requests.id = ?", params[:id])
+
+    @request_tag_ids = RequestTag.where("request_id = ?", params[:id]).pluck("tag_id")                      
   end  
 
   def new

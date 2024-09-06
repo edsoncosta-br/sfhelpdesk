@@ -23,6 +23,5 @@ document.addEventListener("trix-file-accept", e => {
   } else {
     e.preventDefault();
     alert("Permitidas somentes images nos formatos PNG e JPG");
-    // TODO: show useful notification
   }
 })

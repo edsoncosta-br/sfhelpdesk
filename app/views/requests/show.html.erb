@@ -27,7 +27,14 @@
 
             <div class="col-12 col-md-9 mb-3">
               <label class="form-label">Tags</label>
-              <div class="form-control-show"><%=request.title%></div>
+            
+              <div class="form-control-show">
+                <% tags_show(request.id).each do |tag| %>
+                  <div title="Meta" class="badge rounded-pill bg-style bg-tag ms-1">
+                    <%=tag.description%>
+                  </div>                
+                <% end %>              
+              </div>
             </div>
 
             <div class="col-12 col-md-6 mb-3">
@@ -35,15 +42,20 @@
               <div class="form-control-show"><%=request.customers_name%></div>              
             </div>  
 
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-4 mb-3">
               <label class="form-label">Solicitante</label>
               <div class="form-control-show"><%=request.requester_name%></div>
             </div>
 
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-2 mb-3">
               <label class="form-label">Meta</label>
-              <div class="form-control-show"><span title="Meta" class="badge rounded-pill bg-style bg-mark"><i class="fa-solid fa-rocket me-2"></i><%=request.mark_description%></span></div>
-            
+              <div class="form-control-show">
+                <% if request.mark_description.present? %>
+                  <div title="Meta" class="badge rounded-pill bg-style bg-mark bg-mark-show">
+                    <i class="fa-solid fa-rocket me-2"></i><%=request.mark_description%>
+                  </div>
+                <% end %>
+              </div>
             </div>                         
 
             <div class="col-12 col-md-3 mb-3">
@@ -53,8 +65,12 @@
 
             <div class="col-12 col-md-3 mb-3">
               <label class="form-label">Status da Execução</label>
-              <div class="form-control-show">  <div title="Status da Execução" class="badge rounded-pill <%=bg_step(request.step)%>"><%=step(request.step) %></div>  </div>
-              
+
+              <div class="form-control-show">
+                <div title="Status da Execução" class="badge rounded-pill <%=bg_step_show(request.step)%>">
+                  <%=step(request.step)%>
+                </div>
+              </div>
             </div>
 
             <div class="col-12 col-md-6 mb-3">
@@ -69,7 +85,7 @@
                </div>            
             </div>
 
-            <%#= hidden_field_tag :tag_ids_selected, @request.tag_ids.to_a %>
+            <%= hidden_field_tag :tag_ids_selected_show, @request_tag_ids.to_a %>
           </div>
 
           <div class="actions pt-4 text-end">

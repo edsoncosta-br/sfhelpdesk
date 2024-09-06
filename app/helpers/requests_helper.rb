@@ -41,5 +41,23 @@ module RequestsHelper
     elsif step == Constants::STATUS_PAUSADA[1]
       'bg-style bg-step bg-step-pause'
     end 
-  end  
+  end
+
+  def bg_step_show(step)
+    if step == Constants::STATUS_EXECUTANDO[1]
+      'bg-style bg-step-show bg-step-execute'
+    elsif step == Constants::STATUS_AGUARDANDO[1]
+      'bg-style bg-step-show bg-step-wait'
+    elsif step == Constants::STATUS_CONCLUIDA[1]
+      'bg-style bg-step-show bg-step-finish'
+    elsif step == Constants::STATUS_PAUSADA[1]
+      'bg-style bg-step-show bg-step-pause'
+    end 
+  end
+
+  def tags_show(request_id)
+    RequestTag.select(:description)
+              .joins(:tag)
+              .where('request_id = ?',request_id)
+  end
 end

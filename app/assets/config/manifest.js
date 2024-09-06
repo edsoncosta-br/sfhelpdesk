@@ -3,3 +3,4 @@
 //= link_directory ../stylesheets/employee .css
 //= link_directory ../javascripts .js
 //= link_directory ../javascripts/employee .js
+//= link application.js

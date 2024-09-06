@@ -19,4 +19,4 @@
 
 - Instalar Action-text
   docker compose run app bin/rails active_storage:install
-  docker compose run app bin/rails action_text:uninstall
+  docker compose run app bin/rails action_text:install
