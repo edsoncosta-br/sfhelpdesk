@@ -56,32 +56,43 @@
 }
 
 .bg-priority {
-  /* background-color: #faffe5 !important; */
   border-color: #b0c74e !important;  
 }
 
 .bg-step-execute {
   color: #11911f !important;
   border-color: #6ad391 !important;
-  background-color: #fff;
+  background-color: #bbf2c1;
+  width: 6.5rem;
+  height: 2rem;
+  padding-top: 0.45rem;
 }
 
 .bg-step-wait {
   color: #5c5c5c !important;
   border-color: #c2c2c3 !important;
-  background-color: #fff;
+  background-color: #f5f5f5;
+  width: 6.5rem;
+  height: 2rem;
+  padding-top: 0.45rem;
 }
 
 .bg-step-pause {
-  color: #789308 !important;
+  color: #8ea721 !important;
   border-color: #b0c74e !important;
-  background-color: #fff;
+  background-color: #fffae0;
+  width: 6.5rem;
+  height: 2rem;
+  padding-top: 0.45rem;
 }
 
 .bg-step-finish {
   color: #3d68b7 !important;
   border-color: #74aadd !important;
-  background-color: #fff;
+  background-color: #dde9ff;
+  width: 6.5rem;
+  height: 2rem;
+  padding-top: 0.45rem;
 }
 
 .open-status {
@@ -106,7 +117,7 @@
 }
 
 .col-step {
-  width: 90px;
+  width: 7rem;
 }
 
 .status-line {
@@ -123,9 +134,17 @@
   color: #343434;
 }
 
+.first-line {
+  margin-bottom: 0.7rem;
+}
+
 .second-line {
   font-size: 11px;
   font-weight: 500;
+}
+
+.second-line-show {
+  margin-bottom: 0.7rem;
 }
 
 .fa-bolt {
@@ -173,4 +192,8 @@
   padding: 0.7em;
   border: 1px solid #cbc9c9;
   background-color: #fffcf4;
+}
+
+tbody tr {
+  height: 5rem;
 }
