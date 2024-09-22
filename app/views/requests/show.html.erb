@@ -79,12 +79,13 @@
           </div>
 
           <div class="actions pt-4 text-end">
-
+            <%= link_to 'Retornar', requests_path(q_sys: params[:q_sys],
+                                                  q_status: params[:q_status],
+                                                  q_content: params[:q_content]), class: 'btn btn-secondary' %>
           </div>
-
         <% end %>
-
       </div>
     </div>
+
   </div>
 </main>

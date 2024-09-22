@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[ edit update destroy ]
-  before_action :set_upcase, only: %i[ create update ]    
+  before_action :set_upcase, only: %i[ create update ]
+  before_action :purge_unattached, only: %i[ index ]
 
   def index
     requests = Request.select(:id, :title, :status, :step, :priority, 
@@ -153,6 +154,11 @@ class RequestsController < ApplicationController
       end
     end    
   end
+
+  def purge_unattached
+    # delete attached files without references
+    ActiveStorage::Blob.unattached.find_each(&:purge_later)
+  end  
 
   def request_params
     params.require(:request).permit(:title, :created_date, :status,

@@ -16,11 +16,20 @@
           <%= render "shared/error_messages", resource: @request %>
 
           <div class="row">
-            <div class="col-11 mb-3">
+            <div class="col-10 mb-3">
               <%= form.label :title, class:"form-label" %>
               <%= form.text_field :title, 
                   class:"form-control semibold #{is_invalid(@request, '_title_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"100" %>
+            </div>
+
+            <div class="col-1 mb-3">
+              <%= form.label :id, class:"form-label" %>
+              <% if (params[:action] == "edit") or (params[:action] == "update") %>
+                <input class="form-control " value="<%=@request.id.to_s.rjust(4, "0")%>" disabled>
+              <% else %>
+                <input class="form-control " value="" disabled>
+              <% end %>
             </div>
 
             <div class="col-1 mb-3">
