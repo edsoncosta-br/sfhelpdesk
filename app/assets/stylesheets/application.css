@@ -555,3 +555,7 @@ input {
   color: #ced4da;  
   font-size: 1.2rem;
 }
+
+main {
+  padding-bottom: 4rem;
+}

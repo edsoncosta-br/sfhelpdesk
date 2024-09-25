@@ -27,10 +27,6 @@
                 <span>
                   <span class="fw-semibold me-1"><%=request.title%></span>
 
-                  <% if request.priority %>
-                    <span title="Prioridade" class="badge rounded-pill bg-style bg-priority me-1"><i class="fa-solid fa-bolt"></i></span>
-                  <% end %>
-
                   <% Methods.get_tags(request.id).each do |tag| %>
                     <span title="Tag" class="badge rounded-pill bg-style bg-tag me-1"><%=tag.description%></span>
                   <% end %>
@@ -47,7 +43,7 @@
               <div class="second-line text-muted">
                 <span>
                   <span class="me-3">Id: <%=request.id.to_s.rjust(4, "0")%></span>
-                  <span>Criada em <%=I18n.l(request.created_date.to_date(), format: :short).capitalize()%></span>
+                  <span>Criação: <%=I18n.l(request.created_date.to_date(), format: :short).capitalize()%></span>
                   <span class="me-3">por <strong><%=request.user_created_name%></strong></span>
 
                   <% if request.customers_name.present? && request.requester_name.present? %>
@@ -58,17 +54,23 @@
                     <span class="me-3">Solicitante: <%=request.requester_name%></span>                                        
                   <% end %>
 
-                  <span class="me-3">Previsão: 30/09/2024</span>
+                  <span class="me-3">Previsão: <%=request.dues_date.present? ? format_date(request.dues_date) : '--'%></span>
                   <span class="me-3">Responsável: <strong><%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></strong></span>
                 </span>
               </div>
+            </td>
+
+            <td class="align-middle col-priority text-end">
+              <% if request.priority %>
+                <span title="Prioridade" class="badge rounded-pill bg-style bg-priority me-1"><i class="fa-solid fa-star"></i></span>
+              <% end %>
             </td>
 
             <td class="align-middle col-step">
               <span title="Status da Execução" class="badge rounded-pill <%=bg_step(request.step)%> me-1">
                 <%=step(request.step)%>
               </span>
-            </td>
+            </td>            
 
             <td class='align-middle text-center col-actions-two'>
               <%= link_to request_path(request,q_sys: params[:q_sys],

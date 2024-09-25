@@ -27,7 +27,7 @@
                     <span class="fw-semibold me-1"><%=request.title%></span>
 
                     <% if request.priority %>
-                      <span title="Prioridade" class="badge rounded-pill bg-style bg-priority me-1"><i class="fa-solid fa-bolt"></i></span>
+                      <span title="Prioridade" class="badge rounded-pill bg-style bg-priority me-1"><i class="fa-solid fa-star"></i></span>
                     <% end %>
 
                     <% Methods.get_tags(request.id).each do |tag| %>
@@ -57,7 +57,7 @@
                   </div>
 
                   <div class="second-line text-muted">
-                    <span class="me-3">Previsão: 30/09/2024</span>
+                    <span class="me-3">Previsão: <strong><%=request.dues_date.present? ? format_date(request.dues_date) : '--'%></strong></span>
                     <span class="me-3">Responsável: <strong><%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></strong></span>                  
                   </div>
                 </div>

@@ -6,7 +6,9 @@ class RequestsController < ApplicationController
   def index
     requests = Request.select(:id, :title, :status, :step, :priority, 
                               :customer_id, :code, :requester_name,
-                              :user_created_id, :user_responsible_id, :mark_id, :created_date, 
+                              :user_created_id, :user_responsible_id, 
+                              :mark_id, :created_date, 
+                              "coalesce(marks.due_date, requests.due_date) dues_date",
                               "users.nick_name user_created_name",
                               "user_responsibles_requests.nick_name user_responsible_name",
                               "marks.description mark_description",
@@ -17,7 +19,7 @@ class RequestsController < ApplicationController
                       .left_joins(:mark)
                       .left_joins(:customer)
                       .where("users.company_id = ?", current_user.company.id)
-                      .order(Arel.sql('status, priority desc, created_date desc, requests.id desc'))
+                      .order(Arel.sql('priority desc, created_date desc, requests.id desc'))
 
     if params[:q_sys].blank?
       params[:q_sys] = Methods.select_allocations(current_user.company.id, current_user.id)
@@ -46,7 +48,9 @@ class RequestsController < ApplicationController
   def show
     @requests = Request.select(:id, :title, :status, :step, :priority, 
                               :customer_id, :code, :requester_name,
-                              :user_created_id, :user_responsible_id, :mark_id, :created_date, 
+                              :user_created_id, :user_responsible_id, 
+                              :mark_id, :created_date,
+                              "coalesce(marks.due_date, requests.due_date) dues_date",
                               "projects.description projects_description",
                               "users.nick_name user_created_name",
                               "user_responsibles_requests.nick_name user_responsible_name",
@@ -161,7 +165,7 @@ class RequestsController < ApplicationController
   end  
 
   def request_params
-    params.require(:request).permit(:title, :created_date, :status,
+    params.require(:request).permit(:title, :created_date, :due_date, :status,
                                     :step, :priority, :requester_name,
                                     :customer_id, :project_id, :user_created_id,
                                     :user_responsible_id, :mark_id, :content, 

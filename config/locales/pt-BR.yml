@@ -56,15 +56,16 @@ pt-BR:
         description: Descrição
       mark:
         description: Descrição da Meta
-        due_date: Previsão de Entrega
-        release_date: Data de Conclusão
+        due_date: Previsão
+        release_date: Conclusão
         project_id: Projeto
       tag:
         description: Descrição da Tag
         project_id: Projeto        
       request:
         title: Título da requisição
-        created_date: Data da criação
+        created_date: Criação
+        due_date: Previsão
         status: Status da requisição
         step: Status da execução
         priority: Prioridade

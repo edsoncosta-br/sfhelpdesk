@@ -56,7 +56,10 @@
 }
 
 .bg-priority {
-  border-color: #b0c74e !important;  
+  border-color: #b0c74e !important;
+  background-color: #ffffe8;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .bg-step-execute {
@@ -118,6 +121,12 @@
 
 .col-step {
   width: 7rem;
+  padding-left: 0.3rem !important;
+}
+
+.col-priority {
+  padding-right: 0 !important;
+  width: 3rem;
 }
 
 .status-line {
@@ -147,7 +156,7 @@
   margin-bottom: 0.7rem;
 }
 
-.fa-bolt {
+.fa-star {
   color: #cba205;
 }
 

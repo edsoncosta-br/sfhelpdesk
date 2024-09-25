@@ -44,11 +44,12 @@
               <%= select_tag :project_id, 
                               form_select_project_allocations(@request.project_id),
                               class:"form-select form-control #{is_invalid(@request, '_project_isempty_')}",
-                              data: {remote: true, url: url_for(controller: "projects", action: "filter_project_dependency")},
+                              data: { remote: true, 
+                                      url: url_for(controller: "projects", action: "filter_project_dependency")},
                               name:"request[project_id]" %>
             </div>
 
-            <div class="col-12 col-md-9 mb-3">
+            <div class="col-12 col-md-7 mb-3">
               <label class="form-label" for="tag_ids">Selecione as Tags (max:5)</label>
               <%= select_tag :tag_ids,
                               form_select_project_tags(@request.project_id),
@@ -56,6 +57,11 @@
                               class:"form-control",
                               name:"tag_ids[]"%> 
             </div>
+
+            <div class="col-12 col-md-2 mb-3">
+              <%= form.label :due_date, class:"form-label" %>
+              <%= form.date_field :due_date, class:"form-control", autocomplete: :off %>
+            </div>            
 
             <div class="col-12 col-md-6 mb-3">
               <%= form.label :customer_id, class:"form-label" %>
@@ -92,7 +98,7 @@
                                       id:'idstatus') %>
             </div>                
 
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-4 mb-3">
               <%= form.label :step, class:"form-label" %>
               <%= form.select(:step, [Constants::STATUS_EXECUTANDO,
                                       Constants::STATUS_AGUARDANDO,
@@ -112,7 +118,7 @@
                               name:"request[user_responsible_id]" %>
             </div>
 
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-2 mb-3">
               <%= form.label :created_date, class:"form-label" %>
               <%= form.date_field :created_date, class:"form-control", autocomplete: :off %>
             </div>
