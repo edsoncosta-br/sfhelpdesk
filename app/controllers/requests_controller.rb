@@ -70,13 +70,13 @@ class RequestsController < ApplicationController
     @request = Request.new
     @request.status = Constants::STEP_ABERTA[1]
     @request.step = Constants::STATUS_AGUARDANDO[1]
-    @request.created_date = DateTime.now()
     @request.project_id = params[:q_sys]
   end
 
   def create
     @request = Request.new(request_params)
     @request.user_created_id = current_user.id
+    @request.created_date = DateTime.now()    
     
     respond_to do |format|
       ActiveRecord::Base.transaction do
