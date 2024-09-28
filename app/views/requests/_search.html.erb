@@ -28,11 +28,13 @@
                   <span class="fw-semibold me-1"><%=request.title%></span>
 
                   <% Methods.get_tags(request.id).each do |tag| %>
-                    <span title="Tag" class="badge rounded-pill bg-style bg-tag me-1"><%=tag.description%></span>
+                    <span class="badge rounded-pill bg-style bg-tag me-1" 
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
                   <% end %>
 
                   <% if request.mark_description.present? %>
-                    <span title="Meta" class="badge rounded-pill bg-style bg-mark me-1">
+                    <span class="badge rounded-pill bg-style bg-mark me-1" 
+                          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Meta">
                       <i class="fa-solid fa-rocket me-1"></i>
                       <%=request.mark_description%>
                     </span>
@@ -55,19 +57,23 @@
                   <% end %>
 
                   <span class="me-3">Previsão: <%=request.dues_date.present? ? format_date(request.dues_date) : '--'%></span>
-                  <span class="me-3">Responsável: <strong><%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></strong></span>
+                  <span class="me-3">
+                    Responsável: <strong><%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></strong>
+                  </span>
                 </span>
               </div>
             </td>
 
             <td class="align-middle col-priority text-end">
               <% if request.priority %>
-                <span title="Prioridade" class="badge rounded-pill bg-style bg-priority me-1"><i class="fa-solid fa-star"></i></span>
+                <span class="badge rounded-pill bg-style bg-priority me-1" 
+                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade"><i class="fa-solid fa-star"></i></span>
               <% end %>
             </td>
 
             <td class="align-middle col-step">
-              <span title="Status da Execução" class="badge rounded-pill <%=bg_step(request.step)%> me-1">
+              <span class="badge rounded-pill <%=bg_step(request.step)%> me-1"
+                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Execução">
                 <%=step(request.step)%>
               </span>
             </td>            

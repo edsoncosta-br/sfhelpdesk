@@ -10,3 +10,4 @@
 //= require ./flashMessages.js
 //= require ./fontawesome/all.js
 //= require ./scripts.js
+
