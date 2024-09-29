@@ -20,13 +20,17 @@
           <tr>
             <td class='align-middle'> <%= position.description %> </td>
             <td class='align-middle text-center '>
-              <%= link_to edit_position_path(position, q_desc: params[:q_desc]), class: 'td-actions', title: "Alterar" do %>
+              <%= link_to edit_position_path( position, 
+                                              q_desc: params[:q_desc]), 
+                                              class: 'td-actions', 
+                                              data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Alterar" } do %>
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
               <% end %>
 
-              <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
-                data-bs-target="#delete<%=position.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
-
+              <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir">
+                <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
+                  data-bs-target="#delete<%=position.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
+              </span>
             </td>
           </tr>
 
