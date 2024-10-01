@@ -21,7 +21,7 @@
 
             <div class="col-12 mb-3">
               <div class="col-title d-flex align-items-center">
-                <div class="col-status">
+                <div class="col-status me-2">
                   <i class="fa-solid fa-circle <%=color_status(request.status)%> "></i>
                 </div>
               
@@ -36,7 +36,7 @@
 
                     <% if request.mark_description.present? %>
                       <span class="badge rounded-pill bg-style bg-mark me-1" 
-                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Meta"><i class="fa-solid fa-rocket me-2"></i>
+                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Meta"><i class="fa-solid fa-flag me-1"></i>
                         <%=request.mark_description%>
                       </span>
                     <% end %>
@@ -46,7 +46,7 @@
                     <span>
                       <span class="me-3"><%=request.projects_description%></span>
                       <span class="me-3">Id: <%=request.id.to_s.rjust(4, "0")%></span>
-                      <span>Criação: <%=I18n.l(request.created_date.to_date(), format: :short).capitalize()%></span>
+                      <span>Criação: <%#=I18n.l(request.created_date.to_date(), format: :short).capitalize()%> <%=format_date(request.created_date)%> </span>
                       <span class="me-3">por <strong><%=request.user_created_name%></strong></span>
 
                       <% if request.customers_name.present? && request.requester_name.present? %>
@@ -66,9 +66,8 @@
                 </div>
 
                 <div class="col-priority">
-                  <span class="badge rounded-pill bg-style bg-priority me-1" 
-                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade"><i class="fa-solid fa-star"></i>
-                  </span>
+                  <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
+                    <i class="fa-solid fa-star"></i></span>
                 </div>                
 
                 <div class="col-step">

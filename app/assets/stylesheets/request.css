@@ -46,9 +46,13 @@
 }
 
 .bg-mark {
-  color: #805d35 !important;
+  /* color: #805d35 !important;
   background-color: #f3d6b4 !important;
-  border-color: #dbaaaa !important;  
+  border-color: #dbaaaa !important; */
+
+  color: #b75c5c !important;
+  background-color: #fff5f5 !important;
+  border-color: #dbaaaa !important;
 }
 
 .bg-mark-show {
@@ -107,16 +111,16 @@
 }
 
 .archived-status {
-  color: #df8585;
+  color: #dd3434;
 }
 
 .open-status-line {
-  font-size: 12px;  
+  font-size: 10px;  
 }
 
 .col-status {
-  width: 24px;
-  font-size: 12px;
+  width: 1rem;
+  font-size: 10px;
 }
 
 .col-step {
@@ -125,8 +129,7 @@
 }
 
 .col-priority {
-  padding-right: 0 !important;
-  width: 3rem;
+  width: 2rem;
 }
 
 .status-line {
@@ -218,7 +221,7 @@ tbody tr {
   width: 100% !important;
 }
 
-tbody tr {
+.tr-attached {
   height: inherit
 }
 
@@ -232,5 +235,10 @@ tbody tr {
 }
 
 .fa-download, .fa-eye {
-  color: #026c38;
+  color: #049b51;
+  font-size: 1.2rem;
+}
+
+.unavailable {
+  color: #ced4da;
 }

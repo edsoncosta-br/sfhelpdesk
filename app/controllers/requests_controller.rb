@@ -170,7 +170,7 @@ class RequestsController < ApplicationController
                                     :step, :priority, :requester_name,
                                     :customer_id, :project_id, :user_created_id,
                                     :user_responsible_id, :mark_id, :content, 
-                                    tag_ids: [], files:[])
+                                    tag_ids: [], new_files:[])
   end
   
 end

@@ -35,7 +35,7 @@
                   <% if request.mark_description.present? %>
                     <span class="badge rounded-pill bg-style bg-mark me-1" 
                           data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Meta">
-                      <i class="fa-solid fa-rocket me-1"></i>
+                      <i class="fa-solid fa-flag me-1"></i>
                       <%=request.mark_description%>
                     </span>
                   <% end %>                
@@ -45,7 +45,7 @@
               <div class="second-line text-muted">
                 <span>
                   <span class="me-3">Id: <%=request.id.to_s.rjust(4, "0")%></span>
-                  <span>Criação: <%=I18n.l(request.created_date.to_date(), format: :short).capitalize()%></span>
+                  <span>Criação: <%#=I18n.l(request.created_date.to_date(), format: :short).capitalize()%> <%=format_date(request.created_date)%> </span>
                   <span class="me-3">por <strong><%=request.user_created_name%></strong></span>
 
                   <% if request.customers_name.present? && request.requester_name.present? %>
@@ -71,10 +71,10 @@
               </div>
             </td>
 
-            <td class="align-middle col-priority text-end">
+            <td class="align-middle col-priority">
               <% if request.priority %>
-                <span class="badge rounded-pill bg-style bg-priority me-1" 
-                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade"><i class="fa-solid fa-star"></i></span>
+                <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
+                  <i class="fa-solid fa-star"></i></span>
               <% end %>
             </td>
 

@@ -57,7 +57,7 @@ document.addEventListener("trix-file-accept", e => {
 })
 
 document.addEventListener("change", function () {
-  var input = document.getElementById('request_files');
+  var input = document.getElementById('request_new_files');
   var output = document.getElementById('fileList');
   var children = "";
   

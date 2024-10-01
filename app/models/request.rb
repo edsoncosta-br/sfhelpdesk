@@ -21,6 +21,7 @@ class Request < ApplicationRecord
   # has_many :tags, through: :request_tags
 
   attr_accessor :tag_ids
+  attr_reader :new_files  
 
   has_rich_text :content
 
@@ -30,7 +31,12 @@ class Request < ApplicationRecord
 
   def count_attached
     ActiveStorage::Attachment.where(record_type: 'Request', record_id: id).count
-  end   
+  end
+
+  # add attachments without deleting previous ones on every update
+  def new_files=(files)
+    self.files.attach(files)
+  end  
 
   private
 

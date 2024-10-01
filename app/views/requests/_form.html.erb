@@ -72,7 +72,7 @@
               <%= form.label :requester_name, class:"form-label" %>
               <%= form.text_field :requester_name, 
                   class:"form-control", 
-                  autofocus: true, autocomplete: :off, maxlength:"30" %>
+                  autocomplete: :off, maxlength:"30" %>
             </div>
 
             <div class="col-12 col-md-3 mb-3">
@@ -134,7 +134,7 @@
                     <tbody>
                       <% @request_files.each do |request_file| %>
                         <% request_file.files.each do |file| %>
-                          <tr>
+                          <tr class="tr-attached">
                             <td class="align-middle" id='filename_<%= file.id %>'><%= file.filename %></td>
                             <td class='align-middle'><%= number_to_human_size(file.byte_size) %></td>
 
@@ -142,11 +142,11 @@
                               <% if ActiveStorage.content_types_allowed_inline.include?(file.content_type) %>
                                 <%= link_to rails_blob_url(file, disposition: "inline", only_path: true), target: :_blank,
                                   title: "Visualizar Arquivo", id:"id_view_#{file.id}", class:"class_view" do %>
-                                  <i class="fa-solid fa-eye fa-xl"></i>
+                                  <i class="fa-solid fa-eye"></i>
                                 <%end%>
                               <%else%>                                  
                                 <span title="Não disponível">
-                                  <i class="fa-solid fa-eye fa-xl unavailable"></i>
+                                  <i class="fa-solid fa-eye unavailable"></i>
                                 </span>
                               <%end%>
                             </td>
@@ -154,7 +154,7 @@
                             <td class='align-middle text-center'>
                               <%= link_to rails_blob_path(file, disposition: "attachment", only_path: true),
                                 title: "Download do Arquivo", id:"id_download_#{file.id}", class:"class_download" do %>
-                                <i class="fa-solid fa-download fa-xl"></i>
+                                <i class="fa-solid fa-download"></i>
                               <%end%> 
                             </td>                              
                           </tr>                          
@@ -167,8 +167,8 @@
             <%end%>
 
             <div class="col-12 mb-3">
-              <label for="process_batch_files", class="form-label">Adicionar anexos: (max:3 MB)</label>
-              <%= form.file_field :files, multiple: true, class:"file_area"%> 
+              <label for="new_files", class="form-label">Adicionar anexos: (max:3 MB)</label>
+              <%= form.file_field :new_files, multiple: true, class:"file_area"%> 
             </div>
 
             <div class="col-12">
