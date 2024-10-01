@@ -5,15 +5,29 @@
       <div class="ph-left pe-3">
         <%=index_title('Requisição - Visualização')%>
       </div>
+      
       <div class="ph-right">
+        <% if current_user.id == @requests[0].user_created_id %> 
+          <%= link_to edit_request_path(@requests[0].id,q_sys: params[:q_sys],
+                                                        q_status: params[:q_status],
+                                                        q_content: params[:q_content]), 
+                                                class: 'btn btn-outline-success me-1' do %>
+            <i class="fa-regular fa-pen-to-square pe-1"></i>Alterar
+          <% end %>
+          
+          <a class="btn btn-outline-danger me-3" href="#" data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
+              <i class="fa-regular fa-trash-can pe-1"></i>Excluir
+          </a>
+        <% end %>                                              
+
         <%= link_to 'Retornar', requests_path(q_sys: params[:q_sys],
                                               q_status: params[:q_status],
-                                              q_content: params[:q_content]), class: 'btn btn-action btn-secondary' %>
-      </div>          
+                                              q_content: params[:q_content]), class: 'btn btn-secondary' %>        
+      </div>
     </div>
 
     <div class="card card-size">
-      <div class="card-body card-body-style">
+      <div class="card-body card-body-style brd">
 
         <% @requests.each do |request| %>
 
@@ -46,7 +60,7 @@
                     <span>
                       <span class="me-3"><%=request.projects_description%></span>
                       <span class="me-3">Id: <%=request.id.to_s.rjust(4, "0")%></span>
-                      <span>Criação: <%#=I18n.l(request.created_date.to_date(), format: :short).capitalize()%> <%=format_date(request.created_date)%> </span>
+                      <span>Criação: <%=format_date(request.created_date)%> </span>
                       <span class="me-3">por <strong><%=request.user_created_name%></strong></span>
 
                       <% if request.customers_name.present? && request.requester_name.present? %>
@@ -78,12 +92,52 @@
               </div>
             </div>
 
-            <div class="col-12 mt-3">
+            <div class="col-12 mt-2 mb-3">
               <div class="field">
                 <label class="form-label">Conteúdo da Requisição</label>
                 <div class="border-content"><%= request.content %></div>
                </div>            
             </div>
+
+            <% if request.any_attached? %>
+              <div class="col-12">
+                <label class="form-label">Anexos</label>
+                <div class="table-responsive table-attached">
+                  <table class='table table-borderless table-hover'>
+                    <tbody>
+                      <% @request_files.each do |request_file| %>
+                        <% request_file.files.each do |file| %>
+                          <tr class="tr-attached">
+                            <td class="align-middle" id='filename_<%= file.id %>'><%= file.filename %></td>
+                            <td class='align-middle'><%= number_to_human_size(file.byte_size) %></td>
+
+                            <td class='align-middle text-center'>
+                              <% if ActiveStorage.content_types_allowed_inline.include?(file.content_type) %>
+                                <%= link_to rails_blob_url(file, disposition: "inline", only_path: true), target: :_blank,
+                                  title: "Visualizar Arquivo", id:"id_view_#{file.id}", class:"class_view" do %>
+                                  <i class="fa-solid fa-eye"></i>
+                                <%end%>
+                              <%else%>                                  
+                                <span title="Não disponível">
+                                  <i class="fa-solid fa-eye unavailable"></i>
+                                </span>
+                              <%end%>
+                            </td>
+
+                            <td class='align-middle text-center'>
+                              <%= link_to rails_blob_path(file, disposition: "attachment", only_path: true),
+                                title: "Download do Arquivo", id:"id_download_#{file.id}", class:"class_download" do %>
+                                <i class="fa-solid fa-download"></i>
+                              <%end%> 
+                            </td>                              
+                          </tr>                          
+                        <%end%>
+                      <%end%>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <%end%>
 
             <%= hidden_field_tag :tag_ids_selected_show, @request_tag_ids.to_a %>
           </div>
@@ -93,6 +147,30 @@
         <% end %>
       </div>
     </div>
-
   </div>
+
+  <div class="modal modal-delete fade" id="delete<%=@requests[0].id%>" tabindex="-1" 
+        aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+        <div class="modal-header"> <i class="fas fa-exclamation-triangle fa-2x modal-header-icon me-2"></i>
+          <h1 class="modal-title" id="deleteLabel">Confirmação</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-body">
+          Confirma a exclusão da Requisição: <br> <%= @requests[0].title %> ?
+        </div>
+        <div class="modal-footer actions">
+          <%= link_to 'Excluir', request_path(@requests[0],q_sys: params[:q_sys],
+                                                           q_status: params[:q_status],
+                                                           q_content: params[:q_content]), 
+              class:"btn btn-danger", method: :delete %>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>

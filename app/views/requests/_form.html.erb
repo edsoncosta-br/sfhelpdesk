@@ -6,18 +6,20 @@
         <%=index_title('Requisição - ' + action_message)%>
       </div>
       <div class="ph-right">
+        <span class="badge rounded-pill bg-edit me-1 <%=color_status(@request.status)%> ">Status: <%=status_request(@request.status)%></span>
+        <span class="badge rounded-pill bg-edit me-1">Execução: <%=step(@request.step)%></span>            
       </div>          
     </div>
 
     <div class="card card-size">
-      <div class="card-body card-body-style">
+      <div class="card-body card-body-style brd">
 
-        <%= form_with(model: @request ) do |form| %>
+        <%= form_with(model: @request) do |form| %>
           <%= render "shared/error_messages", resource: @request %>
 
           <div class="row">
             <div class="col-10 mb-3">
-              <%= form.label :title, class:"form-label" %>
+              <%= form.label :title, class:"form-label" %> 
               <%= form.text_field :title, 
                   class:"form-control semibold #{is_invalid(@request, '_title_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"100" %>
@@ -59,7 +61,7 @@
             </div>
 
 
-            <div class="col-12 col-md-6 mb-3">
+            <div class="col-12 col-md-8 mb-3">
               <%= form.label :customer_id, class:"form-label" %>
               <%= select_tag :customer_id, 
                               form_select_customer(@request.customer_id),
@@ -68,14 +70,14 @@
                               name:"request[customer_id]" %>
             </div>  
 
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-4 mb-3">
               <%= form.label :requester_name, class:"form-label" %>
               <%= form.text_field :requester_name, 
                   class:"form-control", 
                   autocomplete: :off, maxlength:"30" %>
             </div>
 
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-4 mb-3">
               <%= form.label :mark_id, class:"form-label" %>
               <%= select_tag :mark_id, 
                               form_select_mark(@request.project_id, @request.mark_id),
@@ -84,25 +86,9 @@
                               name:"request[mark_id]" %>
             </div>                         
 
-            <div class="col-12 col-md-3 mb-3">
-              <%= form.label :status, class:"form-label" %>
-              <%= form.select(:status, [Constants::STEP_ABERTA,
-                                        Constants::STEP_FINALIZADA,
-                                        Constants::STEP_ARQUIVADA], 
-                                      {},
-                                      class:'form-select form-control', 
-                                      id:'idstatus') %>
-            </div>                
-
-            <div class="col-12 col-md-3 mb-3">
-              <%= form.label :step, class:"form-label" %>
-              <%= form.select(:step, [Constants::STATUS_EXECUTANDO,
-                                      Constants::STATUS_AGUARDANDO,
-                                      Constants::STATUS_PAUSADA,
-                                      Constants::STATUS_CONCLUIDA], 
-                                      {},
-                                      class:'form-select form-control', 
-                                      id:'idstep') %>
+            <div class="col-12 col-md-4 mb-3">
+              <%= form.label :due_date, class:"form-label" %>
+              <%= form.date_field :due_date, class:"form-control", autocomplete: :off %>
             </div>
 
             <div class="col-12 col-md-4 mb-3">
@@ -112,11 +98,6 @@
                               include_blank: "Selecione..", 
                               class:"form-select form-control #{is_invalid(@request, '_user_responsible_isempty_')}",
                               name:"request[user_responsible_id]" %>
-            </div>
-
-            <div class="col-12 col-md-2 mb-3">
-              <%= form.label :due_date, class:"form-label" %>
-              <%= form.date_field :due_date, class:"form-control", autocomplete: :off %>
             </div>
 
             <div class="col-12 mt-4 mb-3">
@@ -173,7 +154,7 @@
 
             <div class="col-12">
               <div class="file_selected">
-                <div id="fileList"></div>
+                <div id="fileList"><ul></ul></div>
               </div>
             </div>
 
@@ -185,9 +166,19 @@
 
           <div class="actions pt-4 text-end">
             <%= form.submit "Salvar", class:"btn btn-success input-btn me-1"%>
-            <%= link_to 'Cancelar', requests_path(q_sys: params[:q_sys],
-                                                  q_status: params[:q_status],
-                                                  q_content: params[:q_content]), class: 'btn btn-secondary' %>
+
+            <% if (params[:action] == "edit") or (params[:action] == "update") %>
+              <%= link_to request_path(@request,q_sys: params[:q_sys],
+                                                q_status: params[:q_status],
+                                                q_content: params[:q_content]), 
+                                                class: 'btn btn-secondary' do %>
+                Cancelar
+              <% end %>                                                
+            <% else %>
+              <%= link_to 'Cancelar', requests_path(q_sys: params[:q_sys],
+                                                    q_status: params[:q_status],
+                                                    q_content: params[:q_content]), class: 'btn btn-secondary' %>
+            <% end %>
           </div>
 
         <% end %>

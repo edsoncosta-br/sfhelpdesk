@@ -64,19 +64,22 @@ class RequestsController < ApplicationController
                       .where("requests.id = ?", params[:id])
 
     @request_tag_ids = RequestTag.where("request_id = ?", params[:id]).pluck("tag_id")                      
+    @request_files = Request.where("requests.id = ?", params[:id]).with_attached_files
   end  
 
   def new
     @request = Request.new
-    @request.status = Constants::STEP_ABERTA[1]
-    @request.step = Constants::STATUS_AGUARDANDO[1]
     @request.project_id = params[:q_sys]
+    @request.status = Constants::STEP_ABERTA[1]
+    @request.step = Constants::STATUS_AGUARDANDO[1]        
   end
 
   def create
     @request = Request.new(request_params)
     @request.user_created_id = current_user.id
     @request.created_date = DateTime.now()    
+    @request.status = Constants::STEP_ABERTA[1]
+    @request.step = Constants::STATUS_AGUARDANDO[1]    
     
     respond_to do |format|
       ActiveRecord::Base.transaction do
@@ -102,9 +105,9 @@ class RequestsController < ApplicationController
     ActiveRecord::Base.transaction do
       if @request.update(request_params)
         update_tag_ids(true)
-        redirect_to requests_path(q_sys: params[:q_sys],
-                                  q_status: params[:q_status],
-                                  q_content: params[:q_content]), notice: "Requisição atualizada com sucesso."
+        redirect_to request_path(@request,q_sys: params[:q_sys],
+                                          q_status: params[:q_status],
+                                          q_content: params[:q_content]), notice: "Requisição atualizada com sucesso."
       else
         @request.tag_ids = params[:tag_ids];
         render :edit

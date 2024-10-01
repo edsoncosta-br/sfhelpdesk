@@ -9,6 +9,16 @@ module RequestsHelper
     end 
   end 
 
+  def status_request(status)
+    if status == Constants::STEP_ABERTA[1]
+      'Aberta'
+    elsif status == Constants::STEP_FINALIZADA[1]
+      'Finalizada'
+    elsif status == Constants::STEP_ARQUIVADA[1]
+      'Arquivada'
+    end 
+  end   
+
   def color_status(status)
     if status == Constants::STEP_ABERTA[1]
       'open-status'

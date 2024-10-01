@@ -474,10 +474,13 @@ body {
 }
 
 .card-body-style {
-  border-left: 0.4rem solid #a8d7be !important;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  padding-top: 1.5rem;
+  padding-top: 2rem;
+}
+
+.brd {
+  border-top: 0.4rem solid #a8d7be !important;
 }
 
 @media screen and (max-width: 767px) {
