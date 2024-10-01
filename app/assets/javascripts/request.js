@@ -55,3 +55,29 @@ document.addEventListener("trix-file-accept", e => {
     alert("Tamanho máximo da imagem dever ser de 2MB!")
   }
 })
+
+document.addEventListener("change", function () {
+  var input = document.getElementById('request_files');
+  var output = document.getElementById('fileList');
+  var children = "";
+  
+  if (input !== null) {
+    for (var i = 0; i < input.files.length; ++i) {
+      children += '<li>' + input.files.item(i).name + ' - ' + returnFileSize(input.files.item(i).size) + '</li>';
+    }
+  }
+  
+  if (output !== null) {
+    output.innerHTML = '<ul>'+children+'</ul>';
+  }
+});
+
+function returnFileSize(number) {
+  if (number < 1024) {
+    return `${number} bytes`;
+  } else if (number >= 1024 && number < 1048576) {
+    return `${(number / 1024).toFixed(1)} KB`;
+  } else if (number >= 1048576) {
+    return `${(number / 1048576).toFixed(1)} MB`;
+  }
+};

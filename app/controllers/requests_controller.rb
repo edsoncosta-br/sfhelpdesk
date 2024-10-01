@@ -95,6 +95,7 @@ class RequestsController < ApplicationController
 
   def edit
     @request.tag_ids = RequestTag.where("request_id = ?", @request.id).pluck("tag_id")
+    @request_files = Request.where("requests.id = ?", params[:id]).with_attached_files
   end
 
   def update
@@ -169,7 +170,7 @@ class RequestsController < ApplicationController
                                     :step, :priority, :requester_name,
                                     :customer_id, :project_id, :user_created_id,
                                     :user_responsible_id, :mark_id, :content, 
-                                    tag_ids: [])
+                                    tag_ids: [], files:[])
   end
   
 end

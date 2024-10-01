@@ -119,11 +119,62 @@
               <%= form.date_field :due_date, class:"form-control", autocomplete: :off %>
             </div>
 
-            <div class="col-12 mt-4">
+            <div class="col-12 mt-4 mb-3">
               <div class="field">
                 <%= form.label :content, class:"form-label" %>
                 <%= form.rich_text_area :content %>
               </div>            
+            </div>
+
+            <% if @request.any_attached? %>
+              <div class="col-12 mb-3">
+                <label class="form-label">Anexos cadastrados</label>
+                <div class="table-responsive table-attached">
+                  <table class='table table-borderless table-hover'>
+                    <tbody>
+                      <% @request_files.each do |request_file| %>
+                        <% request_file.files.each do |file| %>
+                          <tr>
+                            <td class="align-middle" id='filename_<%= file.id %>'><%= file.filename %></td>
+                            <td class='align-middle'><%= number_to_human_size(file.byte_size) %></td>
+
+                            <td class='align-middle text-center'>
+                              <% if ActiveStorage.content_types_allowed_inline.include?(file.content_type) %>
+                                <%= link_to rails_blob_url(file, disposition: "inline", only_path: true), target: :_blank,
+                                  title: "Visualizar Arquivo", id:"id_view_#{file.id}", class:"class_view" do %>
+                                  <i class="fa-solid fa-eye fa-xl"></i>
+                                <%end%>
+                              <%else%>                                  
+                                <span title="Não disponível">
+                                  <i class="fa-solid fa-eye fa-xl unavailable"></i>
+                                </span>
+                              <%end%>
+                            </td>
+
+                            <td class='align-middle text-center'>
+                              <%= link_to rails_blob_path(file, disposition: "attachment", only_path: true),
+                                title: "Download do Arquivo", id:"id_download_#{file.id}", class:"class_download" do %>
+                                <i class="fa-solid fa-download fa-xl"></i>
+                              <%end%> 
+                            </td>                              
+                          </tr>                          
+                        <%end%>
+                      <%end%>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <%end%>
+
+            <div class="col-12 mb-3">
+              <label for="process_batch_files", class="form-label">Adicionar anexos: (max:3 MB)</label>
+              <%= form.file_field :files, multiple: true, class:"file_area"%> 
+            </div>
+
+            <div class="col-12">
+              <div class="file_selected">
+                <div id="fileList"></div>
+              </div>
             </div>
 
             <%= hidden_field_tag :q_sys, params[:q_sys] %>

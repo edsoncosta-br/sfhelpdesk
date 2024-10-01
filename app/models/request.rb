@@ -1,4 +1,5 @@
 class Request < ApplicationRecord
+  has_many_attached :files
 
   validate :title_isempty
   validate :created_date_isempty
@@ -6,6 +7,7 @@ class Request < ApplicationRecord
   validate :step_isempty
   validate :project_id_isempty
   validate :user_created_id_isempty
+  # validates :files, size: { less_than: 3.megabytes }  
 
   belongs_to :customer, required: false
   belongs_to :project
@@ -21,6 +23,14 @@ class Request < ApplicationRecord
   attr_accessor :tag_ids
 
   has_rich_text :content
+
+  def any_attached?
+    ActiveStorage::Attachment.where(record_type: 'Request', record_id: id).any?
+  end
+
+  def count_attached
+    ActiveStorage::Attachment.where(record_type: 'Request', record_id: id).count
+  end   
 
   private
 

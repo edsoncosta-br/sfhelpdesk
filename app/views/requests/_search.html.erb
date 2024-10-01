@@ -60,6 +60,13 @@
                   <span class="me-3">
                     Responsável: <strong><%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></strong>
                   </span>
+
+                  <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Anexo(s)">
+                    <% if request.any_attached? %>
+                      <i class="fa-solid fa-paperclip"></i>
+                      <%= request.count_attached %>
+                    <% end %>
+                  </span>
                 </span>
               </div>
             </td>
@@ -112,7 +119,6 @@
                   <i class="fa-regular fa-trash-can pe-1 unavailable-icon"></i>
                 </span>                
               <% end %>
-              
 
             </td>
           </tr>

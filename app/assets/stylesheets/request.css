@@ -206,3 +206,31 @@
 tbody tr {
   height: 5rem;
 }
+
+.file_area {
+  background-color: #fff;
+  border-radius: 0.375rem;
+  border: 1px solid #ced4da;
+  
+  padding-left: 1.5rem;
+  padding-top: 1.0rem;
+  padding-bottom: 1.0rem;
+  width: 100% !important;
+}
+
+tbody tr {
+  height: inherit
+}
+
+.table-attached {
+  border-radius: 0.375rem;
+  border: 1px solid #ced4da;
+}
+
+.table-attached table {
+  margin-bottom: 0;
+}
+
+.fa-download, .fa-eye {
+  color: #026c38;
+}
