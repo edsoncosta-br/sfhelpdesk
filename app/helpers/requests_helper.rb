@@ -53,6 +53,16 @@ module RequestsHelper
     end 
   end
 
+  def bg_status(status)
+    if status == Constants::STEP_ABERTA[1]
+      'bg-status-open'
+    elsif status == Constants::STEP_FINALIZADA[1]
+      'bg-status-finish'
+    elsif status == Constants::STEP_ARQUIVADA[1]
+      'bg-status-archived'
+    end     
+  end
+
   def tags_show(request_id)
     RequestTag.select(:description)
               .joins(:tag)

@@ -7,22 +7,44 @@
       </div>
       
       <div class="ph-right">
+        <%= link_to edit_request_path(@requests[0].id,q_sys: params[:q_sys],
+                                                      q_status: params[:q_status],
+                                                      q_content: params[:q_content]), 
+                                                      class: 'btn btn-action btn-info me-1' do %>
+          Execução
+        <% end %>        
+
+        <%= link_to edit_request_path(@requests[0].id,q_sys: params[:q_sys],
+                                                      q_status: params[:q_status],
+                                                      q_content: params[:q_content]), 
+                                                      class: 'btn btn-action btn-success me-1' do %>
+          Finalizar
+        <% end %>
+
+        <%= link_to edit_request_path(@requests[0].id,q_sys: params[:q_sys],
+                                                      q_status: params[:q_status],
+                                                      q_content: params[:q_content]), 
+                                                      class: 'btn btn-action btn-warning me-3' do %>
+          Arquivar
+        <% end %>        
+
         <% if current_user.id == @requests[0].user_created_id %> 
           <%= link_to edit_request_path(@requests[0].id,q_sys: params[:q_sys],
                                                         q_status: params[:q_status],
                                                         q_content: params[:q_content]), 
-                                                class: 'btn btn-outline-success me-1' do %>
-            <i class="fa-regular fa-pen-to-square pe-1"></i>Alterar
+                                                        class: 'btn btn-outline-primary me-1' do %>
+            <i class="fa-regular fa-pen-to-square me-1"></i>Alterar
           <% end %>
-          
+
           <a class="btn btn-outline-danger me-3" href="#" data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-              <i class="fa-regular fa-trash-can pe-1"></i>Excluir
+              <i class="fa-regular fa-trash-can me-1"></i>Excluir
           </a>
+
         <% end %>                                              
 
         <%= link_to 'Retornar', requests_path(q_sys: params[:q_sys],
                                               q_status: params[:q_status],
-                                              q_content: params[:q_content]), class: 'btn btn-secondary' %>        
+                                              q_content: params[:q_content]), class: 'btn btn-action btn-secondary' %>        
       </div>
     </div>
 
@@ -34,22 +56,22 @@
           <div class="row">
 
             <div class="col-12 mb-3">
-              <div class="col-title d-flex align-items-center">
-                <div class="col-status me-2">
-                  <i class="fa-solid fa-circle <%=color_status(request.status)%> "></i>
-                </div>
-              
-                <div class="w-100">
+              <div class="col-title d-flex align-items-center">              
+                <div class="w-100 ms-2">
                   <div class="first-line">
                     <span class="fw-semibold me-1"><%=request.title%></span>
 
+                    <span class="badge rounded-pill bg-style <%=bg_status(request.status)%> me-2"
+                      data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Requisição"><%=status_request(request.status)%>
+                    </span>                    
+
                     <% Methods.get_tags(request.id).each do |tag| %>
-                      <span class="badge rounded-pill bg-style bg-tag me-1"
+                      <span class="badge rounded-pill bg-style bg-tag me-2"
                       data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
                     <% end %>
 
                     <% if request.mark_description.present? %>
-                      <span class="badge rounded-pill bg-style bg-mark me-1" 
+                      <span class="badge rounded-pill bg-style bg-mark me-2" 
                         data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Meta"><i class="fa-solid fa-flag me-1"></i>
                         <%=request.mark_description%>
                       </span>

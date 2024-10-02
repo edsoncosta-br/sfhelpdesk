@@ -6,8 +6,13 @@
         <%=index_title('Requisição - ' + action_message)%>
       </div>
       <div class="ph-right">
-        <span class="badge rounded-pill bg-edit me-1 <%=color_status(@request.status)%> ">Status: <%=status_request(@request.status)%></span>
-        <span class="badge rounded-pill bg-edit me-1">Execução: <%=step(@request.step)%></span>            
+        <% if (params[:action] == "edit") or (params[:action] == "update") %>
+          <span class="badge rounded-pill bg-style bg-status <%=bg_status(@request.status)%> me-1"
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Requisição"><%=status_request(@request.status)%></span>
+
+          <span class="badge rounded-pill <%=bg_step(@request.step)%> me-1" 
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Execução"><%=step(@request.step) %></span>
+        <% end %>
       </div>          
     </div>
 
