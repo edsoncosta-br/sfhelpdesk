@@ -12,7 +12,7 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.1.7.tgz#8b4506925d3f7146a70941e4db7ce9dda99f99ae"
   integrity sha512-F6S74NGpxhbbDRFsQFGYqefRfZPgYvePNtz9hHKYOqLturrsqrDoG+UcrxEGHsvqDUorMYfx4Wl3K8smmk/u2g==
 
-"@rails/actiontext@^6.1.7-7":
+"@rails/actiontext@^6.1.7-8":
   version "6.1.7"
   resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-6.1.7.tgz#62997bda1d938743ed36bb802885592b01bc6782"
   integrity sha512-o3TYFeFzDQKR22EGqE9qqJ6SD4DM+cATw8nioPtrRkIlAsBIHeaV0h4Kok1sDXyNjXiJztCr89CsfV7YXnYFmw==
@@ -41,10 +41,10 @@ inputmask@^5.0.9:
   resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-5.0.9.tgz#7bf4e83f5e199c88c0edf28545dc23fa208ef4be"
   integrity sha512-s0lUfqcEbel+EQXtehXqwCJGShutgieOaIImFKC/r4reYNvX3foyrChl6LOEvaEgxEbesePIrw1Zi2jhZaDZbQ==
 
-slim-select@^2.8.2:
-  version "2.8.2"
-  resolved "https://registry.yarnpkg.com/slim-select/-/slim-select-2.8.2.tgz#6f315e34a22787308d785966b49d0366da591f8b"
-  integrity sha512-f4urDhh1aYVK2JCg1UMPKj+LaP3S8xO2LAt06svMQq4aLZyYWB9D6vmgqAoMJuXBOl+F0tVuo/zG2lerRxy3aA==
+slim-select@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/slim-select/-/slim-select-2.9.0.tgz#79e8ac9bb23b0727c1e78f363e3d62ab6bbfe525"
+  integrity sha512-AwAm4kliM1utztdXfKyiidgnQanAKQVJ1+61rJYHwDfzu3LAn/spFKb+xBiSqr3E/dlZu0MrBxflBL2sN5q2xA==
 
 spark-md5@^3.0.0:
   version "3.0.2"

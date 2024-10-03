@@ -6,7 +6,8 @@
         <%=index_title('Requisição - ' + action_message)%>
       </div>
       <div class="ph-right">
-        <% if (params[:action] == "edit") or (params[:action] == "update") %>
+        <% if (params[:action] == "teste_remove") %>
+        <%# if (params[:action] == "edit") or (params[:action] == "update") %>
           <span class="badge rounded-pill bg-style bg-status <%=bg_status(@request.status)%> me-1"
             data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Requisição"><%=status_request(@request.status)%></span>
 

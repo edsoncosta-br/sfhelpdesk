@@ -8,11 +8,16 @@
       
       <div class="ph-right">
         <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-          <a class="btn btn-success me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Alterar Status da Execução">
+          <a class="btn btn-outline-success" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Adicionar comentário">
+              <i class="fa-solid fa-comment-dots fa-lg"></i></a>
+        </span>
+
+        <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
+          <a class="btn btn-outline-success me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Alterar Status da Execução">
               <i class="fa-solid fa-gear fa-lg"></i></a>
         </span>
         
-        <%# somente o criador da requisicao podera alterar seus dados %>
+        <%# somente o criador da requisicao podera alterar seus dados e status %>
         <% if current_user.id == @requests[0].user_created_id %> 
 
           <% if @requests[0].status == Constants::STEP_ABERTA[1] %>
@@ -22,13 +27,13 @@
             </span>
 
             <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-              <a class="btn btn-outline-success me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Arquivar Requisição">
+              <a class="btn btn-outline-success" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Arquivar Requisição">
                   <i class="fa-solid fa-inbox fa-lg"></i></a>
             </span>                
           <% elsif (@requests[0].status == Constants::STEP_FINALIZADA[1]) or 
                   (@requests[0].status == Constants::STEP_ARQUIVADA[1]) %>
             <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-              <a class="btn btn-outline-success me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reabrir Requisição">
+              <a class="btn btn-outline-success" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reabrir Requisição">
                   <i class="fa-regular fa-folder-open fa-lg"></i></a>
             </span>                
           <% end %>
@@ -60,6 +65,12 @@
           <div class="row">
             <div class="col-12 mb-3">
               <div class="col-title d-flex align-items-center">              
+                <div>
+                  <div class="avatar avatar-request">
+                    <%= image_tag "emptyuser.png", alt: "empty user" %>
+                  </div>                  
+                </div>
+
                 <div class="w-100 ms-2">
                   <div class="first-line">
                     <span class="fw-semibold me-1"><%=request.title%></span>
@@ -83,10 +94,11 @@
                   
                   <div class="second-line second-line-show text-muted">
                     <span>
-                      <span class="me-3"><%=request.projects_description%></span>
-                      <span class="me-3">Id: <%=request.id.to_s.rjust(4, "0")%></span>
                       <span>Criação: <%=format_date(request.created_date)%> </span>
                       <span class="me-3">por <strong><%=request.user_created_name%></strong></span>
+
+                      <span class="me-3"><%=request.projects_description%></span>
+                      <span class="me-3">Id: <%=request.id.to_s.rjust(4, "0")%></span>
 
                       <% if request.customers_name.present? && request.requester_name.present? %>
                         <span class="me-3">Solicitante: <%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%>/<%=request.requester_name%></span>
@@ -105,8 +117,10 @@
                 </div>
 
                 <div class="col-priority">
-                  <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
-                    <i class="fa-solid fa-star"></i></span>
+                  <% if request.priority %>
+                    <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
+                      <i class="fa-solid fa-star"></i></span>
+                  <% end %>
                 </div>                
 
                 <div class="col-step">

@@ -1,4 +1,3 @@
-# FROM ruby:3.2.4-alpine
 FROM ruby:3.2.2-alpine
 
 RUN apk add --update --virtual \

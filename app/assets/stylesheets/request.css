@@ -143,7 +143,7 @@
 }
 
 .first-line {
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
 }
 
 .second-line {
@@ -268,7 +268,6 @@ tbody tr {
   border-color: #f06c6c !important;
   background-color: #f9dede;
 }
-
 
 .icon-attached {
   width: 3rem;
