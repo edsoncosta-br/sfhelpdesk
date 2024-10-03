@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   resources :tags, except: [:show]
   resources :marks, except: [:show]
   resources :requests
+  put 'requests/delete_attachment/:id_attachment/:id_request', to: 'requests#delete_attachment', as: 'requests_delete_attachment'
 
 end

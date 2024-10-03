@@ -138,7 +138,18 @@ class RequestsController < ApplicationController
                                 q_status: params[:q_status],
                                 q_content: params[:q_content])
     end
-  end  
+  end
+
+  def delete_attachment
+    attachment = Request.find(params[:id_request])
+    attachment.files.find_by_id(params[:id_attachment]).purge    
+
+    redirect_to request_path( params[:id_request] ,
+                              q_sys: params[:q_sys],
+                              q_status: params[:q_status],
+                              q_content: params[:q_content]), 
+                              notice: "Anexo excluído com sucesso."
+  end
 
   private
 

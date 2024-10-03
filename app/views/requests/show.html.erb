@@ -8,19 +8,19 @@
       
       <div class="ph-right">
         <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-          <a class="btn btn-outline-success me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Alterar Status da Execução">
+          <a class="btn btn-success me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Alterar Status da Execução">
               <i class="fa-solid fa-gear fa-lg"></i></a>
         </span>
         
         <% if @requests[0].status == Constants::STEP_ABERTA[1] %>
           <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
             <a class="btn btn-outline-success" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Finalizar Requisição">
-                <i class="fa-solid fa-thumbs-up fa-lg"></i></a>
+                <i class="fa-regular fa-thumbs-up fa-lg"></i></a>
           </span>
 
           <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
             <a class="btn btn-outline-success me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Arquivar Requisição">
-                <i class="fa-solid fa-box-archive fa-lg"></i></a>
+                <i class="fa-solid fa-inbox fa-lg"></i></a>
           </span>                
         <% elsif (@requests[0].status == Constants::STEP_FINALIZADA[1]) or 
                  (@requests[0].status == Constants::STEP_ARQUIVADA[1]) %>
@@ -40,8 +40,8 @@
           <% end %>
 
           <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-            <a class="btn btn-outline-danger me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir Requisição">
-                <i class="fa-regular fa-trash-can fa-lg"></i></a>
+            <a class="btn btn-outline-success me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir Requisição">
+                <i class="fa-solid fa-trash fa-lg"></i></a>
           </span>
         <% end %>                                              
 
@@ -55,9 +55,7 @@
       <div class="card-body card-body-style">
 
         <% @requests.each do |request| %>
-
           <div class="row">
-
             <div class="col-12 mb-3">
               <div class="col-title d-flex align-items-center">              
                 <div class="w-100 ms-2">
@@ -136,7 +134,7 @@
                             <td class="align-middle" id='filename_<%= file.id %>'><%= file.filename %></td>
                             <td class='align-middle'><%= number_to_human_size(file.byte_size) %></td>
 
-                            <td class='align-middle text-center'>
+                            <td class='align-middle icon-attached text-center'>
                               <% if ActiveStorage.content_types_allowed_inline.include?(file.content_type) %>
                                 <%= link_to rails_blob_url(file, disposition: "inline", only_path: true), target: :_blank,
                                   title: "Visualizar Arquivo", id:"id_view_#{file.id}", class:"class_view" do %>
@@ -149,7 +147,7 @@
                               <%end%>
                             </td>
 
-                            <td class='align-middle text-center'>
+                            <td class='align-middle icon-attached text-center'>
                               <%= link_to rails_blob_path(file, disposition: "attachment", only_path: true),
                                 title: "Download do Arquivo", id:"id_download_#{file.id}", class:"class_download" do %>
                                 <i class="fa-solid fa-download"></i>
