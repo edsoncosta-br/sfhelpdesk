@@ -7,8 +7,8 @@ class Request < ApplicationRecord
   validate :step_isempty
   validate :project_id_isempty
   validate :user_created_id_isempty
-  # validates :files, size: { less_than: 3.megabytes } 
-
+  # validates :files, size: { less_than: 3.megabytes }    
+  
   belongs_to :customer, required: false
   belongs_to :project
 
@@ -18,14 +18,12 @@ class Request < ApplicationRecord
   belongs_to :mark, required: false
 
   has_many :request_tags
-  # has_many :tags, through: :request_tags
 
   attr_accessor :tag_ids
   attr_reader :new_files  
 
   has_rich_text :content
   
-
   def any_attached?
     ActiveStorage::Attachment.where(record_type: 'Request', record_id: id).any?
   end
