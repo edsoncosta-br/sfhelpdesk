@@ -79,7 +79,7 @@
             </td>
 
             <td class="align-middle col-priority">
-              <% if request.priority %>
+              <% if (request.priority) and (request.status == Constants::STEP_ABERTA[1]) %>
                 <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
                   <i class="fa-solid fa-star"></i></span>
               <% end %>

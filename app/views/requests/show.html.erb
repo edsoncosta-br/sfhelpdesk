@@ -7,54 +7,7 @@
       </div>
       
       <div class="ph-right">
-        <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-          <a class="btn btn-outline-success" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Adicionar comentário">
-              <i class="fa-solid fa-comment-dots fa-lg"></i></a>
-        </span>
-
-        <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-          <a class="btn btn-outline-success me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Alterar Status da Execução">
-              <i class="fa-solid fa-gear fa-lg"></i></a>
-        </span>
-        
-        <%# somente o criador da requisicao podera alterar seus dados e status %>
-        <% if current_user.id == @requests[0].user_created_id %> 
-
-          <% if @requests[0].status == Constants::STEP_ABERTA[1] %>
-            <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-              <a class="btn btn-outline-success" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Finalizar Requisição">
-                  <i class="fa-regular fa-thumbs-up fa-lg"></i></a>
-            </span>
-
-            <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-              <a class="btn btn-outline-success" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Arquivar Requisição">
-                  <i class="fa-solid fa-inbox fa-lg"></i></a>
-            </span>                
-          <% elsif (@requests[0].status == Constants::STEP_FINALIZADA[1]) or 
-                  (@requests[0].status == Constants::STEP_ARQUIVADA[1]) %>
-            <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-              <a class="btn btn-outline-success" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reabrir Requisição">
-                  <i class="fa-regular fa-folder-open fa-lg"></i></a>
-            </span>                
-          <% end %>
-
-          <%= link_to edit_request_path(@requests[0].id,q_sys: params[:q_sys],
-                                                        q_status: params[:q_status],
-                                                        q_content: params[:q_content]), 
-                                                        class: 'btn btn-outline-success',
-                                                        data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Alterar Requisição" } do %>
-            <i class="fa-regular fa-pen-to-square fa-lg"></i>
-          <% end %>
-
-          <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-            <a class="btn btn-outline-success me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir Requisição">
-                <i class="fa-solid fa-trash fa-lg"></i></a>
-          </span>
-        <% end %>                                              
-
-        <%= link_to 'Retornar', requests_path(q_sys: params[:q_sys],
-                                              q_status: params[:q_status],
-                                              q_content: params[:q_content]), class: 'btn btn-action btn-secondary' %>        
+        <%= render partial: 'requests/btnactions' %> 
       </div>
     </div>
 
@@ -188,28 +141,8 @@
     </div>
   </div>
 
-  <div class="modal modal-delete fade" id="delete<%=@requests[0].id%>" tabindex="-1" 
-        aria-labelledby="deleteLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        
-        <div class="modal-header"> <i class="fas fa-exclamation-triangle fa-2x modal-header-icon me-2"></i>
-          <h1 class="modal-title" id="deleteLabel">Confirmação</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        
-        <div class="modal-body">
-          Confirma a exclusão da Requisição: <br> <%= @requests[0].title %> ?
-        </div>
-        <div class="modal-footer actions">
-          <%= link_to 'Excluir', request_path(@requests[0],q_sys: params[:q_sys],
-                                                           q_status: params[:q_status],
-                                                           q_content: params[:q_content]), 
-              class:"btn btn-danger", method: :delete %>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'requests/modals/delete' %>
+  <%= render partial: 'requests/modals/status' %>
+  <%= render partial: 'requests/modals/step' %>
 
 </main>

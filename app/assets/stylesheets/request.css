@@ -255,18 +255,21 @@ tbody tr {
   color: #0b641e !important;
   border-color: #22c389 !important;
   background-color: #c0f7e3;
+  width: 6rem;
 }
 
 .bg-status-finish {
   color: #1f4ca0 !important;
   border-color: #74aadd !important;
   background-color: #9ed6ff;
+  width: 6rem;
 }
 
 .bg-status-archived {
   color: #dd3434 !important;
   border-color: #f06c6c !important;
   background-color: #f9dede;
+  width: 6rem;
 }
 
 .icon-attached {

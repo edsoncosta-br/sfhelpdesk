@@ -1,0 +1,23 @@
+<div class="modal modal-delete fade" id="delete<%=@requests[0].id%>" tabindex="-1" 
+      aria-labelledby="deleteLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header"> <i class="fas fa-exclamation-triangle fa-2x modal-header-icon me-2"></i>
+        <h1 class="modal-title" id="deleteLabel">Confirmação</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        Confirma a exclusão da Requisição: <br> <%= @requests[0].title %> ?
+      </div>
+      <div class="modal-footer actions">
+        <%= link_to 'Excluir', request_path(@requests[0],q_sys: params[:q_sys],
+                                                          q_status: params[:q_status],
+                                                          q_content: params[:q_content]), 
+            class:"btn btn-danger", method: :delete %>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

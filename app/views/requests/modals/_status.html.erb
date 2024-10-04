@@ -1,0 +1,77 @@
+<div class="modal modal-status-archived fade" id="status-archived<%=@requests[0].id%>" tabindex="-1" 
+      aria-labelledby="status-archivedLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header"> <i class="fas fa-exclamation-triangle fa-2x modal-header-icon me-2"></i>
+        <h1 class="modal-title" id="status-archivedLabel">Confirmação</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        Confirma a alteração do Status da Requisição para <strong>Arquivada</strong>?
+      </div>
+      <div class="modal-footer actions">
+        <%= link_to 'Confirmar', 
+            requests_status_archived_path(@requests[0].id,q_sys: params[:q_sys],
+                                                          q_status: params[:q_status],
+                                                          q_content: params[:q_content]), 
+            class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal modal-status-finished fade" id="status-finished<%=@requests[0].id%>" tabindex="-1" 
+      aria-labelledby="status-finishedLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header"> <i class="fas fa-exclamation-triangle fa-2x modal-header-icon me-2"></i>
+        <h1 class="modal-title" id="status-finishedLabel">Confirmação</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        Confirma a alteração do Status da Requisição para <strong>Finalizada</strong>?
+      </div>
+      <div class="modal-footer actions">
+        <%= link_to 'Confirmar', 
+            requests_status_finished_path(@requests[0].id,q_sys: params[:q_sys],
+                                                          q_status: params[:q_status],
+                                                          q_content: params[:q_content]), 
+            class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal modal-status-reopen fade" id="status-reopen<%=@requests[0].id%>" tabindex="-1" 
+      aria-labelledby="status-reopenLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header"> <i class="fas fa-exclamation-triangle fa-2x modal-header-icon me-2"></i>
+        <h1 class="modal-title" id="status-reopenLabel">Confirmação</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        Confirma a alteração do Status da Requisição para <strong>Aberta</strong>?
+      </div>
+      <div class="modal-footer actions">
+        <%= link_to 'Confirmar', 
+            requests_status_reopen_path(@requests[0].id,q_sys: params[:q_sys],
+                                                        q_status: params[:q_status],
+                                                        q_content: params[:q_content]), 
+            class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

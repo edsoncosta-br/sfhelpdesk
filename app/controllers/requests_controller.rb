@@ -19,7 +19,6 @@ class RequestsController < ApplicationController
                       .left_joins(:mark)
                       .left_joins(:customer)
                       .where("users.company_id = ?", current_user.company.id)
-                      .order(Arel.sql('priority desc, created_date desc, requests.id desc'))
 
     if params[:q_sys].blank?
       params[:q_sys] = Methods.select_allocations(current_user.company.id, current_user.id)
@@ -39,6 +38,12 @@ class RequestsController < ApplicationController
 
     if !params[:q_content].blank?
       requests = requests.where('unaccent(title) ilike unaccent(?)', "%#{params[:q_content]}%")
+    end
+
+    if params[:q_status] == Constants::STEP_ABERTA[1].to_s
+      requests = requests.order(Arel.sql('priority desc, created_date desc, requests.id desc'))
+    else
+      requests = requests.order(Arel.sql('created_date desc, requests.id desc'))
     end
 
     @requests = requests.all.page(params[:page]).per(Constants::PAGINAS)
@@ -149,6 +154,39 @@ class RequestsController < ApplicationController
                               q_status: params[:q_status],
                               q_content: params[:q_content]), 
                               notice: "Anexo excluído com sucesso."
+  end
+
+  def status_finished
+    request = Request.find(params[:id_request])
+    request.update(status: Constants::STEP_FINALIZADA[1])
+
+    redirect_to request_path( params[:id_request] ,
+                              q_sys: params[:q_sys],
+                              q_status: params[:q_status],
+                              q_content: params[:q_content]), 
+                              notice: "Status Finalizado com sucesso."
+  end
+
+  def status_archived
+    request = Request.find(params[:id_request])
+    request.update(status: Constants::STEP_ARQUIVADA[1])
+
+    redirect_to request_path( params[:id_request] ,
+                              q_sys: params[:q_sys],
+                              q_status: params[:q_status],
+                              q_content: params[:q_content]), 
+                              notice: "Status Arquivado com sucesso."
+  end
+
+  def status_reopen
+    request = Request.find(params[:id_request])
+    request.update(status: Constants::STEP_ABERTA[1])
+
+    redirect_to request_path( params[:id_request] ,
+                              q_sys: params[:q_sys],
+                              q_status: params[:q_status],
+                              q_content: params[:q_content]), 
+                              notice: "Status Reaberto com sucesso."
   end
 
   private
