@@ -1,0 +1,119 @@
+<%= render "shared/header" %>
+<main>
+  <div class="container-fluid max-container">
+    <div class="page-heading"> 
+      <div class="ph-left pe-3">
+        <%=index_title('Comentário - ' + action_message)%>
+      </div>
+      <div class="ph-right">
+      </div>          
+    </div>
+
+    <div class="card card-size">
+      <div class="card-body card-body-style brd">
+
+        <%= form_with(model: @request_comment) do |form| %>
+          <%= render "shared/error_messages", resource: @request_comment %>
+
+          <div class="row">
+         
+            <% Methods.request_data(params[:q_id]).each do |request| %> 
+              <div class="col-12 mb-3">
+                <div class="col-title d-flex align-items-center">              
+                  <div>
+                    <div class="avatar avatar-request">
+                      <%= image_tag "emptyuser.png", alt: "empty user" %>
+                    </div>                  
+                  </div>
+
+                  <div class="w-100 ms-2">
+                    <div class="first-line">
+                      <span class="fw-semibold me-1"><%=request.title%></span>
+
+                      <span class="badge rounded-pill bg-style <%=bg_status(request.status)%> me-2"
+                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Requisição"><%=status_request(request.status)%>
+                      </span>                    
+
+                      <% Methods.get_tags(request.id).each do |tag| %>
+                        <span class="badge rounded-pill bg-style bg-tag me-2"
+                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
+                      <% end %>
+
+                      <% if request.mark_description.present? %>
+                        <span class="badge rounded-pill bg-style bg-mark me-2" 
+                          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Meta"><i class="fa-solid fa-flag me-1"></i>
+                          <%=request.mark_description%>
+                        </span>
+                      <% end %>
+                    </div>
+                    
+                    <div class="second-line second-line-show text-muted">
+                      <span>
+                        <span>Criação: <%=format_date(request.created_date)%> </span>
+                        <span class="me-3">por <strong><%=request.user_created_name%></strong></span>
+
+                        <span class="me-3"><%=request.projects_description%></span>
+                        <span class="me-3">Id: <%=request.id.to_s.rjust(4, "0")%></span>
+
+                        <% if request.customers_name.present? && request.requester_name.present? %>
+                          <span class="me-3">Solicitante: <%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%>/<%=request.requester_name%></span>
+                        <% elsif request.customers_name.present? %>
+                          <span class="me-3">Solicitante: <%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%></span>                    
+                        <% elsif request.requester_name.present? %>
+                          <span class="me-3">Solicitante: <%=request.requester_name%></span>                                        
+                        <% end %>
+                      </span>                
+                    </div>
+
+                    <div class="second-line text-muted">
+                      <span class="me-3">Previsão: <%=request.dues_date.present? ? format_date(request.dues_date) : '--'%></span>
+                      <span class="me-3">Responsável: <strong><%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></strong></span>                  
+                    </div>
+                  </div>
+
+                  <div class="col-priority">
+                    <% if request.priority %>
+                      <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
+                        <i class="fa-solid fa-star"></i></span>
+                    <% end %>
+                  </div>                
+
+                  <div class="col-step">
+                    <span class="badge rounded-pill <%=bg_step(request.step)%> me-1" 
+                      data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Execução da Requisição"><%=step(request.step) %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            <%end%>    
+                 
+
+            <div class="col-12 mt-4 mb-3">
+              <div class="field">
+                <%= form.label :content, class:"form-label" %>
+                <%= form.rich_text_area :content %>
+              </div>            
+            </div>
+
+            <%= hidden_field_tag :q_id, params[:q_id] %>
+          </div>
+
+          <div class="actions pt-4 text-end">
+            <%= form.submit "Salvar", class:"btn btn-success input-btn me-1"%>
+
+            <% if (params[:action] == "edit") or (params[:action] == "update") %>
+              <%= link_to request_comment_path(@request_comment), class: 'btn btn-secondary' do %>
+                Cancelar
+              <% end %>                                                
+            <% else %>
+              <%= link_to 'Cancelar', requests_path(q_sys: params[:q_sys],
+                                                    q_status: params[:q_status],
+                                                    q_content: params[:q_content]), class: 'btn btn-secondary' %>
+            <% end %>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>

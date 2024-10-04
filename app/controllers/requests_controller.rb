@@ -12,6 +12,7 @@ class RequestsController < ApplicationController
                               "users.nick_name user_created_name",
                               "user_responsibles_requests.nick_name user_responsible_name",
                               "marks.description mark_description",
+                              "(select count(request_comments.id) from request_comments where request_comments.request_id = requests.id) count_comments",
                               "customers.name customers_name")
                       .joins(project: :company)
                       .joins(:user_created)
@@ -70,6 +71,10 @@ class RequestsController < ApplicationController
 
     @request_tag_ids = RequestTag.where("request_id = ?", params[:id]).pluck("tag_id")                      
     @request_files = Request.where("requests.id = ?", params[:id]).with_attached_files
+
+    @request_comments = RequestComment.joins(:user)
+                                      .where("request_id = ?", params[:id])
+                                      .order('request_comments.id')
   end  
 
   def new

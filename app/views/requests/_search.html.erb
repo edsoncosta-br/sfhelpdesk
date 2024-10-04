@@ -69,12 +69,19 @@
                     Responsável: <strong><%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></strong>
                   </span>
 
-                  <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Anexo(s)">
-                    <% if request.any_attached? %>
+                  <% if request.any_attached? %>
+                    <span class="me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Anexo(s)">
                       <i class="fa-solid fa-paperclip"></i>
                       <%= request.count_attached %>
+                    </span>
+                  <% end %>
+
+                  <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Comentário(s)">
+                    <% if request.count_comments > 0 %>
+                      <i class="fa-regular fa-comment"></i>
+                      <%= request.count_comments %>
                     <% end %>
-                  </span>
+                  </span>                  
                 </span>
               </div>
             </td>

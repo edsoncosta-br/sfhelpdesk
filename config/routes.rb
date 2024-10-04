@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'projects/filter_project_dependency'
   resources :tags, except: [:show]
   resources :marks, except: [:show]
+
   resources :requests
   put 'requests/delete_attachment/:id_attachment/:id_request', to: 'requests#delete_attachment', as: 'requests_delete_attachment'
   put 'requests/status_finished/:id_request', to: 'requests#status_finished', as: 'requests_status_finished'
@@ -30,5 +31,7 @@ Rails.application.routes.draw do
   put 'requests/step_wait/:id_request', to: 'requests#step_wait', as: 'requests_step_wait'
   put 'requests/step_execute/:id_request', to: 'requests#step_execute', as: 'requests_step_execute'
   put 'requests/step_finish/:id_request', to: 'requests#step_finish', as: 'requests_step_finish'
+
+  resources :request_comments, except: [:show, :index]
 
 end

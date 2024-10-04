@@ -1,7 +1,14 @@
-<span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-  <a class="btn btn-success" href="#" 
-      data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Adicionar comentário">
-      <i class="fa-solid fa-comment-dots fa-lg"></i></a>
+<span>
+  <%= link_to(new_request_comment_path( q_id: @requests[0].id,
+                                        q_sys: params[:q_sys],
+                                        q_status: params[:q_status],
+                                        q_content: params[:q_content]),  
+                                        class: "btn btn-success",
+                                        data: { bs_toggle: 'tooltip', 
+                                                bs_placement: "top", 
+                                                bs_title: "Adicionar Comentário" }) do %>
+    <i class="fa-solid fa-comment-dots fa-lg"></i></a>
+  <%end%>
 </span>
 
 <span class="dropdown" data-bs-toggle="dropdown" aria-expanded="false">

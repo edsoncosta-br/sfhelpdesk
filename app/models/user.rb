@@ -29,6 +29,7 @@ class User < ApplicationRecord
   belongs_to :company
 
   has_many :allocations
+  has_many :request_comments
 
   has_many :user_created_requests, class_name: 'Request', foreign_key: 'user_created_id'
   has_many :user_responsible_requests, class_name: 'Request', foreign_key: 'user_responsible_id'

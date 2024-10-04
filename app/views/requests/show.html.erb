@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="card card-size">
+    <div class="card card-size shadow">
       <div class="card-body card-body-style">
 
         <% @requests.each do |request| %>
@@ -139,6 +139,33 @@
         <% end %>
       </div>
     </div>
+
+    <% if @request_comments.present? %>
+      <% @request_comments.each do |request_comment| %>    
+        <div class="card card-size shadow mt-4">
+          <div class="card-body card-body-style">
+            <div class="row">
+              
+              <div class="col-12 mb-3">
+                <div class="col-title-comment d-flex align-items-center">              
+                  <div>
+                    <div class="avatar avatar-request">
+                      <%= image_tag "emptyuser.png", alt: "empty user" %>
+                    </div>                  
+                  </div>
+                  
+                  <span class="ms-2">
+                    <strong><%=request_comment.user.nick_name%></strong> comentou em <%=I18n.l(request_comment.created_date, format: :meu)%> 
+                  </span>
+                </div>
+
+                <div class="border-content-comment"><%= request_comment.content %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <%end%>
+    <%end%>
   </div>
 
   <%= render partial: 'requests/modals/delete' %>

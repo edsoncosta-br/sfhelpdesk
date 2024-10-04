@@ -90,6 +90,9 @@ pt-BR:
     pagination:
       previous: "&lt"
       next: "&gt"
+  time:
+    formats:
+      meu: "%d/%m/%Y às %H:%M"
   date:
     abbr_day_names:
     - dom

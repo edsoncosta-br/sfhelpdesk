@@ -195,11 +195,32 @@
   outline: none;
 }
 
+.border-content-comment {
+  border: 1px solid #bbb;
+  border-bottom-left-radius : 3px;
+  border-bottom-right-radius : 3px;
+  margin: 0;
+  padding: 0.4em 0.6em;
+  min-height: 5em;
+  outline: none;
+}
+
 .col-title {
   border-radius: 3px;
   padding: 0.7em;
   border: 1px solid #cbc9c9;
   background-color: #fffcf4;
+}
+
+.col-title-comment {
+  border-top-left-radius : 3px;
+  border-top-right-radius : 3px;
+  padding: 0.4em 0.7em 0.5em;
+  border-top: 1px solid #cbc9c9;
+  background-color: #f7f7f7;
+  margin-bottom: -0.1rem;
+  border-left: 1px solid #cbc9c9;
+  border-right: 1px solid #cbc9c9;  
 }
 
 tbody tr {
@@ -277,3 +298,9 @@ tbody tr {
 .dropdown .dropdown-menu {
   margin-top: 0.7rem !important;
 }
+
+.avatar-request img {
+  height: auto;  
+  width: 40px;
+  border-radius: 50%;
+}  

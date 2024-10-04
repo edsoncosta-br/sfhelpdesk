@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_30_113925) do
+ActiveRecord::Schema.define(version: 2024_10_04_161228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,14 @@ ActiveRecord::Schema.define(version: 2024_09_30_113925) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "request_comments", force: :cascade do |t|
+    t.datetime "created_date", null: false
+    t.bigint "user_id", null: false
+    t.bigint "request_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "request_tags", force: :cascade do |t|
     t.bigint "request_id", null: false
     t.bigint "tag_id", null: false
@@ -211,6 +219,8 @@ ActiveRecord::Schema.define(version: 2024_09_30_113925) do
   add_foreign_key "marks", "projects"
   add_foreign_key "positions", "companies"
   add_foreign_key "projects", "companies"
+  add_foreign_key "request_comments", "requests", on_delete: :cascade
+  add_foreign_key "request_comments", "users"
   add_foreign_key "request_tags", "requests", on_delete: :cascade
   add_foreign_key "request_tags", "tags", on_delete: :cascade
   add_foreign_key "requests", "customers"

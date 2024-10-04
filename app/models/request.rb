@@ -18,6 +18,7 @@ class Request < ApplicationRecord
   belongs_to :mark, required: false
 
   has_many :request_tags
+  has_many :request_comments
 
   attr_accessor :tag_ids
   attr_reader :new_files  
@@ -30,6 +31,10 @@ class Request < ApplicationRecord
 
   def count_attached
     ActiveStorage::Attachment.where(record_type: 'Request', record_id: id).count
+  end
+
+  def any_comment?
+    self.request_comment.any?
   end
 
   # add attachments without deleting previous ones on every update
