@@ -29,9 +29,9 @@
           <div class="col-12 col-md-2 mb-1">          
             <label for="status" class="form-label">Status</label>
             <%= select_tag "status", 
-                            options_for_select([Constants::STEP_ABERTA_PLUR,
-                                                Constants::STEP_FINALIZADA_PLUR,
-                                                Constants::STEP_ARQUIVADA_PLUR], params[:q_status]),
+                            options_for_select([Constants::STATUS_ABERTA_PLUR,
+                                                Constants::STATUS_FINALIZADA_PLUR,
+                                                Constants::STATUS_ARQUIVADA_PLUR], params[:q_status]),
                                                 class:"form-select",
                                                 name:"q_status" %>
           </div>

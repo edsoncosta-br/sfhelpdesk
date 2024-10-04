@@ -15,8 +15,8 @@ pt-BR:
         id: Código
         email: E-mail
         password_confirmation: Confirmação
-        name: Nome
-        nick_name: Apelido
+        name: Nome Completo
+        nick_name: Nome de Identificação
         position_id: Cargo/Função
         active: Cadastro Ativo
         password: Senha
@@ -67,7 +67,7 @@ pt-BR:
         created_date: Criação
         due_date: Previsão
         status: Status da requisição
-        step: Status da execução
+        step: Execução da requisição
         priority: Prioridade
         requester_name: Nome do solicitante
         customer_id: Cliente solicitante

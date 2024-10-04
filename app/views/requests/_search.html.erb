@@ -31,7 +31,8 @@
                   </span>
 
                   <span class="badge rounded-pill bg-style <%=bg_status(request.status)%> me-1"
-                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Requisição"><%=status_request(request.status)%>
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Requisição">
+                    <%=status_request(request.status)%>
                   </span>
 
                   <% Methods.get_tags(request.id).each do |tag| %>
@@ -79,7 +80,7 @@
             </td>
 
             <td class="align-middle col-priority">
-              <% if (request.priority) and (request.status == Constants::STEP_ABERTA[1]) %>
+              <% if (request.priority) and (request.status == Constants::STATUS_ABERTA[1]) %>
                 <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
                   <i class="fa-solid fa-star"></i></span>
               <% end %>
@@ -87,12 +88,10 @@
 
             <td class="align-middle col-step">
               <span class="badge rounded-pill <%=bg_step(request.step)%> me-1"
-                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Execução">
+                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Execução da Requisição">
                 <%=step(request.step)%>
               </span>
             </td>            
-
-
           </tr>
         <% end %>
       </tbody>

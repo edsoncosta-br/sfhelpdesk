@@ -31,7 +31,7 @@ class RequestsController < ApplicationController
     requests = requests.where('projects.id = ?', "#{params[:q_sys]}")
 
     if params[:q_status].blank?
-      params[:q_status] = Constants::STEP_ABERTA[1]
+      params[:q_status] = Constants::STATUS_ABERTA[1]
     end    
 
     requests = requests.where('status = ?', "#{params[:q_status]}")
@@ -40,7 +40,7 @@ class RequestsController < ApplicationController
       requests = requests.where('unaccent(title) ilike unaccent(?)', "%#{params[:q_content]}%")
     end
 
-    if params[:q_status] == Constants::STEP_ABERTA[1].to_s
+    if params[:q_status].to_s == Constants::STATUS_ABERTA[1].to_s
       requests = requests.order(Arel.sql('priority desc, created_date desc, requests.id desc'))
     else
       requests = requests.order(Arel.sql('created_date desc, requests.id desc'))
@@ -75,16 +75,16 @@ class RequestsController < ApplicationController
   def new
     @request = Request.new
     @request.project_id = params[:q_sys]
-    @request.status = Constants::STEP_ABERTA[1]
-    @request.step = Constants::STATUS_AGUARDANDO[1]        
+    @request.status = Constants::STATUS_ABERTA[1]
+    @request.step = Constants::STEP_AGUARDANDO[1]        
   end
 
   def create
     @request = Request.new(request_params)
     @request.user_created_id = current_user.id
     @request.created_date = DateTime.now()    
-    @request.status = Constants::STEP_ABERTA[1]
-    @request.step = Constants::STATUS_AGUARDANDO[1]    
+    @request.status = Constants::STATUS_ABERTA[1]
+    @request.step = Constants::STEP_AGUARDANDO[1]    
     
     respond_to do |format|
       ActiveRecord::Base.transaction do
@@ -158,7 +158,7 @@ class RequestsController < ApplicationController
 
   def status_finished
     request = Request.find(params[:id_request])
-    request.update(status: Constants::STEP_FINALIZADA[1])
+    request.update(status: Constants::STATUS_FINALIZADA[1])
 
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
@@ -169,7 +169,7 @@ class RequestsController < ApplicationController
 
   def status_archived
     request = Request.find(params[:id_request])
-    request.update(status: Constants::STEP_ARQUIVADA[1])
+    request.update(status: Constants::STATUS_ARQUIVADA[1])
 
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
@@ -180,7 +180,7 @@ class RequestsController < ApplicationController
 
   def status_reopen
     request = Request.find(params[:id_request])
-    request.update(status: Constants::STEP_ABERTA[1])
+    request.update(status: Constants::STATUS_ABERTA[1])
 
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
@@ -188,6 +188,39 @@ class RequestsController < ApplicationController
                               q_content: params[:q_content]), 
                               notice: "Status Reaberto com sucesso."
   end
+
+  def step_wait
+    request = Request.find(params[:id_request])
+    request.update(step: Constants::STEP_AGUARDANDO[1])
+
+    redirect_to request_path( params[:id_request] ,
+                              q_sys: params[:q_sys],
+                              q_status: params[:q_status],
+                              q_content: params[:q_content]), 
+                              notice: "Execução alterada com sucesso."
+  end
+
+  def step_execute
+    request = Request.find(params[:id_request])
+    request.update(step: Constants::STEP_EXECUTANDO[1])
+
+    redirect_to request_path( params[:id_request] ,
+                              q_sys: params[:q_sys],
+                              q_status: params[:q_status],
+                              q_content: params[:q_content]), 
+                              notice: "Execução alterada com sucesso."
+  end
+  
+  def step_finish
+    request = Request.find(params[:id_request])
+    request.update(step: Constants::STEP_CONCLUIDA[1])
+
+    redirect_to request_path( params[:id_request] ,
+                              q_sys: params[:q_sys],
+                              q_status: params[:q_status],
+                              q_content: params[:q_content]), 
+                              notice: "Execução alterada com sucesso."
+  end  
 
   private
 

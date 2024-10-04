@@ -27,5 +27,8 @@ Rails.application.routes.draw do
   put 'requests/status_finished/:id_request', to: 'requests#status_finished', as: 'requests_status_finished'
   put 'requests/status_archived/:id_request', to: 'requests#status_archived', as: 'requests_status_archived'
   put 'requests/status_reopen/:id_request', to: 'requests#status_reopen', as: 'requests_status_reopen'
+  put 'requests/step_wait/:id_request', to: 'requests#step_wait', as: 'requests_step_wait'
+  put 'requests/step_execute/:id_request', to: 'requests#step_execute', as: 'requests_step_execute'
+  put 'requests/step_finish/:id_request', to: 'requests#step_finish', as: 'requests_step_finish'
 
 end

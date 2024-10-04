@@ -1,30 +1,52 @@
 <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-  <a class="btn btn-success" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Adicionar comentário">
+  <a class="btn btn-success" href="#" 
+      data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Adicionar comentário">
       <i class="fa-solid fa-comment-dots fa-lg"></i></a>
 </span>
 
-<span data-bs-toggle="modal" data-bs-target="#step<%=@requests[0].id.to_s%>">
-  <a class="btn btn-success me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Alterar Status da Execução">
-      <i class="fa-solid fa-gear fa-lg"></i></a>
+<span class="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+  <button class="btn btn-success dropdown-toggle me-3" type="button" 
+          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Alterar Execução">
+    <i class="fa-solid fa-gear fa-lg"></i></a>
+  </button>
+  <ul class="dropdown-menu">
+    <% if @requests[0].step != Constants::STEP_EXECUTANDO[1] %>
+      <li><a class="dropdown-item" href="#" 
+              data-bs-toggle="modal" data-bs-target="#step-execute<%=@requests[0].id.to_s%>">Em Andamento</a></li>
+    <% end %>
+
+    <% if @requests[0].step != Constants::STEP_CONCLUIDA[1] %>
+      <li><a class="dropdown-item" href="#" 
+              data-bs-toggle="modal" data-bs-target="#step-finish<%=@requests[0].id.to_s%>">Concluída</a></li>
+    <% end %>
+
+    <% if @requests[0].step != Constants::STEP_AGUARDANDO[1] %>
+      <li><a class="dropdown-item" href="#" 
+              data-bs-toggle="modal" data-bs-target="#step-wait<%=@requests[0].id.to_s%>">Aguardando</a></li>
+    <% end %>
+  </ul>
 </span>
 
 <%# somente o criador da requisicao podera alterar seus dados e status %>
 <% if current_user.id == @requests[0].user_created_id %> 
 
-  <% if @requests[0].status == Constants::STEP_ABERTA[1] %>
+  <% if @requests[0].status == Constants::STATUS_ABERTA[1] %>
     <span data-bs-toggle="modal" data-bs-target="#status-finished<%=@requests[0].id.to_s%>">
-      <a class="btn btn-outline-success" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Finalizar Requisição">
+      <a class="btn btn-outline-success" href="#" 
+          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Finalizar Requisição">
           <i class="fa-solid fa-check fa-lg"></i></a>
     </span>
 
     <span data-bs-toggle="modal" data-bs-target="#status-archived<%=@requests[0].id.to_s%>">
-      <a class="btn btn-outline-success" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Arquivar Requisição">
+      <a class="btn btn-outline-success" href="#" 
+          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Arquivar Requisição">
           <i class="fa-solid fa-inbox fa-lg"></i></a>
     </span>                
-  <% elsif (@requests[0].status == Constants::STEP_FINALIZADA[1]) or 
-          (@requests[0].status == Constants::STEP_ARQUIVADA[1]) %>
+  <% elsif (@requests[0].status == Constants::STATUS_FINALIZADA[1]) or 
+          (@requests[0].status == Constants::STATUS_ARQUIVADA[1]) %>
     <span data-bs-toggle="modal" data-bs-target="#status-reopen<%=@requests[0].id.to_s%>">
-      <a class="btn btn-outline-success" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reabrir Requisição">
+      <a class="btn btn-outline-success" href="#" 
+          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reabrir Requisição">
           <i class="fa-regular fa-folder-open fa-lg"></i></a>
     </span>                
   <% end %>
@@ -33,12 +55,15 @@
                                                 q_status: params[:q_status],
                                                 q_content: params[:q_content]), 
                                                 class: 'btn btn-outline-success',
-                                                data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Alterar Requisição" } do %>
+                                                data: { bs_toggle: 'tooltip', 
+                                                        bs_placement: "top", 
+                                                        bs_title: "Alterar Requisição" } do %>
     <i class="fa-regular fa-pen-to-square fa-lg"></i>
   <% end %>
 
   <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
-    <a class="btn btn-outline-success me-3" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir Requisição">
+    <a class="btn btn-outline-success me-3" href="#" 
+        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir Requisição">
         <i class="fa-solid fa-trash fa-lg"></i></a>
   </span>
 <% end %>                                              

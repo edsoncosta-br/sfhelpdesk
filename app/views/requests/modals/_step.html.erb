@@ -1,21 +1,75 @@
-<div class="modal modal-step fade" id="step<%=@requests[0].id%>" tabindex="-1" 
-      aria-labelledby="stepLabel" aria-hidden="true">
+<div class="modal modal-step-execute fade" id="step-execute<%=@requests[0].id%>" tabindex="-1" 
+      aria-labelledby="step-executeLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       
       <div class="modal-header"> <i class="fas fa-exclamation-triangle fa-2x modal-header-icon me-2"></i>
-        <h1 class="modal-title" id="stepLabel">Confirmação</h1>
+        <h1 class="modal-title" id="step-executeLabel">Confirmação</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       
       <div class="modal-body">
-        Selecione o novo Status da Execução:
+        Confirma a Execução da Requisição como <strong>Em Andamento</strong>?
       </div>
       <div class="modal-footer actions">
-        <%= link_to 'Confirmar', request_path(@requests[0],q_sys: params[:q_sys],
-                                                          q_status: params[:q_status],
-                                                          q_content: params[:q_content]), 
-            class:"btn btn-success", method: :delete %>
+        <%= link_to 'Confirmar', 
+            requests_step_execute_path(@requests[0].id,q_sys: params[:q_sys],
+                                                       q_status: params[:q_status],
+                                                       q_content: params[:q_content]), 
+            class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal modal-step-wait fade" id="step-wait<%=@requests[0].id%>" tabindex="-1" 
+      aria-labelledby="step-waitLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header"> <i class="fas fa-exclamation-triangle fa-2x modal-header-icon me-2"></i>
+        <h1 class="modal-title" id="step-waitLabel">Confirmação</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        Confirma a Execução da Requisição como <strong>Aguardando</strong>?
+      </div>
+      <div class="modal-footer actions">
+        <%= link_to 'Confirmar', 
+            requests_step_wait_path(@requests[0].id,q_sys: params[:q_sys],
+                                                    q_status: params[:q_status],
+                                                    q_content: params[:q_content]), 
+            class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal modal-step-finish fade" id="step-finish<%=@requests[0].id%>" tabindex="-1" 
+      aria-labelledby="step-finishLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header"> <i class="fas fa-exclamation-triangle fa-2x modal-header-icon me-2"></i>
+        <h1 class="modal-title" id="step-finishLabel">Confirmação</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        Confirma a Execução da Requisição como <strong>Concluída</strong>?
+      </div>
+      <div class="modal-footer actions">
+        <%= link_to 'Confirmar', 
+            requests_step_finish_path(@requests[0].id,q_sys: params[:q_sys],
+                                                      q_status: params[:q_status],
+                                                      q_content: params[:q_content]), 
+            class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
+
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
       </div>
     </div>
