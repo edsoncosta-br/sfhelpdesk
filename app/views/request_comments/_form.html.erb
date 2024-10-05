@@ -9,7 +9,7 @@
       </div>          
     </div>
 
-    <div class="card card-size">
+    <div class="card card-size shadow">
       <div class="card-body card-body-style brd">
 
         <%= form_with(model: @request_comment) do |form| %>
@@ -71,7 +71,7 @@
                     </div>
                   </div>
 
-                  <div class="col-priority">
+                  <div class="col-priority-show">
                     <% if request.priority %>
                       <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
                         <i class="fa-solid fa-star"></i></span>

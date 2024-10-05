@@ -9,10 +9,9 @@
       </div>          
     </div>
 
-    <div class="card card-size">
+    <div class="card card-size shadow">
       <div class="card-body card-body-style brd">
 
-        <%#= form_with(model: [ :employee, @user ], html: { class: "needs-validation", novalidate: true }) do |form| %>
         <%= form_with(model: [ :employee, @user ], html: { class: "needs-validation", novalidate: true }) do |form| %>
           <%= render "shared/error_messages", resource: @user %>
 

@@ -125,7 +125,15 @@
 }
 
 .col-priority {
+  width: 2.6rem;
+}
+
+.col-priority-show {
   width: 2rem;
+}
+
+.col-icon {
+  width: 3.4rem;
 }
 
 .status-line {
