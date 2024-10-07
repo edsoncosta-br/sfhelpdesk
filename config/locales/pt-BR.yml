@@ -76,6 +76,8 @@ pt-BR:
         user_responsible_id: Responsável pela execução
         mark_id: Meta
         content: Conteúdo da Requisição
+      request_comment:
+        content: Conteúdo do Comentário
   errors:
     format: "%{attribute} %{message}"
     messages:

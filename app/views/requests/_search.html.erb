@@ -2,7 +2,6 @@
 
   <div class="status-line <%=color_status(params[:q_status].to_i)%>"> 
     <div class="d-flex"> 
-
       <div class="status-text"> <%=status(params[:q_status].to_i)%> ( <%=@requests_size.to_s.rjust(2, "0") %> )</div>
     </div>
   </div>

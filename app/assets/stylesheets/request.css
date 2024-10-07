@@ -277,7 +277,7 @@ tbody tr {
 }
 
 .col-actions-comment {
-  width: 12rem;
+  min-width: 98px;
 }
 
 .bg-status {
