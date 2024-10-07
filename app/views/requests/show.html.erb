@@ -105,22 +105,26 @@
 
                             <td class='align-middle icon-attached text-center'>
                               <% if ActiveStorage.content_types_allowed_inline.include?(file.content_type) %>
-                                <%= link_to rails_blob_url(file, disposition: "inline", only_path: true), target: :_blank,
-                                  title: "Visualizar Arquivo", id:"id_view_#{file.id}", class:"class_view" do %>
-                                  <i class="fa-solid fa-eye"></i>
-                                <%end%>
+                                <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Visualizar Arquivo">
+                                  <%= link_to rails_blob_url(file, disposition: "inline", only_path: true), target: :_blank,
+                                    id:"id_view_#{file.id}", class:"class_view" do %>
+                                    <i class="fa-solid fa-eye"></i>
+                                  <%end%>
+                                </span>
                               <%else%>                                  
-                                <span title="Não disponível">
+                                <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Não disponível">
                                   <i class="fa-solid fa-eye unavailable"></i>
                                 </span>
                               <%end%>
                             </td>
 
                             <td class='align-middle icon-attached text-center'>
-                              <%= link_to rails_blob_path(file, disposition: "attachment", only_path: true),
-                                title: "Download do Arquivo", id:"id_download_#{file.id}", class:"class_download" do %>
-                                <i class="fa-solid fa-download"></i>
-                              <%end%> 
+                              <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download do Arquivo">
+                                <%= link_to rails_blob_path(file, disposition: "attachment", only_path: true),
+                                  id:"id_download_#{file.id}", class:"class_download" do %>
+                                  <i class="fa-solid fa-download"></i>
+                                <%end%> 
+                              </span>
                             </td>                              
                           </tr>                          
                         <%end%>
@@ -155,21 +159,23 @@
                   </div>
                   
                   <div class="ms-2">
-                    <strong><%=request_comment.user.nick_name%></strong> comentou em <%=I18n.l(request_comment.created_date, format: :meu)%> 
+                    <strong><%=request_comment.user.nick_name%></strong> 
+                      comentou em <%=I18n.l(request_comment.created_date, format: :date_time)%> 
                   </div>
 
                   <div class="col-actions-comment">
-                    <%= link_to edit_request_comment_path(request_comment.id,q_sys: params[:q_sys],
-                                                                              q_status: params[:q_status],
-                                                                              q_content: params[:q_content]), 
-                                                                              class: 'btn btn-outline-success',
-                                                                              data: { bs_toggle: 'tooltip', 
-                                                                                      bs_placement: "top", 
-                                                                                      bs_title: "Alterar Comentário" } do %>
+                    <%= link_to edit_request_comment_path(request_comment,q_id: request_comment.request,
+                                                                          q_sys: params[:q_sys],
+                                                                          q_status: params[:q_status],
+                                                                          q_content: params[:q_content]), 
+                                                                          class: 'btn btn-outline-success',
+                                                                          data: { bs_toggle: 'tooltip', 
+                                                                                  bs_placement: "top", 
+                                                                                  bs_title: "Alterar Comentário" } do %>
                       <i class="fa-regular fa-pen-to-square fa-lg"></i>
                     <% end %>
 
-                    <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
+                    <span data-bs-toggle="modal" data-bs-target="#delete-comment<%=request_comment.id.to_s%>">
                       <a class="btn btn-outline-success" href="#" 
                           data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir Comentário">
                           <i class="fa-solid fa-trash fa-lg"></i></a>
@@ -182,6 +188,8 @@
             </div>
           </div>
         </div>
+
+        <%= render partial: 'requests/modals/delete_comment', locals: { resource: request_comment } %>
       <%end%>
     <%end%>
   </div>

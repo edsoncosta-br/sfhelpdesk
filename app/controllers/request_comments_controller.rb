@@ -1,4 +1,6 @@
 class RequestCommentsController < ApplicationController
+  before_action :set_request_comment, only: %i[ edit update destroy ]
+
   def new
     @request_comment = RequestComment.new
   end
@@ -14,7 +16,7 @@ class RequestCommentsController < ApplicationController
         format.html { redirect_to request_path(params[:q_id], q_sys: params[:q_sys],
                                                               q_status: params[:q_status],
                                                               q_content: params[:q_content]), 
-                                                              notice: "Requisição atualizada com sucesso." }
+                                                              notice: "Comentário criado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -26,7 +28,9 @@ class RequestCommentsController < ApplicationController
 
   def update
     if @request_comment.update(request_comment_params)
-      redirect_to request_comments_path(q_desc: params[:q_desc]), notice: "Requisição atualizado com sucesso."
+      redirect_to request_path(@request_comment.request,q_sys: params[:q_sys],
+                                                        q_status: params[:q_status],
+                                                        q_content: params[:q_content]), notice: "Comentário atualizado com sucesso."      
     else
       render :edit
     end      
@@ -35,7 +39,10 @@ class RequestCommentsController < ApplicationController
   def destroy
     begin
       if @request_comment.destroy
-        redirect_to request_comments_path(q_desc: params[:q_desc]), notice: "Requisição excluído com sucesso."
+        redirect_to request_path(@request_comment.request.id, 
+                                  q_sys: params[:q_sys],
+                                  q_status: params[:q_status],
+                                  q_content: params[:q_content]), notice: "Comentário excluído com sucesso."
       else
         redirect_to request_comments_path(q_desc: params[:q_desc])
       end

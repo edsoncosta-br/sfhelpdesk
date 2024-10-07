@@ -72,16 +72,16 @@
               </div>
             </td>
 
-            <td class="align-middle col-icon ">
+            <td class="align-middle col-icon text-muted">
               <% if request.any_attached? %>
-                <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Anexo(s)">
+                <span class="" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Anexo(s)">
                   <i class="fa-solid fa-paperclip"></i>
                   <%= request.count_attached %>
                 </span>
               <% end %>
             </td>
 
-            <td class="align-middle col-icon ">
+            <td class="align-middle col-icon text-muted">
               <% if request.count_comments > 0 %>
                 <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Comentário(s)">
                   <i class="fa-regular fa-comment"></i>

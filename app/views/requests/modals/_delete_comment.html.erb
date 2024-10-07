@@ -1,0 +1,24 @@
+<div class="modal modal-delete-comment fade" id="delete-comment<%=resource.id.to_s%>" tabindex="-1" 
+      aria-labelledby="delete-commentLabel" aria-hidden="true">
+      
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header"> <i class="fas fa-exclamation-triangle fa-2x modal-header-icon me-2"></i>
+        <h1 class="modal-title" id="delete-commentLabel">Confirmação</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        Confirma a exclusão do Comentário?
+      </div>
+      <div class="modal-footer actions">
+        <%= link_to 'Excluir', request_comment_path(resource, q_sys: params[:q_sys],
+                                                              q_status: params[:q_status],
+                                                              q_content: params[:q_content]), 
+            class:"btn btn-danger", method: :delete %>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

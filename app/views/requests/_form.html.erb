@@ -128,22 +128,26 @@
 
                             <td class='align-middle icon-attached text-center'>
                               <% if ActiveStorage.content_types_allowed_inline.include?(file.content_type) %>
-                                <%= link_to rails_blob_url(file, disposition: "inline", only_path: true), target: :_blank,
-                                  title: "Visualizar Arquivo", id:"id_view_#{file.id}", class:"class_view" do %>
-                                  <i class="fa-solid fa-eye"></i>
-                                <%end%>
+                                <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Visualizar Arquivo">
+                                  <%= link_to rails_blob_url(file, disposition: "inline", only_path: true), target: :_blank,
+                                    id:"id_view_#{file.id}", class:"class_view" do %>
+                                    <i class="fa-solid fa-eye"></i>
+                                  <%end%>
+                                </span>
                               <%else%>                                  
-                                <span title="Não disponível">
+                                <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Não disponível">
                                   <i class="fa-solid fa-eye unavailable"></i>
                                 </span>
                               <%end%>
                             </td>
 
                             <td class='align-middle icon-attached text-center'>
-                              <%= link_to rails_blob_path(file, disposition: "attachment", only_path: true),
-                                title: "Download do Arquivo", id:"id_download_#{file.id}", class:"class_download" do %>
-                                <i class="fa-solid fa-download"></i>
-                              <%end%> 
+                              <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download do Arquivo">
+                                <%= link_to rails_blob_path(file, disposition: "attachment", only_path: true),
+                                  id:"id_download_#{file.id}", class:"class_download" do %>
+                                  <i class="fa-solid fa-download"></i>
+                                <%end%> 
+                              <span>
                             </td>
 
                             <td class='align-middle icon-attached text-center'>

@@ -90,8 +90,7 @@
             <div class="col-12 mt-4 mb-3">
               <div class="field">
                 <%= form.label :content, class:"form-label" %>
-                <%= form.rich_text_area :content, autofocus: true, 
-                                        class:"form-control #{is_invalid(@request_comment, '_content_isempty_')}" %>
+                <%= form.rich_text_area :content, autofocus: true %>
               </div>            
             </div>
 
@@ -100,16 +99,12 @@
 
           <div class="actions pt-4 text-end">
             <%= form.submit "Salvar", class:"btn btn-success input-btn me-1"%>
-
-            <% if (params[:action] == "edit") or (params[:action] == "update") %>
-              <%= link_to request_comment_path(@request_comment), class: 'btn btn-secondary' do %>
-                Cancelar
-              <% end %>                                                
-            <% else %>
-              <%= link_to 'Cancelar', requests_path(q_sys: params[:q_sys],
+            <%= link_to request_path(params[:q_id], q_sys: params[:q_sys],
                                                     q_status: params[:q_status],
-                                                    q_content: params[:q_content]), class: 'btn btn-secondary' %>
-            <% end %>
+                                                    q_content: params[:q_content]), 
+                                                    class: 'btn btn-secondary' do %>
+              Cancelar
+            <% end %>  
           </div>
 
         <% end %>
