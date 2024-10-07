@@ -21,6 +21,36 @@ class RequestCommentsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @request_comment.update(request_comment_params)
+      redirect_to request_comments_path(q_desc: params[:q_desc]), notice: "Requisição atualizado com sucesso."
+    else
+      render :edit
+    end      
+  end  
+
+  def destroy
+    begin
+      if @request_comment.destroy
+        redirect_to request_comments_path(q_desc: params[:q_desc]), notice: "Requisição excluído com sucesso."
+      else
+        redirect_to request_comments_path(q_desc: params[:q_desc])
+      end
+    rescue StandardError => e
+
+      if e.message.downcase.to_s.include? "foreignkeyviolation"
+        flash[:error] = "Este registro já está sendo usado e não pode ser excluído!"
+      else  
+        flash[:error] = e.message[0...80] + "..."
+      end
+
+      redirect_to request_comments_path(q_desc: params[:q_desc])
+    end
+  end  
+
   private
 
   def set_request_comment

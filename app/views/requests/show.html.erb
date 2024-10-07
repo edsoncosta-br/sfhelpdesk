@@ -149,14 +149,32 @@
               <div class="col-12 mb-3">
                 <div class="col-title-comment d-flex align-items-center">              
                   <div>
-                    <div class="avatar avatar-request">
+                    <span class="avatar avatar-request">
                       <%= image_tag "emptyuser.png", alt: "empty user" %>
-                    </div>                  
+                    </span>                  
                   </div>
                   
-                  <span class="ms-2">
+                  <div class="ms-2">
                     <strong><%=request_comment.user.nick_name%></strong> comentou em <%=I18n.l(request_comment.created_date, format: :meu)%> 
-                  </span>
+                  </div>
+
+                  <div class="col-actions-comment">
+                    <%= link_to edit_request_comment_path(request_comment.id,q_sys: params[:q_sys],
+                                                                              q_status: params[:q_status],
+                                                                              q_content: params[:q_content]), 
+                                                                              class: 'btn btn-outline-success',
+                                                                              data: { bs_toggle: 'tooltip', 
+                                                                                      bs_placement: "top", 
+                                                                                      bs_title: "Alterar Comentário" } do %>
+                      <i class="fa-regular fa-pen-to-square fa-lg"></i>
+                    <% end %>
+
+                    <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
+                      <a class="btn btn-outline-success" href="#" 
+                          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir Comentário">
+                          <i class="fa-solid fa-trash fa-lg"></i></a>
+                    </span>
+                  </div>
                 </div>
 
                 <div class="border-content-comment"><%= request_comment.content %></div>
