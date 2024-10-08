@@ -1,9 +1,10 @@
 class MarksController < ApplicationController
-  before_action :set_mark, only: %i[ edit update destroy ]
+  before_action :set_mark, only: %i[ edit update destroy close ]
   before_action :set_upcase, only: %i[ create update ]    
 
   def index
-    marks = Mark.select(:id, :description, :due_date, :release_date, 'projects.description project_description')
+    marks = Mark.select(:id, :description, :due_date, :description_complement, 
+                        :closed, 'projects.description project_description')
                 .joins(project: :company)
                 .where("company_id = ?", current_user.company.id)
                 .order(Arel.sql('unaccent(projects.description), unaccent(marks.description)'))
@@ -47,13 +48,25 @@ class MarksController < ApplicationController
   def edit
   end
 
+  def close
+  end  
+
   def update
+    if params[:closed] 
+      @mark.closed = true
+    end    
+
     if @mark.update(mark_params)
-      redirect_to marks_path(q_sys: params[:q_sys],
+
+      if params[:closed] 
+        Request.where('mark_id = ?', @mark.id).update_all(status: Constants::STATUS_FINALIZADA[1])
+      end
+
+      redirect_to marks_path( q_sys: params[:q_sys],
                               q_desc: params[:q_desc]), notice: "Meta atualizada com sucesso."
     else
       render :edit
-    end      
+    end
   end  
 
   def destroy
@@ -89,7 +102,8 @@ class MarksController < ApplicationController
   end
 
   def mark_params
-    params.require(:mark).permit(:description, :due_date, :release_date, :project_id)
+    params.require(:mark).permit( :description, :due_date, :description_complement, 
+                                  :closed, :project_id)
   end  
 
 end

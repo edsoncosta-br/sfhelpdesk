@@ -21,8 +21,9 @@
   </ul>
 </span>
 
-<%# somente o criador da requisicao podera alterar seus dados e status %>
-<% if current_user.id == @requests[0].user_created_id %> 
+<%# permissoes para manutencao das requisicoes %>
+<% if (current_user.id == @requests[0].user_created_id) or 
+      (current_user.id != @requests[0].user_created_id and current_user.permission_request ) %> 
 
   <% if @requests[0].status == Constants::STATUS_ABERTA[1] %>
     <span data-bs-toggle="modal" data-bs-target="#status-finished<%=@requests[0].id.to_s%>">

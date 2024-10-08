@@ -25,7 +25,7 @@ class PositionsController < ApplicationController
     
     respond_to do |format|
       if @position.save
-        format.html { redirect_to positions_path(q_desc: params[:q_desc]), notice: "Cargo/Função cadastrado com sucesso." }
+        format.html { redirect_to positions_path(q_desc: params[:q_desc]), notice: "Departamento cadastrado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -37,7 +37,7 @@ class PositionsController < ApplicationController
 
   def update
     if @position.update(position_params)
-      redirect_to positions_path(q_desc: params[:q_desc]), notice: "Cargo/Função atualizado com sucesso."
+      redirect_to positions_path(q_desc: params[:q_desc]), notice: "Departamento atualizado com sucesso."
     else
       render :edit
     end      
@@ -46,7 +46,7 @@ class PositionsController < ApplicationController
   def destroy
     begin
       if @position.destroy
-        redirect_to positions_path(q_desc: params[:q_desc]), notice: "Cargo/Função excluído com sucesso."
+        redirect_to positions_path(q_desc: params[:q_desc]), notice: "Departamento excluído com sucesso."
       else
         redirect_to positions_path(q_desc: params[:q_desc])
       end

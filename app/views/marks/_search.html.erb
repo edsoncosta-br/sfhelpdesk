@@ -13,7 +13,8 @@
           <th scope='col'>Descrição</th>
           <th scope='col'>Projeto</th>
           <th scope='col'>Previsão</th>
-          <th scope='col'>Conclusão</th>
+          <th scope='col'>Complemento</th>
+          <th scope='col'>Status</th>
           <th scope='col' class='text-center col-actions-two'>Ações</th>
         </tr>
       </thead>
@@ -21,11 +22,33 @@
       <tbody>
         <% @marks.each do |mark| %>
           <tr>
-            <td class='align-middle'> <%=mark.description%> </td>
+            <td class='align-middle'> <%=mark.description%></td>
             <td class='align-middle'> <%=mark.project_description%> </td>
             <td class='align-middle'> <%=format_date(mark.due_date)%> </td>
-            <td class='align-middle'> <%=format_date(mark.release_date)%> </td>
+            <td class='align-middle'> <%=mark.description_complement%> </td>
+
+            <% if mark.closed %> 
+              <td class='align-middle'><span class="badge rounded-pill text-bg-danger badge-table">Finalizada</span></td>
+            <% elsif %>
+              <td class='align-middle'><span class="badge rounded-pill text-bg-success badge-table">Aberta</span></td>
+            <% end %>            
+
+
             <td class='align-middle text-center'>
+              <% if mark.closed %> 
+                <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reabrir Meta">
+                  <a class="btn btn-outline-success btn-sm btn-close-open me-2" href="#" data-bs-toggle="modal" 
+                    data-bs-target="#delete<%=mark.id.to_s%>">Reabrir</a>
+                </span>                
+              <% else %>
+                <%= link_to close_mark_path(mark, q_sys: params[:q_sys],
+                                                  q_desc: params[:q_desc]), 
+                                                  class: 'btn btn-outline-success btn-sm btn-close-open me-2', 
+                                                  data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Finalizar Meta" } do %>
+                  Finalizar
+                <% end %>              
+              <% end %>
+
               <%= link_to edit_mark_path(mark,q_sys: params[:q_sys],
                                               q_desc: params[:q_desc]), 
                                               class: 'td-actions', 

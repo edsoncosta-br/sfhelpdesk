@@ -17,7 +17,7 @@ pt-BR:
         password_confirmation: Confirmação
         name: Nome Completo
         nick_name: Nome de Identificação
-        position_id: Cargo/Função
+        position_id: Departamento
         active: Cadastro Ativo
         password: Senha
         password_confirmation: Confirmação
@@ -26,7 +26,7 @@ pt-BR:
         name: Nome
         email: E-mail
         social_name: Nome Social
-        position: Cargo/Função
+        position: Departamento
         active: Cadastro Ativo
         registration_menu: Acesso Cadastros
         panel_menu: Acesso Painel
@@ -57,8 +57,8 @@ pt-BR:
       mark:
         description: Descrição da Meta
         due_date: Previsão
-        release_date: Conclusão
         project_id: Projeto
+        description_complement: Complemento
       tag:
         description: Descrição da Tag
         project_id: Projeto        

@@ -143,7 +143,8 @@ namespace :dev do
       position_id: 1,
       company_id: 1,
       admin: true,
-      permission_admin_menu: true
+      permission_admin_menu: true,
+      permission_request: true
     )
 
     User.create!(

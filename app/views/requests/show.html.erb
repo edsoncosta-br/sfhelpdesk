@@ -144,14 +144,14 @@
       </div>
     </div>
 
-    <div class="card-size d-flex justify-content-between text-success mt-4">
-      <div class="ph-left pe-3">
+    <div class="card-size d-flex justify-content-between align-items-center text-success mt-4">
+      <div class="ph-left ps-1 pe-3">
         <% @comments = @request_comments.size %>
         
         <% if @comments > 0 %>
-          <i class="fa-solid fa-comment-dots fa-lg me-2"></i>Comentários ( <%=@comments.to_s.rjust(2, "0")%> )</a>
+          <i class="fa-regular fa-message fa-lg me-2"></i>Comentários ( <%=@comments.to_s.rjust(2, "0")%> )</a>
         <%else%>
-          <i class="fa-solid fa-comment-dots fa-lg me-2"></i>Nenhum comentário cadastrado</a>
+          <i class="fa-regular fa-message fa-lg me-2"></i>Nenhum comentário cadastrado</a>
         <%end%>
       </div>
 
@@ -160,7 +160,7 @@
                                               q_sys: params[:q_sys],
                                               q_status: params[:q_status],
                                               q_content: params[:q_content]),  
-                                              class: "btn btn-sm btn-success",
+                                              class: "btn btn-outline-success",
                                               data: { bs_toggle: 'tooltip', 
                                                       bs_placement: "top", 
                                                       bs_title: "Adicionar Comentário" }) do %>

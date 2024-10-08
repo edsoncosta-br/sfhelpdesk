@@ -64,6 +64,13 @@
               <label class="align-checkbox" for="permission_admin_menu_id">Permitir acesso administrativo</label>
             </div>
 
+            <div class="col-12 mb-3">
+              <%= form.check_box :permission_request, class:"form-check-input", id:"permission_request_id",
+                                  disabled: enable_by_permission(@user.admin), 
+                                  readonly: enable_by_permission(@user.admin)%>
+              <label class="align-checkbox" for="permission_request_id">Permitir alteração/exclusão de requisições de outros usuários</label>
+            </div>            
+
             <div class="col-12 mt-3">
               <div class="alert alert-success alert-divider" role="alert">
                 <i class="fa-solid fa-user-shield pe-2"></i>Selecione os projetos que este usuário terá acesso:

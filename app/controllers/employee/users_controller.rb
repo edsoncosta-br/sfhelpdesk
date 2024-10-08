@@ -104,7 +104,8 @@ class Employee::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :name, :nick_name, :company_id, :position_id, :active, :admin, :permission_admin_menu)
+    params.require(:user).permit( :email, :name, :nick_name, :company_id, :position_id, 
+                                  :active, :admin, :permission_admin_menu, :permission_request)
   end
 
   def save_userprojects

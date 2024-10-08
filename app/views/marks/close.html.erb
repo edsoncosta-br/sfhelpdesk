@@ -1,0 +1,62 @@
+<%= render "shared/header" %>
+<main>
+  <div class="container-fluid max-container">
+    <div class="page-heading"> 
+      <div class="ph-left pe-3">
+        <div>Meta - Finalização</div>
+      </div>
+      <div class="ph-right">
+      </div>          
+    </div>
+
+    <div class="card card-size shadow">
+      <div class="card-body card-body-style brd">
+
+        <%= form_with(model: @mark ) do |form| %>
+          <div class="row">
+
+            <div class="col-12 mb-3">
+              <%= form.label :project_id, class:"form-label"%>
+              <input class="form-control" value="<%=@mark.project.description%>" disabled>                              
+            </div>
+
+            <div class="col-12 col-md-8 mb-3">
+              <%= form.label :description, class:"form-label" %>
+              <input class="form-control" value="<%=@mark.description%>" disabled>
+            </div>
+
+            <div class="col-12 col-md-4 mb-4">
+              <%= form.label :due_date, class:"form-label" %>
+              <input class="form-control" value="<%=format_date(@mark.due_date)%>" disabled>
+            </div>
+
+            <div class="col-12 mb-4">
+              <div class='alert alert-success alert-smaller p-2 m-0' role='alert'>
+                <i class='fas fa-exclamation-circle'></i> Ao finalizar a meta, todas as requisições relacionadas serão automaticamente finalizadas.
+              </div>                    
+            </div>
+
+            <div class="col-12 mb-3">
+              <%= form.label :description_complement, class:"form-label" %>
+              <%= form.text_field :description_complement, 
+                  class:"form-control", autocomplete: :off, autofocus: true, maxlength:"50" %>
+            </div>
+
+            <%= hidden_field_tag :q_sys, params[:q_sys] %>
+            <%= hidden_field_tag :q_desc, params[:q_desc] %>
+            <%= hidden_field_tag :closed, true %>
+
+          </div>
+
+          <div class="actions pt-2 text-end">
+            <%= form.submit "Finalizar", class:"btn btn-info input-btn me-1"%>
+            <%= link_to 'Cancelar', marks_path(q_sys: params[:q_sys],
+                                               q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
+          </div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</main>

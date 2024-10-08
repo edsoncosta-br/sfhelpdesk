@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_04_161228) do
+ActiveRecord::Schema.define(version: 2024_10_07_234117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,8 @@ ActiveRecord::Schema.define(version: 2024_10_04_161228) do
     t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "description_complement", limit: 50
+    t.boolean "closed", default: false
     t.index ["project_id", "description"], name: "index_marks_on_project_id_and_description", unique: true
   end
 
@@ -206,6 +208,7 @@ ActiveRecord::Schema.define(version: 2024_10_04_161228) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "permission_request", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
