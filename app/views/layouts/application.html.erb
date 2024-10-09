@@ -13,11 +13,7 @@
     <%= javascript_include_tag 'application' %>
 
     <% if File.exist?( (Rails.root + 'app/assets/stylesheets/' + params[:controller]).to_s.singularize + '.css' ) %>
-      <% if params[:controller] == 'marks' and params[:action] == 'show'%>
-        <%= stylesheet_link_tag 'markshow' %>
-      <%else%>
-        <%= stylesheet_link_tag params[:controller].singularize %>
-      <% end %>
+      <%= stylesheet_link_tag params[:controller].singularize %>
     <% end %>
     
     <% if File.exist?( (Rails.root + 'app/assets/javascripts/' + params[:controller]).to_s.singularize + '.js' ) %>

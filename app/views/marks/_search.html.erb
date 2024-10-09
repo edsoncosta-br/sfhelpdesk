@@ -29,16 +29,16 @@
             <td class='align-middle'><%=mark.description_complement%></td>
             
             <td class='align-middle'>
-              
-              <% if (mark.count_requests == 0) %>
-                <%=mark.count_requests.to_s.rjust(2, "0")%>
-              <% else %>
-                <%= link_to mark_path(mark, q_sys: params[:q_sys],
+              <%=mark.count_requests.to_s.rjust(2, "0")%>
+              <%# if (mark.count_requests == 0) %>
+                <%#=mark.count_requests.to_s.rjust(2, "0")%>
+              <%# else %>
+                <%#= link_to mark_path(mark, q_sys: params[:q_sys],
                                             q_desc: params[:q_desc]), 
                                             data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Visualizar Requisições" } do %>
-                  <%=mark.count_requests.to_s.rjust(2, "0")%>
-                <% end %>              
-              <% end %>
+                  <%#=mark.count_requests.to_s.rjust(2, "0")%>
+                <%# end %>              
+              <%# end %>
             </td>
 
             <% if mark.closed %> 

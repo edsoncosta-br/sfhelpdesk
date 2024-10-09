@@ -40,9 +40,13 @@
 }
 
 .bg-tag {
-  color: #1d4d70 !important;
-  background-color: #e3f0fb !important;
-  border-color: #81b0dd;
+  /* color: #1d4d70 !important; */
+  /* background-color: #e3f0fb !important; */
+  /* border-color: #81b0dd; */
+
+  color: #666204 !important;
+  background-color: #fbfae3 !important;
+  border-color: #81b0dd;  
 }
 
 .bg-mark {
