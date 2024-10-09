@@ -21,8 +21,9 @@ Rails.application.routes.draw do
   resources :projects, except: [:show]
   get 'projects/filter_project_dependency'
   resources :tags, except: [:show]
-  resources :marks, except: [:show]
-  get	'/marks/:id/close', to: 'marks#close', as: 'close_mark' 
+  resources :marks
+  get	'marks/:id/close', to: 'marks#close', as: 'close_mark'
+  put	'marks/:id/reopen', to: 'marks#reopen', as: 'reopen_mark'
 
   resources :requests
   put 'requests/delete_attachment/:id_attachment/:id_request', to: 'requests#delete_attachment', as: 'requests_delete_attachment'

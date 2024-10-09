@@ -3,8 +3,11 @@ class MarksController < ApplicationController
   before_action :set_upcase, only: %i[ create update ]    
 
   def index
-    marks = Mark.select(:id, :description, :due_date, :description_complement, 
-                        :closed, 'projects.description project_description')
+    marks = Mark.select(:id, :description, :due_date, 
+                        :description_complement, 
+                        :closed, 
+                        'projects.description project_description',
+                        '(select count(requests.id) from requests where requests.mark_id = marks.id) count_requests')
                 .joins(project: :company)
                 .where("company_id = ?", current_user.company.id)
                 .order(Arel.sql('unaccent(projects.description), unaccent(marks.description)'))
@@ -50,6 +53,26 @@ class MarksController < ApplicationController
 
   def close
   end  
+
+  def show
+    @marks = Mark.select(:id, :description, :due_date, 
+                        :description_complement, 
+                        :closed, 
+                        'projects.description project_description')
+                .joins(:project)
+                .where("marks.id = ?", params[:id])
+  end
+
+  def reopen
+    mark = Mark.find(params[:id])
+    mark.update(closed: false)
+
+    redirect_to marks_path(params[:id],
+                          q_sys: params[:q_sys],
+                          q_status: params[:q_status],
+                          q_content: params[:q_content]), 
+                          notice: "Meta reaberta com sucesso."
+  end
 
   def update
     if params[:closed] 
