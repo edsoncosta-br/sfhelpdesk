@@ -29,6 +29,22 @@ module RequestsHelper
     end 
   end
 
+  def color_mark(closed)
+    if closed == true
+      'bg-mark-closed'
+    elsif closed == false
+      'bg-mark-open'
+    end 
+  end
+
+  def mark_description(closed)
+    if closed == true
+      "Meta Finalizada"
+    elsif closed == false
+      "Meta Aberta"
+    end 
+  end    
+
   def step(step)
     if step == Constants::STEP_EXECUTANDO[1]
       Constants::STEP_EXECUTANDO[0]

@@ -40,8 +40,8 @@
                   <% end %>
 
                   <% if request.mark_description.present? %>
-                    <span class="badge rounded-pill bg-style bg-mark me-1" 
-                          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Meta">
+                    <span class="badge rounded-pill bg-style <%=color_mark(request.closed)%> me-1" 
+                          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<%=mark_description(request.closed)%>">
                       <i class="fa-solid fa-flag me-1"></i>
                       <%=request.mark_description%>
                     </span>

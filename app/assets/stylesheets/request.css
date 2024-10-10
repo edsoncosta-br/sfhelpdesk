@@ -40,19 +40,36 @@
 }
 
 .bg-tag {
-  /* color: #1d4d70 !important; */
-  /* background-color: #e3f0fb !important; */
-  /* border-color: #81b0dd; */
-
-  color: #666204 !important;
-  background-color: #fbfae3 !important;
-  border-color: #81b0dd;  
+  /* color: #1d4d70 !important;
+  background-color: #e3f0fb !important;
+  border-color: #81b0dd; */
+  color: #5c5c5c !important;
+  border-color: #c2c2c3 !important;
+  background-color: #f5f5f5;  
 }
 
 .bg-mark {
   color: #b75c5c !important;
   background-color: #fff5f5 !important;
   border-color: #dbaaaa !important;
+}
+
+.bg-mark-open {
+  /* color: #11911f !important;
+  border-color: #6ad391 !important;
+  background-color: #e7f9f1; */
+  color: #11911f !important;
+  border-color: #6ad391 !important;
+  background-color: #d2efe4;
+}
+
+.bg-mark-closed {
+  /* color: #1f4ca0 !important;
+  border-color: #74aadd !important;
+  background-color: #9ed6ff; */
+  color: #1f4ca0 !important;
+  border-color: #74aadd !important;
+  background-color: #d2e5f7;    
 }
 
 .bg-mark-show {
@@ -69,7 +86,7 @@
 .bg-step-execute {
   color: #11911f !important;
   border-color: #6ad391 !important;
-  background-color: #bbf2c1;
+  background-color: #ebfced;
   width: 7.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -96,7 +113,7 @@
 .bg-step-finish {
   color: #3d68b7 !important;
   border-color: #74aadd !important;
-  background-color: #dde9ff;
+  background-color: #eaf1ff;
   width: 7.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -291,16 +308,20 @@ tbody tr {
 }
 
 .bg-status-open {
-  color: #0b9929 !important;
+  color: #11911f !important;
+  border-color: #6ad391 !important;
+  background-color: #d2efe4;
+
+  /* color: #0b9929 !important;
   border-color: #22c389 !important;
-  background-color: #c0f7e3;
+  background-color: #c0f7e3; */
   width: 5rem;
 }
 
 .bg-status-finish {
   color: #1f4ca0 !important;
   border-color: #74aadd !important;
-  background-color: #9ed6ff;
+  background-color: #d2e5f7;
 }
 
 .bg-status-archived {

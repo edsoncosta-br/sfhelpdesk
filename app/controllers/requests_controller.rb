@@ -12,6 +12,7 @@ class RequestsController < ApplicationController
                               "users.nick_name user_created_name",
                               "user_responsibles_requests.nick_name user_responsible_name",
                               "marks.description mark_description",
+                              "marks.closed",
                               "(select count(request_comments.id) from request_comments where request_comments.request_id = requests.id) count_comments",
                               "customers.name customers_name")
                       .joins(project: :company)
