@@ -4,8 +4,6 @@ class CreateMarks < ActiveRecord::Migration[6.1]
       t.string :description, limit: 30, null: false
       t.datetime :due_date
       t.bigint :project_id, null: false
-      t.boolean :closed, default: false  
-      t.string :description_complement, limit: 50
 
       t.timestamps
     end
