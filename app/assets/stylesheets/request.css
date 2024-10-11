@@ -40,12 +40,9 @@
 }
 
 .bg-tag {
-  /* color: #1d4d70 !important;
-  background-color: #e3f0fb !important;
-  border-color: #81b0dd; */
   color: #5c5c5c !important;
   border-color: #c2c2c3 !important;
-  background-color: #f5f5f5;
+  background-color: #fafafa;
 }
 
 .bg-mark {
@@ -55,18 +52,12 @@
 }
 
 .bg-mark-open {
-  /* color: #11911f !important;
-  border-color: #6ad391 !important;
-  background-color: #e7f9f1; */
   color: #2c6a33 !important;
   border-color: #6ad391 !important;
   background-color: #d2efe4;
 }
 
 .bg-mark-closed {
-  /* color: #1f4ca0 !important;
-  border-color: #74aadd !important;
-  background-color: #9ed6ff; */
   color: #1f4ca0 !important;
   border-color: #74aadd !important;
   background-color: #d2e5f7;    

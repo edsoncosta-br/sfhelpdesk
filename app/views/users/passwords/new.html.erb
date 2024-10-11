@@ -3,7 +3,7 @@
     <%= image_tag "logo.png", class:"pb-3", alt: "logo" %>
   </div>
 
-  <div class="text-center pb-4 title-login">Redefinição de senha</div>
+  <div class="text-center pb-4 title-login">Informe o e-mail para receber as instruções</div>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "shared/error_messages", resource: resource %>
@@ -13,7 +13,7 @@
     </div>
 
     <div class="d-grid gap-2">
-      <%= button_tag 'Enviar instruções', type: 'submit', class:"btn btn-success mt-4" %>
+      <%= button_tag 'Enviar', type: 'submit', class:"btn btn-success mt-4" %>
       <%= link_to "Cancelar", new_session_path(resource_name), class: "btn btn-secondary mt-2 f-size-1" %>  
     </div>
   <% end %>
