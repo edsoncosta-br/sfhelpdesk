@@ -203,7 +203,7 @@ class RequestsController < ApplicationController
                               q_sys: params[:q_sys],
                               q_status: params[:q_status],
                               q_content: params[:q_content]), 
-                              notice: "Execução alterada com sucesso."
+                              notice: "Execução parada."
   end
 
   def step_execute
@@ -214,7 +214,7 @@ class RequestsController < ApplicationController
                               q_sys: params[:q_sys],
                               q_status: params[:q_status],
                               q_content: params[:q_content]), 
-                              notice: "Execução alterada com sucesso."
+                              notice: "Execução iniciada."
   end
   
   def step_finish

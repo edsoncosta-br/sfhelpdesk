@@ -1,25 +1,21 @@
-<span class="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-  <button class="btn btn-success dropdown-toggle me-3" type="button" 
-          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Alterar Status da Execução">
-    <i class="fa-solid fa-gear fa-lg me-1"></i></a>
-  </button>
-  <ul class="dropdown-menu">
-    <% if @requests[0].step != Constants::STEP_EXECUTANDO[1] %>
-      <li><a class="dropdown-item" href="#" 
-              data-bs-toggle="modal" data-bs-target="#step-execute<%=@requests[0].id.to_s%>">Em Andamento</a></li>
-    <% end %>
+<% if (current_user.id == @requests[0].user_responsible_id) %>
+  <% if @requests[0].step == Constants::STEP_EXECUTANDO[1] %>    
+    <span data-bs-toggle="modal" data-bs-target="#step-wait<%=@requests[0].id.to_s%>">
+      <a class="btn btn-outline-danger me-3" href="#" 
+          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Parar a Execução da Requisição">
+          <i class="fa-solid fa-person-running fa-lg"></i></a>
+    </span>
 
-    <% if @requests[0].step != Constants::STEP_CONCLUIDA[1] %>
-      <li><a class="dropdown-item" href="#" 
-              data-bs-toggle="modal" data-bs-target="#step-finish<%=@requests[0].id.to_s%>">Concluída</a></li>
-    <% end %>
+  <% elsif @requests[0].step == Constants::STEP_AGUARDANDO[1] %>
 
-    <% if @requests[0].step != Constants::STEP_AGUARDANDO[1] %>
-      <li><a class="dropdown-item" href="#" 
-              data-bs-toggle="modal" data-bs-target="#step-wait<%=@requests[0].id.to_s%>">Aguardando</a></li>
-    <% end %>
-  </ul>
-</span>
+    <span data-bs-toggle="modal" data-bs-target="#step-execute<%=@requests[0].id.to_s%>">
+      <a class="btn btn-outline-success me-3" href="#" 
+          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Iniciar a Execução da Requisição">
+          <i class="fa-solid fa-person-running fa-lg"></i></a>
+    </span>
+
+  <% end %>
+<% end %>
 
 <%# permissoes para manutencao das requisicoes %>
 <% if (current_user.id == @requests[0].user_created_id) or 

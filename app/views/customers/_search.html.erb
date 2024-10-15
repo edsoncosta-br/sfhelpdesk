@@ -10,8 +10,8 @@
     <table class='table table-bordered table-striped table-hover table-result'>
       <thead>
         <tr>
-          <th scope='col'>Nome</th>
           <th scope='col'>Código</th>
+          <th scope='col'>Nome</th>
           <th scope='col'>CNPJ/CPF</th>
           <th scope='col'>Município</th>
           <th scope='col'>UF</th>
@@ -24,8 +24,8 @@
         <% @customers.each do |customer| %>
           
           <tr>
-            <td class='align-middle'> <%= customer.name %> </td>
             <td class='align-middle'> <%= customer.code_f %> </td>
+            <td class='align-middle'> <%= customer.name %> </td>
             <td class='align-middle'> <%= customer.cpfcnpj_number %> </td>
             <td class='align-middle'> <%= customer.city_name %> </td>
             <td class='align-middle'> <%= customer.city_state %> </td>

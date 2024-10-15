@@ -135,9 +135,9 @@ namespace :dev do
   desc 'Add default user'
   task add_default_user: :environment do
     User.create!(
-      email: 'edson@sofolha.com.br',
-      name: 'Edson Benedito da Costa',
-      nick_name: 'Edson Costa',
+      email: 'consultoria@sofolha.com.br',
+      name: 'Administrador do Sistema',
+      nick_name: 'Administrador do Sistema',
       password: DEFAULT_PASSWORD,
       password_confirmation: DEFAULT_PASSWORD,
       position_id: 1,
@@ -146,16 +146,6 @@ namespace :dev do
       permission_admin_menu: true,
       permission_request: true
     )
-
-    User.create!(
-      email: 'mara@sofolha.com.br',
-      name: 'Mara Sílvia Lopes Thomazini da Costa',
-      nick_name: 'Mara Sílvia',
-      password: DEFAULT_PASSWORD,
-      password_confirmation: DEFAULT_PASSWORD,
-      position_id: 3,
-      company_id: 1
-    )    
   end    
   
   desc 'Add default admin'

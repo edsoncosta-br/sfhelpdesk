@@ -53,7 +53,7 @@
               <label class="align-checkbox" for="active_id">Cadastro ativo</label>
               
               <% if @user.admin %> 
-                <span class="badge text-bg-warning badge-table">Usuário Dono</span>
+                <span class="badge text-bg-secondary badge-table">Administrador</span>
               <% end %>                                            
             </div>
 
@@ -61,7 +61,7 @@
               <%= form.check_box :permission_admin_menu, class:"form-check-input", id:"permission_admin_menu_id",
                                   disabled: enable_by_permission(@user.admin), 
                                   readonly: enable_by_permission(@user.admin)%>
-              <label class="align-checkbox" for="permission_admin_menu_id">Permitir acesso administrativo</label>
+              <label class="align-checkbox" for="permission_admin_menu_id">Permitir acesso ao menu Cadastros/Administrativo</label>
             </div>
 
             <div class="col-12 mb-3">

@@ -49,21 +49,21 @@
                 </span>
               </div>
               
-              <div class="second-line text-muted">
+              <div class="second-line text-mued">
                 <span>
-                  <span>Criação: <%=format_date(request.created_date)%> </span>
+                  <span>Criação: <strong><%=format_date(request.created_date)%></strong></span>
                   <span class="me-3">por <strong><%=request.user_created_name%></strong></span>
-                  <span class="me-3">Id: <%=request.id.to_s.rjust(4, "0")%></span>                  
+                  <span class="me-3">Id: <strong><%=request.id.to_s.rjust(4, "0")%></strong></span>
 
                   <% if request.customers_name.present? && request.requester_name.present? %>
-                    <span class="me-3">Solicitante: <%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%>/<%=request.requester_name%></span>
+                    <span class="me-3">Solicitante: <strong><%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%>/<%=request.requester_name%></strong></span>
                   <% elsif request.customers_name.present? %>
-                    <span class="me-3">Solicitante: <%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%></span>                    
+                    <span class="me-3">Solicitante: <strong><%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%></strong></span> 
                   <% elsif request.requester_name.present? %>
-                    <span class="me-3">Solicitante: <%=request.requester_name%></span>                                        
+                    <span class="me-3">Solicitante: <strong><%=request.requester_name%></strong></span>
                   <% end %>
 
-                  <span class="me-3">Previsão: <%=request.dues_date.present? ? format_date(request.dues_date) : '--'%></span>
+                  <span class="me-3">Previsão: <strong><%=request.dues_date.present? ? format_date(request.dues_date) : '--'%></strong></span>
                   <span class="me-3">
                     Responsável: <strong><%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></strong>
                   </span>
@@ -72,8 +72,16 @@
             </td>
 
             <td class="align-middle col-icon text-muted">
+              <% if request.step == Constants::STEP_EXECUTANDO[1] %>    
+                <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Em Execução por <%=request.user_responsible_name%>">
+                  <i class="fa-solid fa-person-running fa-lg"></i>
+                </span>
+              <% end %>
+            </td>            
+
+            <td class="align-middle col-icon text-muted">
               <% if request.any_attached? %>
-                <span class="" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Anexo(s)">
+                <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Anexo(s)">
                   <i class="fa-solid fa-paperclip"></i>
                   <%= request.count_attached %>
                 </span>
@@ -83,7 +91,7 @@
             <td class="align-middle col-icon text-muted">
               <% if request.count_comments > 0 %>
                 <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Comentário(s)">
-                  <i class="fa-regular fa-comment"></i>
+                  <i class="fa-regular fa-message"></i>
                   <%= request.count_comments %>
                 </span>                  
               <% end %>
@@ -95,14 +103,6 @@
                   <i class="fa-solid fa-star"></i></span>
               <% end %>
             </td>
-
-
-            <td class="align-middle col-step">
-              <span class="badge rounded-pill <%=bg_step(request.step)%>"
-                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Execução da Requisição">
-                <%=step(request.step)%>
-              </span>
-            </td>            
           </tr>
         <% end %>
       </tbody>

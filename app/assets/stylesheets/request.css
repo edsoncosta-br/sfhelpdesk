@@ -40,25 +40,29 @@
 }
 
 .bg-tag {
-  color: #5c5c5c !important;
+  /* color: #5c5c5c !important; */
+  color: #000 !important;
   border-color: #c2c2c3 !important;
   background-color: #fafafa;
 }
 
 .bg-mark {
-  color: #b75c5c !important;
+  /* color: #b75c5c !important; */
+  color: #000 !important;
   background-color: #fff5f5 !important;
   border-color: #dbaaaa !important;
 }
 
 .bg-mark-open {
-  color: #2c6a33 !important;
+  /* color: #2c6a33 !important; */
+  color: #000 !important;
   border-color: #6ad391 !important;
   background-color: #d2efe4;
 }
 
 .bg-mark-closed {
-  color: #1f4ca0 !important;
+  /* color: #1f4ca0 !important; */
+  color: #000 !important;
   border-color: #74aadd !important;
   background-color: #d2e5f7;    
 }
@@ -146,8 +150,8 @@
 }
 
 .col-icon {
-  width: 3.4rem;
-  font-size: 12px;
+  width: 3.6rem;
+  /* font-size: 14px; */
 }
 
 .status-line {
@@ -165,7 +169,7 @@
 }
 
 .first-line {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
 }
 
 .second-line {
@@ -246,7 +250,7 @@
 }
 
 tbody tr {
-  height: 5rem;
+  height: 5.2rem;
 }
 
 .file_area {
@@ -299,24 +303,23 @@ tbody tr {
 }
 
 .bg-status-open {
-  color: #2c6a33  !important;
+  /* color: #2c6a33  !important; */
+  color: #000 !important;
   border-color: #6ad391 !important;
   background-color: #d2efe4;
-
-  /* color: #0b9929 !important;
-  border-color: #22c389 !important;
-  background-color: #c0f7e3; */
   width: 5rem;
 }
 
 .bg-status-finish {
-  color: #1f4ca0 !important;
+  /* color: #1f4ca0 !important; */
+  color: #000 !important;
   border-color: #74aadd !important;
   background-color: #d2e5f7;
 }
 
 .bg-status-archived {
-  color: #dd3434 !important;
+  /* color: #dd3434 !important; */
+  color: #000 !important;
   border-color: #f06c6c !important;
   background-color: #f9dede;
 }
