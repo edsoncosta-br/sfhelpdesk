@@ -37,6 +37,13 @@
             <% end %>            
 
             <td class='align-middle text-center '>
+              <%= link_to customer_path(customer, q_name: params[:q_name],
+                                                  q_code: params[:q_code]), 
+                                                  class: 'td-actions', 
+                                                  data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Visualizar" } do %>
+                <i class="fa-regular fa-envelope-open pe-1"></i>
+              <% end %>
+
               <%= link_to edit_customer_path(customer,  q_name: params[:q_name],
                                                         q_code: params[:q_code]), 
                                                         class: 'td-actions', 

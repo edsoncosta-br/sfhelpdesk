@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: %i[ edit update destroy ]
+  before_action :set_customer, only: %i[ edit update destroy show ]
   before_action :set_upcase, only: %i[ create update ]    
 
   def index
@@ -44,6 +44,9 @@ class CustomersController < ApplicationController
 
   def edit
     @customer.state = @customer.city.state
+  end
+
+  def show
   end
 
   def update

@@ -30,6 +30,10 @@ module ApplicationHelper
     end
   end
 
+  def btn_caption(disable)
+    disable ? 'Retornar' : 'Cancelar'
+  end
+
   def index_title(description)
     ('<i class="icon-style fa-solid fa-angles-right pe-2"></i><div>' + description + '</div>').html_safe
   end

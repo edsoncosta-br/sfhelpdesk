@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :users, except: [:show]
   end  
 
-  resources :customers, except: [:show]  
+  resources :customers
   resources :positions, except: [:show]
   resources :projects, except: [:show]
   get 'projects/filter_project_dependency'
