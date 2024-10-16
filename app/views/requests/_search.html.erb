@@ -49,7 +49,7 @@
                 </span>
               </div>
               
-              <div class="second-line text-mued">
+              <div class="second-line">
                 <span>
                   <span>Criação: <strong><%=format_date(request.created_date)%></strong></span>
                   <span class="me-3">por <strong><%=request.user_created_name%></strong></span>
@@ -72,7 +72,7 @@
             </td>
 
             <td class="align-middle col-icon text-muted">
-              <% if request.step == Constants::STEP_EXECUTANDO[1] %>    
+              <% if (request.step == Constants::STEP_EXECUTANDO[1]) and (request.status == Constants::STATUS_ABERTA[1]) %>    
                 <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Em Execução por <%=request.user_responsible_name%>">
                   <i class="fa-solid fa-person-running fa-lg"></i>
                 </span>
