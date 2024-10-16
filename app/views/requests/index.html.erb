@@ -37,11 +37,22 @@
           </div>
 
           <div class="col-12 col-md-3 mb-1">
+            <label for="projectssearch_id" class="form-label">Tag</label>
+            <%= select_tag :projectssearch_id, 
+                            form_select_tag(params[:q_sys], params[:q_tag]),
+                            include_blank: "Todas", 
+                            class:"form-control",
+                            name:"q_tag",
+                            autofocus: true %>
+          </div>     
+
+          <div class="col-12 col-md-2 mb-1">
             <label for="position_id" class="form-label">Consultar por</label>  
-            <input type="text" name="q_content" id="content_id" class="form-control" maxlength="50" autofocus autocomplete="off" placeholder="Digite o texto que deseja consultar"  value=<%=params[:q_content]%> >
+            <input type="text" name="q_content" id="content_id" class="form-control" maxlength="50" 
+                    autofocus autocomplete="off" placeholder="Digite o texto"  value=<%=params[:q_content]%>>
           </div>
 
-          <div class="col-btn-search col-12 col-md-4 align-self-end mb-1">
+          <div class="col-btn-search col-12 col-md-2 align-self-end mb-1">
             <%= button_tag class:"btn btn-outline-success btn-search", id:'btn_consultar_id', data: { disable_with: 'Aguarde..' } do %>
               <i class="fa-solid fa-magnifying-glass me-1"></i>Consultar
             <% end %>

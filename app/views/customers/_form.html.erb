@@ -24,7 +24,7 @@
                 <%elsif%>
                   <%= form.text_field :code, id:"id_code", 
                       class:"form-control #{is_invalid(@customer, '_code_isempty_')}", 
-                      autocomplete: :off %>
+                      autofocus: true, autocomplete: :off %>
                 <%end%>
               </div>
               <div class="col-9 mb-3"></div>
@@ -33,7 +33,7 @@
                 <%= form.label :name, class:"form-label" %>
                 <%= form.text_field :name, 
                     class:"form-control #{is_invalid(@customer, '_name_isempty_')}", 
-                    autofocus: true, autocomplete: :off, maxlength:"70" %>
+                    autocomplete: :off, maxlength:"70" %>
               </div>
               
               <div class="col-12 col-md-4 mb-3">
