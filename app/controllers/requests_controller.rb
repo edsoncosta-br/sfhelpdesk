@@ -20,6 +20,7 @@ class RequestsController < ApplicationController
                       .left_joins(:user_responsible)
                       .left_joins(:mark)
                       .left_joins(:customer)
+                      .joins("INNER JOIN action_text_rich_texts ON action_text_rich_texts.record_id = requests.id AND record_type = 'Request'")
                       .where("users.company_id = ?", current_user.company.id)
 
     if params[:q_sys].blank?
@@ -38,9 +39,16 @@ class RequestsController < ApplicationController
 
     requests = requests.where('status = ?', "#{params[:q_status]}")
 
+    # if params[:q_tag].blank?
+    #   request_id = RequestTag.select(:request_id).where('tag_id = ?', params[:q_tag])
+    #   requests = requests.exits?(id: request_id.to_a)
+    # end
+
     if !params[:q_content].blank?
-      requests = requests.where('unaccent(title) ilike unaccent(?)', "%#{params[:q_content]}%")
-    end
+      requests = requests.where('(unaccent(title) ilike unaccent(?) or unaccent(action_text_rich_texts.body) ilike unaccent(?))', 
+                                "%#{params[:q_content]}%", 
+                                "%#{params[:q_content]}%")
+    end    
 
     if params[:q_status].to_s == Constants::STATUS_ABERTA[1].to_s
       requests = requests.order(Arel.sql('priority desc, created_date desc, requests.id desc'))

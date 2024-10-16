@@ -20,8 +20,17 @@ document.addEventListener("DOMContentLoaded", function () {
       placeholderText: 'Selecione..',
       searchPlaceholder: 'Buscar',
       searchText: 'Não encontrado',
-    }
+    }    
   }) 
+
+  new SlimSelect({
+    select: '#projectssearch_id',
+    settings: {
+      placeholderText: 'Selecione..',
+      searchPlaceholder: 'Buscar',
+      searchText: 'Não encontrado',
+    }    
+  })   
   
   if (document.getElementById('tag_ids_selected') != null) {
     select.setSelected(document.getElementById('tag_ids_selected').value.split(' '), false)
