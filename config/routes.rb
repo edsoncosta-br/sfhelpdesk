@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     # mount Sidekiq::Web => '/sidekiq'
   end  
 
-  get 'cities/index'
+  # get 'cities/index'
   get 'cities/filter'  
 
   namespace :employee do
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end  
 
   resources :customers
-  resources :positions
+  # resources :positions
   resources :projects
   get 'projects/filter_project_dependency'
   resources :tags

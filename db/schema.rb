@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_15_002943) do
+ActiveRecord::Schema.define(version: 2024_10_04_161228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,19 +120,20 @@ ActiveRecord::Schema.define(version: 2024_10_15_002943) do
   end
 
   create_table "marks", force: :cascade do |t|
-    t.string "description", limit: 30, null: false
+    t.string "description", limit: 40, null: false
     t.datetime "due_date"
-    t.datetime "release_date"
     t.bigint "project_id", null: false
+    t.string "description_complement", limit: 60
+    t.string "string", limit: 60
+    t.boolean "closed", default: false
+    t.boolean "boolean", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "description_complement", limit: 50
-    t.boolean "closed", default: false
     t.index ["project_id", "description"], name: "index_marks_on_project_id_and_description", unique: true
   end
 
   create_table "positions", force: :cascade do |t|
-    t.string "description", limit: 30, null: false
+    t.string "description", limit: 60, null: false
     t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -166,6 +167,7 @@ ActiveRecord::Schema.define(version: 2024_10_15_002943) do
   create_table "requests", force: :cascade do |t|
     t.string "title", limit: 100, null: false
     t.datetime "created_date", null: false
+    t.datetime "due_date"
     t.integer "status", null: false
     t.integer "step", null: false
     t.boolean "priority", default: false
@@ -174,14 +176,14 @@ ActiveRecord::Schema.define(version: 2024_10_15_002943) do
     t.integer "project_id", null: false
     t.integer "user_created_id", null: false
     t.integer "user_responsible_id"
+    t.integer "user_updated_id"
     t.integer "mark_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "due_date"
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "description", limit: 30, null: false
+    t.string "description", limit: 40, null: false
     t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -194,7 +196,31 @@ ActiveRecord::Schema.define(version: 2024_10_15_002943) do
     t.string "nick_name", limit: 20, default: "", null: false
     t.boolean "active", default: true
     t.boolean "admin", default: false
-    t.boolean "permission_admin_menu", default: false
+    t.boolean "customer_block", default: false
+    t.boolean "customer_create", default: true
+    t.boolean "customer_edit", default: true
+    t.boolean "customer_delete", default: true
+    t.boolean "project_block", default: false
+    t.boolean "project_create", default: true
+    t.boolean "project_edit", default: true
+    t.boolean "project_delete", default: true
+    t.boolean "tag_block", default: false
+    t.boolean "tag_create", default: true
+    t.boolean "tag_edit", default: true
+    t.boolean "tag_delete", default: true
+    t.boolean "mark_block", default: false
+    t.boolean "mark_create", default: true
+    t.boolean "mark_edit", default: true
+    t.boolean "mark_delete", default: true
+    t.boolean "mark_finish", default: true
+    t.boolean "user_block", default: true
+    t.boolean "request_create", default: true
+    t.boolean "request_edit", default: true
+    t.boolean "request_delete", default: true
+    t.boolean "request_finish", default: true
+    t.boolean "help_create", default: true
+    t.boolean "help_edit", default: true
+    t.boolean "help_delete", default: true
     t.bigint "position_id"
     t.bigint "company_id", null: false
     t.string "encrypted_password", default: "", null: false
@@ -208,7 +234,6 @@ ActiveRecord::Schema.define(version: 2024_10_15_002943) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "permission_request", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -231,6 +256,7 @@ ActiveRecord::Schema.define(version: 2024_10_15_002943) do
   add_foreign_key "requests", "projects"
   add_foreign_key "requests", "users", column: "user_created_id"
   add_foreign_key "requests", "users", column: "user_responsible_id"
+  add_foreign_key "requests", "users", column: "user_updated_id"
   add_foreign_key "tags", "projects"
   add_foreign_key "users", "companies"
   add_foreign_key "users", "positions"

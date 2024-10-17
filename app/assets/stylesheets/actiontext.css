@@ -37,7 +37,8 @@
 .trix-button--icon-number-list,
 .trix-button--icon-decrease-nesting-level,
 .trix-button--icon-increase-nesting-level,
-/* .trix-button-group--file-tools, */
+.trix-button-group--file-tools,
+.trix-button--icon-strike,
 .trix-button-group--history-tools {
   display: none !important;  
 }

@@ -16,7 +16,7 @@
           <%= render "shared/error_messages", resource: @user %>
 
           <div class="row">
-            <div class="col-12 col-md-8 mb-3">
+            <div class="col-12 col-md-4 mb-3">
               <%= form.label :name, class:"form-label" %>
               <%= form.text_field :name, 
                   class:"form-control #{is_invalid(@user, '_name_isempty_')}", 
@@ -24,7 +24,7 @@
                   required: :true, disabled: status_disable %>
             </div>
 
-            <div class="col-12 col-md-4 mb-3">
+            <div class="col-12 col-md-3 mb-3">
               <%= form.label :nick_name, class:"form-label" %>
               <%= form.text_field :nick_name, 
                   class:"form-control #{is_invalid(@user, '_nick_name_isempty_')}", 
@@ -32,12 +32,12 @@
                   disabled: status_disable %>
             </div>
 
-            <div class="col-12 mb-3">
+            <div class="col-12 col-md-5 mb-3">
               <label class="form-label" for="user_email">E-mail (será utilizado para acesso ao sistema)</label>              
               <%= form.text_field :email, 
                   class:"form-control input-email #{is_invalid(@user, '_email_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"60", required: :true, disabled: enable_by_action(params[:action]) %>
-            </div>                      
+            </div>
 
             <div class="col-12 mb-3">
               <%= form.check_box :active, class:"form-check-input", id:"active_id",
@@ -48,25 +48,19 @@
               <% if @user.admin %> 
                 <span class="badge text-bg-secondary badge-table">Administrador</span>
               <% end %>                                            
-            </div>
-
-            <div class="col-12 mb-3">
-              <%= form.check_box :permission_admin_menu, class:"form-check-input", id:"permission_admin_menu_id",
-                                  disabled: enable_by_permission(params[:action]), 
-                                  readonly: enable_by_permission(params[:action])%>
-              <label class="align-checkbox" for="permission_admin_menu_id">Permitir acesso ao menu Cadastros/Administrativo</label>
-            </div>
-
-            <div class="col-12 mb-3">
-              <%= form.check_box :permission_request, class:"form-check-input", id:"permission_request_id",
-                                  disabled: enable_by_permission(params[:action]), 
-                                  readonly: enable_by_permission(params[:action])%>
-              <label class="align-checkbox" for="permission_request_id">Permitir alteração/exclusão de requisições de outros usuários</label>
             </div>            
+
+            <div class="col-12 mt-2">
+              <div class="alert alert-success alert-divider" role="alert">
+                <i class="fa-solid fa-user-shield pe-2"></i>Permissões Cadastrais do Usuário
+              </div>
+            </div>
+
+            <%= render partial: 'permission', locals: { form: form } %>
 
             <div class="col-12 mt-3">
               <div class="alert alert-success alert-divider" role="alert">
-                <i class="fa-solid fa-user-shield pe-2"></i>Selecione os projetos que este usuário terá acesso:
+                <i class="fa-solid fa-user-shield pe-2"></i>Projetos que este usuário terá acesso:
               </div>
             </div>
 

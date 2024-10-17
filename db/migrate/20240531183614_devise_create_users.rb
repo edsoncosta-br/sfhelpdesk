@@ -7,9 +7,42 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :email, limit: 60, null: false, default: ""
       t.string :name, limit: 60, null: false, default: ""
       t.string :nick_name, limit: 20, null: false, default: ""
+
       t.boolean :active, default: true
       t.boolean :admin, default: false
-      t.boolean :permission_admin_menu, default: false
+
+      t.boolean :customer_block, default: false
+      t.boolean :customer_create, default: true
+      t.boolean :customer_edit, default: true
+      t.boolean :customer_delete, default: true
+
+      t.boolean :project_block, default: false
+      t.boolean :project_create, default: true
+      t.boolean :project_edit, default: true
+      t.boolean :project_delete, default: true      
+
+      t.boolean :tag_block, default: false
+      t.boolean :tag_create, default: true
+      t.boolean :tag_edit, default: true
+      t.boolean :tag_delete, default: true
+
+      t.boolean :mark_block, default: false
+      t.boolean :mark_create, default: true
+      t.boolean :mark_edit, default: true
+      t.boolean :mark_delete, default: true
+      t.boolean :mark_finish, default: true
+
+      t.boolean :user_block, default: true      
+
+      t.boolean :request_create, default: true
+      t.boolean :request_edit, default: true
+      t.boolean :request_delete, default: true
+      t.boolean :request_finish, default: true
+
+      t.boolean :help_create, default: true
+      t.boolean :help_edit, default: true
+      t.boolean :help_delete, default: true
+
       t.bigint :position_id
       t.bigint :company_id, null: false
       t.string :encrypted_password, null: false, default: ""

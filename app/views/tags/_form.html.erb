@@ -37,7 +37,7 @@
               <%= form.label :description, class:"form-label" %>
               <%= form.text_field :description, 
                   class:"form-control #{is_invalid(@tag, '_description_isempty_')}", 
-                  autocomplete: :off, autofocus: true,  maxlength:"30", disabled: status_disable %>
+                  autocomplete: :off, autofocus: true,  maxlength:"40", disabled: status_disable %>
             </div>
 
             <%= hidden_field_tag :q_sys, params[:q_sys] %>

@@ -20,8 +20,8 @@ namespace :dev do
       puts 'Adding company...'
       puts %x(rails dev:add_company)      
 
-      puts 'Adding positions...'
-      puts %x(rails dev:add_position)
+      # puts 'Adding positions...'
+      # puts %x(rails dev:add_position)
 
       puts 'Adding cities...'
       puts %x(rails dev:add_cities)
@@ -32,8 +32,8 @@ namespace :dev do
       # puts 'Adding default admin'
       # puts %x(rails dev:add_default_admin)
 
-      puts 'Add customer test user'
-      puts %x(rails dev:add_default_customer)      
+      # puts 'Add customer test user'
+      # puts %x(rails dev:add_default_customer)      
     else
       puts 'You are not in development environment!'
     end
@@ -45,15 +45,15 @@ namespace :dev do
       name: 'Sófolha Soluções Corporativas')
   end
 
-  desc 'Add default position'
-  task add_position: :environment do
-    Position.create!(
-      description: 'Desenvolvimento', company_id: 1)
-    Position.create!(
-      description: 'Suporte Técnico', company_id: 1)
-    Position.create!(
-      description: 'Comercial', company_id: 1)
-  end
+  # desc 'Add default position'
+  # task add_position: :environment do
+  #   Position.create!(
+  #     description: 'Desenvolvimento', company_id: 1)
+  #   Position.create!(
+  #     description: 'Suporte Técnico', company_id: 1)
+  #   Position.create!(
+  #     description: 'Comercial', company_id: 1)
+  # end
 
   desc 'Adding cities...'
   task add_cities: :environment do
@@ -137,14 +137,12 @@ namespace :dev do
     User.create!(
       email: 'consultoria@sofolha.com.br',
       name: 'Administrador do Sistema',
-      nick_name: 'Administrador do Sistema',
+      nick_name: 'Administrador',
       password: DEFAULT_PASSWORD,
       password_confirmation: DEFAULT_PASSWORD,
-      position_id: 1,
+      # position_id: 1,
       company_id: 1,
-      admin: true,
-      permission_admin_menu: true,
-      permission_request: true
+      admin: true
     )
   end    
   

@@ -20,65 +20,6 @@
             <ul class="submenu-group">
 
               <li class="submenu-item">
-                <%= link_to(customers_path,  class: "subsubmenu-link") do %>Clientes<%end%>
-              </li>
-
-              <% if current_user.permission_admin_menu? %>
-                <li class="submenu-item has-sub">
-                  <a href="#" class="submenu-link">Administrativo</a><i class="fa-solid fa-chevron-right"></i>
-
-                  <ul class="subsubmenu">
-
-                    <li class="subsubmenu-item">
-                      <%= link_to(projects_path,  class: "subsubmenu-link") do %>Projetos<%end%>
-                    </li>                  
-
-                    <li class="subsubmenu-item">
-                      <%= link_to(positions_path,  class: "subsubmenu-link") do %>Departamentos<%end%>
-                    </li>
-
-                    <li class="subsubmenu-item">
-                      <%= link_to(employee_users_path,  class: "subsubmenu-link") do %>Usuários<%end%>
-                    </li>
-
-                  </ul>
-                </li>              
-              <%end%>
-
-              <li class="submenu-item has-sub">
-                <a href="#" class="submenu-link">Projetos</a><i class="fa-solid fa-chevron-right"></i>
-
-                <ul class="subsubmenu">
-                  <li class="subsubmenu-item">
-                    <%= link_to(tags_path,  class: "subsubmenu-link") do %>Tags<%end%>
-                  </li>                                        
-
-                  <li class="subsubmenu-item">
-                    <%= link_to(marks_path,  class: "subsubmenu-link") do %>Metas<%end%>
-                  </li>                                        
-                </ul>
-              </li>              
-            </ul>
-          </div>
-        </div>
-      </li>
-
-
-
-
-      <li class="menu-item has-sub">
-        <a href="#" class="menu-link">
-          <span class="pe-2">Cadastros 2</span><i class="fa-solid fa-chevron-down"></i>
-        </a>
-        <div class="submenu">
-          <div class="submenu-group-wrapper">
-            <ul class="submenu-group">
-
-              <li class="submenu-item">
-                <%= link_to(customers_path,  class: "subsubmenu-link") do %>Clientes<%end%>
-              </li>
-
-              <li class="submenu-item">
                 <%= link_to(projects_path,  class: "subsubmenu-link") do %>Projetos<%end%>
               </li>
               
@@ -88,18 +29,20 @@
 
               <li class="submenu-item">
                 <%= link_to(marks_path,  class: "subsubmenu-link") do %>Metas<%end%>
-              </li>                         
-           
+              </li>            
+
               <li class="submenu-item">
                 <%= link_to(employee_users_path,  class: "subsubmenu-link") do %>Usuários<%end%>
+              </li>
+
+              <li class="submenu-item">
+                <%= link_to(customers_path,  class: "subsubmenu-link") do %>Clientes<%end%>
               </li>
              
             </ul>
           </div>
         </div>
       </li>
-
-
       
       <li class="menu-item has-sub">
         <%= link_to(requests_path,  class: "menu-link") do %>Requisições<%end%>

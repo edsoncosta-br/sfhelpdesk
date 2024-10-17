@@ -33,6 +33,7 @@ class User < ApplicationRecord
 
   has_many :user_created_requests, class_name: 'Request', foreign_key: 'user_created_id'
   has_many :user_responsible_requests, class_name: 'Request', foreign_key: 'user_responsible_id'
+  has_many :user_updated_requests, class_name: 'Request', foreign_key: 'user_updated_id'
 
   def active_for_authentication?
     super && active

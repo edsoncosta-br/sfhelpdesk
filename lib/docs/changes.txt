@@ -1,26 +1,30 @@
 clientes
+  bloquear cadastro
   cadastrar
   editar
   excluir
 
 projetos
+  bloquear cadastro
   cadastrar
   editar
   excluir    
 
 tags
+  bloquear cadastro
   cadastrar
   editar
   excluir
 
 metas
+  bloquear cadastro
   cadastrar
   editar
   excluir
   finalizar/reabrir
 
 usuarios
-  cadastro de usuários
+  bloquear cadastro
 
 -----
 

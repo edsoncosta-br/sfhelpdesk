@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ edit update destroy show ]
-  before_action :set_permission_admin_menu
+  # before_action :set_permission_admin_menu
   before_action :set_upcase, only: %i[ create update ]  
 
   def index
@@ -97,8 +97,8 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:description)
   end    
 
-  def set_permission_admin_menu
-    permission_admin_menu    
-  end
+  # def set_permission_admin_menu
+  #   permission_admin_menu    
+  # end
   
 end

@@ -33,7 +33,7 @@
                 <%= form.label :name, class:"form-label" %>
                 <%= form.text_field :name, 
                     class:"form-control #{is_invalid(@customer, '_name_isempty_')}", 
-                    autofocus: true, autocomplete: :off, maxlength:"70", disabled: status_disable %>
+                    autofocus: true, autocomplete: :off, maxlength:"100", disabled: status_disable %>
               </div>
               
               <div class="col-12 col-md-4 mb-3">
@@ -59,7 +59,7 @@
 
               <div class="col-12 col-md-4 mb-3">
                 <%= form.label :number, class:"form-label" %>
-                <%= form.text_field :number, class:"form-control", autocomplete: :off, maxlength:"6", disabled: status_disable%>
+                <%= form.text_field :number, class:"form-control", autocomplete: :off, maxlength:"8", disabled: status_disable%>
               </div>
 
               <div class="col-12 col-md-8 mb-3">

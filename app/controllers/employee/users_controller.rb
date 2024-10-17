@@ -1,10 +1,19 @@
 class Employee::UsersController < ApplicationController
   before_action :set_user, only: %i[ edit update destroy show]
-  before_action :set_permission_admin_menu
+  # before_action :set_permission_admin_menu
 
   def index
     users = User.select(:id, :email, :nick_name, :name, :active, 
-                        :admin, :permission_admin_menu, 'positions.description position_description')
+                        :admin, 
+                        :customer_block, :customer_create, :customer_edit, :customer_delete,
+                        :project_block, :project_create, :project_edit, :project_delete,
+                        :tag_block, :tag_create, :tag_edit, :tag_delete,
+                        :mark_block, :mark_create, :mark_edit, :mark_delete, :mark_finish,
+                        :user_block, 
+                        :request_create, :request_edit, :request_delete, :request_finish,
+                        :help_create, :help_edit, :help_delete,
+                        # :permission_admin_menu,
+                        'positions.description position_description')
                 .left_outer_joins(:position)
                 .where("users.company_id = ?", current_user.company.id)
                 .order(Arel.sql('unaccent(users.name)'))
@@ -58,7 +67,7 @@ class Employee::UsersController < ApplicationController
     # Using a temporary variable allows us to save the parameters into a variable that we can then modify
     updated_params = user_params
     if @user.admin
-      updated_params[:permission_admin_menu] = true
+      # updated_params[:permission_admin_menu] = true
       updated_params[:active] = true
     end
 
@@ -108,8 +117,15 @@ class Employee::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit( :email, :name, :nick_name, :company_id, :position_id, 
-                                  :active, :admin, :permission_admin_menu, :permission_request)
+    params.require(:user).permit( :email, :name, :nick_name, :company_id, 
+                                  :position_id, :active, :admin,
+                                  :customer_block, :customer_create, :customer_edit, :customer_delete,
+                                  :project_block, :project_create, :project_edit, :project_delete,
+                                  :tag_block, :tag_create, :tag_edit, :tag_delete,
+                                  :mark_block, :mark_create, :mark_edit, :mark_delete, :mark_finish,
+                                  :user_block, 
+                                  :request_create, :request_edit, :request_delete, :request_finish,
+                                  :help_create, :help_edit, :help_delete)
   end
 
   def save_userprojects
@@ -131,8 +147,8 @@ class Employee::UsersController < ApplicationController
     end
   end
 
-  def set_permission_admin_menu
-    permission_admin_menu    
-  end  
+  # def set_permission_admin_menu
+  #   permission_admin_menu    
+  # end  
 
 end

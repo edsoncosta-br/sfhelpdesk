@@ -12,6 +12,7 @@ class CreateRequests < ActiveRecord::Migration[6.1]
       t.integer :project_id, null: false
       t.integer :user_created_id, null: false
       t.integer :user_responsible_id
+      t.integer :user_updated_id
       t.integer :mark_id
 
       t.timestamps
@@ -21,6 +22,7 @@ class CreateRequests < ActiveRecord::Migration[6.1]
     add_foreign_key :requests, :projects, index: true
     add_foreign_key :requests, :users, index: true, column: :user_created_id
     add_foreign_key :requests, :users, index: true, column: :user_responsible_id
+    add_foreign_key :requests, :users, index: true, column: :user_updated_id
     add_foreign_key :requests, :marks, index: true
   end
 end
