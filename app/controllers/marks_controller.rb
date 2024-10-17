@@ -1,5 +1,5 @@
 class MarksController < ApplicationController
-  before_action :set_mark, only: %i[ edit update destroy close ]
+  before_action :set_mark, only: %i[ edit update destroy close show ]
   before_action :set_upcase, only: %i[ create update ]    
 
   def index

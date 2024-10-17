@@ -18,7 +18,7 @@
 <% end %>
 
 <%# permissoes para manutencao das requisicoes %>
-<% if (current_user.id == @requests[0].user_created_id) or 
+<%# if (current_user.id == @requests[0].user_created_id) or 
       (current_user.id != @requests[0].user_created_id and current_user.permission_request ) %> 
 
   <% if @requests[0].status == Constants::STATUS_ABERTA[1] %>
@@ -57,7 +57,7 @@
         data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir Requisição">
         <i class="fa-solid fa-trash fa-lg"></i></a>
   </span>
-<% end %>                                              
+<%# end %>                                              
 
 <%= link_to 'Retornar', requests_path(q_sys: params[:q_sys],
                                       q_status: params[:q_status],

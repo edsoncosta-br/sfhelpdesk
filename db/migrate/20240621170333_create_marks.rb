@@ -1,7 +1,7 @@
 class CreateMarks < ActiveRecord::Migration[6.1]
   def change
     create_table :marks do |t|
-      t.string :description, limit: 30, null: false
+      t.string :description, limit: 60, null: false
       t.datetime :due_date
       t.bigint :project_id, null: false
 

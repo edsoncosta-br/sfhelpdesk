@@ -20,14 +20,16 @@
               <%= form.label :name, class:"form-label" %>
               <%= form.text_field :name, 
                   class:"form-control #{is_invalid(@user, '_name_isempty_')}", 
-                  autofocus: true, autocomplete: :off, maxlength:"60", required: :true %>
+                  autofocus: true, autocomplete: :off, maxlength:"60", 
+                  required: :true, disabled: status_disable %>
             </div>
 
             <div class="col-12 col-md-4 mb-3">
               <%= form.label :nick_name, class:"form-label" %>
               <%= form.text_field :nick_name, 
                   class:"form-control #{is_invalid(@user, '_nick_name_isempty_')}", 
-                  autofocus: true, autocomplete: :off, maxlength:"20" %>
+                  autofocus: true, autocomplete: :off, maxlength:"20", 
+                  disabled: status_disable %>
             </div>
 
             <div class="col-12 mb-3">
@@ -35,21 +37,12 @@
               <%= form.text_field :email, 
                   class:"form-control input-email #{is_invalid(@user, '_email_isempty_')}", 
                   autofocus: true, autocomplete: :off, maxlength:"60", required: :true, disabled: enable_by_action(params[:action]) %>
-            </div>            
-
-            <div class="col-12 mb-3">
-              <%= form.label :position_id, class:"form-label"%>
-              <%= select_tag :position_id, 
-                              form_select_position(@user.position_id),
-                              include_blank: "Selecione...", 
-                              class:"form-select #{is_invalid(@user, '_position_isempty_')}",
-                              name:"user[position_id]" %>
-            </div>            
+            </div>                      
 
             <div class="col-12 mb-3">
               <%= form.check_box :active, class:"form-check-input", id:"active_id",
-                                  disabled: enable_by_permission(@user.admin), 
-                                  readonly: enable_by_permission(@user.admin)%>
+                                  disabled: enable_by_permission(params[:action]), 
+                                  readonly: enable_by_permission(params[:action])%>
               <label class="align-checkbox" for="active_id">Cadastro ativo</label>
               
               <% if @user.admin %> 
@@ -59,15 +52,15 @@
 
             <div class="col-12 mb-3">
               <%= form.check_box :permission_admin_menu, class:"form-check-input", id:"permission_admin_menu_id",
-                                  disabled: enable_by_permission(@user.admin), 
-                                  readonly: enable_by_permission(@user.admin)%>
+                                  disabled: enable_by_permission(params[:action]), 
+                                  readonly: enable_by_permission(params[:action])%>
               <label class="align-checkbox" for="permission_admin_menu_id">Permitir acesso ao menu Cadastros/Administrativo</label>
             </div>
 
             <div class="col-12 mb-3">
               <%= form.check_box :permission_request, class:"form-check-input", id:"permission_request_id",
-                                  disabled: enable_by_permission(@user.admin), 
-                                  readonly: enable_by_permission(@user.admin)%>
+                                  disabled: enable_by_permission(params[:action]), 
+                                  readonly: enable_by_permission(params[:action])%>
               <label class="align-checkbox" for="permission_request_id">Permitir alteração/exclusão de requisições de outros usuários</label>
             </div>            
 
@@ -95,6 +88,7 @@
                                                           value="1"
                                                           onclick="setPrincipal(this.id)"
                                                           name=<%="projectcheck[#{project.id}]"%>
+                                                          <%= disable_check(status_disable) %>
                                                           <%=project_checked(@user.id, project.id)%>>
                           <label class="align-checkbox" for=<%="project_id_#{project.id}"%>><%=project.description%></label>                      
                         </td>
@@ -104,8 +98,9 @@
                                                           value="1"
                                                           onclick="getValue(this.id)"
                                                           name=<%="projectmain[#{project.id}]"%>
+                                                          <%= disable_check(status_disable) %>
                                                           <%=project_main(@user.id, project.id)%>>
-                        </td>                        
+                        </td>
                       </tr>
                     <% end %>
                   </tbody>
@@ -123,9 +118,12 @@
           </div>
 
           <div class="actions pt-2 text-end">
-            <%= form.submit "Salvar", class:"btn btn-success input-btn me-1"%>
-            <%= link_to 'Cancelar', employee_users_path(q_name: params[:q_name], 
-                                                        q_position: params[:q_position]), class: 'btn btn-secondary' %>
+            <% if !status_disable %>
+              <%= form.submit "Salvar", class:"btn btn-success input-btn me-1"%>
+            <% end %> 
+            <%= link_to btn_caption(status_disable), 
+                        employee_users_path(q_name: params[:q_name], 
+                                            q_position: params[:q_position]), class: 'btn btn-secondary' %>
           </div>
 
         <% end %>

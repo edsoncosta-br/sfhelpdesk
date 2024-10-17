@@ -62,6 +62,44 @@
           </div>
         </div>
       </li>
+
+
+
+
+      <li class="menu-item has-sub">
+        <a href="#" class="menu-link">
+          <span class="pe-2">Cadastros 2</span><i class="fa-solid fa-chevron-down"></i>
+        </a>
+        <div class="submenu">
+          <div class="submenu-group-wrapper">
+            <ul class="submenu-group">
+
+              <li class="submenu-item">
+                <%= link_to(customers_path,  class: "subsubmenu-link") do %>Clientes<%end%>
+              </li>
+
+              <li class="submenu-item">
+                <%= link_to(projects_path,  class: "subsubmenu-link") do %>Projetos<%end%>
+              </li>
+              
+              <li class="submenu-item">
+                <%= link_to(tags_path,  class: "subsubmenu-link") do %>Tags<%end%>
+              </li>                                        
+
+              <li class="submenu-item">
+                <%= link_to(marks_path,  class: "subsubmenu-link") do %>Metas<%end%>
+              </li>                         
+           
+              <li class="submenu-item">
+                <%= link_to(employee_users_path,  class: "subsubmenu-link") do %>Usuários<%end%>
+              </li>
+             
+            </ul>
+          </div>
+        </div>
+      </li>
+
+
       
       <li class="menu-item has-sub">
         <%= link_to(requests_path,  class: "menu-link") do %>Requisições<%end%>

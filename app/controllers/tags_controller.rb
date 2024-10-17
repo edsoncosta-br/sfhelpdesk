@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: %i[ edit update destroy ]
+  before_action :set_tag, only: %i[ edit update destroy show]
   before_action :set_upcase, only: %i[ create update ]    
 
   def index
@@ -46,6 +46,9 @@ class TagsController < ApplicationController
 
   def edit
   end
+
+  def show
+  end  
 
   def update
     if @tag.update(tag_params)

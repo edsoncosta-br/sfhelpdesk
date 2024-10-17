@@ -13,15 +13,15 @@ Rails.application.routes.draw do
   get 'cities/filter'  
 
   namespace :employee do
-    resources :users, except: [:show]
+    resources :users
   end  
 
   resources :customers
-  resources :positions, except: [:show]
-  resources :projects, except: [:show]
+  resources :positions
+  resources :projects
   get 'projects/filter_project_dependency'
-  resources :tags, except: [:show]
-  resources :marks, except: [:show]
+  resources :tags
+  resources :marks
   get	'marks/:id/close', to: 'marks#close', as: 'close_mark'
   put	'marks/:id/reopen', to: 'marks#reopen', as: 'reopen_mark'
 

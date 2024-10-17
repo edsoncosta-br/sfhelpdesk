@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[ edit update destroy ]
+  before_action :set_project, only: %i[ edit update destroy show ]
   before_action :set_permission_admin_menu
   before_action :set_upcase, only: %i[ create update ]  
 
@@ -32,6 +32,9 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+  end
+
+  def show
   end
 
   def update

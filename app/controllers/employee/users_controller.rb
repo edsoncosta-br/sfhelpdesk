@@ -1,5 +1,5 @@
 class Employee::UsersController < ApplicationController
-  before_action :set_user, only: %i[ edit update destroy ]
+  before_action :set_user, only: %i[ edit update destroy show]
   before_action :set_permission_admin_menu
 
   def index
@@ -49,6 +49,10 @@ class Employee::UsersController < ApplicationController
   def edit
     get_projects
   end
+  
+  def show
+    get_projects
+  end  
 
   def update
     # Using a temporary variable allows us to save the parameters into a variable that we can then modify

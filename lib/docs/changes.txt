@@ -1,0 +1,36 @@
+clientes
+  cadastrar
+  editar
+  excluir
+
+projetos
+  cadastrar
+  editar
+  excluir    
+
+tags
+  cadastrar
+  editar
+  excluir
+
+metas
+  cadastrar
+  editar
+  excluir
+  finalizar/reabrir
+
+usuarios
+  cadastro de usuários
+
+-----
+
+requisicao
+  cadastrar
+  editar
+  excluir
+  finalizar/arquivar/reabrir
+
+help  
+  cadastrar
+  editar
+  excluir

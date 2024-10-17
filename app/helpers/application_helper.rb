@@ -7,11 +7,11 @@ module ApplicationHelper
   end
 
   def enable_by_action(action)
-    (action == "edit") or (action == "update") ? true : false
+    (action == "edit") or (action == "update") or (action == "show") ? true : false
   end  
 
-  def enable_by_permission(enable)
-    enable == true ? true : false
+  def enable_by_permission(action)
+    (@user.admin or action == "show")  ? true : false
   end  
 
   def format_date(datetime)
@@ -32,6 +32,12 @@ module ApplicationHelper
 
   def btn_caption(disable)
     disable ? 'Retornar' : 'Cancelar'
+  end
+
+  def disable_check(disable)
+    if disable
+      "disabled"
+    end
   end
 
   def index_title(description)

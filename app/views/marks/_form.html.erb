@@ -20,7 +20,7 @@
             <div class="col-12 mb-3">
               <%= form.label :project_id, class:"form-label"%>
               
-              <% if (params[:action] == "edit") or (params[:action] == "update") %>              
+              <% if (params[:action] == "edit") or (params[:action] == "update") or (params[:action] == "show") %>
                 <%= select_tag :project_id, 
                                 form_select_project_allocations(params[:q_sys]),
                                 class:"form-control", disabled:"true" %>
@@ -29,6 +29,7 @@
                                 form_select_project_allocations(params[:q_sys]),
                                 class:"form-select #{is_invalid(@mark, '_project_isempty_')}",
                                 name:"mark[project_id]",
+                                disabled: status_disable,
                                 autofocus: true %>
               <%end%>                                
             </div>
@@ -37,18 +38,18 @@
               <%= form.label :description, class:"form-label" %>
               <%= form.text_field :description, 
                   class:"form-control #{is_invalid(@mark, '_description_isempty_')}", 
-                  autocomplete: :off, autofocus: true,  maxlength:"30" %>
+                  autocomplete: :off, autofocus: true,  maxlength:"30", disabled: status_disable %>
             </div>
 
             <div class="col-12 col-md-4 mb-3">
               <%= form.label :due_date, class:"form-label" %>
-              <%= form.date_field :due_date, class:"form-control", autocomplete: :off %>
+              <%= form.date_field :due_date, class:"form-control", autocomplete: :off, disabled: status_disable %>
             </div>
 
             <div class="col-12 mb-3">
               <%= form.label :description_complement, class:"form-label" %>
               <%= form.text_field :description_complement, 
-                  class:"form-control", autocomplete: :off, maxlength:"50" %>
+                  class:"form-control", autocomplete: :off, maxlength:"50", disabled: status_disable %>
             </div>
 
 
@@ -58,9 +59,12 @@
           </div>
 
           <div class="actions pt-2 text-end">
-            <%= form.submit "Salvar", class:"btn btn-success input-btn me-1"%>
-            <%= link_to 'Cancelar', marks_path(q_sys: params[:q_sys],
-                                               q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
+            <% if !status_disable %>
+              <%= form.submit "Salvar", class:"btn btn-success input-btn me-1"%>
+            <% end %>
+            <%= link_to btn_caption(status_disable), 
+                        marks_path( q_sys: params[:q_sys],
+                                    q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
           </div>
 
         <% end %>

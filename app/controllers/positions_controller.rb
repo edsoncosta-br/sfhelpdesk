@@ -1,5 +1,5 @@
 class PositionsController < ApplicationController
-  before_action :set_position, only: %i[ edit update destroy ]
+  before_action :set_position, only: %i[ edit update destroy show]
   before_action :set_permission_admin_menu
   before_action :set_upcase, only: %i[ create update ]    
 
@@ -34,6 +34,9 @@ class PositionsController < ApplicationController
 
   def edit
   end
+
+  def show
+  end  
 
   def update
     if @position.update(position_params)

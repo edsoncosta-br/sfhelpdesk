@@ -20,15 +20,18 @@
               <%= form.label :description, class:"form-label" %>
               <%= form.text_field :description, 
                   class:"form-control #{is_invalid(@project, '_description_isempty_')}", 
-                  autofocus: true, autocomplete: :off, maxlength:"60" %>
+                  autofocus: true, autocomplete: :off, maxlength:"60", disabled: status_disable %>
             </div>
 
             <%= hidden_field_tag :q_desc, params[:q_desc] %>
           </div>
 
           <div class="actions pt-2 text-end">
-            <%= form.submit "Salvar", class:"btn btn-success input-btn input-btn me-1"%>
-            <%= link_to 'Cancelar', projects_path(q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
+            <% if !status_disable %>
+              <%= form.submit "Salvar", class:"btn btn-success input-btn input-btn me-1"%>
+            <% end %>
+            <%= link_to btn_caption(status_disable), 
+                        projects_path(q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
           </div>
 
         <% end %>

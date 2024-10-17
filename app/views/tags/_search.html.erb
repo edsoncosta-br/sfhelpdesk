@@ -22,6 +22,12 @@
             <td class='align-middle'> <%=tag.description%> </td>
             <td class='align-middle'> <%=tag.project_description%> </td>
             <td class='align-middle text-center'>
+              <%= link_to tag_path(tag, q_name: params[:q_desc]), 
+                                        class: 'td-actions', 
+                                        data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Visualizar" } do %>
+                <i class="fa-regular fa-envelope-open pe-1"></i>
+              <% end %>
+
               <%= link_to edit_tag_path(tag,  
                                         q_sys: params[:q_sys],
                                         q_desc: params[:q_desc]), 

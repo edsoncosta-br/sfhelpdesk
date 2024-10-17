@@ -1,7 +1,7 @@
 class CreatePositions < ActiveRecord::Migration[6.1]
   def change
     create_table :positions do |t|
-      t.string :description, limit: 40, null: false
+      t.string :description, limit: 60, null: false
       t.bigint :company_id, null: false
 
       t.timestamps
