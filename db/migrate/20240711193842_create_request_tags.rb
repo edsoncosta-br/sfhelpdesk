@@ -8,7 +8,7 @@ class CreateRequestTags < ActiveRecord::Migration[6.1]
     end
 
     add_foreign_key :request_tags, :requests, index: true, on_delete: :cascade, null: false  
-    add_foreign_key :request_tags, :tags, index: true, on_delete: :cascade, null: false  
+    add_foreign_key :request_tags, :tags, index: true
     add_index :request_tags, [:request_id, :tag_id] , unique: true    
   end
 end
