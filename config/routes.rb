@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   # get 'cities/index'
   get 'cities/filter'  
+  get 'dependencies/project_responsible'
 
   namespace :employee do
     resources :users
@@ -19,7 +20,6 @@ Rails.application.routes.draw do
   resources :customers
   resources :positions
   resources :projects
-  get 'projects/filter_project_dependency'
   resources :tags
   resources :marks
   get	'marks/:id/close', to: 'marks#close', as: 'close_mark'

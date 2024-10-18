@@ -49,9 +49,14 @@
           </div>     
 
           <div class="col-12 col-md-2 mb-1">
-            <label for="position_id" class="form-label">Consultar por</label>  
+            <label for="position_id" class="form-label">Consultar por</label>
+            <span data-bs-toggle="tooltip" data-bs-placement="top" 
+                  data-bs-title="Consulta nos campos Título e Conteúdo da Requisição">
+              <i class="fa-solid fa-circle-info ms-1"></i>
+            </span>
+
             <input type="text" name="q_content" id="content_id" class="form-control" maxlength="50" 
-                    autofocus autocomplete="off" placeholder="Digite o texto"  value=<%=params[:q_content]%>>
+                    autofocus autocomplete="off" placeholder="Digite um texto"  value=<%=params[:q_content]%>>
           </div>
 
           <div class="col-btn-search col-12 col-md-2 align-self-end mb-1">

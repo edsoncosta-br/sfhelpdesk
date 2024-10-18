@@ -39,7 +39,7 @@
                               include_blank: "Selecione..", 
                               class:"form-select form-control #{is_invalid(@user, '_position_isempty_')}",
                               name:"request[position_id]",
-                              disabled: enable_by_action(params[:action]) %>
+                              disabled: status_disable %>
             </div>          
 
             <div class="col-12 col-md-6 mb-3">

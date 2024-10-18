@@ -304,7 +304,6 @@ tbody tr {
 }
 
 .bg-status-open {
-  /* color: #2c6a33  !important; */
   color: #000 !important;
   border-color: #6ad391 !important;
   background-color: #d2efe4;
@@ -312,14 +311,12 @@ tbody tr {
 }
 
 .bg-status-finish {
-  /* color: #1f4ca0 !important; */
   color: #000 !important;
   border-color: #74aadd !important;
   background-color: #d2e5f7;
 }
 
 .bg-status-archived {
-  /* color: #dd3434 !important; */
   color: #000 !important;
   border-color: #f06c6c !important;
   background-color: #f9dede;
@@ -338,3 +335,7 @@ tbody tr {
   width: 40px;
   border-radius: 50%;
 }  
+
+.fa-circle-info {
+  color: #89a99c;
+}
