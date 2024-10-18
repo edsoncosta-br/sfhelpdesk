@@ -142,7 +142,8 @@ namespace :dev do
       password_confirmation: DEFAULT_PASSWORD,
       # position_id: 1,
       company_id: 1,
-      admin: true
+      admin: true,
+      menu_admin: true
     )
   end    
   

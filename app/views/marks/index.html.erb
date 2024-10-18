@@ -6,10 +6,12 @@
         <%=index_title('Metas')%>
       </div>
       <div class="ph-right">
-        <%= link_to(new_mark_path( q_sys: params[:q_sys],
-                                    q_desc: params[:q_desc]),  class: "btn btn-action btn-success") do %>
-          <i class="fa-solid fa-plus"></i></i> Incluir
-        <%end%>             
+        <% if current_user.mark_create %>
+          <%= link_to(new_mark_path( q_sys: params[:q_sys],
+                                      q_desc: params[:q_desc]),  class: "btn btn-action btn-success") do %>
+            <i class="fa-solid fa-plus"></i></i> Incluir
+          <%end%>
+        <%end%>
       </div>          
     </div>
     

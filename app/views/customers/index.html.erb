@@ -6,10 +6,12 @@
         <%=index_title('Clientes')%>
       </div>
       <div class="ph-right">
-        <%= link_to(new_customer_path(q_name: params[:q_name],
-                                      q_code: params[:q_code]),  class: "btn btn-action btn-success") do %>
-          <i class="fa-solid fa-plus"></i></i> Incluir
-        <%end%>   
+        <% if current_user.customer_create %>
+          <%= link_to(new_customer_path(q_name: params[:q_name],
+                                        q_code: params[:q_code]),  class: "btn btn-action btn-success") do %>
+            <i class="fa-solid fa-plus"></i></i> Incluir
+          <% end %>
+        <% end %>
       </div> 
     </div>
     

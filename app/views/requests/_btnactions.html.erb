@@ -17,10 +17,8 @@
   <% end %>
 <% end %>
 
-<%# permissoes para manutencao das requisicoes %>
-<%# if (current_user.id == @requests[0].user_created_id) or 
-      (current_user.id != @requests[0].user_created_id and current_user.permission_request ) %> 
 
+<% if current_user.request_finish %>      
   <% if @requests[0].status == Constants::STATUS_ABERTA[1] %>
     <span data-bs-toggle="modal" data-bs-target="#status-finished<%=@requests[0].id.to_s%>">
       <a class="btn btn-outline-success" href="#" 
@@ -41,7 +39,9 @@
           <i class="fa-regular fa-folder-open fa-lg"></i></a>
     </span>                
   <% end %>
+<% end %>
 
+<% if current_user.request_edit %>
   <%= link_to edit_request_path(@requests[0].id,q_sys: params[:q_sys],
                                                 q_status: params[:q_status],
                                                 q_content: params[:q_content]), 
@@ -51,13 +51,15 @@
                                                         bs_title: "Alterar Requisição" } do %>
     <i class="fa-regular fa-pen-to-square fa-lg"></i>
   <% end %>
+<% end %>  
 
+<% if current_user.request_delete %>
   <span data-bs-toggle="modal" data-bs-target="#delete<%=@requests[0].id.to_s%>">
     <a class="btn btn-outline-success me-3" href="#" 
         data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir Requisição">
         <i class="fa-solid fa-trash fa-lg"></i></a>
   </span>
-<%# end %>                                              
+<% end %>
 
 <%= link_to 'Retornar', requests_path(q_sys: params[:q_sys],
                                       q_status: params[:q_status],

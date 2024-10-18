@@ -16,7 +16,7 @@
           <%= render "shared/error_messages", resource: @user %>
 
           <div class="row">
-            <div class="col-12 col-md-4 mb-3">
+            <div class="col-12 col-md-6 mb-3">
               <%= form.label :name, class:"form-label" %>
               <%= form.text_field :name, 
                   class:"form-control #{is_invalid(@user, '_name_isempty_')}", 
@@ -24,7 +24,7 @@
                   required: :true, disabled: status_disable %>
             </div>
 
-            <div class="col-12 col-md-3 mb-3">
+            <div class="col-12 col-md-6 mb-3">
               <%= form.label :nick_name, class:"form-label" %>
               <%= form.text_field :nick_name, 
                   class:"form-control #{is_invalid(@user, '_nick_name_isempty_')}", 
@@ -32,11 +32,22 @@
                   disabled: status_disable %>
             </div>
 
-            <div class="col-12 col-md-5 mb-3">
+            <div class="col-12 col-md-6 mb-3">
+              <%= form.label :position_id, class:"form-label" %>
+              <%= select_tag :position_id, 
+                              form_select_position(@user.position_id),
+                              include_blank: "Selecione..", 
+                              class:"form-select form-control #{is_invalid(@user, '_position_isempty_')}",
+                              name:"request[position_id]",
+                              disabled: enable_by_action(params[:action]) %>
+            </div>          
+
+            <div class="col-12 col-md-6 mb-3">
               <label class="form-label" for="user_email">E-mail (será utilizado para acesso ao sistema)</label>              
               <%= form.text_field :email, 
                   class:"form-control input-email #{is_invalid(@user, '_email_isempty_')}", 
-                  autofocus: true, autocomplete: :off, maxlength:"60", required: :true, disabled: enable_by_action(params[:action]) %>
+                  autofocus: true, autocomplete: :off, maxlength:"60", required: :true, 
+                  disabled: enable_by_action(params[:action]) %>
             </div>
 
             <div class="col-12 mb-3">

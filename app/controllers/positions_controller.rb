@@ -1,6 +1,6 @@
 class PositionsController < ApplicationController
   before_action :set_position, only: %i[ edit update destroy show]
-  before_action :set_permission_admin_menu
+  before_action :set_menu_admin
   before_action :set_upcase, only: %i[ create update ]    
 
   def index
@@ -79,8 +79,8 @@ class PositionsController < ApplicationController
     params.require(:position).permit(:description, :company_id)
   end
 
-  def set_permission_admin_menu
-    permission_admin_menu    
+  def set_menu_admin
+    menu_admin
   end
 
 end

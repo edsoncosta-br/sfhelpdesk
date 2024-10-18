@@ -1,185 +1,152 @@
 <div class="row">
+  <div class="col-12 mb-3 mt-3">
+    <%= form.check_box :menu_admin, class:"form-check-input", id:"menu_admin_id",
+                        disabled: enable_by_permission(params[:action]), 
+                        readonly: enable_by_permission(params[:action])%>
+    <label class="align-checkbox" for="menu_admin_id">Acesso ao menu Cadastros/Administrativo</label>
+  </div>
+  <span class="border-top"></span>
+</div>  
 
-  <div>Cadastro de Projetos</div>
+
+<div class="row">
+  <div class="permission_title">Cadastro de Clientes</div>  
   <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :project_create, class:"form-check-input", id:"project_create_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="project_create_id">Inclusão</label>
-  </div>
-
-  <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :project_edit, class:"form-check-input", id:"project_edit_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="project_edit_id">Alteração</label>
-  </div>
-
-  <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :project_delete, class:"form-check-input", id:"project_delete_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="project_delete_id">Exclusão</label>
-  </div>
-
-  <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :project_block, class:"form-check-input", id:"project_block_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="project_block_id">Bloqueado</label>
-  </div>  
-
-  <div>Cadastro de Tags</div>
-  <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :tag_create, class:"form-check-input", id:"tag_create_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="tag_create_id">Inclusão</label>
-  </div>
-
-  <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :tag_edit, class:"form-check-input", id:"tag_edit_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="tag_edit_id">Alteração</label>
-  </div>
-
-  <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :tag_delete, class:"form-check-input", id:"tag_delete_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="tag_delete_id">Exclusão</label>
-  </div>
-
-  <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :tag_block, class:"form-check-input", id:"tag_block_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="tag_block_id">Bloqueado</label>
-  </div>
-
-  <div>Cadastro de Metas</div>
-  <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :mark_create, class:"form-check-input", id:"mark_create_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="mark_create_id">Inclusão</label>
-  </div>
-
-  <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :mark_edit, class:"form-check-input", id:"mark_edit_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="mark_edit_id">Alteração</label>
-  </div>
-
-  <div class="col-12 col-md-2 mb-3">
-    <%= form.check_box :mark_delete, class:"form-check-input", id:"mark_delete_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="mark_delete_id">Exclusão</label>
-  </div>
-
-  <div class="col-12 col-md-2 mb-3">
-    <%= form.check_box :mark_finish, class:"form-check-input", id:"mark_finish_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="mark_finish_id">Finalizar</label>
-  </div>
-
-  <div class="col-12 col-md-2 mb-3">
-    <%= form.check_box :mark_block, class:"form-check-input", id:"mark_block_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="mark_block_id">Bloqueado</label>
-  </div>
-
-  <div>Cadastro de Usuários do Sistema</div>
-  <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :user_block, class:"form-check-input", id:"user_block_id",
-                        disabled: enable_by_permission(params[:action]), 
-                        readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="user_block_id">Bloqueado</label>
-  </div>
-
-  <div>Cadastro de Clientes</div>
-  <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :customer_create, class:"form-check-input", id:"customer_create_id",
+    <%= form.check_box :customer_create, class:"form-check-input ms-4", id:"customer_create_id",
                         disabled: enable_by_permission(params[:action]), 
                         readonly: enable_by_permission(params[:action])%>
     <label class="align-checkbox" for="customer_create_id">Inclusão</label>
   </div>
 
   <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :customer_edit, class:"form-check-input", id:"customer_edit_id",
+    <%= form.check_box :customer_edit, class:"form-check-input ms-4", id:"customer_edit_id",
                         disabled: enable_by_permission(params[:action]), 
                         readonly: enable_by_permission(params[:action])%>
     <label class="align-checkbox" for="customer_edit_id">Alteração</label>
   </div>
 
   <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :customer_delete, class:"form-check-input", id:"customer_delete_id",
+    <%= form.check_box :customer_delete, class:"form-check-input ms-4", id:"customer_delete_id",
                         disabled: enable_by_permission(params[:action]), 
                         readonly: enable_by_permission(params[:action])%>
     <label class="align-checkbox" for="customer_delete_id">Exclusão</label>
   </div>
+  <span class="border-top"></span>
+</div>  
+  
 
+<div class="row">
+  <div class="permission_title">Cadastro de Tags</div>
   <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :customer_block, class:"form-check-input", id:"customer_block_id",
+    <%= form.check_box :tag_create, class:"form-check-input ms-4", id:"tag_create_id",
                         disabled: enable_by_permission(params[:action]), 
                         readonly: enable_by_permission(params[:action])%>
-    <label class="align-checkbox" for="customer_block_id">Bloqueado</label>
+    <label class="align-checkbox" for="tag_create_id">Inclusão</label>
   </div>
 
-  <div>Requisicoes</div>
   <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :request_create, class:"form-check-input", id:"request_create_id",
+    <%= form.check_box :tag_edit, class:"form-check-input ms-4", id:"tag_edit_id",
+                        disabled: enable_by_permission(params[:action]), 
+                        readonly: enable_by_permission(params[:action])%>
+    <label class="align-checkbox" for="tag_edit_id">Alteração</label>
+  </div>
+
+  <div class="col-12 col-md-3 mb-3">
+    <%= form.check_box :tag_delete, class:"form-check-input ms-4", id:"tag_delete_id",
+                        disabled: enable_by_permission(params[:action]), 
+                        readonly: enable_by_permission(params[:action])%>
+    <label class="align-checkbox" for="tag_delete_id">Exclusão</label>
+  </div>
+  <span class="border-top"></span>
+</div>
+
+
+<div class="row">
+  <div class="permission_title">Cadastro de Metas</div>
+  <div class="col-12 col-md-3 mb-3">
+    <%= form.check_box :mark_create, class:"form-check-input ms-4", id:"mark_create_id",
+                        disabled: enable_by_permission(params[:action]), 
+                        readonly: enable_by_permission(params[:action])%>
+    <label class="align-checkbox" for="mark_create_id">Inclusão</label>
+  </div>
+
+  <div class="col-12 col-md-3 mb-3">
+    <%= form.check_box :mark_edit, class:"form-check-input ms-4", id:"mark_edit_id",
+                        disabled: enable_by_permission(params[:action]), 
+                        readonly: enable_by_permission(params[:action])%>
+    <label class="align-checkbox" for="mark_edit_id">Alteração</label>
+  </div>
+
+  <div class="col-12 col-md-3 mb-3">
+    <%= form.check_box :mark_delete, class:"form-check-input ms-4", id:"mark_delete_id",
+                        disabled: enable_by_permission(params[:action]), 
+                        readonly: enable_by_permission(params[:action])%>
+    <label class="align-checkbox" for="mark_delete_id">Exclusão</label>
+  </div>
+
+  <div class="col-12 col-md-3 mb-3">
+    <%= form.check_box :mark_finish, class:"form-check-input ms-4", id:"mark_finish_id",
+                        disabled: enable_by_permission(params[:action]), 
+                        readonly: enable_by_permission(params[:action])%>
+    <label class="align-checkbox" for="mark_finish_id">Finalizar</label>
+  </div>
+  <span class="border-top"></span>
+</div>  
+
+
+<div class="row">
+  <div class="permission_title">Requisicoes</div>
+  <div class="col-12 col-md-3 mb-3">
+    <%= form.check_box :request_create, class:"form-check-input ms-4", id:"request_create_id",
                         disabled: enable_by_permission(params[:action]), 
                         readonly: enable_by_permission(params[:action])%>
     <label class="align-checkbox" for="request_create_id">Inclusão</label>
   </div>
 
   <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :request_edit, class:"form-check-input", id:"request_edit_id",
+    <%= form.check_box :request_edit, class:"form-check-input ms-4", id:"request_edit_id",
                         disabled: enable_by_permission(params[:action]), 
                         readonly: enable_by_permission(params[:action])%>
     <label class="align-checkbox" for="request_edit_id">Alteração</label>
   </div>
 
   <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :request_delete, class:"form-check-input", id:"request_delete_id",
+    <%= form.check_box :request_delete, class:"form-check-input ms-4", id:"request_delete_id",
                         disabled: enable_by_permission(params[:action]), 
                         readonly: enable_by_permission(params[:action])%>
     <label class="align-checkbox" for="request_delete_id">Exclusão</label>
   </div>
 
   <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :request_finish, class:"form-check-input", id:"request_finish_id",
+    <%= form.check_box :request_finish, class:"form-check-input ms-4", id:"request_finish_id",
                         disabled: enable_by_permission(params[:action]), 
                         readonly: enable_by_permission(params[:action])%>
     <label class="align-checkbox" for="request_finish_id">Finalizar/Arquivar</label>
   </div>
+  <span class="border-top"></span>
+</div>  
 
-  <div>FAQs</div>
+
+<div class="row">
+  <div class="permission_title">FAQs</div>
   <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :help_create, class:"form-check-input", id:"help_create_id",
+    <%= form.check_box :help_create, class:"form-check-input ms-4", id:"help_create_id",
                         disabled: enable_by_permission(params[:action]), 
                         readonly: enable_by_permission(params[:action])%>
     <label class="align-checkbox" for="help_create_id">Inclusão</label>
   </div>
 
   <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :help_edit, class:"form-check-input", id:"help_edit_id",
+    <%= form.check_box :help_edit, class:"form-check-input ms-4", id:"help_edit_id",
                         disabled: enable_by_permission(params[:action]), 
                         readonly: enable_by_permission(params[:action])%>
     <label class="align-checkbox" for="help_edit_id">Alteração</label>
   </div>
 
   <div class="col-12 col-md-3 mb-3">
-    <%= form.check_box :help_delete, class:"form-check-input", id:"help_delete_id",
+    <%= form.check_box :help_delete, class:"form-check-input ms-4", id:"help_delete_id",
                         disabled: enable_by_permission(params[:action]), 
                         readonly: enable_by_permission(params[:action])%>
     <label class="align-checkbox" for="help_delete_id">Exclusão</label>
   </div>
-
 </div>

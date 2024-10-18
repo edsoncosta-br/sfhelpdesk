@@ -6,11 +6,13 @@
         <%=index_title('Requisições')%>
       </div>
       <div class="ph-right">
-        <%= link_to(new_request_path( q_sys: params[:q_sys],
-                                      q_status: params[:q_status],
-                                      q_content: params[:q_content]),  class: "btn btn-action btn-success") do %>
-          <i class="fa-solid fa-plus"></i></i> Incluir
-        <%end%>             
+        <% if current_user.request_create %>
+          <%= link_to(new_request_path( q_sys: params[:q_sys],
+                                        q_status: params[:q_status],
+                                        q_content: params[:q_content]),  class: "btn btn-action btn-success") do %>
+            <i class="fa-solid fa-plus"></i></i> Incluir
+          <%end%>
+        <%end%>
       </div>          
     </div>
     

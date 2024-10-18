@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
-  def permission_admin_menu
-    if !current_user.permission_admin_menu?
+  def menu_admin
+    if !current_user.menu_admin?
       flash[:error] = "Acesso negado"
       redirect_to root_path
     end

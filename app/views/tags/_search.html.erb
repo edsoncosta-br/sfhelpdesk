@@ -28,18 +28,26 @@
                 <i class="fa-regular fa-envelope-open pe-1"></i>
               <% end %>
 
-              <%= link_to edit_tag_path(tag,  
-                                        q_sys: params[:q_sys],
-                                        q_desc: params[:q_desc]), 
-                                        class: 'td-actions', 
-                                        data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Alterar" }  do %>
-                <i class="fa-regular fa-pen-to-square pe-1"></i>
-              <% end %>
+              <% if current_user.tag_edit %>
+                <%= link_to edit_tag_path(tag,  
+                                          q_sys: params[:q_sys],
+                                          q_desc: params[:q_desc]), 
+                                          class: 'td-actions', 
+                                          data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Alterar" }  do %>
+                  <i class="fa-regular fa-pen-to-square pe-1"></i>
+                <% end %>
+              <% else %>
+                <%=edit_not_allowed%>
+              <% end %>  
 
-              <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir">
-                <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
-                  data-bs-target="#delete<%=tag.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
-              </span>
+              <% if current_user.tag_delete %>
+                <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir">
+                  <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
+                    data-bs-target="#delete<%=tag.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
+                </span>
+              <% else %>
+                <%=delete_not_allowed%>
+              <% end %>                
             </td>
           </tr>
 

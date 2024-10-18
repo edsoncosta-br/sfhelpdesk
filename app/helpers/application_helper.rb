@@ -40,6 +40,18 @@ module ApplicationHelper
     end
   end
 
+  def delete_not_allowed
+    ('<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Sem permissão">
+      <i class="fa-regular fa-trash-can pe-1 unavailable-icon"></i>
+    </span>').html_safe
+  end
+
+  def edit_not_allowed
+    ('<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Sem permissão">
+      <i class="fa-regular fa-pen-to-square pe-1 unavailable-icon"></i>
+    </span>').html_safe
+  end  
+
   def index_title(description)
     ('<i class="icon-style fa-solid fa-angles-right pe-2"></i><div>' + description + '</div>').html_safe
   end
