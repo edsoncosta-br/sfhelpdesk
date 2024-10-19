@@ -26,7 +26,7 @@
             <td class='align-middle'> 
               <%= user.name %> 
               <% if user.admin %> 
-                <span class="badge rounded-pill text-bg-secondary badge-table">Administrador</span>
+                <span class="badge text-bg-secondary badge-table">Administrador</span>
               <% end %>              
             </td>
             
@@ -36,9 +36,9 @@
             <td class='align-middle'> <%= user.amount_projects %> </td>                        
 
             <% if user.active %> 
-              <td class='align-middle'><span class="badge rounded-pill text-bg-success badge-table">Ativo</span></td>
+              <td class='align-middle'><span class="badge text-bg-success badge-table">Ativo</span></td>
             <% elsif %>
-              <td class='align-middle'><span class="badge rounded-pill text-bg-danger badge-table">Inativo</span></td>
+              <td class='align-middle'><span class="badge text-bg-danger badge-table">Inativo</span></td>
             <% end %>
 
             <td class='align-middle text-center '>

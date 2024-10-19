@@ -30,17 +30,17 @@
                     <div class="first-line">
                       <span class="fw-semibold me-1"><%=request.title%></span>
 
-                      <span class="badge rounded-pill bg-style <%=bg_status(request.status)%> me-2"
+                      <span class="badge bg-style <%=bg_status(request.status)%> me-2"
                         data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Requisição"><%=status_request(request.status)%>
                       </span>                    
 
                       <% Methods.get_tags(request.id).each do |tag| %>
-                        <span class="badge rounded-pill bg-style bg-tag me-2"
+                        <span class="badge bg-style bg-tag me-2"
                         data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
                       <% end %>
 
                       <% if request.mark_description.present? %>
-                        <span class="badge rounded-pill bg-style <%=color_mark(request.mark.closed)%> me-2" 
+                        <span class="badge bg-style <%=color_mark(request.mark.closed)%> me-2" 
                           data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<%=mark_description(request.mark.closed)%>">
                           <i class="fa-solid fa-flag me-1"></i><%=request.mark_description%>
                         </span>

@@ -35,33 +35,29 @@
 .bg-style {
   border: solid;
   border-width: 0.1rem;
-  padding-top: 0.24rem;
-  padding-bottom: 0.24rem;
+  /* padding-top: 0.24rem;
+  padding-bottom: 0.24rem; */
 }
 
 .bg-tag {
-  /* color: #5c5c5c !important; */
   color: #000 !important;
   border-color: #c2c2c3 !important;
   background-color: #faffe9;
 }
 
 .bg-mark {
-  /* color: #b75c5c !important; */
   color: #000 !important;
   background-color: #fff5f5 !important;
   border-color: #dbaaaa !important;
 }
 
 .bg-mark-open {
-  /* color: #2c6a33 !important; */
   color: #000 !important;
   border-color: #6ad391 !important;
   background-color: #d2efe4;
 }
 
 .bg-mark-closed {
-  /* color: #1f4ca0 !important; */
   color: #000 !important;
   border-color: #74aadd !important;
   background-color: #d2e5f7;    
