@@ -29,10 +29,11 @@
                 <span>
                   <span class="fw-semibold text-decoration-none link-dark">
                     <%= link_to request_path(request, q_sys: params[:q_sys],
-                                                                  q_status: params[:q_status],
-                                                                  q_content: params[:q_content]), 
-                                                                  class:"fw-semibold text-decoration-none link-dark me-2",
-                                                        data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Visualizar Requisição" } do %>
+                                                      q_status: params[:q_status],
+                                                      q_content: params[:q_content],
+                                                      q_order: params[:q_order]), 
+                                                      class:"fw-semibold text-decoration-none link-dark me-2",
+                                                      data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Visualizar Requisição" } do %>
                       <%= request.title%>
                     <% end %>
                   </span>
@@ -61,7 +62,7 @@
                 <span>
                   <span>Criação: <strong><%=format_date(request.created_date)%></strong></span>
                   <span class="me-3">por <strong><%=request.user_created_name%></strong></span>
-                  <span class="me-3">Id: <strong><%=request.id.to_s.rjust(4, "0")%></strong></span>
+                  <span class="me-3">Código: <strong><%=request.id.to_s.rjust(4, "0")%></strong></span>
 
                   <% if request.customers_name.present? && request.requester_name.present? %>
                     <span class="me-3">Solicitante: <strong><%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%>/<%=request.requester_name%></strong></span>
@@ -115,10 +116,11 @@
 
             <td class='align-middle text-center '>
               <%= link_to request_path(request, q_sys: params[:q_sys],
-                                                            q_status: params[:q_status],
-                                                            q_content: params[:q_content]), 
-                                                  class: 'td-actions', 
-                                                  data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Visualizar Requisição" } do %>
+                                                q_status: params[:q_status],
+                                                q_content: params[:q_content],
+                                                q_order: params[:q_order]), 
+                                                class: 'td-actions', 
+                                                data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Visualizar Requisição" } do %>
                 <i class="fa-regular fa-envelope-open pe-1"></i>
               <% end %>
             </td>  

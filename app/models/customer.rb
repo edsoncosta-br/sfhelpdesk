@@ -2,7 +2,7 @@ class Customer < ApplicationRecord
   validates :code, presence: true
   validates :code, numericality: { greater_than: 0 }, if: -> { code != nil}
   validates :code, uniqueness: {scope: :company_id}
-  validates :name, presence: true, length: {maximum: 70}
+  validates :name, presence: true, length: {maximum: 100}
   validates :cpfcnpj_number, presence: true, length: {maximum: 18}
 
   validates :address, length: {maximum: 50}
@@ -12,6 +12,7 @@ class Customer < ApplicationRecord
   validates :zip_code, length: {maximum: 9}
   validates :phone, length: {maximum: 15}
   validates :cellphone, length: {maximum: 15}
+  validates :email, length: {maximum: 60}
 
   validate :code_isempty
   validate :name_isempty

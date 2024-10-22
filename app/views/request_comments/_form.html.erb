@@ -98,14 +98,16 @@
             <%= hidden_field_tag :q_id, params[:q_id] %>
             <%= hidden_field_tag :q_sys, params[:q_sys] %>
             <%= hidden_field_tag :q_status, params[:q_status] %>
-            <%= hidden_field_tag :q_content, params[:q_content] %>            
+            <%= hidden_field_tag :q_content, params[:q_content] %>
+            <%= hidden_field_tag :q_order, params[:q_order] %>
           </div>
 
           <div class="actions pt-4 text-end">
             <%= form.submit "Salvar", class:"btn btn-success input-btn me-1"%>
             <%= link_to request_path(params[:q_id], q_sys: params[:q_sys],
                                                     q_status: params[:q_status],
-                                                    q_content: params[:q_content]), 
+                                                    q_content: params[:q_content],
+                                                    q_order: params[:q_order]),
                                                     class: 'btn btn-secondary' do %>
               Cancelar
             <% end %>  

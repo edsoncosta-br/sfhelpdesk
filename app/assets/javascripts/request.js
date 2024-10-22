@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       searchPlaceholder: 'Buscar',
       searchText: 'Não encontrado',
     }    
-  })   
+  })
   
   if (document.getElementById('tag_ids_selected') != null) {
     select.setSelected(document.getElementById('tag_ids_selected').value.split(' '), false)

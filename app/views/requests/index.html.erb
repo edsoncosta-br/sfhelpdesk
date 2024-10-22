@@ -9,7 +9,9 @@
         <% if current_user.request_create %>
           <%= link_to(new_request_path( q_sys: params[:q_sys],
                                         q_status: params[:q_status],
-                                        q_content: params[:q_content]),  class: "btn btn-action btn-success") do %>
+                                        q_content: params[:q_content],
+                                        q_order: params[:q_order]),  
+                                        class: "btn btn-action btn-success") do %>
             <i class="fa-solid fa-plus"></i></i> Incluir
           <%end%>
         <%end%>
@@ -38,17 +40,17 @@
                                                 name:"q_status" %>
           </div>
 
-          <div class="col-12 col-md-3 mb-1">
-            <label for="projectssearch_id" class="form-label">Tag (ainda não filtrando)</label>
-            <%= select_tag :projectssearch_id, 
+          <%# <div class="col-12 col-md-2 mb-1"> %>
+            <%# <label for="projectssearch_id" class="form-label">Tag (ainda não filtrando)</label> %>
+            <%#= select_tag :projectssearch_id, 
                             form_select_tag(params[:q_sys], params[:q_tag]),
                             include_blank: "Todas", 
                             class:"form-control",
                             name:"q_tag",
                             autofocus: true %>
-          </div>     
+          <%# </div>      %>
 
-          <div class="col-12 col-md-2 mb-1">
+          <div class="col-12 col-md-3 mb-1">
             <label for="position_id" class="form-label">Consultar por</label>
             <span data-bs-toggle="tooltip" data-bs-placement="top" 
                   data-bs-title="Consulta nos campos Título e Conteúdo da Requisição">
@@ -58,6 +60,15 @@
             <input type="text" name="q_content" id="content_id" class="form-control" maxlength="50" 
                     autofocus autocomplete="off" placeholder="Digite um texto"  value=<%=params[:q_content]%>>
           </div>
+
+          <div class="col-12 col-md-2 mb-1">          
+            <label for="order" class="form-label">Ordenar por</label>
+            <%= select_tag "order", 
+                            options_for_select([["Mais Recentes", "newest"], ["Mais Antigas", "oldest"]], 
+                                                params[:q_order]),
+                                                class:"form-select",
+                                                name:"q_order" %>
+          </div>                   
 
           <div class="col-btn-search col-12 col-md-2 align-self-end mb-1">
             <%= button_tag class:"btn btn-outline-success btn-search", id:'btn_consultar_id', 

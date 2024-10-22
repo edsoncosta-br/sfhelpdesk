@@ -51,7 +51,7 @@
                       <span class="me-3">por <strong><%=request.user_created_name%></strong></span>
 
                       <span class="me-3"><%=request.projects_description%></span>
-                      <span class="me-3">Id: <strong><%=request.id.to_s.rjust(4, "0")%></strong></span>
+                      <span class="me-3">Código: <strong><%=request.id.to_s.rjust(4, "0")%></strong></span>
 
                       <% if request.customers_name.present? && request.requester_name.present? %>
                         <span class="me-3">Solicitante: <strong><%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%>/<%=request.requester_name%></strong></span>
@@ -161,7 +161,8 @@
         <%= link_to(new_request_comment_path( q_id: @requests[0].id,
                                               q_sys: params[:q_sys],
                                               q_status: params[:q_status],
-                                              q_content: params[:q_content]),  
+                                              q_content: params[:q_content],
+                                              q_order: params[:q_order]),
                                               class: "btn btn-success",
                                               data: { bs_toggle: 'tooltip', 
                                                       bs_placement: "top", 
@@ -196,7 +197,8 @@
                     <%= link_to edit_request_comment_path(request_comment,q_id: request_comment.request,
                                                                           q_sys: params[:q_sys],
                                                                           q_status: params[:q_status],
-                                                                          q_content: params[:q_content]), 
+                                                                          q_content: params[:q_content],
+                                                                          q_order: params[:q_order]), 
                                                                           class: 'btn btn-outline-success',
                                                                           data: { bs_toggle: 'tooltip', 
                                                                                   bs_placement: "top", 

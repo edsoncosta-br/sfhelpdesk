@@ -15,7 +15,8 @@ class RequestCommentsController < ApplicationController
       if @request_comment.save
         format.html { redirect_to request_path(params[:q_id], q_sys: params[:q_sys],
                                                               q_status: params[:q_status],
-                                                              q_content: params[:q_content]), 
+                                                              q_content: params[:q_content], 
+                                                              q_order: params[:q_order]), 
                                                               notice: "Comentário criado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -30,7 +31,9 @@ class RequestCommentsController < ApplicationController
     if @request_comment.update(request_comment_params)
       redirect_to request_path(@request_comment.request,q_sys: params[:q_sys],
                                                         q_status: params[:q_status],
-                                                        q_content: params[:q_content]), notice: "Comentário atualizado com sucesso."      
+                                                        q_content: params[:q_content],
+                                                        q_order: params[:q_order]), 
+                                                        notice: "Comentário atualizado com sucesso."      
     else
       render :edit
     end      
@@ -42,7 +45,9 @@ class RequestCommentsController < ApplicationController
         redirect_to request_path(@request_comment.request.id, 
                                   q_sys: params[:q_sys],
                                   q_status: params[:q_status],
-                                  q_content: params[:q_content]), notice: "Comentário excluído com sucesso."
+                                  q_content: params[:q_content],
+                                  q_order: params[:q_order]), 
+                                  notice: "Comentário excluído com sucesso."
       else
         redirect_to request_comments_path(q_desc: params[:q_desc])
       end

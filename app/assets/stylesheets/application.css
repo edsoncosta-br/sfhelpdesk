@@ -562,3 +562,8 @@ input {
 main {
   padding-bottom: 2rem;
 }
+
+.ss-content .ss-search {
+  padding-left: 0;
+  padding-right: 0;
+}

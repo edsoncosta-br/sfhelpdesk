@@ -63,6 +63,7 @@ pt-BR:
         description: Descrição da Tag
         project_id: Projeto        
       request:
+        id: Código
         title: Título da requisição
         created_date: Criação
         due_date: Previsão

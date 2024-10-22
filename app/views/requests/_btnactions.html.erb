@@ -44,7 +44,8 @@
   <% if current_user.request_edit %>
     <%= link_to edit_request_path(@requests[0].id,q_sys: params[:q_sys],
                                                   q_status: params[:q_status],
-                                                  q_content: params[:q_content]), 
+                                                  q_content: params[:q_content], 
+                                                  q_order: params[:q_order]), 
                                                   class: 'btn btn-outline-success',
                                                   data: { bs_toggle: 'tooltip', 
                                                           bs_placement: "top", 
@@ -64,4 +65,6 @@
 
 <%= link_to 'Retornar', requests_path(q_sys: params[:q_sys],
                                       q_status: params[:q_status],
-                                      q_content: params[:q_content]), class: 'btn btn-action btn-secondary' %> 
+                                      q_content: params[:q_content],
+                                      q_order: params[:q_order]), 
+                                      class: 'btn btn-action btn-secondary' %> 

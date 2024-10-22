@@ -168,7 +168,8 @@
                                   <%= link_to 'Confirmar', 
                                       requests_delete_attachment_path(file.id,@request.id, q_sys: params[:q_sys],
                                                                                            q_status: params[:q_status],
-                                                                                           q_content: params[:q_content]), 
+                                                                                           q_content: params[:q_content],
+                                                                                           q_order: params[:q_order]), 
                                       class:"btn btn-danger", data: { disable_with: 'Aguarde..' }, method: 'put' %>
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                 </div>
@@ -198,6 +199,7 @@
             <%= hidden_field_tag :q_sys, params[:q_sys] %>
             <%= hidden_field_tag :q_status, params[:q_status] %>
             <%= hidden_field_tag :q_content, params[:q_content] %>
+            <%= hidden_field_tag :q_order, params[:q_order] %>
             <%= hidden_field_tag :tag_ids_selected, @request.tag_ids.to_a %>
           </div>
 
@@ -207,14 +209,16 @@
             <% if (params[:action] == "edit") or (params[:action] == "update") %>
               <%= link_to request_path(@request,q_sys: params[:q_sys],
                                                 q_status: params[:q_status],
-                                                q_content: params[:q_content]), 
+                                                q_content: params[:q_content],
+                                                q_order: params[:q_order]), 
                                                 class: 'btn btn-secondary' do %>
                 Cancelar
               <% end %>                                                
             <% else %>
               <%= link_to 'Cancelar', requests_path(q_sys: params[:q_sys],
                                                     q_status: params[:q_status],
-                                                    q_content: params[:q_content]), class: 'btn btn-secondary' %>
+                                                    q_content: params[:q_content],
+                                                    q_order: params[:q_order]), class: 'btn btn-secondary' %>
             <% end %>
           </div>
 

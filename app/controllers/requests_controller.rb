@@ -23,6 +23,7 @@ class RequestsController < ApplicationController
                       .joins("INNER JOIN action_text_rich_texts ON action_text_rich_texts.record_id = requests.id AND record_type = 'Request'")
                       .where("users.company_id = ?", current_user.company.id)
 
+    # default params
     if params[:q_sys].blank?
       params[:q_sys] = Methods.select_allocations(current_user.company.id, current_user.id)
 
@@ -31,29 +32,36 @@ class RequestsController < ApplicationController
       end                                  
     end
 
-    requests = requests.where('projects.id = ?', "#{params[:q_sys]}")
-
     if params[:q_status].blank?
       params[:q_status] = Constants::STATUS_ABERTA[1]
-    end    
+    end
+   
+    if params[:q_order].blank?
+      params[:q_order] = 'newest'
+    end
 
+    # filters
+    requests = requests.where('projects.id = ?', "#{params[:q_sys]}")
     requests = requests.where('status = ?', "#{params[:q_status]}")
-
-    # if params[:q_tag].blank?
-    #   request_id = RequestTag.select(:request_id).where('tag_id = ?', params[:q_tag])
-    #   requests = requests.exits?(id: request_id.to_a)
-    # end
 
     if !params[:q_content].blank?
       requests = requests.where('(unaccent(title) ilike unaccent(?) or unaccent(action_text_rich_texts.body) ilike unaccent(?))', 
                                 "%#{params[:q_content]}%", 
                                 "%#{params[:q_content]}%")
-    end    
-
+    end
+   
     if params[:q_status].to_s == Constants::STATUS_ABERTA[1].to_s
-      requests = requests.order(Arel.sql('priority desc, created_date desc, requests.id desc'))
+      if params[:q_order] == 'newest'
+        requests = requests.order(Arel.sql('priority desc, created_date desc, requests.id desc'))
+      else
+        requests = requests.order(Arel.sql('priority desc, created_date, requests.id desc'))
+      end
     else
-      requests = requests.order(Arel.sql('created_date desc, requests.id desc'))
+      if params[:q_order] == 'newest'
+        requests = requests.order(Arel.sql('created_date desc, requests.id desc'))
+      else  
+        requests = requests.order(Arel.sql('created_date, requests.id desc'))
+      end
     end
 
     @requests = requests.all.page(params[:page]).per(Constants::PAGINAS)
@@ -106,7 +114,9 @@ class RequestsController < ApplicationController
           update_tag_ids(false)
           format.html { redirect_to requests_path(q_sys: params[:q_sys],
                                                   q_status: params[:q_status],
-                                                  q_content: params[:q_content]), notice: "Requisição cadastrada com sucesso." }
+                                                  q_content: params[:q_content], 
+                                                  q_order: params[:q_order]), 
+                                                  notice: "Requisição cadastrada com sucesso." }
         else
           format.html { render :new, status: :unprocessable_entity }
           @request.tag_ids = params[:tag_ids];
@@ -126,7 +136,9 @@ class RequestsController < ApplicationController
         update_tag_ids(true)
         redirect_to request_path(@request,q_sys: params[:q_sys],
                                           q_status: params[:q_status],
-                                          q_content: params[:q_content]), notice: "Requisição atualizada com sucesso."
+                                          q_content: params[:q_content],
+                                          q_order: params[:q_order]), 
+                                          notice: "Requisição atualizada com sucesso."
       else
         @request.tag_ids = params[:tag_ids];
         render :edit
@@ -139,11 +151,14 @@ class RequestsController < ApplicationController
       if @request.destroy
         redirect_to requests_path(q_sys: params[:q_sys],
                                   q_status: params[:q_status],
-                                  q_content: params[:q_content]), notice: "Tópico excluído com sucesso."
+                                  q_content: params[:q_content],
+                                  q_order: params[:q_order]), 
+                                  notice: "Tópico excluído com sucesso."
       else
         redirect_to requests_path(q_sys: params[:q_sys],
                                   q_status: params[:q_status],
-                                  q_content: params[:q_content])
+                                  q_content: params[:q_content],
+                                  q_order: params[:q_order])
       end
     rescue StandardError => e
 
@@ -155,7 +170,8 @@ class RequestsController < ApplicationController
 
       redirect_to requests_path(q_sys: params[:q_sys],
                                 q_status: params[:q_status],
-                                q_content: params[:q_content])
+                                q_content: params[:q_content],
+                                q_order: params[:q_order])
     end
   end
 
@@ -166,7 +182,8 @@ class RequestsController < ApplicationController
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
                               q_status: params[:q_status],
-                              q_content: params[:q_content]), 
+                              q_content: params[:q_content],
+                              q_order: params[:q_order]), 
                               notice: "Anexo excluído com sucesso."
   end
 
@@ -177,7 +194,8 @@ class RequestsController < ApplicationController
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
                               q_status: params[:q_status],
-                              q_content: params[:q_content]), 
+                              q_content: params[:q_content], 
+                              q_order: params[:q_order]), 
                               notice: "Status Finalizado com sucesso."
   end
 
@@ -188,7 +206,8 @@ class RequestsController < ApplicationController
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
                               q_status: params[:q_status],
-                              q_content: params[:q_content]), 
+                              q_content: params[:q_content],
+                              q_order: params[:q_order]), 
                               notice: "Status Arquivado com sucesso."
   end
 
@@ -199,7 +218,8 @@ class RequestsController < ApplicationController
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
                               q_status: params[:q_status],
-                              q_content: params[:q_content]), 
+                              q_content: params[:q_content],
+                              q_order: params[:q_order]), 
                               notice: "Status Reaberto com sucesso."
   end
 
@@ -210,7 +230,8 @@ class RequestsController < ApplicationController
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
                               q_status: params[:q_status],
-                              q_content: params[:q_content]), 
+                              q_content: params[:q_content], 
+                              q_order: params[:q_order]), 
                               notice: "Execução parada."
   end
 
@@ -221,7 +242,8 @@ class RequestsController < ApplicationController
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
                               q_status: params[:q_status],
-                              q_content: params[:q_content]), 
+                              q_content: params[:q_content], 
+                              q_order: params[:q_order]), 
                               notice: "Execução iniciada."
   end
   
@@ -232,7 +254,8 @@ class RequestsController < ApplicationController
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
                               q_status: params[:q_status],
-                              q_content: params[:q_content]), 
+                              q_content: params[:q_content],
+                              q_order: params[:q_order]), 
                               notice: "Execução alterada com sucesso."
   end  
 

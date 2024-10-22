@@ -1,5 +1,5 @@
 class Mark < ApplicationRecord
-  validates :description, presence: true, length: {maximum: 30}
+  validates :description, presence: true, length: {maximum: 40}
   validate :project_isempty
   validate :description_isempty  
   validates :description, uniqueness: { scope: :project_id, message: "já está em uso para o projeto selecionado." }
