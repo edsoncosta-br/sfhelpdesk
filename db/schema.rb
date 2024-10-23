@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_04_161228) do
+ActiveRecord::Schema.define(version: 2024_10_23_015202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,24 @@ ActiveRecord::Schema.define(version: 2024_10_04_161228) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["code", "company_id"], name: "index_customers_on_code_and_company_id", unique: true
+  end
+
+  create_table "help_tags", force: :cascade do |t|
+    t.bigint "help_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["help_id", "tag_id"], name: "index_help_tags_on_help_id_and_tag_id", unique: true
+  end
+
+  create_table "helps", force: :cascade do |t|
+    t.string "title", limit: 100, null: false
+    t.string "link", limit: 100
+    t.integer "project_id", null: false
+    t.integer "user_created_id", null: false
+    t.integer "user_updated_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "marks", force: :cascade do |t|
@@ -237,13 +255,18 @@ ActiveRecord::Schema.define(version: 2024_10_04_161228) do
   add_foreign_key "allocations", "users", on_delete: :cascade
   add_foreign_key "customers", "cities"
   add_foreign_key "customers", "companies"
+  add_foreign_key "help_tags", "helps", on_delete: :cascade
+  add_foreign_key "help_tags", "tags"
+  add_foreign_key "helps", "projects"
+  add_foreign_key "helps", "users", column: "user_created_id"
+  add_foreign_key "helps", "users", column: "user_updated_id"
   add_foreign_key "marks", "projects"
   add_foreign_key "positions", "companies"
   add_foreign_key "projects", "companies"
   add_foreign_key "request_comments", "requests", on_delete: :cascade
   add_foreign_key "request_comments", "users"
   add_foreign_key "request_tags", "requests", on_delete: :cascade
-  add_foreign_key "request_tags", "tags"
+  add_foreign_key "request_tags", "tags", on_delete: :cascade
   add_foreign_key "requests", "customers"
   add_foreign_key "requests", "marks"
   add_foreign_key "requests", "projects"

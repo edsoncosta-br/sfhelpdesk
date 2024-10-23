@@ -567,3 +567,7 @@ main {
   padding-left: 0;
   padding-right: 0;
 }
+
+.fa-circle-info {
+  color: #89a99c;
+}

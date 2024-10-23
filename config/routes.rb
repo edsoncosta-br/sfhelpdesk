@@ -36,4 +36,6 @@ Rails.application.routes.draw do
 
   resources :request_comments, except: [:show, :index]
 
+  resources :helps
+
 end

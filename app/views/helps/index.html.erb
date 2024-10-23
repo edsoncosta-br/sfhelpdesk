@@ -1,0 +1,54 @@
+<%= render "shared/header" %>
+<main>
+  <div class="container-fluid max-container">
+    <div class="page-heading"> 
+      <div class="ph-left pe-3">
+        <%=index_title('Central de Ajuda')%>
+      </div>
+      <div class="ph-right">
+        <% if current_user.help_create %>
+          <%= link_to(new_help_path(q_sys: params[:q_sys],
+                                    q_content: params[:q_content]),  
+                                    class: "btn btn-action btn-success") do %>
+            <i class="fa-solid fa-plus"></i></i> Incluir
+          <%end%>
+        <%end%>
+      </div>          
+    </div>
+    
+    <div class="card">
+      <div class="card-body card-body-style">
+        <%= form_with(url: helps_path, class:'row', method: 'get', local: true) do |form| %>
+          <div class="col-12 col-md-3 mb-1">
+            <label for="project_id" class="form-label">Projeto</label>
+            <%= select_tag :project_id, 
+                            form_select_project_allocations(params[:q_sys]),
+                            class:"form-select",
+                            name:"q_sys",
+                            autofocus: true %>
+          </div>
+
+          <div class="col-12 col-md-5 mb-1">
+            <label for="position_id" class="form-label">Consultar por</label>
+            <span data-bs-toggle="tooltip" data-bs-placement="top" 
+                  data-bs-title="Consulta nos campos Título e Conteúdo da Ajuda">
+              <i class="fa-solid fa-circle-info ms-1"></i>
+            </span>
+
+            <input type="text" name="q_content" id="content_id" class="form-control" maxlength="50" 
+                    autofocus autocomplete="off" placeholder="Digite um texto"  value=<%=params[:q_content]%>>
+          </div>
+
+          <div class="col-btn-search col-12 col-md-4 align-self-end mb-1">
+            <%= button_tag class:"btn btn-outline-success btn-search", id:'btn_consultar_id', 
+              data: { disable_with: 'Aguarde..' } do %>
+              <i class="fa-solid fa-magnifying-glass me-1"></i>Consultar
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <%#= render partial: 'search' %>
+  </div>                    
+</main>
