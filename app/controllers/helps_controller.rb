@@ -10,7 +10,7 @@ class HelpsController < ApplicationController
                 .joins(project: :company)
                 .joins(:user_created)
                 .left_joins(:user_updated)
-                .joins("LEFT JOIN action_text_rich_texts ON action_text_rich_texts.record_id = helps.id AND record_type = 'Helps'")
+                .joins("LEFT JOIN action_text_rich_texts ON action_text_rich_texts.record_id = helps.id AND record_type = 'Help'")
                 .where("users.company_id = ?", current_user.company.id)
 
     # default params
@@ -31,13 +31,27 @@ class HelpsController < ApplicationController
 
     if !params[:q_content].blank?
       helps = helps.where('(unaccent(title) ilike unaccent(?) or unaccent(action_text_rich_texts.body) ilike unaccent(?))', 
-                                "%#{params[:q_content]}%", 
-                                "%#{params[:q_content]}%")
+                          "%#{params[:q_content]}%", 
+                          "%#{params[:q_content]}%")
     end
    
     @helps = helps.all.page(params[:page]).per(Constants::PAGINAS)
     @helps_size = helps.size
   end
+
+  def show
+    @helps = Help.select( :id,:title, :link, :project_id, :user_created_id, 
+                          :user_updated_id, :created_at, :updated_at,
+                          'projects.description project_description',
+                          'users.nick_name user_created_name',
+                          "user_updateds_helps.nick_name user_updated_name",)
+                  .joins(project: :company)
+                  .joins(:user_created)
+                  .left_joins(:user_updated)
+                  .where("helps.id = ?", params[:id])
+    
+    @help_tag_ids = HelpTag.where("help_id = ?", params[:id]).pluck("tag_id")                      
+  end  
 
   def new
     @help = Help.new
@@ -47,19 +61,61 @@ class HelpsController < ApplicationController
   def create
     @help = Help.new(help_params)
     @help.user_created_id = current_user.id
-    
+   
     respond_to do |format|
       ActiveRecord::Base.transaction do
         if @help.save
-          # update_tag_ids(false)
+          update_tag_ids(false)
           format.html { redirect_to helps_path( q_sys: params[:q_sys],
                                                 q_content: params[:q_content]), 
-                                                notice: "Requisição cadastrada com sucesso." }
+                                                notice: "Ajuda cadastrada com sucesso." }
         else
           format.html { render :new, status: :unprocessable_entity }
           @help.tag_ids = params[:tag_ids];
         end
       end
+    end
+  end
+
+  def edit
+    @help.tag_ids = HelpTag.where("help_id = ?", @help.id).pluck("tag_id")
+  end
+
+  def update
+    ActiveRecord::Base.transaction do
+      @help.user_updated_id = current_user.id
+      if @help.update(help_params)
+        update_tag_ids(true)
+        redirect_to help_path(@help,q_sys: params[:q_sys],
+                                    q_content: params[:q_content]), 
+                                    notice: "Ajuda atualizada com sucesso."
+      else
+        @help.tag_ids = params[:tag_ids];
+        render :edit
+      end
+    end
+  end
+
+  def destroy
+    begin
+      if @help.destroy
+        redirect_to helps_path( q_sys: params[:q_sys],
+                                q_content: params[:q_content]), 
+                                notice: "Ajuda excluída com sucesso."
+      else
+        redirect_to helps_path( q_sys: params[:q_sys],
+                                q_content: params[:q_content])
+      end
+    rescue StandardError => e
+
+      if e.message.downcase.to_s.include? "foreignkeyviolation"
+        flash[:error] = "Este registro já está sendo usado e não pode ser excluído!"
+      else  
+        flash[:error] = e.message[0...80] + "..."
+      end
+
+      redirect_to helps_path( q_sys: params[:q_sys],
+                              q_content: params[:q_content])
     end
   end  
 
@@ -80,7 +136,7 @@ class HelpsController < ApplicationController
         HelpTag.create!(help_id: @help.id, tag_id: tag_id)
       end
     end    
-  end  
+  end
 
   def help_params
     params.require(:help).permit( :title, :link, :project_id, :user_created_id, 

@@ -46,12 +46,19 @@ class Methods
               .pick('projects.id')    
   end
 
-  def self.get_tags(request_id)
+  def self.get_request_tags(request_id)
     RequestTag.select(:description)
               .joins(:tag)
               .where("request_id = ?", request_id)
               .order("request_tags.id")
-  end  
+  end
+
+  def self.get_help_tags(help_id)
+    HelpTag.select(:description)
+            .joins(:tag)
+            .where("help_id = ?", help_id)
+            .order("help_tags.id")
+  end
 
   def self.request_data(request_id)
     Request.select(:id, :title, :status, :step, :priority, 

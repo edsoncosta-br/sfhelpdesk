@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
   namespace :employee do
     resources :users
+  end
+
+  namespace :ajuda do
+    get 'topico/:id', to: 'topico#show', as: 'topico_show'
   end  
 
   resources :customers

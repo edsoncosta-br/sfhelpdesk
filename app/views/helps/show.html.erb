@@ -1,0 +1,132 @@
+<%= render "shared/header" %>
+<main>
+  <div class="container-fluid max-container">
+    <div class="page-heading"> 
+      <div class="ph-left pe-3">
+        <%=index_title('Ajuda - Visualização')%>
+      </div>
+      
+      <div class="ph-right">
+        <span>
+          <a class="btn btn-outline-success me-3" onclick="copyText(<%=@helps[0].id%>)"
+              data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Copiar Link Externo">
+              <i class="fa-solid fa-copy fa-lg"></i></a>
+        </span>
+
+        <span class="me-3">
+          <% if current_user.help_edit %>
+            <%= link_to edit_help_path(@helps[0].id, q_sys: params[:q_sys],
+                                                        q_content: params[:q_content]), 
+                                                        class: 'btn btn-outline-success',
+                                                        data: { bs_toggle: 'tooltip', 
+                                                                bs_placement: "top", 
+                                                                bs_title: "Alterar Ajuda" } do %>
+              <i class="fa-regular fa-pen-to-square fa-lg"></i>
+            <% end %>
+          <% end %>  
+
+          <% if current_user.help_delete %>
+            <span data-bs-toggle="modal" data-bs-target="#delete<%=@helps[0].id.to_s%>">
+              <a class="btn btn-outline-success" href="#" 
+                  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir Ajuda">
+                  <i class="fa-solid fa-trash fa-lg"></i></a>
+            </span>
+          <% end %>
+        </span>
+
+        <%= link_to 'Retornar', helps_path( q_sys: params[:q_sys],
+                                            q_content: params[:q_content]), 
+                                            class: 'btn btn-action btn-secondary' %> 
+      </div>
+    </div>
+
+    <div class="card card-size shadow">
+      <div class="card-body card-body-style brd">
+
+        <% @helps.each do |help| %>
+          <div class="row">
+            <div class="col-12 mb-3">
+              <div class="col-title d-flex align-items-center">              
+                <div>
+                  <div class="avatar avatar-request">
+                    <%= image_tag "emptyuser.png", alt: "empty user" %>
+                  </div>                  
+                </div>
+
+                <div class="w-100 ms-2">
+                  <div class="first-line">
+                    <span class="fw-semibold me-1"><%=help.title%></span>
+
+                    <% Methods.get_help_tags(help.id).each do |tag| %>
+                      <span class="badge bg-style bg-tag me-2"
+                      data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
+                    <% end %>
+                  </div>
+                  
+                  <div class="second-line second-line-show">
+                    <span>
+                      <span>Criação: <strong><%=format_datetime(help.created_at)%></strong> </span>
+                      <span class="me-3">por <strong><%=help.user_created_name%></strong></span>
+
+                      <% if I18n.l(help.updated_at, format: "%d/%m/%Y %H:%M") == I18n.l(help.created_at, format: "%d/%m/%Y %H:%M") %>
+                        <span class="me-3">Alteração: <strong>--</strong></span>
+                      <% else %>
+                        <span>Alteração: <strong><%=format_datetime(help.updated_at)%></strong></span>
+                        <span class="me-3">por <strong><%=help.user_updated_name%></strong></span>
+                      <% end %>                  
+
+                      <span class="me-3"><%=help.project_description%></span>
+                      <span class="me-3">Código: <strong><%=help.id.to_s.rjust(4, "0")%></strong></span>
+                    </span>                
+                  </div>
+
+                  <div class="second-line">
+                    <span class="me-3">Link Externo: 
+                      <strong><span id="link-id-<%=help.id%>"><%=request.base_url + help.link%></span></strong>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 mt-2 mb-3">
+              <div class="field">
+                <label class="form-label">Conteúdo da Ajuda</label>
+                <div class="border-content"><%= help.content %></div>
+               </div>            
+            </div>
+
+            <%= hidden_field_tag :tag_ids_selected_show, @help_tag_ids.to_a %>
+          </div>
+
+          <div class="actions pt-3 text-end">
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal modal-delete fade" id="delete<%=@helps[0].id%>" tabindex="-1" 
+        aria-labelledby="deleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+        <div class="modal-header"> <i class="fas fa-exclamation-triangle fa-2x modal-header-icon me-2"></i>
+          <h1 class="modal-title" id="deleteLabel">Confirmação</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-body">
+          Confirma a exclusão da Ajuda: <br> <%= @helps[0].title %> ?
+        </div>
+        <div class="modal-footer actions">
+          <%= link_to 'Excluir', help_path(@helps[0], q_sys: params[:q_sys],
+                                                      q_content: params[:q_content]), 
+              class:"btn btn-danger", method: :delete %>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>

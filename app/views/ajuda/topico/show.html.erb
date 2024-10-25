@@ -1,0 +1,23 @@
+<% @help.each do |help| %>
+  <div class="container">
+  <div class="row">
+    <span><strong><%=help.title%></strong></span>
+
+    <% Methods.get_help_tags(help.id).each do |tag| %>
+      <span class="me-2">
+        <%=tag.description%>
+      </span>
+    <% end %>
+
+            
+    <div class="second-line second-line-show">
+      Última atualização: <%=format_datetime(help.updated_at)%>
+      <%=help.project_description%>
+    </div>
+
+    <div class="field">
+      <div class="border-content"><%= help.content %></div>
+    </div>
+  </div>    
+  </div>    
+<% end %>

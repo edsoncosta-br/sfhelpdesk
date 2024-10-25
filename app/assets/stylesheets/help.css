@@ -1,3 +1,7 @@
 /*
 *= require request.css
 */
+
+.fa-copy:hover{
+  cursor: pointer;
+}

@@ -42,3 +42,21 @@ document.addEventListener("trix-file-accept", e => {
     alert("Tamanho máximo da imagem dever ser de 2MB!")
   }
 })
+
+function copyText(id) {
+  navigator.clipboard.writeText(
+    document.getElementById('link-id-'+id).textContent).then( 
+      () => Toastify({text: "Link copiado",
+                      className: "info",
+                      style: {
+                        background: "#009688",
+                      }
+            }).showToast(), 
+      () => Toastify({text: "Copia falhou",
+                      className: "info",
+                      style: {
+                        background: "#f44336",
+                      }
+            }).showToast()
+    );
+}

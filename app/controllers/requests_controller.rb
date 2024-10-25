@@ -153,7 +153,7 @@ class RequestsController < ApplicationController
                                   q_status: params[:q_status],
                                   q_content: params[:q_content],
                                   q_order: params[:q_order]), 
-                                  notice: "Tópico excluído com sucesso."
+                                  notice: "Requisição excluída com sucesso."
       else
         redirect_to requests_path(q_sys: params[:q_sys],
                                   q_status: params[:q_status],
