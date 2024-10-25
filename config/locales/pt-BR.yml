@@ -80,6 +80,12 @@ pt-BR:
         content: Conteúdo da Requisição
       request_comment:
         content: Conteúdo do Comentário
+      help:
+        id: Código
+        title: Título da Ajuda
+        created_at: Criação
+        updated_at: Atualização
+        content: Conteúdo da Ajuda
   errors:
     format: "%{attribute} %{message}"
     messages:

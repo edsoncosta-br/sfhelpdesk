@@ -1,0 +1,91 @@
+<%= render "shared/header" %>
+<main>
+  <div class="container-fluid max-container">
+    <div class="page-heading"> 
+      <div class="ph-left pe-3">
+        <%=index_title('Central de Ajuda - ' + action_message)%>
+      </div>
+      <div class="ph-right">
+      </div>          
+    </div>
+
+    <div class="card card-size shadow">
+      <div class="card-body card-body-style brd">
+
+        <%= form_with(model: @help) do |form| %>
+          <%= render "shared/error_messages", resource: @help %>
+
+          <div class="row">
+            <div class="col-10 mb-3">
+              <%= form.label :title, class:"form-label" %> 
+              <%= form.text_field :title, 
+                  class:"form-control semibold #{is_invalid(@help, '_title_isempty_')}", 
+                  autofocus: true, autocomplete: :off, maxlength:"100" %>
+            </div>
+
+            <div class="col-1 mb-3">
+              <%= form.label :id, class:"form-label" %>
+              <% if (params[:action] == "edit") or (params[:action] == "update") %>
+                <input class="form-control " value="<%=@help.id.to_s.rjust(4, "0")%>" disabled>
+              <% else %>
+                <input class="form-control " value="" disabled>
+              <% end %>
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+              <%= form.label :project_id, class:"form-label" %>
+              <%= select_tag :project_id, 
+                              form_select_project_allocations(@help.project_id),
+                              class:"form-select form-control #{is_invalid(@help, '_project_isempty_')}",
+                              data: { remote: true, 
+                                      url: url_for(controller: "dependencies", action: "project_responsible", id:@help.id)},
+                              name:"help[project_id]" %>
+            </div>
+
+            <div class="col-12 col-md-9 mb-3">
+              <label class="form-label" for="tag_ids">Selecione as Tags (max:5)</label>
+              <%= select_tag :tag_ids,
+                              form_select_project_tags(@help.project_id),
+                              multiple: true,
+                              class:"form-control",
+                              name:"tag_ids[]"%> 
+            </div>
+
+            <div class="col-12 mt-4 mb-3">
+              <div class="field">
+                <%= form.label :content, class:"form-label" %>
+                <%= form.rich_text_area :content %>
+              </div>            
+            </div>
+
+            <div class="col-12">
+              <div class="file_selected">
+                <div id="fileList"><ul></ul></div>
+              </div>
+            </div>
+
+            <%= hidden_field_tag :q_sys, params[:q_sys] %>
+            <%= hidden_field_tag :q_content, params[:q_content] %>
+            <%= hidden_field_tag :tag_ids_selected, @help.tag_ids.to_a %>
+          </div>
+
+          <div class="actions pt-4 text-end">
+            <%= form.submit "Salvar", class:"btn btn-success input-btn me-1"%>
+
+            <% if (params[:action] == "edit") or (params[:action] == "update") %>
+              <%= link_to help_path(@help,q_sys: params[:q_sys],
+                                          q_content: params[:q_content]), 
+                                          class: 'btn btn-secondary' do %>
+                Cancelar
+              <% end %>                                                
+            <% else %>
+              <%= link_to 'Cancelar', helps_path(q_sys: params[:q_sys],
+                                                    q_content: params[:q_content]), class: 'btn btn-secondary' %>
+            <% end %>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
