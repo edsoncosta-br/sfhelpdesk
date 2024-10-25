@@ -52,7 +52,7 @@
                   
                   <span class="me-3">Código: <strong><%=help.id.to_s.rjust(4, "0")%></strong></span>
                   
-                  <span class="me-3">Link Externo: <strong><span id="link-id-<%=help.id.to_s%>"><%=request.base_url + help.link%></span></strong></span>
+                  <span class="me-3">Link Externo: <strong><span id="link-id-<%=help.id.to_s%>"><%=request.base_url + help.link.to_s%></span></strong></span>
                 </span>
               </div>
             </td>
