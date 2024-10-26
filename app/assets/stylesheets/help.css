@@ -5,3 +5,7 @@
 .fa-copy:hover{
   cursor: pointer;
 }
+
+.link-color, .link-color:hover {
+  color: #5a725f
+}

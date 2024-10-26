@@ -7,6 +7,7 @@
 //= require toastify-js/src/toastify.js
 //= require inputmask/dist/inputmask.js
 //= require slim-select/dist/slimselect.js
+//= require clipboard/dist/clipboard.js
 //= require ./flashMessages.js
 //= require ./fontawesome/all.js
 //= require ./scripts.js

@@ -59,7 +59,7 @@
 
             <td class="align-middle col-icon text-muted text-center">
               <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Copiar Link Externo">
-                <a onclick="copyText(<%=help.id%>)">
+                <a class="link link-color" id="copy-id-<%=help.id.to_s%>" data-clipboard-target="#link-id-<%=help.id.to_s%>">
                 <i class="fa-solid fa-copy fa-lg"></i>
               </span>
             </td>            

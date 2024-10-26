@@ -8,7 +8,8 @@
       
       <div class="ph-right">
         <span>
-          <a class="btn btn-outline-success me-3" onclick="copyText(<%=@helps[0].id%>)"
+          <a class="btn btn-outline-success link me-3" id="copy-id-<%=@helps[0].id.to_s%>" 
+              data-clipboard-target="#link-id-<%=@helps[0].id.to_s%>"
               data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Copiar Link Externo">
               <i class="fa-solid fa-copy fa-lg"></i></a>
         </span>

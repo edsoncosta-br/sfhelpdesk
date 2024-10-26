@@ -17,6 +17,9 @@
 - Instalar Slim-select
   docker compose run app yarn add slim-select
 
+- Instalar Clipboard
+  docker compose run app yarn add clipboard
+
 - Instalar Action-text
   docker compose run app bin/rails active_storage:install
   docker compose run app bin/rails action_text:install

@@ -1,4 +1,6 @@
 class Ajuda::TopicoController < ApplicationController
+  layout 'help'
+
   def show
     @help = Help.select( :id,:title, :project_id, :user_created_id, 
                          :user_updated_id, :created_at, :updated_at,

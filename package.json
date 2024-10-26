@@ -8,6 +8,7 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "bootstrap": "5.2.3",
+    "clipboard": "^2.0.11",
     "inputmask": "^5.0.9",
     "slim-select": "^2.9.0",
     "toastify-js": "^1.12.0",
