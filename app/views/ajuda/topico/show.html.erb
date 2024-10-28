@@ -7,26 +7,28 @@
 
 <div class="title-jumbo">
   <div class="container-fluid py-5">
-    <h1 class="display-5 fw-bold pb-2"><%=@help[0].title%></h1>
+    <h1 class="title-help fw-bold pb-2"><%=@help[0].title%></h1>
 
-    <% Methods.get_help_tags(@help[0].id).each do |tag| %>
-      <span class="badge bg-style bg-tag me-2 mb-2"
-      data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
-    <% end %>
+    <span class="tags">
+      <% Methods.get_help_tags(@help[0].id).each do |tag| %>
+        <span class="badge bg-style bg-tag me-2 mb-2"
+        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
+      <% end %>
+    <span>
   </div>
 </div>  
 
 <main>
   <div class="container-fluid">
     <div class="card card-size">
+
       <div class="card-body card-body-style">
         <% @help.each do |help| %>
           <div class="row">
             <div class="col-12 mt-2 mb-3">
               <div class="field">
-
                 <div class="border-content"><%= help.content %></div>
-                </div>            
+              </div>            
             </div>
           </div>
 
@@ -34,6 +36,7 @@
           </div>
         <% end %>
       </div>
+
     </div>
   </div>  
 </main>
