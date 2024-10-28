@@ -1,23 +1,39 @@
-<% @help.each do |help| %>
-  <div class="container">
-  <div class="row">
-    <span><strong><%=help.title%></strong></span>
+<div class="container-fluid max-container">
+  <header class="d-flex justify-content-between flex-wrap">
+    <span class="fs-4 align-middle">Central de Ajuda</span>
+    <span class="fs-4 align-middle"><%=@help[0].project_description%></span>
+  </header>
+</div>
 
-    <% Methods.get_help_tags(help.id).each do |tag| %>
-      <span class="me-2">
-        <%=tag.description%>
-      </span>
+<div class="title-jumbo">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold pb-2"><%=@help[0].title%></h1>
+
+    <% Methods.get_help_tags(@help[0].id).each do |tag| %>
+      <span class="badge bg-style bg-tag me-2 mb-2"
+      data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
     <% end %>
+  </div>
+</div>  
 
-            
-    <div class="second-line second-line-show">
-      Última atualização: <%=format_datetime(help.updated_at)%>
-      <%=help.project_description%>
-    </div>
+<main>
+  <div class="container-fluid">
+    <div class="card card-size">
+      <div class="card-body card-body-style">
+        <% @help.each do |help| %>
+          <div class="row">
+            <div class="col-12 mt-2 mb-3">
+              <div class="field">
 
-    <div class="field">
-      <div class="border-content"><%= help.content %></div>
+                <div class="border-content"><%= help.content %></div>
+                </div>            
+            </div>
+          </div>
+
+          <div class="actions pt-3 text-end">
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>    
-  </div>    
-<% end %>
+  </div>  
+</main>
