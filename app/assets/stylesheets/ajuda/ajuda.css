@@ -24,6 +24,20 @@ body {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 1rem;
+
+  margin-top: -80px;
+  background-color: #fff;
+  border-radius: 5px;
+
+
+  /* padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  margin-top: -5rem;
+  background-color: #fff;
+  border-radius: 2%;  
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;   */
 }
 
 .card-size {
@@ -31,6 +45,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   border-color: #fff;
+  border-radius: inherit;
 }
 
 .max-container {
@@ -68,18 +83,48 @@ body {
 
 .title-jumbo .container-fluid {
   max-width: 1200px;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 2.2rem;
+  padding-right: 2.2rem;
 }
 
 .title-help {
-  padding-left: 0.8rem;
-  padding-right: 0.8rem;
   font-size: 2.7rem;
 }
 
-.title-jumbo .tags {
-  padding-left: 0.9rem;
-  padding-right: 0.9rem;  
+.helpcenter {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #026e3e;
+}
+
+.title-bar {
+  padding-top: 3rem !important;
+  padding-bottom: 7.0rem !important;  
+}
+
+main {
+  background-color: #f8fbff;
+}
+
+.title-jumbo .updated {
+  width: 100%;
+  text-align: end;
+  font-size: 10px;
+  color: #b1bfc6;
+  padding-top: 4px;
+}
+
+footer {
+  background: linear-gradient(#003d5a, #069099);
+}
+
+.img-logo {
+  width: 12%;
+}
+
+.footer-data {
+  display: flex;
+  justify-content: space-around;
+  color: #fff;
 }
 

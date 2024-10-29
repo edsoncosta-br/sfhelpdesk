@@ -350,8 +350,8 @@ trix-editor .attachment__metadata {
       content: ' · '; }
   
   .trix-content .attachment--preview {
-    /* width: 100%; */
-    /* text-align: center;  */
+    width: 100%;
+    text-align: center; 
   }
 
     .trix-content .attachment--preview .attachment__caption {
