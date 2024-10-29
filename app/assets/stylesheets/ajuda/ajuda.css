@@ -9,6 +9,7 @@ body {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-size: 13px;
+  background-color: #f8fbff;
 }
 
 .border-content {
@@ -94,7 +95,7 @@ body {
 .helpcenter {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #026e3e;
+  color: #545454;
 }
 
 .title-bar {
@@ -103,24 +104,48 @@ body {
 }
 
 main {
-  background-color: #f8fbff;
+  padding-bottom: 9.8rem;
 }
 
 .title-jumbo .updated {
   width: 100%;
   text-align: end;
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 500;  
   color: #b1bfc6;
   padding-top: 4px;
 }
 
 footer {
-  background: linear-gradient(#003d5a, #069099);
+  background: #236978;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-top: 1.3rem !important;
+  padding-bottom: 1.3rem !important;
 }
 
 .img-logo {
-  width: 12%;
+  width: 20%;
 }
+
+@media screen and (max-width: 992px) {
+  .img-logo {
+    width: 36%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .img-logo {
+    width: 36%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .img-logo {
+    width: 66%;
+  }
+}  
 
 .footer-data {
   display: flex;
@@ -128,3 +153,24 @@ footer {
   color: #fff;
 }
 
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.footer-data span {
+  color: #f3f2f2;
+}
+
+footer .container {
+  max-width: 1400px;
+}
+
+footer a {
+  text-decoration: none;
+  color: #fff;
+}
+
+footer a:hover {
+  color: #ffffffda;
+}

@@ -38,7 +38,7 @@
                               form_select_position(@user.position_id),
                               include_blank: "Selecione..", 
                               class:"form-select form-control #{is_invalid(@user, '_position_isempty_')}",
-                              name:"request[position_id]",
+                              name:"user[position_id]",
                               disabled: status_disable %>
             </div>          
 

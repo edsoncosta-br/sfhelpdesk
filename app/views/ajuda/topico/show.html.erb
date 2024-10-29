@@ -1,71 +1,79 @@
-<div class="container-fluid max-container">
-  <header class="d-flex justify-content-between">
-    <span class="helpcenter"> <i class="fa-solid fa-circle-question"></i> Central de Ajuda</span>
-    <span class="helpcenter"><%=@help[0].project_description%></span>
-  </header>
-</div>
-
-<div class="title-jumbo">
-  <div class="container-fluid title-bar">
-    <h1 class="title-help fw-bold pb-2"><%=@help[0].title%></h1>
-
-    <div class="tags">
-      <% Methods.get_help_tags(@help[0].id).each do |tag| %>
-        <span class="badge bg-style bg-tag me-2 mb-2"
-        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
-      <% end %>
-    </div>
-
-    <div class="updated">
-      Última atualização <%=format_datetime(@help[0].updated_at)%>
-    </div>
+<div id="page-container">
+  <div class="container-fluid max-container">
+    <header class="d-flex justify-content-between">
+      <span class="helpcenter">Central de Ajuda</span>
+      <span class="helpcenter"><%=@help[0].project_description%></span>
+    </header>
   </div>
-</div>  
 
-<main>
-  <div class="container-fluid">
-    <div class="card card-size">
-      <div class="card-body card-body-style">
-        <% @help.each do |help| %>
-          <div class="row">
-            <div class="col-12 mt-2">
-              <div class="field">
-                <div class="border-content"><%= help.content %></div>
-              </div>            
-            </div>
-          </div>
+  <div class="title-jumbo">
+    <div class="container-fluid title-bar">
+      <h1 class="title-help fw-bold pb-2"><%=@help[0].title%></h1>
+
+      <div class="tags">
+        <% Methods.get_help_tags(@help[0].id).each do |tag| %>
+          <span class="badge bg-style bg-tag me-2 mb-2"
+          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
         <% end %>
       </div>
+
+      <div class="updated">
+        Última atualização <%=format_datetime(@help[0].updated_at)%>
+      </div>
     </div>
-  </div> 
-</main>
+  </div>  
 
-
-<footer class="text-body-secondary py-5">
-  <div class="container">
-    <div class="text-center">
-      <%= image_tag "logo-sf.png", class:"img-logo", alt: "Logo Sófolha" %>
-    </div>
-
-    <div class="footer-data">
-      <div class="text-center">
-        <i class="fa-solid fa-location-dot pt-4 fa-2xl pe-2"></i>
-        <div>
-          R. São Luiz, 238 - Centro, Marília - SP, 17500-005
+  <main>
+    <div class="container-fluid">
+      <div class="card card-size">
+        <div class="card-body card-body-style">
+          <% @help.each do |help| %>
+            <div class="row">
+              <div class="col-12 mt-2">
+                <div class="field">
+                  <div class="border-content"><%= help.content %></div>
+                </div>            
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
-      <div class="social pt-4">
-        <i class="fa-brands fa-instagram fa-2xl pe-3"></i>
-        <i class="fa-brands fa-youtube fa-2xl pe-3"></i>
-        <i class="fa-brands fa-linkedin fa-2xl"></i>
-      </div>
-      <div class="text-center">
-        <i class="fa-solid fa-phone pt-4 fa-2xl pe-2"></i>
-        <div>
-          Marília e região (14) 2105-5500
+    </div> 
+  </main>
+
+  <footer class="text-body-secondary">
+    <div class="container">
+      <div class="footer-data">
+        <div class="row">
+
+          <div class="col-6 d-flex align-items-center">
+            <a target="_blank" rel="noopener" href="https://www.sofolha.com.br/">
+              <%= image_tag "logo-sf.png", class:"img-logo", alt: "logo Sófolha" %>
+            </a>             
+          </div>
+
+          <div class="col-6 d-flex align-items-center justify-content-end">
+            <span class="">
+              <a target="_blank" rel="noopener" href="https://instagram.com/sofolha">
+                <i class="fa-brands fa-instagram fa-2xl pe-3"></i>
+              </a>                 
+
+              <a target="_blank" rel="noopener" href="https://www.youtube.com/@sofolhasolucoescorporativas">
+                <i class="fa-brands fa-youtube fa-2xl pe-3"></i>
+              </a>             
+
+              <a target="_blank" rel="noopener" href="https://br.linkedin.com/company/sofolha-solucoescorporativas">
+                <i class="fa-brands fa-linkedin fa-2xl"></i>
+              </a>
+            <span>
+          </div>          
+
+          <div class="col-12 text-center pt-1">
+            <span>Copyright © <%= Date.current.year %> | Todos os direitos reservados </span>
+          </div>
         </div>
       </div>
-    </div>
 
-  </div>
-</footer>
+    </div>
+  </footer>
+</div>  
