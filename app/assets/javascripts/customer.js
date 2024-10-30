@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 "placeholder": " "}).mask(selector);
   }
 
-  var selector = document.getElementById("id_phone");
+  var selector = document.getElementById("id_cellphone");
   if (selector != null) {
     Inputmask({ "mask": "(99) 9999[9]-9999", 
                 "placeholder": " "}).mask(selector);
   }
 
-  var selector = document.getElementById("id_cellphone");
+  var selector = document.getElementById("id_phone");
   if (selector != null) {
     Inputmask({ "mask": "(99) 999[9]-9999", 
                 "placeholder": " "}).mask(selector);

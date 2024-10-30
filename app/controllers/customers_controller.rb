@@ -47,6 +47,7 @@ class CustomersController < ApplicationController
   end
 
   def show
+    @customer.state = @customer.city.state
   end
 
   def update

@@ -42,8 +42,8 @@ pt-BR:
         city_id: Município
         cpfcnpj_number: CNPJ/CPF
         zip_code: CEP
-        phone: Telefone Móvel
-        cellphone: Telefone Fixo
+        phone: Telefone Fixo
+        cellphone: Telefone Móvel 
         email: E-mail
         active: Cadastro Ativo
         type_person: Pessoa
