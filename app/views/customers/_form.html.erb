@@ -120,6 +120,7 @@
               <%= hidden_field_tag :code_generated, @customer.code_generated %>
               <%= hidden_field_tag :q_name, params[:q_name] %>
               <%= hidden_field_tag :q_code, params[:q_code] %>
+              <%= hidden_field_tag :page, params[:page] %>
 
             </div>
 
@@ -129,7 +130,8 @@
             <% end %>
             <%= link_to btn_caption(status_disable),    
                         customers_path( q_name: params[:q_name],
-                                        q_code: params[:q_code]), 
+                                        q_code: params[:q_code],
+                                        page: params[:page]), 
                 class: 'btn btn-secondary' %>
           </div>
 

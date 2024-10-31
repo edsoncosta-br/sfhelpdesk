@@ -58,7 +58,7 @@
 
               <%if !user.admin %>
                 <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir">
-                  <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
+                  <a class="td-actions" href="#" data-bs-toggle="modal" 
                     data-bs-target="#delete<%=user.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i>
                   </a>
                 </span>
@@ -99,7 +99,7 @@
   </div>    
 
   <div class="pt-3">
-    <%= paginate @users, window: Constants::PAGINATE_WINDOW, remote: true %>
+    <%= paginate @users, window: Constants::PAGINATE_WINDOW, remote: false %>
   </div>   
 
 <% else %>

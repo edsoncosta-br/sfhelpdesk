@@ -24,7 +24,8 @@ class ProjectsController < ApplicationController
     
     respond_to do |format|
       if @project.save
-        format.html { redirect_to projects_path(q_desc: params[:q_desc]), notice: "Projeto cadastrado com sucesso." }
+        format.html { redirect_to projects_path(q_desc: params[:q_desc], 
+                                                page: params[:page]), notice: "Projeto cadastrado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -39,7 +40,8 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to projects_path(q_desc: params[:q_desc]), notice: "Projeto atualizado com sucesso."
+      redirect_to projects_path(q_desc: params[:q_desc], 
+                                page: params[:page]), notice: "Projeto atualizado com sucesso."
     else
       render :edit
     end      
@@ -48,9 +50,11 @@ class ProjectsController < ApplicationController
   def destroy
     begin
       if @project.destroy
-        redirect_to projects_path(q_desc: params[:q_desc]), notice: "Projeto excluído com sucesso."
+        redirect_to projects_path(q_desc: params[:q_desc], 
+                                  page: params[:page]), notice: "Projeto excluído com sucesso."
       else
-        redirect_to projects_path(q_desc: params[:q_desc])
+        redirect_to projects_path(q_desc: params[:q_desc], 
+                                  page: params[:page])
       end
     rescue StandardError => e
 
@@ -60,7 +64,7 @@ class ProjectsController < ApplicationController
         flash[:error] = e.message[0...80] + "..."
       end
 
-      redirect_to projects_path(q_desc: params[:q_desc])
+      redirect_to projects_path(q_desc: params[:q_desc], page: params[:page])
     end
   end
 

@@ -7,8 +7,9 @@
       </div>
       <div class="ph-right">
         <% if current_user.mark_create %>
-          <%= link_to(new_mark_path( q_sys: params[:q_sys],
-                                      q_desc: params[:q_desc]),  class: "btn btn-action btn-success") do %>
+          <%= link_to(new_mark_path(q_sys: params[:q_sys],
+                                    q_desc: params[:q_desc],
+                                    page: params[:page]),  class: "btn btn-action btn-success") do %>
             <i class="fa-solid fa-plus"></i></i> Incluir
           <%end%>
         <%end%>

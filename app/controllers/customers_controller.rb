@@ -35,7 +35,8 @@ class CustomersController < ApplicationController
     respond_to do |format|
       if @customer.save
         format.html { redirect_to customers_path( q_name: params[:q_name],
-                                                  q_code: params[:q_code]), notice: "Cliente cadastrado com sucesso." }
+                                                  q_code: params[:q_code],
+                                                  page: params[:page]), notice: "Cliente cadastrado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -53,7 +54,8 @@ class CustomersController < ApplicationController
   def update
     if @customer.update(customer_params)
       redirect_to customers_path( q_name: params[:q_name],
-                                  q_code: params[:q_code]), notice: "Cliente atualizado com sucesso."
+                                  q_code: params[:q_code],
+                                  page: params[:page]), notice: "Cliente atualizado com sucesso."
     else
       render :edit
     end
@@ -63,7 +65,8 @@ class CustomersController < ApplicationController
     begin
       if @customer.destroy
         redirect_to customers_path( q_name: params[:q_name],
-                                    q_code: params[:q_code]), notice: "Cliente excluído com sucesso."
+                                    q_code: params[:q_code],
+                                    page: params[:page]), notice: "Cliente excluído com sucesso."
       else
         render :index
       end
@@ -76,7 +79,8 @@ class CustomersController < ApplicationController
       end
 
       redirect_to customers_path( q_name: params[:q_name],
-                                  q_code: params[:q_code])
+                                  q_code: params[:q_code],
+                                  page: params[:page])
     end
   end    
 

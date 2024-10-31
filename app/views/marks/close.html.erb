@@ -44,6 +44,7 @@
 
             <%= hidden_field_tag :q_sys, params[:q_sys] %>
             <%= hidden_field_tag :q_desc, params[:q_desc] %>
+            <%= hidden_field_tag :page, params[:page] %>
             <%= hidden_field_tag :closed, true %>
 
           </div>
@@ -51,7 +52,8 @@
           <div class="actions pt-2 text-end">
             <%= form.submit "Finalizar", class:"btn btn-info input-btn me-1"%>
             <%= link_to 'Cancelar', marks_path(q_sys: params[:q_sys],
-                                               q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
+                                               q_desc: params[:q_desc],
+                                               page: params[:page]), class: 'btn btn-secondary' %>
           </div>
 
         <% end %>

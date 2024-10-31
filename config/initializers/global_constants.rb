@@ -24,7 +24,7 @@ module Constants
   STEP_AGUARDANDO = ['Aguardando', 2]
   STEP_CONCLUIDA = ['Concluída', 3]
 
-  PAGINAS = 40
+  PAGINAS = 25
   PAGINATE_WINDOW = 1
 
   NEW_MODE = 0

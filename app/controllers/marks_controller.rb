@@ -41,7 +41,8 @@ class MarksController < ApplicationController
     respond_to do |format|
       if @mark.save
         format.html { redirect_to marks_path(q_sys: params[:q_sys],
-                                             q_desc: params[:q_desc]), notice: "Meta cadastrada com sucesso." }
+                                             q_desc: params[:q_desc],
+                                             page: params[:page]), notice: "Meta cadastrada com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -86,7 +87,8 @@ class MarksController < ApplicationController
       end
 
       redirect_to marks_path( q_sys: params[:q_sys],
-                              q_desc: params[:q_desc]), notice: "Meta atualizada com sucesso."
+                              q_desc: params[:q_desc],
+                              page: params[:page]), notice: "Meta atualizada com sucesso."
     else
       render :edit
     end
@@ -96,10 +98,12 @@ class MarksController < ApplicationController
     begin
       if @mark.destroy
         redirect_to marks_path(q_sys: params[:q_sys],
-                                q_desc: params[:q_desc]), notice: "Meta excluída com sucesso."
+                                q_desc: params[:q_desc],
+                                page: params[:page]), notice: "Meta excluída com sucesso."
       else
         redirect_to marks_path(q_sys: params[:q_sys],
-                                q_desc: params[:q_desc])
+                                q_desc: params[:q_desc],
+                                page: params[:page])
       end
     rescue StandardError => e
 
@@ -109,8 +113,9 @@ class MarksController < ApplicationController
         flash[:error] = e.message[0...80] + "..."
       end
 
-      redirect_to marks_path(q_sys: params[:q_sys],
-                              q_desc: params[:q_desc])
+      redirect_to marks_path( q_sys: params[:q_sys],
+                              q_desc: params[:q_desc],
+                              page: params[:page])
     end
   end
 

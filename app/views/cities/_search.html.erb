@@ -29,7 +29,7 @@
   </div>    
 
   <div class="pt-3 pb-3">
-    <%= paginate @cities, window: Constants::PAGINATE_WINDOW, remote: true %>
+    <%= paginate @cities, window: Constants::PAGINATE_WINDOW, remote: false %>
   </div>   
 
 <% else %>

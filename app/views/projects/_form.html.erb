@@ -24,6 +24,7 @@
             </div>
 
             <%= hidden_field_tag :q_desc, params[:q_desc] %>
+            <%= hidden_field_tag :page, params[:page] %>
           </div>
 
           <div class="actions pt-2 text-end">
@@ -31,7 +32,8 @@
               <%= form.submit "Salvar", class:"btn btn-success input-btn input-btn me-1"%>
             <% end %>
             <%= link_to btn_caption(status_disable), 
-                        projects_path(q_desc: params[:q_desc]), class: 'btn btn-secondary' %>
+                        projects_path(q_desc: params[:q_desc], 
+                                      page: params[:page]), class: 'btn btn-secondary' %>
           </div>
 
         <% end %>

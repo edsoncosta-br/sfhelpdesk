@@ -2,19 +2,18 @@ require 'csv'
 
 FILES_PATH = File.join(Rails.root, 'lib', 'tmp')
 
-namespace :import_gerencial do
+namespace :import_customer do
 
   desc 'Setting development environment'
   task setup: :environment do
     if Rails.env.development?
-      puts 'Importando clientes gerencial...'
+      puts 'Importando clientes...'
       puts %x(rails dev:add_customer)
     else
       puts 'You are not in development environment!'
     end
   end
 
-  desc 'Importa clientes gerencial'
   task add_customer: :environment do
     require "cpf_cnpj"
     

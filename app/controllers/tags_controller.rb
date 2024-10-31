@@ -37,7 +37,8 @@ class TagsController < ApplicationController
     respond_to do |format|
       if @tag.save
         format.html { redirect_to tags_path(q_sys: params[:q_sys],
-                                            q_desc: params[:q_desc]), notice: "Tag cadastrada com sucesso." }
+                                            q_desc: params[:q_desc],
+                                            page: params[:page]), notice: "Tag cadastrada com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -53,7 +54,8 @@ class TagsController < ApplicationController
   def update
     if @tag.update(tag_params)
       redirect_to tags_path(q_sys: params[:q_sys],
-                            q_desc: params[:q_desc]), notice: "Tag atualizada com sucesso."
+                            q_desc: params[:q_desc],
+                            page: params[:page]), notice: "Tag atualizada com sucesso."
     else
       render :edit
     end      
@@ -63,10 +65,12 @@ class TagsController < ApplicationController
     begin
       if @tag.destroy
         redirect_to tags_path(q_sys: params[:q_sys],
-                              q_desc: params[:q_desc]), notice: "Tag excluída com sucesso."
+                              q_desc: params[:q_desc],
+                              page: params[:page]), notice: "Tag excluída com sucesso."
       else
         redirect_to tags_path(q_sys: params[:q_sys],
-                              q_desc: params[:q_desc])
+                              q_desc: params[:q_desc],
+                              page: params[:page])
       end
     rescue StandardError => e
 
@@ -77,7 +81,8 @@ class TagsController < ApplicationController
       end
 
       redirect_to tags_path(q_sys: params[:q_sys],
-                            q_desc: params[:q_desc])
+                            q_desc: params[:q_desc],
+                            page: params[:page])
     end
   end
 

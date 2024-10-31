@@ -38,7 +38,8 @@
 
             <td class='align-middle text-center '>
               <%= link_to customer_path(customer, q_name: params[:q_name],
-                                                  q_code: params[:q_code]), 
+                                                  q_code: params[:q_code],
+                                                  page: params[:page]), 
                                                   class: 'td-actions', 
                                                   data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Visualizar" } do %>
                 <i class="fa-regular fa-envelope-open pe-1"></i>
@@ -46,7 +47,8 @@
 
               <% if current_user.customer_edit %>
                 <%= link_to edit_customer_path(customer,  q_name: params[:q_name],
-                                                          q_code: params[:q_code]), 
+                                                          q_code: params[:q_code],
+                                                          page: params[:page]), 
                                                           class: 'td-actions', 
                                                           data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Alterar" } do %>
                   <i class="fa-regular fa-pen-to-square pe-1"></i>
@@ -57,7 +59,7 @@
 
               <% if current_user.customer_delete %>
                 <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir">
-                  <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
+                  <a class="td-actions" href="#" data-bs-toggle="modal" 
                     data-bs-target="#delete<%=customer.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i>
                   </a>
                 <span>
@@ -82,7 +84,8 @@
                 </div>
                 <div class="modal-footer actions">
                   <%= link_to 'Excluir', customer_path(customer,  q_name: params[:q_name],
-                                                                  q_code: params[:q_code]), 
+                                                                  q_code: params[:q_code],
+                                                                  page: params[:page]), 
                       class:"btn btn-danger", method: :delete %>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
@@ -97,7 +100,7 @@
   </div>    
 
   <div class="pt-3">
-    <%= paginate @customers, window: Constants::PAGINATE_WINDOW, remote: true %>
+    <%= paginate @customers, window: Constants::PAGINATE_WINDOW, remote: false %>
   </div>   
 
 <% else %>

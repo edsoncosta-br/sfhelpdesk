@@ -20,21 +20,23 @@
           <tr>
             <td class='align-middle'> <%= project.description %> </td>
             <td class='align-middle text-center '>
-              <%= link_to project_path(project, q_name: params[:q_desc]), 
+              <%= link_to project_path(project, q_name: params[:q_desc], 
+                                                page: params[:page]), 
                                                 class: 'td-actions', 
                                                 data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Visualizar" } do %>
                 <i class="fa-regular fa-envelope-open pe-1"></i>
               <% end %>
 
               <%= link_to edit_project_path(project, 
-                                            q_desc: params[:q_desc]), 
+                                            q_desc: params[:q_desc],
+                                            page: params[:page]), 
                                             class: 'td-actions', 
                                             data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Alterar" } do %>
                 <i class="fa-regular fa-pen-to-square pe-1"></i>
               <% end %>
 
               <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir">
-                <a class="td-actions" href="#" title="Excluir" data-bs-toggle="modal" 
+                <a class="td-actions" href="#"  data-bs-toggle="modal" 
                   data-bs-target="#delete<%=project.id.to_s%>"><i class="fa-regular fa-trash-can pe-1"></i></a>
               </span>
             </td>
@@ -54,7 +56,8 @@
                   Confirma a exclusão do Projeto: <br> <%= project.description %> ?
                 </div>
                 <div class="modal-footer actions">
-                  <%= link_to 'Excluir', project_path(project, q_desc: params[:q_desc]), 
+                  <%= link_to 'Excluir', project_path(project,q_desc: params[:q_desc], 
+                                                              page: params[:page]), 
                       class:"btn btn-danger", method: :delete %>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
@@ -68,7 +71,7 @@
   </div>    
 
   <div class="pt-3">
-    <%= paginate @projects, window: Constants::PAGINATE_WINDOW, remote: true %>
+    <%= paginate @projects, window: Constants::PAGINATE_WINDOW, remote: false %>
   </div>   
 
 <% else %>
