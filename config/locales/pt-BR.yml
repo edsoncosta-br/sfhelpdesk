@@ -17,7 +17,7 @@ pt-BR:
         password_confirmation: Confirmação
         name: Nome Completo
         nick_name: Nome de Identificação
-        position_id: Departamento
+        position_id: Cargo/Função
         active: Cadastro Ativo
         password: Senha
         password_confirmation: Confirmação
@@ -26,7 +26,7 @@ pt-BR:
         name: Nome
         email: E-mail
         social_name: Nome Social
-        position: Departamento
+        position: Cargo/Função
         active: Cadastro Ativo
         registration_menu: Acesso Cadastros
         panel_menu: Acesso Painel

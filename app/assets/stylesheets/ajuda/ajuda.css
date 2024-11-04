@@ -25,20 +25,8 @@ body {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 1rem;
-
-  margin-top: -80px;
   background-color: #fff;
   border-radius: 5px;
-
-
-  /* padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 1rem;
-  margin-top: -5rem;
-  background-color: #fff;
-  border-radius: 2%;  
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;   */
 }
 
 .card-size {
@@ -70,7 +58,6 @@ body {
 }
 
 .title-jumbo {
-  /* background-color: #034c6f; */
   color: #ebfffc;
   background: linear-gradient(#003d5a, #069099);
 }
@@ -89,7 +76,7 @@ body {
 }
 
 .title-help {
-  font-size: 2.7rem;
+  font-size: 2.4rem;
 }
 
 .helpcenter {
@@ -99,8 +86,8 @@ body {
 }
 
 .title-bar {
-  padding-top: 3rem !important;
-  padding-bottom: 7.0rem !important;  
+  padding-top: 2rem !important;
+  padding-bottom: 1rem !important;  
 }
 
 main {
