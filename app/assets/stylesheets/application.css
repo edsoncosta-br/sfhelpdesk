@@ -476,11 +476,12 @@ body {
 .card-body-style {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  padding-top: 2rem;
+  /* padding-top: 2rem; */
 }
 
 .brd {
   border-top: 0.4rem solid #a8d7be !important;
+  padding-top: 2rem;
 }
 
 @media screen and (max-width: 767px) {
