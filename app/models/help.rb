@@ -30,6 +30,6 @@ class Help < ApplicationRecord
   end    
 
   def set_link
-    Help.where('id = ?', self.id).update_all(link: '/ajuda/topico/' + self.id.to_s)
+    Help.where('id = ?', self.id).update_all(link: '/ajuda/artigo/' + self.id.to_s)
   end  
 end

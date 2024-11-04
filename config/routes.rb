@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   namespace :ajuda do
-    get 'topico/:id', to: 'topico#show', as: 'topico_show'
+    get 'artigo/:id', to: 'artigo#show', as: 'artigo_show'
   end  
 
   resources :customers

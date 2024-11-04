@@ -1,4 +1,4 @@
-class Ajuda::TopicoController < ApplicationController
+class Ajuda::ArtigoController < ApplicationController
   layout 'help'
 
   def show

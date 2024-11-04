@@ -161,3 +161,14 @@ footer a {
 footer a:hover {
   color: #ffffffda;
 }
+
+@media screen and (max-width: 576px) {
+  .no-logo {
+    width: 70%;
+  }
+}
+
+.help-notfound {
+  padding-top: 5rem !important;
+  padding-bottom: 3rem !important;  
+}
