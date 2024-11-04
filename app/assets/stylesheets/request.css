@@ -275,7 +275,7 @@ tbody tr {
 }
 
 .fa-download, .fa-eye, .fa-trash-can {
-  color: #049b51;
+  color: #5a725f !important;
   font-size: 1.2rem;
 }
 
