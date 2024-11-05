@@ -112,6 +112,7 @@ class RequestsController < ApplicationController
       ActiveRecord::Base.transaction do
         if @request.save
           update_tag_ids(false)
+          send_request_created(@request.project_id, @request.user_created_id, @request.id)
           format.html { redirect_to requests_path(q_sys: params[:q_sys],
                                                   q_status: params[:q_status],
                                                   q_content: params[:q_content], 
@@ -134,6 +135,12 @@ class RequestsController < ApplicationController
     ActiveRecord::Base.transaction do
       if @request.update(request_params)
         update_tag_ids(true)
+        
+        send_request_created( @request.project_id, 
+                              @request.user_created_id, 
+                              @request.id,
+                              @request.title )
+
         redirect_to request_path(@request,q_sys: params[:q_sys],
                                           q_status: params[:q_status],
                                           q_content: params[:q_content],
@@ -285,7 +292,25 @@ class RequestsController < ApplicationController
   def purge_unattached
     # delete attached files without references
     ActiveStorage::Blob.unattached.find_each(&:purge_later)
-  end  
+  end
+
+  def send_request_created(project_id, user_created_id, request_id, request_title)
+    user_created = User.find(user_created_id)
+    users_list = Allocation.select("users.email, users.nick_name, projects.description as project_description")
+                            .joins(:user)
+                            .joins(:project)
+                            .where("allocations.project_id = ?", project_id)
+
+    users_list.each do |user_list|
+      RequestMailer.with(email: user_list.email, 
+                         name:  user_list.nick_name,
+                         name_created: user_created.nick_name,
+                         project_description: user_list.project_description,
+                         request_title: request_title,
+                         request_id: request_id).
+                    request_created.deliver_later
+    end
+  end
 
   def request_params
     params.require(:request).permit(:title, :created_date, :due_date, :status,
