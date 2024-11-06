@@ -112,7 +112,12 @@ class RequestsController < ApplicationController
       ActiveRecord::Base.transaction do
         if @request.save
           update_tag_ids(false)
-          send_request_created(@request.project_id, @request.user_created_id, @request.id)
+
+          send_request_created( @request.project_id, 
+                                @request.user_created_id, 
+                                @request.id,
+                                @request.title )
+
           format.html { redirect_to requests_path(q_sys: params[:q_sys],
                                                   q_status: params[:q_status],
                                                   q_content: params[:q_content], 
@@ -197,6 +202,11 @@ class RequestsController < ApplicationController
   def status_finished
     request = Request.find(params[:id_request])
     request.update(status: Constants::STATUS_FINALIZADA[1])
+
+    send_request_finished(request.project_id, 
+                          request.user_created_id, 
+                          request.id,
+                          request.title )
 
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
@@ -311,6 +321,24 @@ class RequestsController < ApplicationController
                     request_created.deliver_later
     end
   end
+
+  def send_request_finished(project_id, user_finished_id, request_id, request_title)
+    user_finished = User.find(user_finished_id)
+    users_list = Allocation.select("users.email, users.nick_name, projects.description as project_description")
+                            .joins(:user)
+                            .joins(:project)
+                            .where("allocations.project_id = ?", project_id)
+
+    users_list.each do |user_list|
+      RequestMailer.with(email: user_list.email, 
+                         name:  user_list.nick_name,
+                         name_finished: user_finished.nick_name,
+                         project_description: user_list.project_description,
+                         request_title: request_title,
+                         request_id: request_id).
+                    request_finished.deliver_later
+    end
+  end  
 
   def request_params
     params.require(:request).permit(:title, :created_date, :due_date, :status,

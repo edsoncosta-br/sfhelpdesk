@@ -84,11 +84,19 @@ class MarksController < ApplicationController
 
       if params[:closed] 
         Request.where('mark_id = ?', @mark.id).update_all(status: Constants::STATUS_FINALIZADA[1])
+
+        send_mark_finished( @mark.project_id, 
+                            @mark.id,
+                            @mark.description )
+
+        msg = "finalizada"
+      else
+        msg = "atualizada"
       end
 
       redirect_to marks_path( q_sys: params[:q_sys],
                               q_desc: params[:q_desc],
-                              page: params[:page]), notice: "Meta atualizada com sucesso."
+                              page: params[:page]), notice: "Meta #{msg} com sucesso."
     else
       render :edit
     end
@@ -120,6 +128,22 @@ class MarksController < ApplicationController
   end
 
   private
+
+  def send_mark_finished(project_id, mark_id, mark_title)
+    users_list = Allocation.select("users.email, users.nick_name, projects.description as project_description")
+                            .joins(:user)
+                            .joins(:project)
+                            .where("allocations.project_id = ?", project_id)
+
+    users_list.each do |user_list|
+      RequestMailer.with( email: user_list.email, 
+                          name:  user_list.nick_name,
+                          project_description: user_list.project_description,
+                          mark_title: mark_title,
+                          mark_id: mark_id).
+                    mark_finished.deliver_later
+    end
+  end    
 
   def set_upcase
     Methods.field_upcase(params[:mark])

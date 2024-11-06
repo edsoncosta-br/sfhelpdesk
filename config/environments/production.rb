@@ -117,4 +117,18 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  config.action_mailer.default_url_options = { :host => 'http://sfhelpdesk@sofolha.com.br' } 
+  config.active_job.queue_adapter = :sidekiq
+  config.action_mailer.deliver_later_queue_name = 'mailers'
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address:              'email.sofolha.com.br',
+    port:                 587,
+    domain:               'sofolha.com.br',
+    user_name:            'sfhelpdesk@sofolha.com.br',
+    password:             'Sfhelpdesk@01055651',
+    authentication:       'plain',
+    enable_starttls_auto: true }      
 end
