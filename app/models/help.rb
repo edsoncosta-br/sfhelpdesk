@@ -1,4 +1,14 @@
 class Help < ApplicationRecord
+  # extend FriendlyId
+  # friendly_id :random_slug, use: [:slugged, :finders]
+
+  # def random_slug
+  #   self.slug = SecureRandom.hex(5)
+  # end
+
+  extend FriendlyId
+  friendly_id :slug_helps, use: :slugged
+
   after_commit  :set_link
 
   validates :title, presence: true
@@ -17,6 +27,12 @@ class Help < ApplicationRecord
 
   private
 
+  def slug_helps
+    [
+     [self.project.description, :title]
+    ]
+   end  
+
   def title_isempty
     if self.title.blank?
       errors.add(:_, '_title_isempty_')
@@ -30,6 +46,6 @@ class Help < ApplicationRecord
   end    
 
   def set_link
-    Help.where('id = ?', self.id).update_all(link: '/ajuda/artigo/' + self.id.to_s)
+    Help.where('id = ?', self.id).update_all(link: '/ajuda/artigo/' + self.slug)
   end  
 end

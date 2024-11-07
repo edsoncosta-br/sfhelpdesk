@@ -10,8 +10,10 @@ class Ajuda::ArtigoController < ApplicationController
                   .joins(project: :company)
                   .joins(:user_created)
                   .left_joins(:user_updated)
-                  .where("helps.id = ?", params[:id])
+                  .where("slug = ?", params[:id])
     
-    @help_tag_ids = HelpTag.where("help_id = ?", params[:id]).pluck("tag_id")
+    @help_tag_ids = HelpTag.joins(:help).where("slug = ?", params[:id]).pluck("tag_id")
   end
 end
+
+# /ajuda/artigo/sffiscal-sfcontabil-como-verificar-a-seguranca-dos-seus-e-mails-na-caixa-de-entrada-do-gmail

@@ -41,7 +41,7 @@ class HelpsController < ApplicationController
 
   def show
     @helps = Help.select( :id,:title, :link, :project_id, :user_created_id, 
-                          :user_updated_id, :created_at, :updated_at,
+                          :user_updated_id, :created_at, :updated_at, 
                           'projects.description project_description',
                           'users.nick_name user_created_name',
                           "user_updateds_helps.nick_name user_updated_name",)
@@ -122,7 +122,7 @@ class HelpsController < ApplicationController
   private
 
   def set_help
-    @help = Help.find(params[:id])
+    @help = Help.friendly.find(params[:id])
   end
 
   def update_tag_ids(updated)
@@ -139,7 +139,7 @@ class HelpsController < ApplicationController
   end
 
   def help_params
-    params.require(:help).permit( :title, :link, :project_id, :user_created_id, 
+    params.require(:help).permit( :title, :link, :project_id, :user_created_id, :slug,
                                   :user_updated_id, :content, tag_ids: [])
   end
 

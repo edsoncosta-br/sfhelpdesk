@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_23_015202) do
+ActiveRecord::Schema.define(version: 2024_11_07_001122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,8 @@ ActiveRecord::Schema.define(version: 2024_10_23_015202) do
     t.integer "user_updated_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_helps_on_slug", unique: true
   end
 
   create_table "marks", force: :cascade do |t|
@@ -266,7 +268,7 @@ ActiveRecord::Schema.define(version: 2024_10_23_015202) do
   add_foreign_key "request_comments", "requests", on_delete: :cascade
   add_foreign_key "request_comments", "users"
   add_foreign_key "request_tags", "requests", on_delete: :cascade
-  add_foreign_key "request_tags", "tags"
+  add_foreign_key "request_tags", "tags", on_delete: :cascade
   add_foreign_key "requests", "customers"
   add_foreign_key "requests", "marks"
   add_foreign_key "requests", "projects"

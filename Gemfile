@@ -27,6 +27,7 @@ gem 'devise-i18n'
 gem 'kaminari'
 gem 'kaminari-i18n'
 gem 'cpf_cnpj'
+gem 'friendly_id', '~> 5.5.0'
 
   # Preview email in the default browser instead of sending it
 gem 'letter_opener_web'
