@@ -49,7 +49,9 @@
             <div class="col-12 mb-3">
               <div class="col-title d-flex align-items-center">              
                 <div>
-                  <div class="avatar avatar-request">
+                  <div class="avatar avatar-request"  data-bs-toggle="tooltip" 
+                                                      data-bs-placement="top" 
+                                                      data-bs-title="Criado por <%=help.user_created_name%>" >
                     <%= image_tag "emptyuser.png", alt: "empty user" %>
                   </div>                  
                 </div>
@@ -66,8 +68,8 @@
                   
                   <div class="second-line second-line-show">
                     <span>
-                      <span>Criação: <strong><%=format_datetime(help.created_at)%></strong> </span>
-                      <span class="me-3">por <strong><%=help.user_created_name%></strong></span>
+                      <span class="me-3"><%=help.project_description%></span>                    
+                      <span class="me-3">Criação: <strong><%=format_datetime(help.created_at)%></strong> </span>
 
                       <% if I18n.l(help.updated_at, format: "%d/%m/%Y %H:%M") == I18n.l(help.created_at, format: "%d/%m/%Y %H:%M") %>
                         <span class="me-3">Alteração: <strong>--</strong></span>
@@ -76,7 +78,6 @@
                         <span class="me-3">por <strong><%=help.user_updated_name%></strong></span>
                       <% end %>                  
 
-                      <span class="me-3"><%=help.project_description%></span>
                       <span class="me-3">Código: <strong><%=help.id.to_s.rjust(4, "0")%></strong></span>
                     </span>                
                   </div>

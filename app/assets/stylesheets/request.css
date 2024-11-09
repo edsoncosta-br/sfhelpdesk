@@ -35,8 +35,6 @@
 .bg-style {
   border: solid;
   border-width: 0.1rem;
-  /* padding-top: 0.24rem;
-  padding-bottom: 0.24rem; */
 }
 
 .bg-tag {
@@ -147,7 +145,6 @@
 
 .col-icon {
   width: 3.6rem;
-  /* font-size: 14px; */
 }
 
 .status-line {
@@ -165,7 +162,7 @@
 }
 
 .first-line {
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.3rem;
 }
 
 .second-line {
@@ -331,3 +328,18 @@ tbody tr {
   width: 40px;
   border-radius: 50%;
 }  
+
+.tags {
+  text-wrap: wrap;
+}
+
+.avatar-table {
+  padding-top: 7px;
+}
+
+.avatar-table img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin-right: 0.2rem;
+}

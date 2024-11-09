@@ -2,7 +2,7 @@ class CreateHelps < ActiveRecord::Migration[6.1]
   def change
     create_table :helps do |t|
       t.string :title, limit: 100, null: false
-      t.string :link
+      t.string :link, null: false
       t.integer :project_id, null: false
       t.integer :user_created_id, null: false
       t.integer :user_updated_id

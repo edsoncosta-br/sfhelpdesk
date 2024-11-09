@@ -29,7 +29,7 @@ class Help < ApplicationRecord
 
   def slug_helps
     [
-     [self.project.description, :title]
+     [self.project.description, self.title + " " + SecureRandom.hex(4)]
     ]
    end  
 

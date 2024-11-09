@@ -72,15 +72,17 @@ class RequestsController < ApplicationController
     @requests = Request.select(:id, :title, :status, :step, :priority, 
                               :customer_id, :code, :requester_name,
                               :user_created_id, :user_responsible_id, 
-                              :mark_id, :created_date,
+                              :mark_id, :created_date, :created_at, :updated_at,
                               "coalesce(marks.due_date, requests.due_date) dues_date",
                               "projects.description projects_description",
                               "users.nick_name user_created_name",
                               "user_responsibles_requests.nick_name user_responsible_name",
+                              "user_updateds_requests.nick_name user_updated_name",
                               "marks.description mark_description",
                               "customers.name customers_name")
                       .joins(project: :company)
                       .joins(:user_created)
+                      .left_joins(:user_updated)
                       .left_joins(:user_responsible)
                       .left_joins(:mark)
                       .left_joins(:customer)
@@ -138,6 +140,7 @@ class RequestsController < ApplicationController
 
   def update
     ActiveRecord::Base.transaction do
+      @request.user_updated_id = current_user.id
       if @request.update(request_params)
         update_tag_ids(true)
         

@@ -3,7 +3,7 @@ class HelpsController < ApplicationController
 
   def index
     helps = Help.select(:id,:title, :link, :project_id, :user_created_id, 
-                        :user_updated_id, :created_at, :updated_at,
+                        :user_updated_id, :created_at, :updated_at, :slug,
                         'projects.description project_description',
                         'users.nick_name user_created_name',
                         "user_updateds_helps.nick_name user_updated_name",)
@@ -40,17 +40,17 @@ class HelpsController < ApplicationController
   end
 
   def show
-    @helps = Help.select( :id,:title, :link, :project_id, :user_created_id, 
-                          :user_updated_id, :created_at, :updated_at, 
+    @helps = Help.select( :id, :title, :link, :project_id, :user_created_id, 
+                          :user_updated_id, :created_at, :updated_at, :slug,
                           'projects.description project_description',
                           'users.nick_name user_created_name',
                           "user_updateds_helps.nick_name user_updated_name",)
                   .joins(project: :company)
                   .joins(:user_created)
                   .left_joins(:user_updated)
-                  .where("helps.id = ?", params[:id])
-    
-    @help_tag_ids = HelpTag.where("help_id = ?", params[:id]).pluck("tag_id")                      
+                  .where("helps.slug = ?", params[:id])
+
+    @help_tag_ids = HelpTag.joins(:help).where("helps.slug = ?", params[:id]).pluck("tag_id")                      
   end  
 
   def new
@@ -61,6 +61,7 @@ class HelpsController < ApplicationController
   def create
     @help = Help.new(help_params)
     @help.user_created_id = current_user.id
+    @help.link = "..."
    
     respond_to do |format|
       ActiveRecord::Base.transaction do
@@ -144,3 +145,5 @@ class HelpsController < ApplicationController
   end
 
 end
+
+# Help.find_each(&:save)

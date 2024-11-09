@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_11_07_001122) do
+ActiveRecord::Schema.define(version: 2024_11_09_191612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 2024_11_07_001122) do
 
   create_table "helps", force: :cascade do |t|
     t.string "title", limit: 100, null: false
-    t.string "link", limit: 100
+    t.string "link", null: false
     t.integer "project_id", null: false
     t.integer "user_created_id", null: false
     t.integer "user_updated_id"

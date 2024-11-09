@@ -4,14 +4,6 @@
     Registros encontrados ( <%=status(params[:q_status].to_i)%> ): <%=@requests_size%>
   </div>
 
-  <!--
-  <div class="status-line <%#=color_status(params[:q_status].to_i)%>"> 
-    <div class="d-flex"> 
-      <div class="status-text"> <%#=status(params[:q_status].to_i)%> ( <%#=@requests_size.to_s.rjust(2, "0") %> )</div>
-    </div>
-  </div>
-  -->
-
   <div id="modal-place"></div>
 
   <div class="table-responsive border-start border-end">
@@ -49,10 +41,12 @@
                     <%=status_request(request.status)%>
                   </span>
 
-                  <% Methods.get_request_tags(request.id).each do |tag| %>
-                    <span class="badge bg-style bg-tag me-1" 
-                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
-                  <% end %>
+                  <span class="tags">
+                    <% Methods.get_request_tags(request.id).each do |tag| %>
+                      <span class="badge bg-style bg-tag me-1" 
+                      data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
+                    <% end %>
+                  </span>
 
                   <% if request.mark_description.present? %>
                     <span class="badge bg-style <%=color_mark(request.closed)%> me-1" 
@@ -65,9 +59,14 @@
               </div>
               
               <div class="second-line">
+                <span class="avatar avatar-table" data-bs-toggle="tooltip" 
+                                                  data-bs-placement="top" 
+                                                  data-bs-title="Criado por <%=request.user_created_name%>" >
+                  <%= image_tag "emptyuser.png", alt: "empty user" %>
+                </span> 
+
                 <span>
-                  <span>Criação: <strong><%=format_date(request.created_date)%></strong></span>
-                  <span class="me-3">por <strong><%=request.user_created_name%></strong></span>
+                  <span class="me-3">Criação: <strong><%=format_datetime(request.created_date)%></strong></span>
                   <span class="me-3">Código: <strong><%=request.id.to_s.rjust(4, "0")%></strong></span>
 
                   <% if request.customers_name.present? && request.requester_name.present? %>
