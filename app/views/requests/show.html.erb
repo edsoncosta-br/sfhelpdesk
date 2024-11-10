@@ -18,14 +18,6 @@
           <div class="row">
             <div class="col-12 mb-3">
               <div class="col-title d-flex align-items-center">              
-                <div>
-                  <div class="avatar avatar-request"  data-bs-toggle="tooltip" 
-                                                      data-bs-placement="top" 
-                                                      data-bs-title="Criado por <%=request.user_created_name%>">
-                    <%= image_tag "emptyuser.png", alt: "empty user" %>
-                  </div>                  
-                </div>
-
                 <div class="w-100 ms-2">
                   <div class="first-line">
                     <span class="fw-semibold me-1"><%=request.title%></span>
@@ -48,15 +40,22 @@
                   </div>
                   
                   <div class="second-line second-line-show">
+                    <span class="avatar avatar-table" data-bs-toggle="tooltip" 
+                                                      data-bs-placement="top" 
+                                                      data-bs-title="Criado por <%=request.user_created_name%>" >
+                      <%= image_tag "emptyuser.png", alt: "empty user" %>
+                    </span> 
+
                     <span>
-                      <span class="me-3"><%=request.projects_description%></span>
                       <span class="me-3">Criação: <strong><%=format_datetime(request.created_date)%></strong> </span>
 
-                      <% if I18n.l(request.updated_at, format: "%d/%m/%Y %H:%M") == I18n.l(request.created_at, format: "%d/%m/%Y %H:%M") %>
-                        <span class="me-3">Alteração: <strong>--</strong></span>
-                      <% else %>
-                        <span>Alteração: <strong><%=format_datetime(request.updated_at)%></strong></span>
-                        <span class="me-3">por <strong><%=request.user_updated_name%></strong></span>
+                      <% if I18n.l(request.updated_at, format: "%d/%m/%Y %H:%M") != I18n.l(request.created_at, format: "%d/%m/%Y %H:%M") %>
+                        <span class="avatar avatar-table" data-bs-toggle="tooltip" 
+                                                          data-bs-placement="top" 
+                                                          data-bs-title="Alterado por <%=request.user_updated_name%>" >
+                          <%= image_tag "emptyuser.png", alt: "empty user" %>
+                        </span> 
+                        <span class="me-3">Alteração: <strong><%=format_datetime(request.updated_at)%></strong></span>                        
                       <% end %>                  
 
                       <span class="me-3">Código: <strong><%=request.id.to_s.rjust(4, "0")%></strong></span>
@@ -72,6 +71,7 @@
                   </div>
 
                   <div class="second-line">
+                    <span class="me-3"><%=request.projects_description%></span>                  
                     <span class="me-3">Previsão: <strong><%=request.dues_date.present? ? format_date(request.dues_date) : '--'%></strong></span>
                     <span class="me-3">Responsável: <strong><%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></strong></span>                  
                   </div>
@@ -189,9 +189,9 @@
               <div class="col-title-comment d-flex justify-content-between align-items-center">              
                 <div class="d-flex align-items-center">
                   <div>
-                    <span class="avatar avatar-request">
+                    <span class="avatar avatar-table">
                       <%= image_tag "emptyuser.png", alt: "empty user" %>
-                    </span>                  
+                    </span> 
                   </div>
                   
                   <div class="ms-2">

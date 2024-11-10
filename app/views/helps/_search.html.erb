@@ -47,9 +47,19 @@
                   <%= image_tag "emptyuser.png", alt: "empty user" %>
                 </span> 
 
-
                 <span>
                   <span class="me-3">Criação: <strong><%=format_datetime(help.created_at)%></strong></span>
+
+                  <% if I18n.l(help.updated_at, format: "%d/%m/%Y %H:%M") != I18n.l(help.created_at, format: "%d/%m/%Y %H:%M") %>
+                    <span class="avatar avatar-table" data-bs-toggle="tooltip" 
+                                                      data-bs-placement="top" 
+                                                      data-bs-title="Alterado por <%=help.user_updated_name%>" >
+                      <%= image_tag "emptyuser.png", alt: "empty user" %>
+                    </span> 
+                    <span class="me-3">Alteração: <strong><%=format_datetime(help.updated_at)%></strong></span>                        
+                  <% end %>                  
+
+
                   <span class="me-3">Código: <strong><%=help.id.to_s.rjust(4, "0")%></strong></span>
                 </span>
               </div>
