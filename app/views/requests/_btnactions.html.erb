@@ -1,20 +1,22 @@
 <% if (current_user.id == @requests[0].user_responsible_id) %>
-  <% if @requests[0].step == Constants::STEP_EXECUTANDO[1] %>    
-    <span data-bs-toggle="modal" data-bs-target="#step-wait<%=@requests[0].id.to_s%>">
-      <a class="btn btn-outline-danger me-3" href="#" 
-          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Parar a Execução da Requisição">
-          <i class="fa-solid fa-person-running fa-lg"></i></a>
-    </span>
+  <% if @requests[0].status == Constants::STATUS_ABERTA[1] %>
+    <% if @requests[0].step == Constants::STEP_EXECUTANDO[1] %>    
+      <span data-bs-toggle="modal" data-bs-target="#step-wait<%=@requests[0].id.to_s%>">
+        <a class="btn btn-outline-danger me-3" href="#" 
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Parar a Execução da Requisição">
+            <i class="fa-solid fa-person-running fa-lg"></i></a>
+      </span>
 
-  <% elsif @requests[0].step == Constants::STEP_AGUARDANDO[1] %>
+    <% elsif @requests[0].step == Constants::STEP_AGUARDANDO[1] %>
 
-    <span data-bs-toggle="modal" data-bs-target="#step-execute<%=@requests[0].id.to_s%>">
-      <a class="btn btn-outline-success me-3" href="#" 
-          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Iniciar a Execução da Requisição">
-          <i class="fa-solid fa-person-running fa-lg"></i></a>
-    </span>
+      <span data-bs-toggle="modal" data-bs-target="#step-execute<%=@requests[0].id.to_s%>">
+        <a class="btn btn-outline-success me-3" href="#" 
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Iniciar a Execução da Requisição">
+            <i class="fa-solid fa-person-running fa-lg"></i></a>
+      </span>
 
-  <% end %>
+    <% end %>
+  <% end %>    
 <% end %>
 
 <span class="me-3">
@@ -27,14 +29,14 @@
       </span>
 
       <span data-bs-toggle="modal" data-bs-target="#status-archived<%=@requests[0].id.to_s%>">
-        <a class="btn btn-outline-success" href="#" 
+        <a class="btn btn-outline-success me-3" href="#" 
             data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Arquivar Requisição">
             <i class="fa-solid fa-inbox fa-lg"></i></a>
       </span>                
     <% elsif (@requests[0].status == Constants::STATUS_FINALIZADA[1]) or 
             (@requests[0].status == Constants::STATUS_ARQUIVADA[1]) %>
       <span data-bs-toggle="modal" data-bs-target="#status-reopen<%=@requests[0].id.to_s%>">
-        <a class="btn btn-outline-success" href="#" 
+        <a class="btn btn-outline-success me-3" href="#" 
             data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reabrir Requisição">
             <i class="fa-regular fa-folder-open fa-lg"></i></a>
       </span>                

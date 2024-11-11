@@ -11,7 +11,13 @@
 }
 
 .first-line {
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
+}
+
+.second-line {
+  font-size: 11px;
+  font-weight: 500;
+  color: #306c3d !important;  
 }
 
 .third-line {
@@ -19,7 +25,7 @@
   font-size: 11px;
   font-weight: 500;
   --bs-text-opacity: 1;
-  color: #828d97 !important;
+  color: #01563b !important;
 }
 
 .link-externo {

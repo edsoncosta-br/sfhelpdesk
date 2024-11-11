@@ -39,8 +39,12 @@
                   </span>
                 </span>
               </div>
-              
+
               <div class="second-line">
+                <span class="link-externo">Link Externo: <span id="link-id-<%=help.id.to_s%>"><%=request.base_url + help.link.to_s%></span></span>
+              </div>              
+              
+              <div class="third-line">
                 <span class="avatar avatar-table" data-bs-toggle="tooltip" 
                                                   data-bs-placement="top" 
                                                   data-bs-title="Criado por <%=help.user_created_name%>" >
@@ -64,9 +68,7 @@
                 </span>
               </div>
 
-              <div class="third-line">
-                <span class="link-externo">Link Externo: <strong><span id="link-id-<%=help.id.to_s%>"><%=request.base_url + help.link.to_s%></span></strong></span>
-              </div>
+
             </td>
 
             <td class="align-middle col-icon text-muted text-center">

@@ -57,8 +57,13 @@
                       data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
                     <% end %>
                   </div>
+
+                  <div class="second-line">
+                    <span class="me-3">Link Externo: 
+                      <span id="link-id-<%=help.id.to_s%>"><%=request.base_url + help.link.to_s%></span>
+                  </div>
                   
-                  <div class="second-line second-line-show">
+                  <div class="third-line">
                     <span class="avatar avatar-table" data-bs-toggle="tooltip" 
                                                       data-bs-placement="top" 
                                                       data-bs-title="Criado por <%=help.user_created_name%>" >
@@ -79,14 +84,8 @@
 
                       <span class="me-3">Código: <strong><%=help.id.to_s.rjust(4, "0")%></strong></span>
                     </span>  
-                    <span class="me-3"><%=help.project_description%></span>              
+                    <span class="me-3">Projeto: <strong><%=help.project_description%></strong></span>
                   </div>
-
-                  <div class="second-line">
-                    <span class="me-3">Link Externo: 
-                      <strong><span id="link-id-<%=help.id.to_s%>"><%=request.base_url + help.link.to_s%></span></strong>
-                  </div>
-
                 </div>
               </div>
             </div>
