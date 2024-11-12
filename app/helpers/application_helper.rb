@@ -116,4 +116,17 @@ module ApplicationHelper
                                             :id, :description)
   end  
 
+  def user_avatar(user_id, id_name)
+    if user_id != nil
+      user = User.find(user_id)
+      if user.avatar.attached? && user.avatar.variable?
+        avatar = user.avatar.variant(resize_to_fill: [200, 200])
+      else
+        avatar = "emptyuser.png"
+      end
+
+      image_tag avatar, id: id_name
+    end
+  end
+
 end

@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 2024_11_11_172605) do
 
   create_table "helps", force: :cascade do |t|
     t.string "title", limit: 100, null: false
-    t.string "link"
+    t.string "link", null: false
     t.integer "project_id", null: false
     t.integer "user_created_id", null: false
     t.integer "user_updated_id"
@@ -268,7 +268,7 @@ ActiveRecord::Schema.define(version: 2024_11_11_172605) do
   add_foreign_key "request_comments", "requests", on_delete: :cascade
   add_foreign_key "request_comments", "users"
   add_foreign_key "request_tags", "requests", on_delete: :cascade
-  add_foreign_key "request_tags", "tags"
+  add_foreign_key "request_tags", "tags", on_delete: :cascade
   add_foreign_key "requests", "customers"
   add_foreign_key "requests", "marks"
   add_foreign_key "requests", "projects"

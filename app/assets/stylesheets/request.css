@@ -52,13 +52,15 @@
 .bg-mark-open {
   color: #000 !important;
   border-color: #6ad391 !important;
-  background-color: #d2efe4;
+  /* background-color: #d2efe4; */
+  background-color: #ffd2d2;
 }
 
 .bg-mark-closed {
   color: #000 !important;
   border-color: #74aadd !important;
-  background-color: #d2e5f7;    
+  /* background-color: #d2e5f7;     */
+  background-color: #ffd2d2;
 }
 
 .bg-mark-show {
@@ -244,7 +246,7 @@
 }
 
 tbody tr {
-  height: 5.5rem;
+  height: 78px;
 }
 
 .file_area {
@@ -342,4 +344,5 @@ tbody tr {
   width: 30px;
   border-radius: 50%;
   margin-right: 0.2rem;
+  opacity: 0.8;
 }

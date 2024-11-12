@@ -7,20 +7,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :set_avatar_deleted, only: %i[ update ]
 
   def update
-    # if user_params != nil
-    #   if @user.update(user_params)
+    if user_params != nil
+      if @user.update(user_params)
         
-    #     if avatar_isempty
-    #       @user.avatar.purge
-    #     end
+        if avatar_isempty
+          @user.avatar.purge
+        end
 
-    #     redirect_to frontoffice_process_batches_path, notice: "Usuário atualizado com sucesso."
-    #   else
-    #     redirect_to edit_user_registration_path, notice: resource.errors.full_messages.to_sentence
-    #   end
-    # else
-    #   redirect_to frontoffice_process_batches_path, notice: "Usuário atualizado com sucesso."
-    # end
+        redirect_to requests_path, notice: "Usuário atualizado com sucesso."
+      else
+        redirect_to edit_user_registration_path, notice: resource.errors.full_messages.to_sentence
+      end
+    else
+      redirect_to requests_path, notice: "Usuário atualizado com sucesso."
+    end
   end
 
   private

@@ -1,0 +1,14 @@
+.card-size {
+  max-width: 600px;
+}
+
+.avatar-profile img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.link-delete {
+  color: #FF1515;
+}

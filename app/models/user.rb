@@ -38,6 +38,9 @@ class User < ApplicationRecord
   has_many :user_created_helps, class_name: 'Help', foreign_key: 'user_created_id'
   has_many :user_updated_helps, class_name: 'Help', foreign_key: 'user_updated_id'  
 
+  has_one_attached :avatar
+  # validates :avatar, content_type: %i[png jpg jpeg], size: { less_than: 5.megabytes }  
+
   def active_for_authentication?
     super && active
   end  

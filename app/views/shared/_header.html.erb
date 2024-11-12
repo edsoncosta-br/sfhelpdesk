@@ -81,7 +81,7 @@
         <li class="menu-item has-sub avatar-link">
           <div class="user-dropdown d-flex align-items-center dropdown-toggle" >
             <div class="avatar">
-              <%= image_tag "emptyuser.png", alt: "empty user" %>
+              <%=user_avatar(current_user.id, "")%>
             </div>
           </div>
         
@@ -89,7 +89,7 @@
             <div class="submenu-group-wrapper">
               <ul class="submenu-group submenu-group-user">
                 <li class="submenu-item">
-                  <%= link_to(root_path, class: "submenu-link pe-1") do %>
+                  <%= link_to(edit_user_registration_path, class: "submenu-link pe-1") do %>
                     Meus dados
                   <%end%>                      
                 </li>

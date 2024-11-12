@@ -31,3 +31,7 @@
 .link-externo {
   text-wrap: wrap;
 }
+
+tbody tr {
+  height: 92px;
+}

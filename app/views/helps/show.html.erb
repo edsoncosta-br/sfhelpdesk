@@ -67,7 +67,7 @@
                     <span class="avatar avatar-table" data-bs-toggle="tooltip" 
                                                       data-bs-placement="top" 
                                                       data-bs-title="Criado por <%=help.user_created_name%>" >
-                      <%= image_tag "emptyuser.png", alt: "empty user" %>
+                      <%=user_avatar(help.user_created_id, "")%>
                     </span> 
 
                     <span>
@@ -77,7 +77,7 @@
                         <span class="avatar avatar-table" data-bs-toggle="tooltip" 
                                                           data-bs-placement="top" 
                                                           data-bs-title="Alterado por <%=help.user_updated_name%>" >
-                          <%= image_tag "emptyuser.png", alt: "empty user" %>
+                          <%=user_avatar(help.user_updated_id, "")%>
                         </span> 
                         <span class="me-3">Alteração: <strong><%=format_datetime(help.updated_at)%></strong></span>                        
                       <% end %>                  

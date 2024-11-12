@@ -7,7 +7,7 @@ class RequestsController < ApplicationController
     requests = Request.select(:id, :title, :status, :step, :priority, 
                               :customer_id, :code, :requester_name,
                               :user_created_id, :user_responsible_id, 
-                              :mark_id, :created_date, :updated_at,
+                              :mark_id, :created_date, :updated_at, :user_updated_id,
                               "coalesce(marks.due_date, requests.due_date) dues_date",
                               "users.nick_name user_created_name",
                               "user_responsibles_requests.nick_name user_responsible_name",
@@ -73,7 +73,7 @@ class RequestsController < ApplicationController
   def show
     @requests = Request.select(:id, :title, :status, :step, :priority, 
                               :customer_id, :code, :requester_name,
-                              :user_created_id, :user_responsible_id, 
+                              :user_created_id, :user_responsible_id, :user_updated_id,
                               :mark_id, :created_date, :created_at, :updated_at,
                               "coalesce(marks.due_date, requests.due_date) dues_date",
                               "projects.description projects_description",

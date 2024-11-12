@@ -23,7 +23,7 @@
         <% @requests.each_with_index do |request, index| %>
           <tr>
             <td class="align-middle">
-              <div class="first-line">
+              <div class="first-line mt-1">
                 <span>
                   <span class="fw-semibold text-decoration-none link-dark">
                     <%= link_to request_path(request, q_sys: params[:q_sys],
@@ -58,11 +58,11 @@
                 </span>
               </div>
               
-              <div class="second-line">
+              <div class="second-line mt-2">
                 <span class="avatar avatar-table" data-bs-toggle="tooltip" 
                                                   data-bs-placement="top" 
                                                   data-bs-title="Criado por <%=request.user_created_name%>" >
-                  <%= image_tag "emptyuser.png", alt: "empty user" %>
+                  <%=user_avatar(request.user_created_id, "")%>
                 </span> 
 
                 <span>
@@ -73,7 +73,7 @@
                     <span class="avatar avatar-table" data-bs-toggle="tooltip" 
                                                       data-bs-placement="top" 
                                                       data-bs-title="Alterado por <%=request.user_updated_name%>" >
-                      <%= image_tag "emptyuser.png", alt: "empty user" %>
+                      <%=user_avatar(request.user_updated_id, "")%>
                     </span> 
                     <span class="me-3">Alteração: <strong><%=format_datetime(request.updated_at)%></strong></span>                        
                   <% end %>                  
@@ -82,11 +82,11 @@
                   <span class="me-3">Código: <strong><%=request.id.to_s.rjust(4, "0")%></strong></span>
 
                   <% if request.customers_name.present? && request.requester_name.present? %>
-                    <span class="me-3">Solicitante: <strong><%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%>/<%=request.requester_name%></strong></span>
+                    <span class="me-3">Cliente: <strong><%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%>/<%=request.requester_name%></strong></span>
                   <% elsif request.customers_name.present? %>
-                    <span class="me-3">Solicitante: <strong><%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%></strong></span> 
+                    <span class="me-3">Cliente: <strong><%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%></strong></span> 
                   <% elsif request.requester_name.present? %>
-                    <span class="me-3">Solicitante: <strong><%=request.requester_name%></strong></span>
+                    <span class="me-3">Cliente: <strong><%=request.requester_name%></strong></span>
                   <% end %>
 
                   <span class="me-3">Previsão: <strong><%=request.dues_date.present? ? format_date(request.dues_date) : '--'%></strong></span>

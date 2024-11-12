@@ -63,7 +63,7 @@ class Methods
   def self.request_data(request_id)
     Request.select(:id, :title, :status, :step, :priority, 
                                   :customer_id, :code, :requester_name,
-                                  :user_created_id, :user_responsible_id, 
+                                  :user_created_id, :user_responsible_id, :user_updated_id,
                                   :mark_id, :created_date, :updated_at, :created_at,
                                   "coalesce(marks.due_date, requests.due_date) dues_date",
                                   "projects.description projects_description",
