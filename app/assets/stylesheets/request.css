@@ -26,6 +26,8 @@
 .badge {
   font-size: 11px;
   font-weight: 600;
+  border-radius: var(--bs-border-radius-pill) !important;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .semibold {
@@ -35,6 +37,7 @@
 .bg-style {
   border: solid;
   border-width: 0.1rem;
+  /* height: 21px; */
 }
 
 .bg-tag {
@@ -51,14 +54,13 @@
 
 .bg-mark-open {
   color: #000 !important;
-  border-color: #6ad391 !important;
-  /* background-color: #d2efe4; */
-  background-color: #ffd2d2;
+  border-color: #e5b170 !important;
+  background-color: #fbdcb5;
 }
 
 .bg-mark-closed {
   color: #000 !important;
-  border-color: #74aadd !important;
+  border-color: #ed9d9d !important;
   /* background-color: #d2e5f7;     */
   background-color: #ffd2d2;
 }

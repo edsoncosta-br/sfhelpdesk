@@ -13,7 +13,7 @@
 
         <div class="tags">
           <% Methods.get_help_tags(@help[0].id).each do |tag| %>
-            <span class="badge bg-style bg-tag me-2 mb-2"
+            <span class="badge rounded-pill bg-style bg-tag me-2 mb-2"
             data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tag"><%=tag.description%></span>
           <% end %>
         </div>
