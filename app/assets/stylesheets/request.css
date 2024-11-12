@@ -41,25 +41,29 @@
 }
 
 .bg-tag {
-  color: #000 !important;
+  /* color: #000 !important; */
+  color: #3e3e3e !important;
   border-color: #c2c2c3 !important;
   background-color: #faffe9;
 }
 
 .bg-mark {
-  color: #000 !important;
+  /* color: #000 !important; */
+  color: #3e3e3e !important;
   background-color: #fff5f5 !important;
   border-color: #dbaaaa !important;
 }
 
 .bg-mark-open {
-  color: #000 !important;
+  /* color: #000 !important; */
+  color: #3e3e3e !important;
   border-color: #e5b170 !important;
   background-color: #fbdcb5;
 }
 
 .bg-mark-closed {
-  color: #000 !important;
+  /* color: #000 !important; */
+  color: #3e3e3e !important;
   border-color: #ed9d9d !important;
   /* background-color: #d2e5f7;     */
   background-color: #ffd2d2;
