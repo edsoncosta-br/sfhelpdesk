@@ -59,25 +59,25 @@
               </div>
               
               <div class="second-line mt-2">
-                <span class="avatar avatar-table" data-bs-toggle="tooltip" 
-                                                  data-bs-placement="top" 
-                                                  data-bs-title="Criado por <%=request.user_created_name%>" >
+                <span class="avatar-small"  data-bs-toggle="tooltip" 
+                                            data-bs-placement="top" 
+                                            data-bs-title="Criado por <%=request.user_created_name%>" >
                   <%=user_avatar(request.user_created_id, "")%>
                 </span> 
 
                 <span>
                   <span class="me-3">Criação: <strong><%=format_datetime(request.created_date)%></strong></span>
 
-                  
+                  <!--
                   <% if I18n.l(request.updated_at, format: "%d/%m/%Y %H:%M") != I18n.l(request.created_date, format: "%d/%m/%Y %H:%M") %>
-                    <span class="avatar avatar-table" data-bs-toggle="tooltip" 
-                                                      data-bs-placement="top" 
-                                                      data-bs-title="Alterado por <%=request.user_updated_name%>" >
+                    <span class="avatar-small"  data-bs-toggle="tooltip" 
+                                                data-bs-placement="top" 
+                                                data-bs-title="Alterado por <%=request.user_updated_name%>" >
                       <%=user_avatar(request.user_updated_id, "")%>
                     </span> 
                     <span class="me-3">Alteração: <strong><%=format_datetime(request.updated_at)%></strong></span>                        
                   <% end %>                  
-                  
+                  -->
 
                   <span class="me-3">Código: <strong><%=request.id.to_s.rjust(4, "0")%></strong></span>
 

@@ -14,6 +14,7 @@
           <th scope='col'>Nome de Identificação</th>          
           <th scope='col'>Cargo/Função</th>          
           <th scope='col'>Email</th>
+          <th scope='col'></th>
           <th scope='col'>Projetos</th>
           <th scope='col'>Status</th>
           <th scope='col' class='text-center col-actions-two'>Ações</th>
@@ -30,10 +31,11 @@
               <% end %>              
             </td>
             
-            <td class='align-middle'> <%= user.nick_name %> </td>
-            <td class='align-middle'> <%= user.position_description %> </td>
-            <td class='align-middle'> <%= user.email %> </td>
-            <td class='align-middle'> <%= user.amount_projects %> </td>                        
+            <td class='align-middle'><%=user.nick_name%></td>
+            <td class='align-middle'><%=user.position_description%></td>
+            <td class='align-middle'><%=user.email%></td>
+            <td class='align-middle avatar-small col-actions-one'><%=user_avatar(user.id, "")%></td> 
+            <td class='align-middle'><%=user.amount_projects%></td> 
 
             <% if user.active %> 
               <td class='align-middle'><span class="badge text-bg-success badge-table">Ativo</span></td>

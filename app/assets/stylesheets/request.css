@@ -282,12 +282,6 @@ tbody tr {
   color: #ced4da;
 }
 
-.col-actions-one {
-  width: 1rem;
-  padding-left: 0 !important;
-  padding-right: 0.4rem !important;
-}
-
 .col-actions-comment {
   min-width: 98px;
 }
@@ -325,24 +319,6 @@ tbody tr {
   margin-top: 0.7rem !important;
 }
 
-.avatar-request img {
-  height: auto;  
-  width: 40px;
-  border-radius: 50%;
-}  
-
 .tags {
   text-wrap: wrap;
-}
-
-.avatar-table {
-  padding-top: 7px;
-}
-
-.avatar-table img {
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  margin-right: 0.2rem;
-  opacity: 0.8;
 }
