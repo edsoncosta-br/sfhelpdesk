@@ -41,28 +41,25 @@
 }
 
 .bg-tag {
-  /* color: #000 !important; */
+
   color: #3e3e3e !important;
   border-color: #c2c2c3 !important;
   background-color: #faffe9;
 }
 
 .bg-mark {
-  /* color: #000 !important; */
   color: #3e3e3e !important;
   background-color: #fff5f5 !important;
   border-color: #dbaaaa !important;
 }
 
 .bg-mark-open {
-  /* color: #000 !important; */
   color: #3e3e3e !important;
   border-color: #e5b170 !important;
   background-color: #fbdcb5;
 }
 
 .bg-mark-closed {
-  /* color: #000 !important; */
   color: #3e3e3e !important;
   /* border-color: #ed9d9d !important; */
   border-color: #e5b170 !important;
@@ -299,20 +296,20 @@ tbody tr {
 }
 
 .bg-status-open {
-  color: #000 !important;
+  color: #3e3e3e !important;
   border-color: #6ad391 !important;
   background-color: #d2efe4;
   width: 5rem;
 }
 
 .bg-status-finish {
-  color: #000 !important;
+  color: #3e3e3e !important;
   border-color: #74aadd !important;
   background-color: #d2e5f7;
 }
 
 .bg-status-archived {
-  color: #000 !important;
+  color: #3e3e3e !important;
   border-color: #f06c6c !important;
   background-color: #f9dede;
 }
@@ -330,7 +327,7 @@ tbody tr {
 }
 
 .step-execute-color {
-  color: #07c90a;
+  color: #00b903;
 }
 .step-finish-color {
   color: #4387f2;  
