@@ -99,11 +99,21 @@
             </td>
 
             <td class="align-middle col-icon text-muted text-center">
-              <% if (request.step == Constants::STEP_EXECUTANDO[1]) and (request.status == Constants::STATUS_ABERTA[1]) %>    
-                <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Em Execução por <%=request.user_responsible_name%>">
-                  <i class="fa-solid fa-person-running fa-lg"></i>
-                </span>
+              
+              <% if request.status == Constants::STATUS_ABERTA[1] %>
+              
+                <% if request.step == Constants::STEP_EXECUTANDO[1]  %>    
+                  <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Em Execução por <%=request.user_responsible_name%>">
+                    <i class="fa-solid fa-person-running step-execute-color fa-lg"></i>
+                  </span>
+                <% elsif request.step == Constants::STEP_CONCLUIDA[1] %>
+                  <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Execução Concluída por <%=request.user_responsible_name%>">
+                    <i class="fa-solid fa-child-reaching step-finish-color fa-lg"></i>
+                  </span>
+                <% end %>
+              
               <% end %>
+
             </td>            
 
             <td class="align-middle col-icon text-muted text-center">

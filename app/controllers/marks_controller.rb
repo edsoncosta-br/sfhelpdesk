@@ -65,14 +65,17 @@ class MarksController < ApplicationController
   end
 
   def reopen
-    mark = Mark.find(params[:id])
-    mark.update(closed: false)
+    ActiveRecord::Base.transaction do
+      mark = Mark.find(params[:id])
+      mark.update(closed: false)
+      Request.where('mark_id = ?', mark.id).update_all(status: Constants::STATUS_ABERTA[1])
 
-    redirect_to marks_path(params[:id],
-                          q_sys: params[:q_sys],
-                          q_status: params[:q_status],
-                          q_content: params[:q_content]), 
-                          notice: "Meta reaberta com sucesso."
+      redirect_to marks_path(params[:id],
+                            q_sys: params[:q_sys],
+                            q_status: params[:q_status],
+                            q_content: params[:q_content]), 
+                            notice: "Meta reaberta com sucesso."
+    end
   end
 
   def update
@@ -83,7 +86,7 @@ class MarksController < ApplicationController
     if @mark.update(mark_params)
 
       if params[:closed] 
-        Request.where('mark_id = ?', @mark.id).update_all(status: Constants::STATUS_FINALIZADA[1])
+        Request.where('mark_id = ?', @mark.id).update_all(status: Constants::STATUS_FINALIZADA[1], step: Constants::STEP_CONCLUIDA[1])
 
         send_mark_finished( @mark.project_id, 
                             @mark.id,

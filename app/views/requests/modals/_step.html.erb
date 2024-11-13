@@ -9,17 +9,17 @@
       </div>
       
       <div class="modal-body">
-        Deseja colocar a Requisição em Execução?
+        Deseja iniciar a execução da requisição?
       </div>
       <div class="modal-footer actions">
-        <%= link_to 'Confirmar', 
+        <%= link_to 'Sim', 
             requests_step_execute_path(@requests[0].id,q_sys: params[:q_sys],
                                                        q_status: params[:q_status],
                                                        q_content: params[:q_content],
                                                        q_order: params[:q_order]), 
             class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
 
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
       </div>
     </div>
   </div>
@@ -36,17 +36,17 @@
       </div>
       
       <div class="modal-body">
-        Parar a Execução da Requisição?
+        Deseja retornar a requisição para espera?
       </div>
       <div class="modal-footer actions">
-        <%= link_to 'Confirmar', 
+        <%= link_to 'Sim', 
             requests_step_wait_path(@requests[0].id,q_sys: params[:q_sys],
                                                     q_status: params[:q_status],
                                                     q_content: params[:q_content],
                                                     q_order: params[:q_order]), 
             class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
 
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
       </div>
     </div>
   </div>
@@ -63,17 +63,17 @@
       </div>
       
       <div class="modal-body">
-        Confirma a Execução da Requisição como <strong>Concluída</strong>?
+        Deseja concluir e execução da requisição?
       </div>
       <div class="modal-footer actions">
-        <%= link_to 'Confirmar', 
+        <%= link_to 'Sim', 
             requests_step_finish_path(@requests[0].id,q_sys: params[:q_sys],
                                                       q_status: params[:q_status],
                                                       q_content: params[:q_content],
                                                       q_order: params[:q_order]), 
             class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
 
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
       </div>
     </div>
   </div>

@@ -78,18 +78,23 @@
                   </div>
                 </div>
 
-                <div class="col-priority-show text-muted">
-                  <% if request.step == Constants::STEP_EXECUTANDO[1] %>
-                    <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Em Execução por <%=request.user_responsible_name%>">
-                      <i class="fa-solid fa-person-running fa-xl me-3"></i>
+                <% if request.status == Constants::STATUS_ABERTA[1] %>
+                  <div class="col-priority-show text-muted">
+                    <% if request.step == Constants::STEP_EXECUTANDO[1] %>
+                      <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Em Execução por <%=request.user_responsible_name%>">
+                        <i class="fa-solid fa-person-running step-execute-color fa-xl me-3"></i>
+                    <% elsif request.step == Constants::STEP_CONCLUIDA[1] %>
+                      <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Execução Concluída por <%=request.user_responsible_name%>">
+                        <i class="fa-solid fa-child-reaching step-finish-color fa-xl me-3"></i>
+                    <% end %>
+                  </div>
+                  
+                  <% if request.priority %>
+                    <div class="col-priority-show">
+                      <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
+                        <i class="fa-solid fa-star fa-lg"></i></span>
+                    </div>                
                   <% end %>
-                </div>
-                
-                <% if request.priority %>
-                  <div class="col-priority-show">
-                    <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
-                      <i class="fa-solid fa-star fa-lg"></i></span>
-                  </div>                
                 <% end %>
 
               </div>

@@ -206,7 +206,7 @@ class RequestsController < ApplicationController
 
   def status_finished
     request = Request.find(params[:id_request])
-    request.update(status: Constants::STATUS_FINALIZADA[1])
+    request.update(status: Constants::STATUS_FINALIZADA[1], step: Constants::STEP_CONCLUIDA[1])
 
     send_request_finished(request.project_id, 
                           request.user_created_id, 
@@ -223,7 +223,7 @@ class RequestsController < ApplicationController
 
   def status_archived
     request = Request.find(params[:id_request])
-    request.update(status: Constants::STATUS_ARQUIVADA[1])
+    request.update(status: Constants::STATUS_ARQUIVADA[1], step: Constants::STEP_AGUARDANDO[1])
 
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
@@ -254,7 +254,7 @@ class RequestsController < ApplicationController
                               q_status: params[:q_status],
                               q_content: params[:q_content], 
                               q_order: params[:q_order]), 
-                              notice: "Execução parada."
+                              notice: "Execução em espera."
   end
 
   def step_execute
@@ -266,7 +266,7 @@ class RequestsController < ApplicationController
                               q_status: params[:q_status],
                               q_content: params[:q_content], 
                               q_order: params[:q_order]), 
-                              notice: "Execução iniciada."
+                              notice: "Execução iniciada"
   end
   
   def step_finish
@@ -278,7 +278,7 @@ class RequestsController < ApplicationController
                               q_status: params[:q_status],
                               q_content: params[:q_content],
                               q_order: params[:q_order]), 
-                              notice: "Execução alterada com sucesso."
+                              notice: "Execução concluída."
   end  
 
   private

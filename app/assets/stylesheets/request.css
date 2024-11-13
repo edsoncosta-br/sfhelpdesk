@@ -64,9 +64,9 @@
 .bg-mark-closed {
   /* color: #000 !important; */
   color: #3e3e3e !important;
-  border-color: #ed9d9d !important;
-  /* background-color: #d2e5f7;     */
-  background-color: #ffd2d2;
+  /* border-color: #ed9d9d !important; */
+  border-color: #e5b170 !important;
+  background-color: #fbdcb5;  
 }
 
 .bg-mark-show {
@@ -327,4 +327,11 @@ tbody tr {
 
 .tags {
   text-wrap: wrap;
+}
+
+.step-execute-color {
+  color: #07c90a;
+}
+.step-finish-color {
+  color: #4387f2;  
 }
