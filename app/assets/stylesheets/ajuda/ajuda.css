@@ -29,6 +29,16 @@ body {
   border-radius: 5px;
 }
 
+@media screen and (max-width: 576px) {
+  .card-body-style {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 1rem;
+    background-color: #fff;
+    border-radius: 5px;
+  }
+}
+
 .card-size {
   max-width: 1200px;
   margin-left: auto;
@@ -59,7 +69,10 @@ body {
 
 .title-jumbo {
   color: #ebfffc;
-  background: linear-gradient(#003d5a, #069099);
+  /* background: linear-gradient(#003d5a, #069099); */
+  background: linear-gradient(#032a4a, #2d71ab);
+  /* background-image: url(background-title.png); */
+  /* background-size: cover; */
 }
 
 .bg-style {
@@ -75,6 +88,14 @@ body {
   padding-right: 2.2rem;
 }
 
+@media screen and (max-width: 576px) {
+  .title-jumbo .container-fluid {
+    max-width: 1200px;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+}
+
 .title-help {
   font-size: 2.4rem;
 }
@@ -82,11 +103,12 @@ body {
 .helpcenter {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #545454;
+  /* color: #545454; */
+  color: #0e426e
 }
 
 .title-bar {
-  padding-top: 2rem !important;
+  padding-top: 3rem !important;
   padding-bottom: 1rem !important;  
 }
 
@@ -97,40 +119,26 @@ main {
 .title-jumbo .updated {
   width: 100%;
   text-align: end;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;  
-  color: #b1bfc6;
+  color: #bfcfd7;
   padding-top: 4px;
 }
 
 footer {
-  background: #236978;
+  background: #0e426e;
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding-top: 1.3rem !important;
-  padding-bottom: 1.3rem !important;
 }
 
 .img-logo {
-  width: 20%;
-}
-
-@media screen and (max-width: 992px) {
-  .img-logo {
-    width: 36%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .img-logo {
-    width: 36%;
-  }
+  width: 130px;
 }
 
 @media screen and (max-width: 576px) {
   .img-logo {
-    width: 66%;
+    width: 120px;
   }
 }  
 
