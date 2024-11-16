@@ -8,10 +8,14 @@ class RequestsController < ApplicationController
                               :customer_id, :code, :requester_name,
                               :user_created_id, :user_responsible_id, 
                               :mark_id, :created_date, :updated_at, :user_updated_id,
+                              :finished_date, :archived_date,
+                              :user_finished_id, :user_archived_id,
                               "coalesce(marks.due_date, requests.due_date) dues_date",
                               "users.nick_name user_created_name",
                               "user_responsibles_requests.nick_name user_responsible_name",
                               "user_updateds_requests.nick_name user_updated_name",
+                              "user_finisheds_requests.nick_name user_finished_name",
+                              "user_archiveds_requests.nick_name user_archived_name",
                               "marks.description mark_description",
                               "marks.closed",
                               "(select count(request_comments.id) from request_comments where request_comments.request_id = requests.id) count_comments",
@@ -20,6 +24,8 @@ class RequestsController < ApplicationController
                       .joins(:user_created)
                       .left_joins(:user_updated)
                       .left_joins(:user_responsible)
+                      .left_joins(:user_finished)
+                      .left_joins(:user_archived)
                       .left_joins(:mark)
                       .left_joins(:customer)
                       .joins("INNER JOIN action_text_rich_texts ON action_text_rich_texts.record_id = requests.id AND record_type = 'Request'")
@@ -75,17 +81,23 @@ class RequestsController < ApplicationController
                               :customer_id, :code, :requester_name,
                               :user_created_id, :user_responsible_id, :user_updated_id,
                               :mark_id, :created_date, :created_at, :updated_at,
+                              :finished_date, :archived_date,
+                              :user_finished_id, :user_archived_id,                              
                               "coalesce(marks.due_date, requests.due_date) dues_date",
                               "projects.description projects_description",
                               "users.nick_name user_created_name",
                               "user_responsibles_requests.nick_name user_responsible_name",
                               "user_updateds_requests.nick_name user_updated_name",
+                              "user_finisheds_requests.nick_name user_finished_name",
+                              "user_archiveds_requests.nick_name user_archived_name",
                               "marks.description mark_description",
                               "customers.name customers_name")
                       .joins(project: :company)
                       .joins(:user_created)
                       .left_joins(:user_updated)
                       .left_joins(:user_responsible)
+                      .left_joins(:user_finished)
+                      .left_joins(:user_archived)
                       .left_joins(:mark)
                       .left_joins(:customer)
                       .where("requests.id = ?", params[:id])
@@ -141,8 +153,9 @@ class RequestsController < ApplicationController
   end
 
   def update
-    ActiveRecord::Base.transaction do
+    ActiveRecord::Base.transaction do      
       @request.user_updated_id = current_user.id
+
       if @request.update(request_params)
         update_tag_ids(true)
         
@@ -206,7 +219,12 @@ class RequestsController < ApplicationController
 
   def status_finished
     request = Request.find(params[:id_request])
-    request.update(status: Constants::STATUS_FINALIZADA[1], step: Constants::STEP_CONCLUIDA[1])
+    request.update( status: Constants::STATUS_FINALIZADA[1], 
+                    step: Constants::STEP_CONCLUIDA[1],
+                    finished_date: DateTime.now(),
+                    archived_date: nil,
+                    user_finished_id: current_user.id,
+                    user_archived_id: nil)
 
     send_request_finished(request.project_id, 
                           request.user_created_id, 
@@ -223,7 +241,12 @@ class RequestsController < ApplicationController
 
   def status_archived
     request = Request.find(params[:id_request])
-    request.update(status: Constants::STATUS_ARQUIVADA[1], step: Constants::STEP_AGUARDANDO[1])
+    request.update( status: Constants::STATUS_ARQUIVADA[1], 
+                    step: Constants::STEP_AGUARDANDO[1],
+                    finished_date: nil,
+                    archived_date: DateTime.now(),
+                    user_finished_id: nil,
+                    user_archived_id: current_user.id)
 
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
@@ -235,7 +258,11 @@ class RequestsController < ApplicationController
 
   def status_reopen
     request = Request.find(params[:id_request])
-    request.update(status: Constants::STATUS_ABERTA[1])
+    request.update( status: Constants::STATUS_ABERTA[1],
+                    finished_date: nil,
+                    archived_date: nil,
+                    user_finished_id: nil,
+                    user_archived_id: nil)
 
     redirect_to request_path( params[:id_request] ,
                               q_sys: params[:q_sys],
@@ -350,6 +377,8 @@ class RequestsController < ApplicationController
                                     :step, :priority, :requester_name,
                                     :customer_id, :project_id, :user_created_id,
                                     :user_responsible_id, :mark_id, :content, 
+                                    :finished_date, :archived_date,
+                                    :user_finished_id, :user_archived_id,
                                     tag_ids: [], new_files:[])
   end
   

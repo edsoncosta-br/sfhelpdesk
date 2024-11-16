@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <title><%=@help[0].title%> - Central de Ajuda Sófolha</title>
+    <title>Central de Ajuda<%=@help[0].present? ? ' - ' + @help[0].title : ''%></title>
     <meta name="description" content="Artigo de ajuda dos sistemas Sófolha Soluções Corporativas">
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />

@@ -51,16 +51,25 @@
                       <span>
                         <span class="me-3">Criação: <strong><%=format_datetime(request.created_date)%></strong> </span>
 
-                        <!--
-                        <% if I18n.l(request.updated_at, format: "%d/%m/%Y %H:%M") != I18n.l(request.created_at, format: "%d/%m/%Y %H:%M") %>
+                        <% if request.finished_date.present? %>
                           <span class="avatar-small"  data-bs-toggle="tooltip" 
                                                       data-bs-placement="top" 
-                                                      data-bs-title="Alterado por <%=request.user_updated_name%>" >
-                            <%=user_avatar(request.user_updated_id, "")%>
+                                                      data-bs-title="Finalizada por <%=request.user_finished_name%>" >
+                            <%=user_avatar(request.user_finished_id, "")%>
                           </span> 
-                          <span class="me-3">Alteração: <strong><%=format_datetime(request.updated_at)%></strong></span>                        
+
+                          <span class="me-3">Finalização: <strong><%=format_datetime(request.finished_date)%></strong></span>
                         <% end %>
-                        -->
+
+                        <% if request.archived_date.present? %>
+                          <span class="avatar-small"  data-bs-toggle="tooltip" 
+                                                      data-bs-placement="top" 
+                                                      data-bs-title="Arquivada por <%=request.user_archived_name%>" >
+                            <%=user_avatar(request.user_archived_id, "")%>
+                          </span> 
+
+                          <span class="me-3">Arquivamento: <strong><%=format_datetime(request.archived_date)%></strong></span>
+                        <% end %>   
 
                         <span class="me-3">Código: <strong><%=request.id.to_s.rjust(4, "0")%></strong></span>
 
@@ -71,13 +80,16 @@
                         <% elsif request.requester_name.present? %>
                           <span class="me-3">Cliente: <strong><%=request.requester_name%></strong></span>                                        
                         <% end %>
-
-                        <span class="me-3">Previsão: <strong><%=request.dues_date.present? ? format_date(request.dues_date) : '--'%></strong></span>
-                        <span class="me-3">Responsável: <strong><%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></strong></span>                  
-                        <span class="me-3">Projeto: <strong><%=request.projects_description%></strong></span>                        
                       </span>                          
                                      
                     </div>
+
+                    <div class="second-line">
+                      <span class="me-3">Previsão: <strong><%=request.dues_date.present? ? format_date(request.dues_date) : '--'%></strong></span>
+                      <span class="me-3">Responsável: <strong><%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></strong></span>                  
+                      <span class="me-3">Projeto: <strong><%=request.projects_description%></strong></span>
+                    </div>                  
+
                   </div>
 
                   <div class="col-priority-show">

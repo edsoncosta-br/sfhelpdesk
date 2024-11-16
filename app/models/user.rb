@@ -34,6 +34,8 @@ class User < ApplicationRecord
   has_many :user_created_requests, class_name: 'Request', foreign_key: 'user_created_id'
   has_many :user_responsible_requests, class_name: 'Request', foreign_key: 'user_responsible_id'
   has_many :user_updated_requests, class_name: 'Request', foreign_key: 'user_updated_id'
+  has_many :user_finished_requests, class_name: 'Request', foreign_key: 'user_finished_id'
+  has_many :user_archived_requests, class_name: 'Request', foreign_key: 'user_archived_id'
 
   has_many :user_created_helps, class_name: 'Help', foreign_key: 'user_created_id'
   has_many :user_updated_helps, class_name: 'Help', foreign_key: 'user_updated_id'  

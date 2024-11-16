@@ -74,7 +74,7 @@ pt-BR:
         customer_id: Cliente solicitante
         project_id: Projeto
         user_created_id: Criado por
-        user_updated_id: Criado por
+        user_updated_id: Alterado por
         user_responsible_id: Responsável pela execução
         mark_id: Meta
         content: Conteúdo da Requisição

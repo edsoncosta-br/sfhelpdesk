@@ -68,7 +68,9 @@ class MarksController < ApplicationController
     ActiveRecord::Base.transaction do
       mark = Mark.find(params[:id])
       mark.update(closed: false)
-      Request.where('mark_id = ?', mark.id).update_all(status: Constants::STATUS_ABERTA[1])
+      Request.where('mark_id = ?', mark.id).update_all( status: Constants::STATUS_ABERTA[1], 
+                                                        finished_date: nil,
+                                                        archived_date: nil)
 
       redirect_to marks_path(params[:id],
                             q_sys: params[:q_sys],
@@ -86,7 +88,10 @@ class MarksController < ApplicationController
     if @mark.update(mark_params)
 
       if params[:closed] 
-        Request.where('mark_id = ?', @mark.id).update_all(status: Constants::STATUS_FINALIZADA[1], step: Constants::STEP_CONCLUIDA[1])
+        Request.where('mark_id = ?', @mark.id).update_all(status: Constants::STATUS_FINALIZADA[1], 
+                                                          step: Constants::STEP_CONCLUIDA[1],
+                                                          finished_date: DateTime.now(),
+                                                          archived_date: nil)
 
         send_mark_finished( @mark.project_id, 
                             @mark.id,
