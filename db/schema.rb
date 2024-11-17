@@ -272,7 +272,7 @@ ActiveRecord::Schema.define(version: 2024_11_15_174056) do
   add_foreign_key "request_comments", "requests", on_delete: :cascade
   add_foreign_key "request_comments", "users"
   add_foreign_key "request_tags", "requests", on_delete: :cascade
-  add_foreign_key "request_tags", "tags", on_delete: :cascade
+  add_foreign_key "request_tags", "tags"
   add_foreign_key "requests", "customers"
   add_foreign_key "requests", "marks"
   add_foreign_key "requests", "projects"

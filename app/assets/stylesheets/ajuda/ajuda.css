@@ -49,8 +49,8 @@ body {
 
 .max-container {
   max-width: 1400px;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;;
 }
 
 @media screen and (max-width: 1850px) {
@@ -101,10 +101,17 @@ body {
 }
 
 .helpcenter {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  /* color: #545454; */
-  color: #0e426e
+  color: #0e426e;
+  display: flex;
+  align-items: center;  
+}
+
+@media screen and (max-width: 576px) {
+  .helpcenter {
+    font-size: 1.2rem;
+  }
 }
 
 .title-bar {
@@ -180,3 +187,21 @@ footer a:hover {
   padding-top: 5rem !important;
   padding-bottom: 3rem !important;  
 }
+
+.img-logohelp {
+  height: auto;
+  width: 245px;
+}
+
+@media screen and (max-width: 576px) {
+  .img-logohelp {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .copyright {
+    padding-top: 1.5rem;
+  }
+}
+

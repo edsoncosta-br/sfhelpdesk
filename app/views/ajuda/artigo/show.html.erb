@@ -2,9 +2,8 @@
   <div id="page-container">
     <div class="container-fluid max-container">
       <header class="d-flex justify-content-between">
-        <span class="helpcenter">Central de Ajuda</span>
-        
-        <span class="helpcenter"><%=@help[0].project_description%></span>
+        <%= image_tag "logo-help.png", class:"img-logohelp", alt: "logo help Sófolha" %>
+        <div class="helpcenter"><%=@help[0].project_description%></div>
       </header>
     </div>
 
