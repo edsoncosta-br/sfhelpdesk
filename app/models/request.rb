@@ -7,7 +7,7 @@ class Request < ApplicationRecord
   validate :step_isempty
   validate :project_id_isempty
   validate :user_created_id_isempty
-  # validates :files, size: { less_than: 3.megabytes }    
+  validates :files, size: { less_than: 5.megabytes }    
   
   belongs_to :customer, required: false
   belongs_to :project

@@ -28,6 +28,7 @@ gem 'kaminari'
 gem 'kaminari-i18n'
 gem 'cpf_cnpj'
 gem 'friendly_id', '~> 5.5.0'
+gem 'active_storage_validations'
 
   # Preview email in the default browser instead of sending it
 gem 'letter_opener_web'

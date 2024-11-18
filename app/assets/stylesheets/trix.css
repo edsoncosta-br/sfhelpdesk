@@ -277,6 +277,7 @@ trix-editor .trix-button--remove {
 trix-editor .attachment__metadata-container {
   position: relative; }
 trix-editor .attachment__metadata {
+  display: none;
   position: absolute;
   left: 50%;
   top: 2em;

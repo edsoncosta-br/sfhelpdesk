@@ -21,6 +21,7 @@ pt-BR:
         active: Cadastro Ativo
         password: Senha
         password_confirmation: Confirmação
+        avatar: ""
       admin:
         id: Código
         name: Nome
@@ -78,6 +79,7 @@ pt-BR:
         user_responsible_id: Responsável pela execução
         mark_id: Meta
         content: Conteúdo da Requisição
+        files: ""
       request_comment:
         content: Conteúdo do Comentário
       help:
@@ -93,6 +95,7 @@ pt-BR:
       required: é um campo obrigatório
       content_type_invalid: 'inválido(s). Extensões permitidas: jpeg, png, tiff, zip, rar, ofx, ret, pdf, xml e txt'
       file_size_out_of_range: 'tem %{file_size} mas o limite é 10 MB'      
+      file_size_not_less_than: 'O tamanho do arquivo deve ser menor que %{max_size} (O arquivo possui %{file_size})'
       too_short:
         one: 'é muito curta (mínimo: 1 caracter)'
         other: 'é muito curta (mínimo: %{count} caracteres)'
