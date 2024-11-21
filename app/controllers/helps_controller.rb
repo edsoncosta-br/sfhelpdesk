@@ -72,7 +72,8 @@ class HelpsController < ApplicationController
                                                 notice: "Ajuda cadastrada com sucesso." }
         else
           format.html { render :new, status: :unprocessable_entity }
-          @help.tag_ids = params[:tag_ids];
+          # @help.tag_ids = params[:tag_ids];
+          @help.tag_ids = params[:tag_ids_selected].split;
         end
       end
     end
@@ -91,7 +92,8 @@ class HelpsController < ApplicationController
                                     q_content: params[:q_content]), 
                                     notice: "Ajuda atualizada com sucesso."
       else
-        @help.tag_ids = params[:tag_ids];
+        # @help.tag_ids = params[:tag_ids];
+        @help.tag_ids = params[:tag_ids_selected].split;
         render :edit
       end
     end
@@ -132,8 +134,8 @@ class HelpsController < ApplicationController
       help_tag.delete_all
     end
 
-    if params[:tag_ids]
-      params[:tag_ids].each do |tag_id|
+    if params[:tag_ids_selected]
+      params[:tag_ids_selected].split.each do |tag_id|
         HelpTag.create!(help_id: @help.id, tag_id: tag_id)
       end
     end    

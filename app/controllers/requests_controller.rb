@@ -141,7 +141,8 @@ class RequestsController < ApplicationController
                                                   notice: "Requisição cadastrada com sucesso." }
         else
           format.html { render :new, status: :unprocessable_entity }
-          @request.tag_ids = params[:tag_ids];
+          # @request.tag_ids = params[:tag_ids];
+          @request.tag_ids = params[:tag_ids_selected].split;
         end
       end
     end
@@ -170,7 +171,8 @@ class RequestsController < ApplicationController
                                           q_order: params[:q_order]), 
                                           notice: "Requisição atualizada com sucesso."
       else
-        @request.tag_ids = params[:tag_ids];
+        # @request.tag_ids = params[:tag_ids];
+        @request.tag_ids = params[:tag_ids_selected].split;
         render :edit
       end
     end
@@ -324,8 +326,8 @@ class RequestsController < ApplicationController
       request_tag.delete_all
     end
 
-    if params[:tag_ids]
-      params[:tag_ids].each do |tag_id|
+    if params[:tag_ids_selected]
+      params[:tag_ids_selected].split.each do |tag_id|
         RequestTag.create!(request_id: @request.id, tag_id: tag_id)
       end
     end    

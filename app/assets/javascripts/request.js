@@ -6,7 +6,24 @@ document.addEventListener("DOMContentLoaded", function () {
       searchPlaceholder: 'Buscar',
       searchText: 'Não encontrado',
       hideSelected: true,
-      maxSelected: 5
+      maxSelected: 5,
+      keepOrder: true
+    },
+    events: {
+      afterChange: (newVal) => {
+        // console.log(newVal)   
+        let ids
+        ids = ''
+        
+        // salva a posicao das tags na ordem selecionada pelo usuario
+        let seasonList = document.getElementsByClassName("ss-value")
+        for(let i = 0; i < seasonList.length; i++) {
+          a =  seasonList[i].getAttribute('data-id')
+          ids = ids + document.getElementById(a).value + ' '
+        }
+        // console.log( ids.trim() )
+        document.getElementById('tag_ids_selected').value = ids.trim() 
+      }
     }
   }) 
   
