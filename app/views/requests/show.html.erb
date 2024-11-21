@@ -47,7 +47,7 @@
                     </span> 
 
                     <span>
-                      <span class="me-3">Criação: <strong><%=format_datetime(request.created_date)%></strong> </span>
+                      <span class="me-3">Criação: <%=format_datetime(request.created_date)%></span>
 
                       <% if request.finished_date.present? %>
                         <span class="avatar-small"  data-bs-toggle="tooltip" 
@@ -56,7 +56,7 @@
                           <%=user_avatar(request.user_finished_id, "")%>
                         </span> 
 
-                        <span class="me-3">Finalização: <strong><%=format_datetime(request.finished_date)%></strong></span>
+                        <span class="me-3">Finalização: <%=format_datetime(request.finished_date)%></span>
                       <% end %>
 
                       <% if request.archived_date.present? %>
@@ -66,26 +66,26 @@
                           <%=user_avatar(request.user_archived_id, "")%>
                         </span> 
 
-                        <span class="me-3">Arquivamento: <strong><%=format_datetime(request.archived_date)%></strong></span>
+                        <span class="me-3">Arquivamento: <%=format_datetime(request.archived_date)%></span>
                       <% end %>   
 
-                      <span class="me-3">Código: <strong><%=request.id.to_s.rjust(4, "0")%></strong></span>
+                      <span class="me-3">Código: <%=request.id.to_s.rjust(4, "0")%></span>
 
                       <% if request.customers_name.present? && request.requester_name.present? %>
-                        <span class="me-3">Cliente: <strong><%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%>/<%=request.requester_name%></strong></span>
+                        <span class="me-3">Cliente: <%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%>/<%=request.requester_name%></span>
                       <% elsif request.customers_name.present? %>
-                        <span class="me-3">Cliente: <strong><%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%></strong></span>                    
+                        <span class="me-3">Cliente: <%=request.code.to_s.rjust(4, "0")%>-<%=request.customers_name%></span>
                       <% elsif request.requester_name.present? %>
-                        <span class="me-3">Cliente: <strong><%=request.requester_name%></strong></span>                                        
+                        <span class="me-3">Cliente: <%=request.requester_name%></span>
                       <% end %>
 
                     </span>                
                   </div>
 
                   <div class="second-line">
-                    <span class="me-3">Previsão: <strong><%=request.dues_date.present? ? format_date(request.dues_date) : '--'%></strong></span>
-                    <span class="me-3">Responsável: <strong><%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></strong></span>                  
-                    <span class="me-3">Projeto: <strong><%=request.projects_description%></strong></span>
+                    <span class="me-3">Previsão: <%=request.dues_date.present? ? format_date(request.dues_date) : '--'%></span>
+                    <span class="me-3">Responsável: <%=request.user_responsible_name.present? ? request.user_responsible_name : '--'%></span>
+                    <span class="me-3">Projeto: <%=request.projects_description%></span>
                   </div>                  
                 </div>
 

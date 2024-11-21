@@ -11,21 +11,23 @@
 }
 
 .first-line {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
 }
 
 .second-line {
   font-size: 11px;
-  font-weight: 500;
-  color: #306c3d !important;  
+  font-weight: 600;
+  font-style: italic;
+  color: #3a3a3a !important;  
 }
 
 .third-line {
   padding-top: 0.3rem;
   font-size: 11px;
   font-weight: 500;
+  font-style: italic;
   --bs-text-opacity: 1;
-  color: #01563b !important;
+  color: #3a3a3a !important;
 }
 
 .link-externo {

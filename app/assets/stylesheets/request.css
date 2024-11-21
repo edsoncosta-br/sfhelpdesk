@@ -172,12 +172,13 @@
 
 .second-line {
   font-size: 11px;
-  font-weight: 500;
-  color: #01563b;
+  font-weight: 600;
+  font-style: italic;
+  color: #3a3a3a;
 }
 
 .second-line-show {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
 }
 
 .fa-star {

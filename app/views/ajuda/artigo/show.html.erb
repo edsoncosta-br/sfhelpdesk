@@ -1,10 +1,14 @@
 <% if !@help.empty? %>
   <div id="page-container">
     <div class="container-fluid max-container">
-      <header class="d-flex justify-content-between">
-        <%= image_tag "logo-help.png", class:"img-logohelp", alt: "logo help Sófolha" %>
-        <div class="helpcenter"><%=@help[0].project_description%></div>
-      </header>
+      <header class="title-header">
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <%= image_tag "central-logo.png", class:"img-logohel", alt: "logo help Sófolha" %> Central de Ajuda 
+          </div>
+          <div class="col-12 col-sm-6 project"><%=@help[0].project_description%></div>
+        </div>
+      </header>      
     </div>
 
     <div class="title-jumbo">
