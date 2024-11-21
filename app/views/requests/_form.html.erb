@@ -45,7 +45,9 @@
                               form_select_project_allocations(@request.project_id),
                               class:"form-select form-control #{is_invalid(@request, '_project_isempty_')}",
                               data: { remote: true, 
-                                      url: url_for(controller: "dependencies", action: "project_responsible", id:@request.id)},
+                                      url: url_for( controller: "dependencies", 
+                                                    action: "project", 
+                                                    model_name: "request", id:@request.id)},
                               name:"request[project_id]" %>
             </div>
 

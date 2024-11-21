@@ -85,6 +85,7 @@ pt-BR:
       help:
         id: Código
         title: Título da Ajuda
+        project_id: Projeto
         created_at: Criação
         updated_at: Atualização
         content: Conteúdo da Ajuda

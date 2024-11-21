@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # get 'cities/index'
   get 'cities/filter'  
-  get 'dependencies/project_responsible'
+  get 'dependencies/project'
 
   namespace :employee do
     resources :users
