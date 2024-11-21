@@ -61,3 +61,15 @@ node.setAttribute("value", "");
   node.appendChild(item);
   document.getElementById("user_responsible_id").appendChild(node);
 <% end %>
+
+<%# select usuarios tags %>
+
+var select = document.getElementById('tag_ids');
+select.innerHTML = '';
+
+<% @tags.each_with_index do |tag, index| %>
+  var option = document.createElement('option');
+  option.value = <%=tag.id%>;
+  option.text = "<%=tag.description%>";
+  select.add(option);
+<% end %>

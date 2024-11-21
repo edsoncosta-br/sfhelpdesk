@@ -15,6 +15,13 @@ class DependenciesController < ApplicationController
                                       .order("unaccent(users.nick_name)")
     else
       @users_responsible = ''
+    end
+
+    if !params[:request][:project_id].empty?
+      @tags = Tag.select(:id, :description).where("project_id = ?", params[:request][:project_id]).order("unaccent(description)")
+    else
+      @tags = ''
     end 
+
   end  
 end
