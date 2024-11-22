@@ -30,11 +30,31 @@ class HelpsController < ApplicationController
     # filters
     helps = helps.where('projects.id = ?', "#{params[:q_sys]}")
 
-    if !params[:q_content].blank?
-      helps = helps.where('(unaccent(title) ilike unaccent(?) or unaccent(action_text_rich_texts.body) ilike unaccent(?))', 
-                          "%#{params[:q_content]}%", 
-                          "%#{params[:q_content]}%")
+    if !params[:q_code].blank?
+      helps = helps.where('helps.id = ?', "#{params[:q_code]}")
     end
+    puts 'aaaaaa'
+    puts params
+    # if !params[:q_content].blank?
+    #   helps = helps.where('(unaccent(title) ilike unaccent(?) or unaccent(action_text_rich_texts.body) ilike unaccent(?))', 
+    #                       "%#{params[:q_content]}%", 
+    #                       "%#{params[:q_content]}%")
+
+    if not_blank("q_content")
+      helps = helps.where('(unaccent(title) ilike unaccent(?) or unaccent(action_text_rich_texts.body) ilike unaccent(?))', 
+                          "%#{params[:q_fields][:q_content]}%", 
+                          "%#{params[:q_fields][:q_content]}%")                          
+    end
+
+    if !params[:q_tag].blank?
+      helps = helps.where('exists (select 1 from help_tags where help_tags.help_id = helps.id and help_tags.tag_id = ?)', "#{params[:q_tag]}")
+    end    
+
+    if params[:q_order] == 'newest'
+      helps = helps.order(Arel.sql('created_at desc, helps.id desc'))
+    else  
+      helps = helps.order(Arel.sql('created_at, helps.id desc'))
+    end    
    
     @helps = helps.all.page(params[:page]).per(Constants::PAGINAS)
     @helps_size = helps.size
@@ -69,7 +89,8 @@ class HelpsController < ApplicationController
         if @help.save
           update_tag_ids(false)
           format.html { redirect_to helps_path( q_sys: params[:q_sys],
-                                                q_content: params[:q_content]), 
+                                                q_content: params[:q_content],
+                                                q_fields: params.permit![:q_fields]), 
                                                 notice: "Ajuda cadastrada com sucesso." }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -83,14 +104,15 @@ class HelpsController < ApplicationController
   def edit
     @help.tag_ids = HelpTag.where("help_id = ?", @help.id).pluck("tag_id")
   end
-
+  
   def update
     ActiveRecord::Base.transaction do
       @help.user_updated_id = current_user.id
       if @help.update(help_params)
         update_tag_ids(true)
         redirect_to help_path(@help,q_sys: params[:q_sys],
-                                    q_content: params[:q_content]), 
+                                    q_content: params[:q_content],
+                                    q_fields: params.permit![:q_fields]), 
                                     notice: "Ajuda atualizada com sucesso."
       else
         # @help.tag_ids = params[:tag_ids];
@@ -104,11 +126,13 @@ class HelpsController < ApplicationController
     begin
       if @help.destroy
         redirect_to helps_path( q_sys: params[:q_sys],
-                                q_content: params[:q_content]), 
+                                q_content: params[:q_content],
+                                q_fields: params.permit![:q_fields]), 
                                 notice: "Ajuda excluída com sucesso."
       else
         redirect_to helps_path( q_sys: params[:q_sys],
-                                q_content: params[:q_content])
+                                q_content: params[:q_content],
+                                q_fields: params.permit![:q_fields])
       end
     rescue StandardError => e
 
@@ -119,7 +143,8 @@ class HelpsController < ApplicationController
       end
 
       redirect_to helps_path( q_sys: params[:q_sys],
-                              q_content: params[:q_content])
+                              q_content: params[:q_content],
+                              q_fields: params.permit![:q_fields])
     end
   end  
 
@@ -128,7 +153,6 @@ class HelpsController < ApplicationController
   def purge_unattached
     Methods.purge_unattached
   end
-
 
   def set_help
     @help = Help.friendly.find(params[:id])
@@ -145,6 +169,10 @@ class HelpsController < ApplicationController
         HelpTag.create!(help_id: @help.id, tag_id: tag_id)
       end
     end    
+  end
+
+  def not_blank(field)
+    !params["q_fields"].blank? and !params["q_fields"][field].blank?
   end
 
   def help_params

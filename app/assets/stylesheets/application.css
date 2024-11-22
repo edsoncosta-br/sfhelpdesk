@@ -492,7 +492,7 @@ body {
   padding-top: 2rem;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 992px) {
   .col-btn-search {
     margin-top: 8px;
     text-align: end;

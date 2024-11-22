@@ -31,6 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
     select.setSelected(document.getElementById('tag_ids_selected').value.split(' '), false)
   }
 
+  new SlimSelect({
+    select: '#tagsearch_id',
+    settings: {
+      placeholderText: 'Selecione..',
+      searchPlaceholder: 'Buscar',
+      searchText: 'Não encontrado'
+    }      
+  })  
+
   const trixContent = document.querySelectorAll('.trix-content')
   trixContent.forEach(function(trix) {
     trix.querySelectorAll('a').forEach(function(link) {

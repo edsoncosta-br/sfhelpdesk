@@ -66,14 +66,50 @@ if (document.getElementById('user_responsible_id') !== null) {
   <% end %>
 }
 
-<%# select usuarios tags %>
+<%# select tags %>
 
-var select = document.getElementById('tag_ids');
-select.innerHTML = '';
+<%# select com selecao multipla %>
+<% if (@model_name == "request") or (@model_name == "help") %>
+  var select = document.getElementById('tag_ids');
 
-<% @tags.each_with_index do |tag, index| %>
+  select.innerHTML = '';
+
+  <% @tags.each_with_index do |tag, index| %>
+    var option = document.createElement('option');
+    option.value = <%=tag.id%>;
+    option.text = "<%=tag.description%>";
+    select.add(option);
+  <% end %>
+
+<%# select com selecao simples %>
+<% elsif (@model_name == "request_search") or (@model_name == "help_search") %>  
+  var select = document.getElementById('tagsearch_id');
+
+  select.innerHTML = '';
+  select.slim.destroy()
+
   var option = document.createElement('option');
-  option.value = <%=tag.id%>;
-  option.text = "<%=tag.description%>";
+  option.value = "";
+  option.text = "Selecione..";
   select.add(option);
-<% end %>
+
+  <% @tags.each_with_index do |tag, index| %>
+    option = document.createElement('option');
+    option.value = <%=tag.id%>;
+    option.text = "<%=tag.description%>";
+    select.add(option);
+  <% end %>  
+
+  new SlimSelect({
+    select: '#tagsearch_id',
+    settings: {
+      placeholderText: 'Selecione..',
+      searchPlaceholder: 'Buscar',
+      searchText: 'Não encontrado'
+    }      
+  })    
+
+<%end%>
+
+
+
