@@ -23,3 +23,11 @@
 - Instalar Action-text
   docker compose run app bin/rails active_storage:install
   docker compose run app bin/rails action_text:install
+
+# utils
+  
+  - Listar quantidade de arquivos na pasta
+    find . -type f ! -name ".*" | wc -l
+
+  - Listar arquivos na pasta por nomes
+    find . -type f ! -name ".*"

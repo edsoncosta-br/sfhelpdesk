@@ -1,0 +1,2 @@
+class PurgeFile < ApplicationRecord
+end

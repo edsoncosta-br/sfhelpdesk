@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ edit update destroy show ]
   before_action :set_menu_admin
-  before_action :set_upcase, only: %i[ create update ]  
 
   def index
     projects = Project.order(Arel.sql('unaccent(description)'))
@@ -70,10 +69,6 @@ class ProjectsController < ApplicationController
 
   private
   
-  def set_upcase
-    Methods.field_upcase(params[:project])
-  end  
-
   def set_project
     @project = Project.find(params[:id])
   end

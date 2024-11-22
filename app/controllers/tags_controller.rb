@@ -1,6 +1,5 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: %i[ edit update destroy show]
-  before_action :set_upcase, only: %i[ create update ]    
 
   def index
     tags = Tag.select(:id, :description, 'projects.description project_description')
@@ -87,10 +86,6 @@ class TagsController < ApplicationController
   end
 
   private
-
-  def set_upcase
-    Methods.field_upcase(params[:tag])
-  end    
 
   def set_tag
     @tag = Tag.find(params[:id])

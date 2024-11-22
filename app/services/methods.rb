@@ -30,14 +30,6 @@ class Methods
     batch_number.to_s.rjust(5, '0')
   end
 
-  def self.field_upcase(params) 
-    # params.each do |param|
-    #   params[param[0].to_sym] = params[param[0].to_sym].to_s.upcase if  (param[0] != "email") and 
-    #                                                                     (param[0] != "email_admin") and 
-    #                                                                     (param[0] != "files")
-    # end
-  end
-
   def self.select_allocations(company_id, current_user_id)
     Allocation.joins(:project)
               .joins(project: :company)
@@ -85,6 +77,23 @@ class Methods
               .left_joins(:mark)
               .left_joins(:customer)
               .where("requests.id = ?", request_id)
-  end  
+  end
+
+  def self.purge_unattached
+    # delete attached files without references once a day
+    purge_file = PurgeFile.select(:purge_date).last
+    
+    if purge_file.blank?
+      purge_file = PurgeFile.new(purge_date: Date.today)
+      purge_file.save!
+      ActiveStorage::Blob.unattached.find_each(&:purge_later)
+    else
+      if Date.today.strftime("%F") > PurgeFile.select(:purge_date).pick("purge_date").strftime("%F")
+        PurgeFile.update_all(purge_date: Date.today)
+        ActiveStorage::Blob.unattached.find_each(&:purge_later)
+      end
+    end
+  end
+
 
 end

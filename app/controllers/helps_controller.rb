@@ -1,5 +1,6 @@
 class HelpsController < ApplicationController
   before_action :set_help, only: %i[ edit update destroy ]
+  before_action :purge_unattached, only: %i[ index ]
 
   def index
     helps = Help.select(:id,:title, :link, :project_id, :user_created_id, 
@@ -123,6 +124,11 @@ class HelpsController < ApplicationController
   end  
 
   private
+
+  def purge_unattached
+    Methods.purge_unattached
+  end
+
 
   def set_help
     @help = Help.friendly.find(params[:id])

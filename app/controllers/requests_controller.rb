@@ -1,6 +1,5 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[ edit update destroy ]
-  before_action :set_upcase, only: %i[ create update ]
   before_action :purge_unattached, only: %i[ index ]
 
   def index
@@ -312,10 +311,6 @@ class RequestsController < ApplicationController
 
   private
 
-  def set_upcase
-    Methods.field_upcase(params[:request])
-  end    
-
   def set_request
     @request = Request.find(params[:id])
   end
@@ -334,8 +329,7 @@ class RequestsController < ApplicationController
   end
 
   def purge_unattached
-    # delete attached files without references
-    ActiveStorage::Blob.unattached.find_each(&:purge_later)
+    Methods.purge_unattached
   end
 
   def send_request_created(project_id, user_created_id, request_id, request_title)

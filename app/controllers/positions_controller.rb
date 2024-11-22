@@ -1,7 +1,6 @@
 class PositionsController < ApplicationController
   before_action :set_position, only: %i[ edit update destroy show]
   before_action :set_menu_admin
-  before_action :set_upcase, only: %i[ create update ]    
 
   def index
     positions = Position.where("company_id = ?", current_user.company.id)
@@ -66,10 +65,6 @@ class PositionsController < ApplicationController
   end
 
   private
-
-  def set_upcase
-    Methods.field_upcase(params[:position])
-  end    
 
   def set_position
     @position = Position.find(params[:id])

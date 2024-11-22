@@ -283,8 +283,7 @@ body {
   height: 30px;
   width: 30px;
   border-radius: 50%;
-  margin-right: 0.2rem;
-  /* opacity: 0.8; */
+  margin-right: 0.4rem;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 

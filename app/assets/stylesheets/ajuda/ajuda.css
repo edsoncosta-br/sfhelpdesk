@@ -160,11 +160,14 @@ footer {
   .img-logo {
     width: 120px;
   }
-}  
+}
+
+.logo-central img {
+  height: auto;
+  width: 40px;
+}
 
 .footer-data {
-  /* display: flex; */
-  /* justify-content: space-around; */
   color: #fff;
 }
 
@@ -199,17 +202,6 @@ footer a:hover {
 .help-notfound {
   padding-top: 5rem !important;
   padding-bottom: 3rem !important;  
-}
-
-.img-logohelp {
-  height: auto;
-  width: 200px;
-}
-
-@media screen and (max-width: 576px) {
-  .img-logohelp {
-    width: 150px;
-  }
 }
 
 @media screen and (max-width: 576px) {
