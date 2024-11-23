@@ -33,17 +33,11 @@ class HelpsController < ApplicationController
     if !params[:q_code].blank?
       helps = helps.where('helps.id = ?', "#{params[:q_code]}")
     end
-    puts 'aaaaaa'
-    puts params
-    # if !params[:q_content].blank?
-    #   helps = helps.where('(unaccent(title) ilike unaccent(?) or unaccent(action_text_rich_texts.body) ilike unaccent(?))', 
-    #                       "%#{params[:q_content]}%", 
-    #                       "%#{params[:q_content]}%")
-
-    if not_blank("q_content")
+    
+    if !params[:q_content].blank?
       helps = helps.where('(unaccent(title) ilike unaccent(?) or unaccent(action_text_rich_texts.body) ilike unaccent(?))', 
-                          "%#{params[:q_fields][:q_content]}%", 
-                          "%#{params[:q_fields][:q_content]}%")                          
+                          "%#{params[:q_content]}%", 
+                          "%#{params[:q_content]}%")
     end
 
     if !params[:q_tag].blank?
@@ -89,8 +83,7 @@ class HelpsController < ApplicationController
         if @help.save
           update_tag_ids(false)
           format.html { redirect_to helps_path( q_sys: params[:q_sys],
-                                                q_content: params[:q_content],
-                                                q_fields: params.permit![:q_fields]), 
+                                                q_content: params[:q_content]), 
                                                 notice: "Ajuda cadastrada com sucesso." }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -110,9 +103,9 @@ class HelpsController < ApplicationController
       @help.user_updated_id = current_user.id
       if @help.update(help_params)
         update_tag_ids(true)
+                
         redirect_to help_path(@help,q_sys: params[:q_sys],
-                                    q_content: params[:q_content],
-                                    q_fields: params.permit![:q_fields]), 
+                                    q_content: params[:q_content]), 
                                     notice: "Ajuda atualizada com sucesso."
       else
         # @help.tag_ids = params[:tag_ids];
@@ -126,13 +119,11 @@ class HelpsController < ApplicationController
     begin
       if @help.destroy
         redirect_to helps_path( q_sys: params[:q_sys],
-                                q_content: params[:q_content],
-                                q_fields: params.permit![:q_fields]), 
+                                q_content: params[:q_content]), 
                                 notice: "Ajuda excluída com sucesso."
       else
         redirect_to helps_path( q_sys: params[:q_sys],
-                                q_content: params[:q_content],
-                                q_fields: params.permit![:q_fields])
+                                q_content: params[:q_content])
       end
     rescue StandardError => e
 
@@ -143,8 +134,7 @@ class HelpsController < ApplicationController
       end
 
       redirect_to helps_path( q_sys: params[:q_sys],
-                              q_content: params[:q_content],
-                              q_fields: params.permit![:q_fields])
+                              q_content: params[:q_content])
     end
   end  
 
@@ -171,9 +161,6 @@ class HelpsController < ApplicationController
     end    
   end
 
-  def not_blank(field)
-    !params["q_fields"].blank? and !params["q_fields"][field].blank?
-  end
 
   def help_params
     params.require(:help).permit( :title, :link, :project_id, :user_created_id, :slug,

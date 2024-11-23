@@ -11,8 +11,7 @@
                                     q_content: params[:q_content],
                                     q_code: params[:q_code],
                                     q_tag: params[:q_tag],
-                                    q_order: params[:q_order],
-                                    q_fields: params.permit![:q_fields]
+                                    q_order: params[:q_order]
                                     ),
                                     class: "btn btn-action btn-success") do %>
             <i class="fa-solid fa-plus"></i></i> Incluir
@@ -45,8 +44,8 @@
 
           <div class="col-12 col-lg-2 mb-1">
             <label for="content_id" class="form-label">Título e Conteúdo</label>
-            <input type="text" name="q_fields[q_content]" id="content_id" class="form-control" maxlength="50" 
-                    autofocus autocomplete="off" value=<%=value("q_fields","q_content")%>>
+            <input type="text" name="q_content" id="content_id" class="form-control" maxlength="50" 
+                    autofocus autocomplete="off" value=<%=params[:q_content]%>>
           </div>
 
           <div class="col-12 col-lg-2 mb-1">

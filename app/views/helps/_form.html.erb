@@ -69,7 +69,6 @@
             <%= hidden_field_tag :q_sys, params[:q_sys] %>
             <%= hidden_field_tag :q_content, params[:q_content] %>
             <%= hidden_field_tag :tag_ids_selected, @help.tag_ids.to_a %>
-            <%= hidden_field_tag :q_fields, params[:q_fields] %>
           </div>
 
           <div class="actions pt-4 text-end">
@@ -77,16 +76,13 @@
 
             <% if (params[:action] == "edit") or (params[:action] == "update") %>
               <%= link_to help_path(@help,q_sys: params[:q_sys],
-                                          q_content: params[:q_content],
-                                          q_fields: params.permit![:q_fields]), 
+                                          q_content: params[:q_content]), 
                                           class: 'btn btn-secondary' do %>
                 Cancelar
               <% end %>
             <% else %>
               <%= link_to 'Cancelar', helps_path(q_sys: params[:q_sys],
                                                     q_content: params[:q_content]), class: 'btn btn-secondary' %>
-
-              <%= link_to 'Cancelar2', helps_path(q_fields: params.permit![:q_fields]), class: 'btn btn-secondary'%>
             <% end %>
           </div>
 
