@@ -83,7 +83,10 @@ class HelpsController < ApplicationController
         if @help.save
           update_tag_ids(false)
           format.html { redirect_to helps_path( q_sys: params[:q_sys],
-                                                q_content: params[:q_content]), 
+                                                q_code: params[:q_code],
+                                                q_content: params[:q_content],
+                                                q_tag: params[:q_tag],
+                                                q_order: params[:q_order]), 
                                                 notice: "Ajuda cadastrada com sucesso." }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -105,7 +108,10 @@ class HelpsController < ApplicationController
         update_tag_ids(true)
                 
         redirect_to help_path(@help,q_sys: params[:q_sys],
-                                    q_content: params[:q_content]), 
+                                    q_code: params[:q_code],
+                                    q_content: params[:q_content],
+                                    q_tag: params[:q_tag],
+                                    q_order: params[:q_order]), 
                                     notice: "Ajuda atualizada com sucesso."
       else
         # @help.tag_ids = params[:tag_ids];
@@ -119,11 +125,17 @@ class HelpsController < ApplicationController
     begin
       if @help.destroy
         redirect_to helps_path( q_sys: params[:q_sys],
-                                q_content: params[:q_content]), 
+                                q_code: params[:q_code],
+                                q_content: params[:q_content],
+                                q_tag: params[:q_tag],
+                                q_order: params[:q_order]), 
                                 notice: "Ajuda excluída com sucesso."
       else
         redirect_to helps_path( q_sys: params[:q_sys],
-                                q_content: params[:q_content])
+                                q_code: params[:q_code],
+                                q_content: params[:q_content],
+                                q_tag: params[:q_tag],
+                                q_order: params[:q_order])
       end
     rescue StandardError => e
 
@@ -134,7 +146,10 @@ class HelpsController < ApplicationController
       end
 
       redirect_to helps_path( q_sys: params[:q_sys],
-                              q_content: params[:q_content])
+                              q_code: params[:q_code],
+                              q_content: params[:q_content],
+                              q_tag: params[:q_tag],
+                              q_order: params[:q_order])
     end
   end  
 

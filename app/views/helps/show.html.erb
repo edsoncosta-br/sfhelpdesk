@@ -18,7 +18,10 @@
           <span class="me-3">
             <% if current_user.help_edit %>
               <%= link_to edit_help_path(@helps[0].id,q_sys: params[:q_sys],
-                                                      q_content: params[:q_content]), 
+                                                      q_code: params[:q_code],
+                                                      q_content: params[:q_content],
+                                                      q_tag: params[:q_tag],
+                                                      q_order: params[:q_order]), 
                                                       class: 'btn btn-outline-success',
                                                       data: { bs_toggle: 'tooltip', 
                                                               bs_placement: "top", 
@@ -38,7 +41,10 @@
         <%end%>
 
         <%= link_to helps_path( q_sys: params[:q_sys],
-                                q_content: params[:q_content]), 
+                                q_code: params[:q_code],
+                                q_content: params[:q_content],
+                                q_tag: params[:q_tag],
+                                q_order: params[:q_order]), 
                                 class: 'btn btn-secondary',
                                 data: { bs_toggle: 'tooltip', 
                                         bs_placement: "top", 
@@ -129,7 +135,10 @@
         </div>
         <div class="modal-footer actions">
           <%= link_to 'Excluir', help_path(@helps[0], q_sys: params[:q_sys],
-                                                      q_content: params[:q_content]), 
+                                                      q_code: params[:q_code],
+                                                      q_content: params[:q_content],
+                                                      q_tag: params[:q_tag],
+                                                      q_order: params[:q_order]), 
               class:"btn btn-danger", method: :delete %>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         </div>

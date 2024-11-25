@@ -8,8 +8,8 @@
       <div class="ph-right">
         <% if current_user.help_create %>
           <%= link_to(new_help_path(q_sys: params[:q_sys],
-                                    q_content: params[:q_content],
                                     q_code: params[:q_code],
+                                    q_content: params[:q_content],
                                     q_tag: params[:q_tag],
                                     q_order: params[:q_order]
                                     ),

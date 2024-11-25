@@ -24,7 +24,10 @@
                 <span>
                   <span class="fw-semibold text-decoration-none link-dark">
                     <%= link_to help_path(help, q_sys: params[:q_sys],
-                                                q_content: params[:q_content]), 
+                                                q_code: params[:q_code],
+                                                q_content: params[:q_content],
+                                                q_tag: params[:q_tag],
+                                                q_order: params[:q_order]), 
                                                 class:"fw-semibold text-decoration-none link-dark me-2",
                                                 data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Visualizar Ajuda" } do %>
                       <%= help.title%>
@@ -78,7 +81,10 @@
 
             <td class='align-middle text-center '>
               <%= link_to help_path(help, q_sys: params[:q_sys],
-                                          q_content: params[:q_content]), 
+                                          q_code: params[:q_code],
+                                          q_content: params[:q_content],
+                                          q_tag: params[:q_tag],
+                                          q_order: params[:q_order]), 
                                           class: 'td-actions', 
                                           data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Visualizar Ajuda" } do %>
                 <i class="fa-regular fa-eye pe-1"></i>
