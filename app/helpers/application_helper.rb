@@ -121,6 +121,7 @@ module ApplicationHelper
       user = User.find(user_id)
       if user.avatar.attached? && user.avatar.variable?
         avatar = user.avatar.variant(resize_to_fill: [200, 200])
+        # avatar = user.avatar
       else
         avatar = "emptyuser.png"
       end

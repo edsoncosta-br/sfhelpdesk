@@ -149,6 +149,6 @@ class Employee::UsersController < ApplicationController
 
   def set_menu_admin
     menu_admin
-  end  
+  end
 
 end
