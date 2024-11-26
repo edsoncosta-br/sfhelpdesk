@@ -29,10 +29,10 @@
 
           <div class="row">
           
-            <div class="col-12 col-lg-10 mb-1" style="background-color: red;">
+            <div class="col-12 col-lg-10 pe-0" style="background-color: inherit;">
               
               <%# first line %>
-              <div class="col-12 mb-1 row" style="background-color: green;">
+              <div class="col-12 mb-1 gx-3 row" style="background-color: inherit;">
                 
                 <div class="col-12 col-lg-4 mb-1">
                   <label for="project_id" class="form-label">Projeto</label>
@@ -80,7 +80,8 @@
               </div>
 
               <%# second line %>
-              <div class="col-12 mb-1 row" style="background-color: gray;">
+              <div class="col-12 gx-3 row <%=collapse_line%>" id="collapseSecondLine" style="background-color: inherit;">
+                
                 <div class="col-12 col-lg-3 mb-1">
                   <label for="tagsearch_id" class="form-label">Tag</label>
                   <%= select_tag :tagsearch_id, 
@@ -121,8 +122,14 @@
             </div>
 
             <%# button %>
-            <div class="col-btn-search col-12 col-lg-2 align-self-end mb-1" style="background-color: yellow;">
-              <%= button_tag class:"btn btn-outline-success btn-search", id:'btn_consultar_id', 
+            <div class="col-btn-search-request col-12 col-lg-2 align-self-top mb-1" style="background-color: inherit;">
+              <a class="me-3 text-decoration-none" data-bs-toggle="collapse" href="#collapseSecondLine" role="button" <%=collapse_btn%>>
+                <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Mais filtros">
+                  <i class="fa-solid fa-filter"></i>
+                </span>
+              </a>
+
+              <%= button_tag class:"btn btn-outline-success btn-search me-2", id:'btn_consultar_id', 
                 data: { disable_with: 'Aguarde..' } do %>
                 <i class="fa-solid fa-magnifying-glass me-1"></i>Consultar
               <% end %>

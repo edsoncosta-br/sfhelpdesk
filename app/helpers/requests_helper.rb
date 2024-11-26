@@ -80,4 +80,26 @@ module RequestsHelper
               .joins(:tag)
               .where('request_id = ?',request_id)
   end
+
+  def collapse_btn 
+    if  params[:q_tag].blank? or 
+        params[:q_customer].blank? or
+        params[:q_mark].blank? or 
+        params[:q_responsible].blank?
+      'aria-expanded=false class=collapsed'
+    else
+      'aria-expanded=true class='
+    end
+  end
+
+  def collapse_line
+    if  !params[:q_tag].blank? or 
+        !params[:q_customer].blank? or
+        !params[:q_mark].blank? or 
+        !params[:q_responsible].blank?
+      'collapse show'
+    else
+      'collapse'
+    end
+  end 
 end

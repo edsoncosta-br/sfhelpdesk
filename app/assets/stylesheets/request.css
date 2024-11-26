@@ -282,6 +282,11 @@ tbody tr {
   font-size: 1.2rem;
 }
 
+.fa-filter {
+  color: #9cad9f;
+  font-size: 1rem;
+}
+
 .unavailable {
   color: #ced4da;
 }
@@ -332,4 +337,20 @@ tbody tr {
 }
 .step-finish-color {
   color: #4387f2;  
+}
+
+@media screen and (max-width: 992px) {
+  .col-btn-search-request {
+    margin-top: 8px !important;
+    text-align: end;
+  }
+}
+
+.col-btn-search-request {
+  margin-top: 25px;
+  padding-left: 0;
+}
+
+.col-btn-search-request a {
+  font-size: 11px;
 }
