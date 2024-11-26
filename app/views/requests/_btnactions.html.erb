@@ -36,33 +36,6 @@
 
 <% end %>
 
-
-
-<!--
-
-<% if (current_user.id == @requests[0].user_responsible_id) %>
-  
-  <% if @requests[0].status == Constants::STATUS_ABERTA[1] %>
-    
-    <% if @requests[0].step == Constants::STEP_EXECUTANDO[1] %>    
-      <span data-bs-toggle="modal" data-bs-target="#step-wait<%=@requests[0].id.to_s%>">
-        <a class="btn btn-outline-danger me-3" href="#" 
-            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Parar a Execução da Requisição">
-            <i class="fa-solid fa-person-running fa-lg"></i></a>
-      </span>
-    <% elsif @requests[0].step == Constants::STEP_AGUARDANDO[1] %>
-      <span data-bs-toggle="modal" data-bs-target="#step-execute<%=@requests[0].id.to_s%>">
-        <a class="btn btn-outline-success me-3" href="#" 
-            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Iniciar a Execução da Requisição">
-            <i class="fa-solid fa-person-running fa-lg"></i></a>
-      </span>
-    <% end %>
-
-  <% end %>
-
-<% end %>
--->
-
 <span class="me-3">
   <% if current_user.request_finish %>      
     <% if @requests[0].status == Constants::STATUS_ABERTA[1] %>
@@ -90,7 +63,12 @@
   <% if current_user.request_edit %>
     <%= link_to edit_request_path(@requests[0].id,q_sys: params[:q_sys],
                                                   q_status: params[:q_status],
-                                                  q_content: params[:q_content], 
+                                                  q_code: params[:q_code],
+                                                  q_content: params[:q_content],
+                                                  q_tag: params[:q_tag],
+                                                  q_customer: params[:q_customer],
+                                                  q_responsible: params[:q_responsible],
+                                                  q_mark: params[:q_mark],
                                                   q_order: params[:q_order]), 
                                                   class: 'btn btn-outline-success',
                                                   data: { bs_toggle: 'tooltip', 
@@ -109,13 +87,18 @@
   <% end %>
 
   <%= link_to requests_path(q_sys: params[:q_sys],
-                                      q_status: params[:q_status],
-                                      q_content: params[:q_content],
-                                      q_order: params[:q_order]), 
-                                      class: 'btn btn-secondary',
-                                      data: { bs_toggle: 'tooltip', 
-                                              bs_placement: "top", 
-                                              bs_title: "Retornar" } do %>
+                            q_status: params[:q_status],
+                            q_code: params[:q_code],
+                            q_content: params[:q_content],
+                            q_tag: params[:q_tag],
+                            q_customer: params[:q_customer],
+                            q_responsible: params[:q_responsible],
+                            q_mark: params[:q_mark],
+                            q_order: params[:q_order]), 
+                            class: 'btn btn-secondary',
+                            data: { bs_toggle: 'tooltip', 
+                                    bs_placement: "top", 
+                                    bs_title: "Retornar" } do %>
     <i class="fa-solid fa-arrow-left fa-lg"></i>
   <% end %>
 </span>

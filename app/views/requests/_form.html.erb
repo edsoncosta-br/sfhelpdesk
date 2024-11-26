@@ -168,10 +168,15 @@
                                 </div>
                                 <div class="modal-footer actions">
                                   <%= link_to 'Confirmar', 
-                                      requests_delete_attachment_path(file.id,@request.id, q_sys: params[:q_sys],
-                                                                                           q_status: params[:q_status],
-                                                                                           q_content: params[:q_content],
-                                                                                           q_order: params[:q_order]), 
+                                      requests_delete_attachment_path(file.id,@request.id,q_sys: params[:q_sys],
+                                                                                          q_status: params[:q_status],
+                                                                                          q_code: params[:q_code],
+                                                                                          q_content: params[:q_content],
+                                                                                          q_tag: params[:q_tag],
+                                                                                          q_customer: params[:q_customer],
+                                                                                          q_responsible: params[:q_responsible],
+                                                                                          q_mark: params[:q_mark],
+                                                                                          q_order: params[:q_order]), 
                                       class:"btn btn-danger", data: { disable_with: 'Aguarde..' }, method: 'put' %>
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                 </div>
@@ -200,7 +205,12 @@
 
             <%= hidden_field_tag :q_sys, params[:q_sys] %>
             <%= hidden_field_tag :q_status, params[:q_status] %>
+            <%= hidden_field_tag :q_code, params[:q_code] %>
             <%= hidden_field_tag :q_content, params[:q_content] %>
+            <%= hidden_field_tag :q_tag, params[:q_tag] %>
+            <%= hidden_field_tag :q_customer, params[:q_customer] %>
+            <%= hidden_field_tag :q_responsible, params[:q_responsible] %>
+            <%= hidden_field_tag :q_mark, params[:q_mark] %>
             <%= hidden_field_tag :q_order, params[:q_order] %>
             <%= hidden_field_tag :tag_ids_selected, @request.tag_ids.to_a %>
           </div>
@@ -211,7 +221,12 @@
             <% if (params[:action] == "edit") or (params[:action] == "update") %>
               <%= link_to request_path(@request,q_sys: params[:q_sys],
                                                 q_status: params[:q_status],
+                                                q_code: params[:q_code],
                                                 q_content: params[:q_content],
+                                                q_tag: params[:q_tag],
+                                                q_customer: params[:q_customer],
+                                                q_responsible: params[:q_responsible],
+                                                q_mark: params[:q_mark],
                                                 q_order: params[:q_order]), 
                                                 class: 'btn btn-secondary' do %>
                 Cancelar
@@ -219,7 +234,12 @@
             <% else %>
               <%= link_to 'Cancelar', requests_path(q_sys: params[:q_sys],
                                                     q_status: params[:q_status],
+                                                    q_code: params[:q_code],
                                                     q_content: params[:q_content],
+                                                    q_tag: params[:q_tag],
+                                                    q_customer: params[:q_customer],
+                                                    q_responsible: params[:q_responsible],
+                                                    q_mark: params[:q_mark],
                                                     q_order: params[:q_order]), class: 'btn btn-secondary' %>
             <% end %>
           </div>

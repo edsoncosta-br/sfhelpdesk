@@ -15,7 +15,12 @@
         <%= link_to 'Confirmar', 
             requests_status_archived_path(@requests[0].id,q_sys: params[:q_sys],
                                                           q_status: params[:q_status],
+                                                          q_code: params[:q_code],
                                                           q_content: params[:q_content],
+                                                          q_tag: params[:q_tag],
+                                                          q_customer: params[:q_customer],
+                                                          q_responsible: params[:q_responsible],
+                                                          q_mark: params[:q_mark],
                                                           q_order: params[:q_order]), 
             class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
 
@@ -42,7 +47,12 @@
         <%= link_to 'Confirmar', 
             requests_status_finished_path(@requests[0].id,q_sys: params[:q_sys],
                                                           q_status: params[:q_status],
+                                                          q_code: params[:q_code],
                                                           q_content: params[:q_content],
+                                                          q_tag: params[:q_tag],
+                                                          q_customer: params[:q_customer],
+                                                          q_responsible: params[:q_responsible],
+                                                          q_mark: params[:q_mark],
                                                           q_order: params[:q_order]), 
             class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
 
@@ -69,7 +79,12 @@
         <%= link_to 'Confirmar', 
             requests_status_reopen_path(@requests[0].id,q_sys: params[:q_sys],
                                                         q_status: params[:q_status],
+                                                        q_code: params[:q_code],
                                                         q_content: params[:q_content],
+                                                        q_tag: params[:q_tag],
+                                                        q_customer: params[:q_customer],
+                                                        q_responsible: params[:q_responsible],
+                                                        q_mark: params[:q_mark],
                                                         q_order: params[:q_order]), 
             class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
 

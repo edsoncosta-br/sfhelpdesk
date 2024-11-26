@@ -14,7 +14,12 @@
       <div class="modal-footer actions">
         <%= link_to 'Excluir', request_path(@requests[0], q_sys: params[:q_sys],
                                                           q_status: params[:q_status],
+                                                          q_code: params[:q_code],
                                                           q_content: params[:q_content],
+                                                          q_tag: params[:q_tag],
+                                                          q_customer: params[:q_customer],
+                                                          q_responsible: params[:q_responsible],
+                                                          q_mark: params[:q_mark],
                                                           q_order: params[:q_order]), 
             class:"btn btn-danger", method: :delete %>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

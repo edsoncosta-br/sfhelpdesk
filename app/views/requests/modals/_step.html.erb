@@ -13,10 +13,15 @@
       </div>
       <div class="modal-footer actions">
         <%= link_to 'Sim', 
-            requests_step_execute_path(@requests[0].id,q_sys: params[:q_sys],
-                                                       q_status: params[:q_status],
-                                                       q_content: params[:q_content],
-                                                       q_order: params[:q_order]), 
+            requests_step_execute_path(@requests[0].id, q_sys: params[:q_sys],
+                                                        q_status: params[:q_status],
+                                                        q_code: params[:q_code],
+                                                        q_content: params[:q_content],
+                                                        q_tag: params[:q_tag],
+                                                        q_customer: params[:q_customer],
+                                                        q_responsible: params[:q_responsible],
+                                                        q_mark: params[:q_mark],
+                                                        q_order: params[:q_order]), 
             class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
 
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
@@ -42,7 +47,12 @@
         <%= link_to 'Sim', 
             requests_step_wait_path(@requests[0].id,q_sys: params[:q_sys],
                                                     q_status: params[:q_status],
+                                                    q_code: params[:q_code],
                                                     q_content: params[:q_content],
+                                                    q_tag: params[:q_tag],
+                                                    q_customer: params[:q_customer],
+                                                    q_responsible: params[:q_responsible],
+                                                    q_mark: params[:q_mark],
                                                     q_order: params[:q_order]), 
             class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
 
@@ -69,7 +79,12 @@
         <%= link_to 'Sim', 
             requests_step_finish_path(@requests[0].id,q_sys: params[:q_sys],
                                                       q_status: params[:q_status],
+                                                      q_code: params[:q_code],
                                                       q_content: params[:q_content],
+                                                      q_tag: params[:q_tag],
+                                                      q_customer: params[:q_customer],
+                                                      q_responsible: params[:q_responsible],
+                                                      q_mark: params[:q_mark],
                                                       q_order: params[:q_order]), 
             class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
 

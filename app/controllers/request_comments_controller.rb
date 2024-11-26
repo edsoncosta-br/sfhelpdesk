@@ -20,7 +20,12 @@ class RequestCommentsController < ApplicationController
 
         format.html { redirect_to request_path(params[:q_id], q_sys: params[:q_sys],
                                                               q_status: params[:q_status],
-                                                              q_content: params[:q_content], 
+                                                              q_code: params[:q_code],
+                                                              q_content: params[:q_content],
+                                                              q_tag: params[:q_tag],
+                                                              q_customer: params[:q_customer],
+                                                              q_responsible: params[:q_responsible],
+                                                              q_mark: params[:q_mark],
                                                               q_order: params[:q_order]), 
                                                               notice: "Comentário criado com sucesso." }
       else
@@ -36,7 +41,12 @@ class RequestCommentsController < ApplicationController
     if @request_comment.update(request_comment_params)
       redirect_to request_path(@request_comment.request,q_sys: params[:q_sys],
                                                         q_status: params[:q_status],
+                                                        q_code: params[:q_code],
                                                         q_content: params[:q_content],
+                                                        q_tag: params[:q_tag],
+                                                        q_customer: params[:q_customer],
+                                                        q_responsible: params[:q_responsible],
+                                                        q_mark: params[:q_mark],
                                                         q_order: params[:q_order]), 
                                                         notice: "Comentário atualizado com sucesso."      
     else
@@ -50,7 +60,12 @@ class RequestCommentsController < ApplicationController
         redirect_to request_path(@request_comment.request.id, 
                                   q_sys: params[:q_sys],
                                   q_status: params[:q_status],
+                                  q_code: params[:q_code],
                                   q_content: params[:q_content],
+                                  q_tag: params[:q_tag],
+                                  q_customer: params[:q_customer],
+                                  q_responsible: params[:q_responsible],
+                                  q_mark: params[:q_mark],
                                   q_order: params[:q_order]), 
                                   notice: "Comentário excluído com sucesso."
       else
