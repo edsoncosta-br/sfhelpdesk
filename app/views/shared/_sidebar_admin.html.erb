@@ -1,0 +1,79 @@
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <div class="flex-shrink-0 p-3">
+    <ul class="list-unstyled ps-0">
+      <li class="mb-2">
+        <div>
+          <button class="btn">
+            <%= link_to(root_path, class: "link-dark d-inline-flex text-decoration-none") do %>Painel<%end%>
+          </button>
+        </div>  
+
+        <button class="btn btn-toggle btn-toggle-sub00 d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+          <span>Cadastros</span> <i class="fa-solid fa-chevron-down ps-1"></i>
+        </button>
+        <div class="collapse" id="dashboard-collapse">
+          <ul class="btn-toggle-nav list-unstyled pb-2 pt-2">
+            <li>
+              <%= link_to(customers_path,  class: "link-dark d-inline-flex text-decoration-none") do %>Clientes<%end%>
+            </li>
+          </ul>
+
+          <% if !current_user.blank? and current_user.menu_admin? %>
+            <ul class="btn-toggle-nav list-unstyled pb-1">
+              <li>
+                <button class="btn btn-toggle btn-toggle-sub01 d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse01" aria-expanded="false">
+                  <span>Administrativo</span> <i class="fa-solid fa-chevron-down ps-1"></i>
+                </button>
+                <div class="collapse" id="dashboard-collapse01">
+                  <ul class="btn-toggle-nav btn-toggle-nav-sub01 list-unstyled pb-2 pt-2">
+                    <%= link_to(projects_path,  class: "link-dark d-inline-flex text-decoration-none") do %>Projetos<%end%>
+                  </ul>
+                </div>
+                <div class="collapse" id="dashboard-collapse01">
+                  <ul class="btn-toggle-nav btn-toggle-nav-sub01 list-unstyled pb-2">
+                    <%= link_to(positions_path,  class: "link-dark d-inline-flex text-decoration-none") do %>Cargo/Função<%end%>
+                  </ul>
+                </div>
+                <div class="collapse" id="dashboard-collapse01">
+                  <ul class="btn-toggle-nav btn-toggle-nav-sub01 list-unstyled pb-2">
+                    <%= link_to(employee_users_path,  class: "link-dark d-inline-flex text-decoration-none") do %>Usuários<%end%>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          <%end%>            
+
+          <ul class="btn-toggle-nav list-unstyled pb-2 pt-2">
+            <li>
+              <%= link_to(tags_path,  class: "link-dark d-inline-flex text-decoration-none") do %>Tags<%end%>
+            </li>
+          </ul>
+
+          <ul class="btn-toggle-nav list-unstyled pb-2 pt-2">
+            <li>
+              <%= link_to(marks_path,  class: "link-dark d-inline-flex text-decoration-none") do %>Metas<%end%>
+            </li>
+          </ul>          
+        </div>
+      </li>
+
+      <div>
+        <button class="btn">
+          <%= link_to(requests_path, class: "link-dark d-inline-flex text-decoration-none") do %>Requisições<%end%>
+        </button>
+      </div>
+
+      <div>
+        <button class="btn">
+          <%= link_to(helps_path, class: "link-dark d-inline-flex text-decoration-none") do %>Central de Ajuda<%end%>
+        </button>
+      </div>
+
+    </ul>
+  </div>
+
+</div>  

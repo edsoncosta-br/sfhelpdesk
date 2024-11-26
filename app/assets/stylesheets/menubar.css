@@ -165,7 +165,7 @@
   
   .bars {
     display: inherit;
-    color: var(--font-color-default);
+    color: #323232;
   }
 }
 

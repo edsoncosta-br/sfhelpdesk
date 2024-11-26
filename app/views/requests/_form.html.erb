@@ -78,11 +78,11 @@
             </div>
 
             <div class="col-12 col-md-4 mb-3">
-              <%= form.label :mark_id, class:"form-label" %>
-              <%= select_tag :mark_id, 
+              <%= form.label :marksearch_id, class:"form-label" %>
+              <%= select_tag :marksearch_id, 
                               form_select_mark(@request.project_id, @request.mark_id),
                               include_blank: "Selecione..", 
-                              class:"form-select form-control",
+                              class:"form-control",
                               name:"request[mark_id]" %>
             </div>                         
 

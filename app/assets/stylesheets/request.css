@@ -354,3 +354,8 @@ tbody tr {
 .col-btn-search-request a {
   font-size: 11px;
 }
+.body-style-request {
+  padding-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}

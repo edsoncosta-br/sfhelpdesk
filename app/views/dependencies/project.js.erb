@@ -83,6 +83,7 @@ if (document.getElementById('user_responsible_id') !== null) {
 
 <%# select com selecao simples %>
 <% elsif (@model_name == "request_search") or (@model_name == "help_search") %>  
+  
   var select = document.getElementById('tagsearch_id');
 
   select.innerHTML = '';
@@ -107,9 +108,34 @@ if (document.getElementById('user_responsible_id') !== null) {
       searchPlaceholder: 'Buscar',
       searchText: 'Não encontrado'
     }      
-  })    
+  })
 
 <%end%>
 
+if (document.getElementById('marksearch_id') !== null) {
+  var select = document.getElementById('marksearch_id');
 
+  select.innerHTML = '';
+  select.slim.destroy()
 
+  var option = document.createElement('option');
+  option.value = "";
+  option.text = "Selecione..";
+  select.add(option);
+
+  <% @marks.each_with_index do |mark, index| %>
+    option = document.createElement('option');
+    option.value = <%=mark.id%>;
+    option.text = "<%=mark.description%>";
+    select.add(option);
+  <% end %>  
+
+  new SlimSelect({
+    select: '#marksearch_id',
+    settings: {
+      placeholderText: 'Selecione..',
+      searchPlaceholder: 'Buscar',
+      searchText: 'Não encontrado'
+    }      
+  })    
+}

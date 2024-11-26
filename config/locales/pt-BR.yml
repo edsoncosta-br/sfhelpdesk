@@ -78,6 +78,7 @@ pt-BR:
         user_updated_id: Alterado por
         user_responsible_id: Responsável pela execução
         mark_id: Meta
+        marksearch_id: Meta
         content: Conteúdo da Requisição
         files: ""
       request_comment:

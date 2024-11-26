@@ -24,17 +24,17 @@
     </div>
     
     <div class="card">
-      <div class="card-body card-body-style">
+      <div class="card-body body-style-request">
         <%= form_with(url: requests_path, method: 'get', local: true) do |form| %>
 
           <div class="row">
           
-            <div class="col-12 col-lg-10 pe-0" style="background-color: inherit;">
+            <div class="col-12 col-lg-10 pe-0">
               
               <%# first line %>
-              <div class="col-12 mb-1 gx-3 row" style="background-color: inherit;">
+              <div class="col-12 mb-1 gx-3 row">
                 
-                <div class="col-12 col-lg-4 mb-1">
+                <div class="col-12 col-lg-3 mb-1">
                   <label for="project_id" class="form-label">Projeto</label>
                   <%= select_tag :project_id, 
                                   form_select_project_allocations(params[:q_sys]),
@@ -69,7 +69,7 @@
                           autofocus autocomplete="off" placeholder="Digite um texto"  value=<%=params[:q_content]%>>
                 </div>
                 
-                <div class="col-12 col-lg-2 mb-1">
+                <div class="col-12 col-lg-3 mb-1">
                   <label for="order" class="form-label">Ordenar por</label>
                   <%= select_tag "order", 
                                   options_for_select([["Mais Recentes", "newest"], ["Mais Antigas", "oldest"]], 
@@ -80,9 +80,9 @@
               </div>
 
               <%# second line %>
-              <div class="col-12 gx-3 row <%=collapse_line%>" id="collapseSecondLine" style="background-color: inherit;">
+              <div class="col-12 gx-3 pt-1 row <%=collapse_line%>" id="collapseSecondLine">
                 
-                <div class="col-12 col-lg-3 mb-1">
+                <div class="col-12 col-lg-3 mb-2">
                   <label for="tagsearch_id" class="form-label">Tag</label>
                   <%= select_tag :tagsearch_id, 
                                   form_select_tag(params[:q_sys], params[:q_tag]),
@@ -91,7 +91,7 @@
                                   name:"q_tag"%>
                 </div>
 
-                <div class="col-12 col-lg-3 mb-1">
+                <div class="col-12 col-lg-5 mb-2">
                   <label for="customer_id" class="form-label">Cliente</label>
                   <%= select_tag :customer_id, 
                                   form_select_customer(params[:q_customer]),
@@ -100,16 +100,16 @@
                                   name:"q_customer" %>
                 </div>
 
-                <div class="col-12 col-lg-3 mb-1">
-                  <label for="mark_id" class="form-label">Meta</label>
-                  <%= select_tag :mark_id, 
+                <div class="col-12 col-lg-2 mb-2">
+                  <label for="marksearch_id" class="form-label">Meta</label>
+                  <%= select_tag :marksearch_id, 
                                   form_select_mark(params[:q_sys], params[:q_mark]),
                                   include_blank: "Selecione..", 
-                                  class:"form-select form-control",
+                                  class:"form-control",
                                   name:"q_mark" %>
                 </div>
 
-                <div class="col-12 col-lg-3 mb-1">
+                <div class="col-12 col-lg-2 mb-2">
                   <label for="user_responsible_id" class="form-label">Responsável</label>
                   <%= select_tag :user_responsible_id, 
                                   form_select_user_allocation(params[:q_sys], params[:q_responsible]),
@@ -122,7 +122,7 @@
             </div>
 
             <%# button %>
-            <div class="col-btn-search-request col-12 col-lg-2 align-self-top mb-1" style="background-color: inherit;">
+            <div class="col-btn-search-request col-12 col-lg-2 align-self-top mb-1">
               <a class="me-3 text-decoration-none" data-bs-toggle="collapse" href="#collapseSecondLine" role="button" <%=collapse_btn%>>
                 <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Mais filtros">
                   <i class="fa-solid fa-filter"></i>
