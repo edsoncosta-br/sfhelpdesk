@@ -6,12 +6,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # Source: Devise Wiki
   before_action :set_avatar_deleted, only: %i[ update ]
 
-  before_action lambda {
-    if !user_params.blank?
-      resize_before_save(user_params[:avatar], 500, 500)
-    end
-  }, only: [:update]
-
   def update
     if user_params != nil
       if @user.update(user_params)
@@ -30,24 +24,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
-
-  def resize_before_save(image_param, width, height)
-    return unless image_param
-
-    begin
-      ImageProcessing::MiniMagick
-        .source(image_param)
-        # .resize_to_fit(width, height)
-        .saver(quality: 60)
-        .call(destination: image_param.tempfile.path)
-        puts "passou"
-    rescue StandardError => _e
-      # Do nothing. If this is catching, it probably means the
-      # file type is incorrect, which can be caught later by
-      # model validations.
-    end
-  end
-
 
   def avatar_isempty
     params[:avatar_deleted].to_s.include? "emptyuser.png"

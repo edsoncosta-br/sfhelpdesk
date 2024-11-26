@@ -2,6 +2,15 @@ class RequestsController < ApplicationController
   before_action :set_request, only: %i[ edit update destroy ]
   before_action :purge_unattached, only: %i[ index ]
 
+  # before_action lambda {
+  #   puts "passado 1"
+  #   if !request_params.blank?
+  #     puts "passado 2"
+  #     resize_before_save(request_params[:content], 500, 500)
+  #   end
+  # }, only: [:update] 
+
+
   def index
     requests = Request.select(:id, :title, :status, :step, :priority, 
                               :customer_id, :code, :requester_name,
@@ -394,6 +403,27 @@ class RequestsController < ApplicationController
   end  
 
   private
+
+  # def resize_before_save(image_param, width, height)
+  #   return unless image_param
+
+  #   begin
+  #     puts "passado 3"
+  #     ImageProcessing::MiniMagick
+  #       .source(image_param)
+  #       # .resize_to_fit(width, height)
+  #       .saver(quality: 60)
+  #       # .call(destination: image_param.tempfile.path)
+  #       .call
+  #   rescue StandardError => _e
+  #     # Do nothing. If this is catching, it probably means the
+  #     # file type is incorrect, which can be caught later by
+  #     # model validations.
+  #     puts "passado 4"
+  #     puts _e
+  #   end
+  # end
+
 
   def set_request
     @request = Request.find(params[:id])
