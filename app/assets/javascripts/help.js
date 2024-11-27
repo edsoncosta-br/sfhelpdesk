@@ -81,9 +81,9 @@ document.addEventListener("trix-file-accept", e => {
 
 document.addEventListener("trix-file-accept", e => {
   // const maxFileSize = 1024 * 1024 // 1MB 
-  const maxFileSize = 2000000 // 2MB
+  const maxFileSize = 1000000 // 1MB
   if (e.file.size > maxFileSize) {
     e.preventDefault()
-    alert("Tamanho máximo da imagem dever ser de 2MB!")
+    alert("Tamanho máximo da imagem dever ser de 1MB!")
   }
 })

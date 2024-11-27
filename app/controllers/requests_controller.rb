@@ -6,10 +6,9 @@ class RequestsController < ApplicationController
   #   puts "passado 1"
   #   if !request_params.blank?
   #     puts "passado 2"
-  #     resize_before_save(request_params[:content], 500, 500)
+  #     resize_before_save(request_params[:content], 1024, 768)
   #   end
-  # }, only: [:update] 
-
+  # }, only: [:update, :create] 
 
   def index
     requests = Request.select(:id, :title, :status, :step, :priority, 
@@ -411,8 +410,8 @@ class RequestsController < ApplicationController
   #     puts "passado 3"
   #     ImageProcessing::MiniMagick
   #       .source(image_param)
-  #       # .resize_to_fit(width, height)
-  #       .saver(quality: 60)
+  #       .resize_to_fit(width, height)
+  #       #.saver(quality: 60)
   #       # .call(destination: image_param.tempfile.path)
   #       .call
   #   rescue StandardError => _e
@@ -423,7 +422,6 @@ class RequestsController < ApplicationController
   #     puts _e
   #   end
   # end
-
 
   def set_request
     @request = Request.find(params[:id])
