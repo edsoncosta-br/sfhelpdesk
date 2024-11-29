@@ -113,14 +113,10 @@
             </td>
 
             <td class="align-middle text-center">
-              
-              <% if request.step != Constants::STEP_AGUARDANDO[1] %>
-                <span class="badge <%=bg_step(request.step)%>"
-                  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<%=bs_title(request.step)%>">
-                  <%=status_step(request.step)%>
-                </span>
-              <% end %>
-
+              <span class="badge <%=bg_step(request.step)%>"
+                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<%=bs_title(request.step)%>">
+                <%=status_step(request.step)%>
+              </span>
             </td>            
 
             <td class="align-middle text-muted text-center">

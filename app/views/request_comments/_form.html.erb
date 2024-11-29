@@ -92,12 +92,12 @@
 
                   </div>
 
-                  <% if request.step != Constants::STEP_AGUARDANDO[1] %>
+                  <div>
                     <span class="badge <%=bg_step(request.step)%> me-3"
                       data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<%=bs_title(request.step)%>">
                       <%=status_step(request.step)%>
                     </span>
-                  <% end %>
+                  </div>  
                   
                   <% if request.priority %>
                     <div class="col-priority-show">
