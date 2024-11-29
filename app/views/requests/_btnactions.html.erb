@@ -1,26 +1,33 @@
 <% if (current_user.id == @requests[0].user_responsible_id) %>
-  <span class="dropdown">
+  <span class="dropdown pt-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Alterar Status da Execução">
     <button type="button" class="btn btn-outline-success me-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       Execução
     </button>
     <ul class="dropdown-menu">
-      <% if @requests[0].step != Constants::STEP_AGUARDANDO[1] %>
-        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-wait<%=@requests[0].id.to_s%>" href="#">Aguardando</a></li>
-      <% end %>
-
-      <% if @requests[0].step != Constants::STEP_EXECUTANDO[1] %>
+      <% if @requests[0].step == Constants::STEP_AGUARDANDO[1] %>
         <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-execute<%=@requests[0].id.to_s%>" href="#">Andamento</a></li>
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-test<%=@requests[0].id.to_s%>" href="#">Liberada para Testes</a></li>
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-finish<%=@requests[0].id.to_s%>" href="#">Concluída (Execução e Testes)</a></li>
       <% end %>
 
-      <% if @requests[0].step != Constants::STEP_TESTE[1] %>
-        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-test<%=@requests[0].id.to_s%>" href="#">Teste</a></li>
+      <% if @requests[0].step == Constants::STEP_EXECUTANDO[1] %>
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-test<%=@requests[0].id.to_s%>" href="#">Liberada para Testes</a></li>
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-finish<%=@requests[0].id.to_s%>" href="#">Concluída (Execução e Testes)</a></li>        
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-wait<%=@requests[0].id.to_s%>" href="#">Retornar para Aguardando</a></li>
       <% end %>
 
-      <% if @requests[0].step != Constants::STEP_CONCLUIDA[1] %>      
-        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-finish<%=@requests[0].id.to_s%>" href="#">Concluída</a></li>
+      <% if @requests[0].step == Constants::STEP_TESTE[1] %>
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-finish<%=@requests[0].id.to_s%>" href="#">Concluída (Execução e Testes)</a></li>                
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-execute<%=@requests[0].id.to_s%>" href="#">Retornar para Andamento</a></li>        
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-wait<%=@requests[0].id.to_s%>" href="#">Retornar para Aguardando</a></li>        
+      <% end %>
+
+      <% if @requests[0].step == Constants::STEP_CONCLUIDA[1] %>
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-wait<%=@requests[0].id.to_s%>" href="#">Retornar para Aguardando</a></li>
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#step-execute<%=@requests[0].id.to_s%>" href="#">Retornar para Andamento</a></li>
       <% end %>
     </ul>
-  </span>
+    </span>
 <% end %>
 
 <span class="me-3">

@@ -112,18 +112,18 @@
               </div>
             </td>
 
-            <td class="align-middle col-icon text-muted text-center">
+            <td class="align-middle text-center">
               
               <% if request.step != Constants::STEP_AGUARDANDO[1] %>
                 <span class="badge <%=bg_step(request.step)%>"
-                  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Execução">
+                  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<%=bs_title(request.step)%>">
                   <%=status_step(request.step)%>
                 </span>
               <% end %>
 
             </td>            
 
-            <td class="align-middle col-icon text-muted text-center">
+            <td class="align-middle text-muted text-center">
               <% if request.any_attached? %>
                 <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Anexo(s)">
                   <i class="fa-solid fa-paperclip"></i>
@@ -132,7 +132,7 @@
               <% end %>
             </td>
 
-            <td class="align-middle col-icon text-muted text-center">
+            <td class="align-middle text-muted text-center">
               <% if request.count_comments > 0 %>
                 <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Comentário(s)">
                   <i class="fa-regular fa-message"></i>
@@ -142,7 +142,7 @@
             </td>            
 
             <td class="align-middle col-priority text-center">
-              <% if (request.priority) and (request.status == Constants::STATUS_ABERTA[1]) %>
+              <% if (request.priority) %>
                 <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
                   <i class="fa-solid fa-star"></i></span>
               <% end %>

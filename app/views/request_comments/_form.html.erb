@@ -22,7 +22,7 @@
                 <div class="col-title d-flex align-items-center">              
                   <div class="w-100 ms-2">
                     <div class="first-line">
-                      <span class="fw-semibold me-1"><%=request.title%></span>
+                      <span class="request-title me-1"><%=request.title%></span>
 
                       <span class="badge bg-style <%=bg_status(request.status)%> me-2"
                         data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Requisição"><%=status_request(request.status)%>
@@ -92,20 +92,18 @@
 
                   </div>
 
-                  <% if request.status == Constants::STATUS_ABERTA[1] %>
-                    <% if request.step != Constants::STEP_AGUARDANDO[1] %>
-                      <span class="badge <%=bg_step(request.step)%> me-3"
-                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Execução">
-                        <%=status_step(request.step)%>
-                      </span>
-                    <% end %>
-                    
-                    <% if request.priority %>
-                      <div class="col-priority-show">
-                        <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
-                          <i class="fa-solid fa-star fa-lg"></i></span>
-                      </div>                
-                    <% end %>
+                  <% if request.step != Constants::STEP_AGUARDANDO[1] %>
+                    <span class="badge <%=bg_step(request.step)%> me-3"
+                      data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<%=bs_title(request.step)%>">
+                      <%=status_step(request.step)%>
+                    </span>
+                  <% end %>
+                  
+                  <% if request.priority %>
+                    <div class="col-priority-show">
+                      <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prioridade">
+                        <i class="fa-solid fa-star fa-lg"></i></span>
+                    </div>                
                   <% end %>
                 </div>
               </div>

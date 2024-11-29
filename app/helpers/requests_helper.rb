@@ -57,15 +57,27 @@ module RequestsHelper
     end 
   end
 
+  def bs_title(step)
+    if step == Constants::STEP_EXECUTANDO[1]
+      'Execução em Andamento'
+    elsif step == Constants::STEP_AGUARDANDO[1]
+      'Aguadando Execução'
+    elsif step == Constants::STEP_TESTE[1]
+      'Requisição Liberada para Testes'
+    elsif step == Constants::STEP_CONCLUIDA[1]
+      'Execução e Testes Concluídos'
+    end     
+  end
+
   def bg_step(step)
     if step == Constants::STEP_EXECUTANDO[1]
-      'bg-style bg-step-execute'
+      'bg-style bg-step bg-step-execute'
     elsif step == Constants::STEP_AGUARDANDO[1]
-      'bg-style bg-step-wait'
+      'bg-style bg-step bg-step-wait'
     elsif step == Constants::STEP_TESTE[1]
-      'bg-style bg-step-test'      
+      'bg-style bg-step bg-step-test'      
     elsif step == Constants::STEP_CONCLUIDA[1]
-      'bg-style bg-step-finish'
+      'bg-style bg-step bg-step-finish'
     end 
   end
 
