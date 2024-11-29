@@ -16,13 +16,14 @@ module Constants
   STATUS_FINALIZADA_PLUR = ['Finalizadas', 2]
   STATUS_ARQUIVADA_PLUR = ['Arquivadas', 3]  
 
-  PRIORITY_ALTA = ['Alta',1]
+  PRIORITY_ALTA = ['Alta', 1]
   PRIORITY_MEDIA = ['Média', 2]
   PRIORITY_BAIXA = ['Baixa', 3]
 
-  STEP_EXECUTANDO = ['Em Andamento',1]
+  STEP_EXECUTANDO = ['Andamento', 1]
   STEP_AGUARDANDO = ['Aguardando', 2]
-  STEP_CONCLUIDA = ['Concluída', 3]
+  STEP_TESTE = ['Teste', 3]
+  STEP_CONCLUIDA = ['Concluída', 4]  
 
   PAGINAS = 25
   PAGINATE_WINDOW = 1

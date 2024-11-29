@@ -90,15 +90,12 @@
                 </div>
 
                 <% if request.status == Constants::STATUS_ABERTA[1] %>
-                  <div class="col-priority-show text-muted">
-                    <% if request.step == Constants::STEP_EXECUTANDO[1] %>
-                      <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Em Execução por <%=request.user_responsible_name%>">
-                        <i class="fa-solid fa-person-running step-execute-color fa-xl me-3"></i>
-                    <% elsif request.step == Constants::STEP_CONCLUIDA[1] %>
-                      <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Execução Concluída por <%=request.user_responsible_name%>">
-                        <i class="fa-solid fa-child-reaching step-finish-color fa-xl me-3"></i>
-                    <% end %>
-                  </div>
+                  <% if request.step != Constants::STEP_AGUARDANDO[1] %>
+                    <span class="badge <%=bg_step(request.step)%> me-3"
+                      data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Execução">
+                      <%=status_step(request.step)%>
+                    </span>
+                  <% end %>
                   
                   <% if request.priority %>
                     <div class="col-priority-show">
@@ -207,7 +204,7 @@
         <div class="card card-size shadow mt-4">
           <div class="card-body card-body-style">
             
-            <div class="mb-3">
+            <div class="mb-2 mt-2">
               <div class="col-title-comment d-flex justify-content-between align-items-center">              
                 <div class="d-flex align-items-center">
                   <div>

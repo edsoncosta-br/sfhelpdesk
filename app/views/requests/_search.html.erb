@@ -25,7 +25,7 @@
             <td class="align-middle">
               <div class="first-line mt-1">
                 <span>
-                  <span class="fw-semibold text-decoration-none link-dark">
+                  <span class="request-title text-decoration-none link-dark">
                     <%= link_to request_path(request, q_sys: params[:q_sys],
                                                       q_status: params[:q_status],
                                                       q_code: params[:q_code],
@@ -35,7 +35,7 @@
                                                       q_responsible: params[:q_responsible],
                                                       q_mark: params[:q_mark],
                                                       q_order: params[:q_order]), 
-                                                      class:"fw-semibold text-decoration-none link-dark me-2",
+                                                      class:"text-decoration-none link-dark me-2",
                                                       data: {bs_toggle: 'tooltip', bs_placement: "top", bs_title: "Visualizar Requisição" } do %>
                       <%= request.title%>
                     <% end %>
@@ -114,18 +114,11 @@
 
             <td class="align-middle col-icon text-muted text-center">
               
-              <% if request.status == Constants::STATUS_ABERTA[1] %>
-              
-                <% if request.step == Constants::STEP_EXECUTANDO[1]  %>    
-                  <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Em Execução por <%=request.user_responsible_name%>">
-                    <i class="fa-solid fa-person-running step-execute-color fa-lg"></i>
-                  </span>
-                <% elsif request.step == Constants::STEP_CONCLUIDA[1] %>
-                  <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Execução Concluída por <%=request.user_responsible_name%>">
-                    <i class="fa-solid fa-child-reaching step-finish-color fa-lg"></i>
-                  </span>
-                <% end %>
-              
+              <% if request.step != Constants::STEP_AGUARDANDO[1] %>
+                <span class="badge <%=bg_step(request.step)%>"
+                  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Status da Execução">
+                  <%=status_step(request.step)%>
+                </span>
               <% end %>
 
             </td>            

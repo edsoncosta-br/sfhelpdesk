@@ -25,7 +25,7 @@
 
 .badge {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
   border-radius: var(--bs-border-radius-pill) !important;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
@@ -37,11 +37,9 @@
 .bg-style {
   border: solid;
   border-width: 0.1rem;
-  /* height: 21px; */
 }
 
 .bg-tag {
-
   color: #3e3e3e !important;
   border-color: #c2c2c3 !important;
   background-color: #faffe9;
@@ -61,7 +59,6 @@
 
 .bg-mark-closed {
   color: #3e3e3e !important;
-  /* border-color: #ed9d9d !important; */
   border-color: #e5b170 !important;
   background-color: #fbdcb5;  
 }
@@ -78,39 +75,31 @@
 }
 
 .bg-step-execute {
-  color: #11911f !important;
-  border-color: #6ad391 !important;
-  background-color: #ebfced;
-  width: 7.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  color: #3e3e3e !important;
+  border-color: #c2c2c3 !important;
+  background-color: #3eeab0;
+  width: 6rem;
 }
 
 .bg-step-wait {
-  color: #5c5c5c !important;
+  color: #3e3e3e !important;
   border-color: #c2c2c3 !important;
   background-color: #f5f5f5;
-  width: 7.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  width: 6rem;
 }
 
-.bg-step-pause {
-  color: #8ea721 !important;
-  border-color: #b0c74e !important;
-  background-color: #fffae0;
-  width: 7.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+.bg-step-test {
+  color: #3e3e3e !important;
+  border-color: #c2c2c3 !important;
+  background-color: #f0f6a9;
+  width: 6rem;
 }
 
 .bg-step-finish {
-  color: #3d68b7 !important;
-  border-color: #74aadd !important;
-  background-color: #eaf1ff;
-  width: 7.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  color: #3e3e3e !important;
+  border-color: #c2c2c3 !important;
+  background-color: #b3dbff;
+  width: 6rem;
 }
 
 .open-status {
@@ -140,7 +129,7 @@
 }
 
 .col-priority {
-  width: 2.6rem;
+  width: 2.5rem;
   font-size: 12px;
 }
 
@@ -149,7 +138,7 @@
 }
 
 .col-icon {
-  width: 3.6rem;
+  width: 3.2rem;
 }
 
 .status-line {
@@ -173,8 +162,7 @@
 .second-line {
   font-size: 11px;
   font-weight: 600;
-  font-style: italic;
-  color: #3a3a3a;
+  color: #646363;
 }
 
 .second-line-show {
@@ -247,6 +235,10 @@
   margin-bottom: -0.1rem;
   border-left: 1px solid #cbc9c9;
   border-right: 1px solid #cbc9c9;  
+}
+
+.request-title {
+  font-weight: 500;
 }
 
 tbody tr {
@@ -322,10 +314,6 @@ tbody tr {
 
 .icon-attached {
   width: 3rem;
-}
-
-.dropdown .dropdown-menu {
-  margin-top: 0.7rem !important;
 }
 
 .tags {

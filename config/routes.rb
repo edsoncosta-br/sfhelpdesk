@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   put 'requests/step_wait/:id_request', to: 'requests#step_wait', as: 'requests_step_wait'
   put 'requests/step_execute/:id_request', to: 'requests#step_execute', as: 'requests_step_execute'
   put 'requests/step_finish/:id_request', to: 'requests#step_finish', as: 'requests_step_finish'
+  put 'requests/step_test/:id_request', to: 'requests#step_test', as: 'requests_step_test'
 
   resources :request_comments, except: [:show, :index]
 

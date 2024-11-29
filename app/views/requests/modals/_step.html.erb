@@ -9,7 +9,7 @@
       </div>
       
       <div class="modal-body">
-        Deseja iniciar a execução da requisição?
+        Marcar a Execução como <strong>"Andamento"</strong>
       </div>
       <div class="modal-footer actions">
         <%= link_to 'Sim', 
@@ -41,7 +41,7 @@
       </div>
       
       <div class="modal-body">
-        Deseja retornar a requisição para espera?
+        Marcar a Execução como <strong>"Aguardando"</strong>
       </div>
       <div class="modal-footer actions">
         <%= link_to 'Sim', 
@@ -73,7 +73,7 @@
       </div>
       
       <div class="modal-body">
-        Deseja concluir e execução da requisição?
+        Marcar a Execução como <strong>"Concluída"</strong>
       </div>
       <div class="modal-footer actions">
         <%= link_to 'Sim', 
@@ -86,6 +86,38 @@
                                                       q_responsible: params[:q_responsible],
                                                       q_mark: params[:q_mark],
                                                       q_order: params[:q_order]), 
+            class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal modal-step-test fade" id="step-test<%=@requests[0].id%>" tabindex="-1" 
+      aria-labelledby="step-testLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header"> <i class="fas fa-exclamation-triangle fa-2x modal-header-icon me-2"></i>
+        <h1 class="modal-title" id="step-finishLabel">Confirmação</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        Marcar a Execução como <strong>"Teste"</strong>
+      </div>
+      <div class="modal-footer actions">
+        <%= link_to 'Sim', 
+            requests_step_test_path(@requests[0].id,q_sys: params[:q_sys],
+                                                    q_status: params[:q_status],
+                                                    q_code: params[:q_code],
+                                                    q_content: params[:q_content],
+                                                    q_tag: params[:q_tag],
+                                                    q_customer: params[:q_customer],
+                                                    q_responsible: params[:q_responsible],
+                                                    q_mark: params[:q_mark],
+                                                    q_order: params[:q_order]), 
             class:"btn btn-success", data: { disable_with: 'Aguarde..' }, method: 'put' %>
 
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>

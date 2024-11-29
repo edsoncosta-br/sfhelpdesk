@@ -45,11 +45,13 @@ module RequestsHelper
     end 
   end    
 
-  def step(step)
+  def status_step(step)
     if step == Constants::STEP_EXECUTANDO[1]
       Constants::STEP_EXECUTANDO[0]
     elsif step == Constants::STEP_AGUARDANDO[1]
       Constants::STEP_AGUARDANDO[0]
+    elsif step == Constants::STEP_TESTE[1]
+      Constants::STEP_TESTE[0]      
     elsif step == Constants::STEP_CONCLUIDA[1]
       Constants::STEP_CONCLUIDA[0]
     end 
@@ -60,6 +62,8 @@ module RequestsHelper
       'bg-style bg-step-execute'
     elsif step == Constants::STEP_AGUARDANDO[1]
       'bg-style bg-step-wait'
+    elsif step == Constants::STEP_TESTE[1]
+      'bg-style bg-step-test'      
     elsif step == Constants::STEP_CONCLUIDA[1]
       'bg-style bg-step-finish'
     end 

@@ -364,7 +364,7 @@ class RequestsController < ApplicationController
                               q_responsible: params[:q_responsible],
                               q_mark: params[:q_mark],
                               q_order: params[:q_order]), 
-                              notice: "Execução em espera."
+                              notice: "Execução aguardando."
   end
 
   def step_execute
@@ -381,7 +381,7 @@ class RequestsController < ApplicationController
                               q_responsible: params[:q_responsible],
                               q_mark: params[:q_mark],
                               q_order: params[:q_order]), 
-                              notice: "Execução iniciada"
+                              notice: "Execução em andamento"
   end
   
   def step_finish
@@ -400,6 +400,23 @@ class RequestsController < ApplicationController
                               q_order: params[:q_order]), 
                               notice: "Execução concluída."
   end  
+
+  def step_test
+    request = Request.find(params[:id_request])
+    request.update(step: Constants::STEP_TESTE[1])
+
+    redirect_to request_path( params[:id_request] ,
+                              q_sys: params[:q_sys],
+                              q_status: params[:q_status],
+                              q_code: params[:q_code],
+                              q_content: params[:q_content],
+                              q_tag: params[:q_tag],
+                              q_customer: params[:q_customer],
+                              q_responsible: params[:q_responsible],
+                              q_mark: params[:q_mark],
+                              q_order: params[:q_order]), 
+                              notice: "Execução em Teste."
+  end    
 
   private
 
