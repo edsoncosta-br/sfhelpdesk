@@ -1,0 +1,45 @@
+.count {
+  /* border: none; */
+}
+
+.icon {
+  font-size: 2.0rem;
+  color: #fff;
+  max-width: 6rem;
+}
+
+.icon .box {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 10%;
+  margin: 0.5rem; 
+}
+
+.box-customer {
+  background-color: #9694ff;
+}
+
+.box-project {
+  background-color: #5ddab4;
+}
+
+.box-user {
+  background-color: #ff7976;
+}
+
+.line-1 {
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.line-2 {
+  font-weight: 700;  
+  font-size: 20px;
+}
+
+.col-lines {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
