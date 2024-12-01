@@ -1,0 +1,72 @@
+<div class="row">
+
+  <div class="col-12 col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col icon">
+            <div class="box box-help d-flex justify-content-center align-items-center" >
+              <i class="fa-solid fa-circle-question"></i>
+            </div>
+          </div>
+          <div class="col col-lines">
+            <div class="line-1">Ajudas</div>
+            <div class="line-2"><%=Help.all.where('project_id = ?', project_id).count%></div>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-9">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-12 col-md-3">
+            <div class="row">
+              <div class="col icon">
+                <div class="box box-request d-flex justify-content-center align-items-center" >
+                  <i class="fa-solid fa-file-pen"></i>
+                </div>
+              </div>
+              <div class="col col-lines">
+                <div class="line-1">Requisições</div>
+                <div class="line-2"><%=Request.all.where('project_id = ?', project_id).count%></div>
+              </div>
+            </div> 
+          </div>
+
+          <div class="col-12 col-md-3">
+            <div class="row">
+              <div class="col col-lines">
+                <div class="line-1">Abertas</div>
+                <div class="line-2"><%=Request.all.where('project_id = ? and status = ?', project_id, Constants::STATUS_ABERTA[1]).count%></div>
+              </div>
+            </div> 
+          </div>
+
+          <div class="col-12 col-md-3">
+            <div class="row">
+              <div class="col col-lines">
+                <div class="line-1">Finalizadas</div>
+                <div class="line-2"><%=Request.all.where('project_id = ? and status = ?', project_id, Constants::STATUS_FINALIZADA[1]).count%></div>
+              </div>
+            </div> 
+          </div>
+
+          <div class="col-12 col-md-3">
+            <div class="row">
+              <div class="col col-lines">
+                <div class="line-1">Arquivadas</div>
+                <div class="line-2"><%=Request.all.where('project_id = ? and status = ?', project_id, Constants::STATUS_ARQUIVADA[1]).count%></div>
+              </div>
+            </div> 
+          </div>
+
+        </div> 
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -31,3 +31,7 @@ help
   cadastrar
   editar
   excluir
+
+-------------
+
+ajudas requisicoes req.abertas finalizadas arquivadas
