@@ -310,6 +310,7 @@ class RequestsController < ApplicationController
   def status_archived
     request = Request.find(params[:id_request])
     request.update( status: Constants::STATUS_ARQUIVADA[1], 
+                    step: Constants::STEP_CONCLUIDA[1],
                     finished_date: nil,
                     archived_date: DateTime.now(),
                     user_finished_id: nil,

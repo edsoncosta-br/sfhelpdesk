@@ -61,7 +61,7 @@ module RequestsHelper
     if step == Constants::STEP_EXECUTANDO[1]
       'Execução em Andamento'
     elsif step == Constants::STEP_AGUARDANDO[1]
-      'Aguadando Execução'
+      'Aguardando Execução'
     elsif step == Constants::STEP_TESTE[1]
       'Requisição Liberada para Testes'
     elsif step == Constants::STEP_CONCLUIDA[1]
