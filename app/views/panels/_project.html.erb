@@ -97,11 +97,11 @@
           <div class="col-12 col-md-5 request-count col-lines">
             <div class="col d-flex justify-content-between align-items-center">
               <div class="">Abertas</div>
-              <div class=""><%=Mark.all.where('project_id = ? and closed = true', project_id).count%></div>
+              <div class=""><%=Mark.all.where('project_id = ? and closed = false', project_id).count%></div>
             </div>
             <div class="col d-flex justify-content-between align-items-center">
               <div class="">Finalizadas</div>
-              <div class=""><%=Mark.all.where('project_id = ? and closed = false', project_id).count%></div>
+              <div class=""><%=Mark.all.where('project_id = ? and closed = true', project_id).count%></div>
             </div>
           </div>
 
