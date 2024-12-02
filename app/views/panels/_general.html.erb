@@ -5,13 +5,12 @@
   <div class="card-body">
 
     <div class="row">
-
-      <div class="col-12 col-md-4">
-        <div class="card">
+      <div class="col-12 col-lg-3">
+        <div class="card mb-3">
           <div class="card-body">
             <div class="row">
               <div class="col icon">
-                <div class="box box-customer d-flex justify-content-center align-items-center" >
+                <div class="box d-flex justify-content-center align-items-center" >
                   <i class="fa-solid fa-building"></i>
                 </div>
               </div>
@@ -24,12 +23,12 @@
         </div>
       </div>
       
-      <div class="col-12 col-md-4">
-        <div class="card">
+      <div class="col-12 col-lg-3">
+        <div class="card mb-3">
           <div class="card-body">
             <div class="row">
               <div class="col icon">
-                <div class="box box-project d-flex justify-content-center align-items-center" >
+                <div class="box d-flex justify-content-center align-items-center" >
                   <i class="fa-solid fa-layer-group"></i>
                 </div>
               </div>
@@ -42,23 +41,41 @@
         </div>
       </div>
 
-      <div class="col-12 col-md-4">
-        <div class="card">
+      <div class="col-12 col-lg-3">
+        <div class="card mb-3">
           <div class="card-body">
             <div class="row">
               <div class="col icon">
-                <div class="box box-user d-flex justify-content-center align-items-center" >
-                  <i class="fa-solid fa-user-group"></i>
+                <div class="box d-flex justify-content-center align-items-center" >
+                  <i class="fa-solid fa-circle-question"></i>
                 </div>
               </div>
               <div class="col col-lines">
-                <div class="line-1">Usuários</div>
-                <div class="line-2"><%=User.all.count%></div>
+                <div class="line-1">Ajudas</div>
+                <div class="line-2"><%=Help.all.count%></div>
               </div>
             </div> 
           </div>
         </div>
       </div>
+
+      <div class="col-12 col-lg-3">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col icon">
+                <div class="box d-flex justify-content-center align-items-center" >
+                  <i class="fa-solid fa-inbox"></i>
+                </div>
+              </div>
+              <div class="col col-lines">
+                <div class="line-1">Requisições</div>
+                <div class="line-2"><%=Request.all.count%></div>
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>      
     </div>
 
   </div>

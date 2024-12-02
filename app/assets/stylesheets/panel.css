@@ -9,34 +9,21 @@
   width: 4rem;
   border-radius: 10%;
   margin: 0.5rem; 
+  background-color: #08af3a;
 }
 
-.icon-small .box-small {
+.icon-project {
+  font-size: 1.6rem;
+  color: #fff;
+  max-width: 5rem;
+}
+
+.icon-project .box-project {
   height: 3rem;
   width: 3rem;
   border-radius: 10%;
   margin: 0.5rem; 
-  color: #fff;
-}
-
-.box-customer {
-  background-color: #9694ff;
-}
-
-.box-project {
-  background-color: #5ddab4;
-}
-
-.box-user {
-  background-color: #ff7976;
-}
-
-.box-help {
-  background-color: #072486;
-}
-
-.box-request {
-  background-color: #ffa500;
+  background-color: #0b66d7;
 }
 
 .line-1 {
@@ -50,10 +37,27 @@
   font-size: 20px;
 }
 
+.line-1-project {
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.line-2-project {
+  font-weight: 700;  
+  font-size: 16px;
+}
+
 .col-lines {
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+
+.request-count {
+  font-size: 12px;
+  color: #6c757d !important;
+  font-style: italic;
 }
 
 .card-topic {
@@ -65,6 +69,6 @@
   font-size: 14px;
   background-color: inherit;
   padding-bottom: 0;
-  padding-top: 0.8rem;
+  padding-top: 1.2rem;
   border: none;
 }
