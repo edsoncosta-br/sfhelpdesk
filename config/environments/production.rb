@@ -128,7 +128,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'sofolha.com.br',
     user_name:            'sfhelpdesk@sofolha.com.br',
-    password:             'Sfhelpdesk@01055651',
+    password:             'SfHelpDesk@01055651',
     authentication:       'plain',
     enable_starttls_auto: true }      
 end
